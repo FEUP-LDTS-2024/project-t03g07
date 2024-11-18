@@ -1,4 +1,4 @@
-package com.t03g07.projeto_ldts;
+package spacewars.controller;
 
 public enum Status {
     RUNNING,
