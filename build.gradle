@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group = 'com.t03g07.projeto_ldts'
+group = 'spacecwars'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -22,5 +22,5 @@ test {
 }
 
 application {
-    mainClass = 'com.t03g07.projeto_ldts.Application'
+    mainClass = 'spacewars.Application'
 }
