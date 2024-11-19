@@ -9,6 +9,9 @@ public class Application {
         try {
             LanternaFrame lanternaFrame = new LanternaFrame("Space Wars");
             lanternaFrame.startScreen();
+
+            Application app = new Application();
+            app.run();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -17,6 +20,8 @@ public class Application {
     private void run() throws IOException {
         int FPS = 60;
         int frameTime = 1000 / FPS;
+        long lastTime = System.currentTimeMillis();
+        int frames = 0;
 
         while (true) {
             long startTime = System.currentTimeMillis();
@@ -24,12 +29,19 @@ public class Application {
             // Update game state
             // Render game state
 
+            frames++;
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
 
             try {
                 if (sleepTime > 0) Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
+            }
+
+            if (System.currentTimeMillis() - lastTime >= 1000) {    //each second
+                System.out.println("FPS: " + frames);
+                frames = 0;
+                lastTime = System.currentTimeMillis();
             }
 
         }
