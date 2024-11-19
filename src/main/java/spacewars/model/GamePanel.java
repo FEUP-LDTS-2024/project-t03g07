@@ -1,15 +1,17 @@
 package spacewars.model;
 
+import spacewars.gui.LanternaFrame;
+
 public class GamePanel
 {
-    //will be used in the GamePanel controller class - to be done
     private final int width;
     private final int height;
 
+
     public GamePanel(int width, int height)
     {
-        this.width = width;
-        this.height = height;
+        this.width = LanternaFrame.getWIDTH();
+        this.height = LanternaFrame.getHEIGHT();
     }
 
     public int getWidth()

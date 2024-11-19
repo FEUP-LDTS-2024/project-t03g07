@@ -49,4 +49,11 @@ public class LanternaFrame {
     public void startScreen() throws IOException {
         this.screen.startScreen();
     }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
 }
