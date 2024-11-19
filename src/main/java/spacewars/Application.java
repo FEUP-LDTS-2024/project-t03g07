@@ -10,8 +10,7 @@ public class Application {
             LanternaFrame lanternaFrame = new LanternaFrame("Space Wars");
             lanternaFrame.startScreen();
 
-            Application app = new Application();
-            app.run();
+            //app.run(); -> when close method is implemented
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,7 +36,7 @@ public class Application {
                 if (sleepTime > 0) Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
             }
-
+            
             if (System.currentTimeMillis() - lastTime >= 1000) {    //each second
                 System.out.println("FPS: " + frames);
                 frames = 0;
