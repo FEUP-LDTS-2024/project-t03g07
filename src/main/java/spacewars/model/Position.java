@@ -10,7 +10,11 @@ public class Position
         this.x = x;
         this.y = y;
     }
-    
+
+    public int getLeft() { return x - 1; }
+    public int getRight() { return x + 1; }
+    public int getUp() { return y - 1; }
+    public int getDown() { return y + 1; }
 
     public int getX()
     {
