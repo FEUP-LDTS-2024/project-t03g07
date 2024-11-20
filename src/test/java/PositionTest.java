@@ -1,3 +1,5 @@
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
 import spacewars.model.Position;
 
@@ -6,19 +8,20 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class PositionTest
 {
-    @Test
-    public void testGetX()
+    @Property
+    public void testGetX(@ForAll int x, @ForAll int y)
     {
-        Position position = new Position(5, 5);
-        assertEquals(5, position.getX());
+        Position position = new Position(x, y);
+        assertEquals(x, position.getX());
     }
 
-    @Test
-    public void testGetY()
+    @Property
+    public void testGetY(@ForAll int x, @ForAll int y)
     {
-        Position position = new Position(5, 5);
-        assertEquals(5, position.getY());
+        Position position = new Position(x, y);
+        assertEquals(y, position.getY());
     }
+
 
     @Test
     public void testEquals() {
@@ -34,71 +37,40 @@ public class PositionTest
         assertNotEquals(new Object(), position1);
     }
 
-    @Test
-    public void testGetLeft()
+
+    @Property
+    public void testGetLeft(@ForAll int x, @ForAll int y)
     {
-        Position position = new Position(5, 5);
+        Position position = new Position(x, y);
         Position left = position.getLeft();
-        assertEquals(4, left.getX());
-        assertEquals(5, left.getY());
+        assertEquals(x - 1, left.getX());
+        assertEquals(y, left.getY());
     }
 
-    @Test
-    public void testGetRight()
+    @Property
+    public void testGetRight(@ForAll int x, @ForAll int y)
     {
-        Position position = new Position(5, 5);
+        Position position = new Position(x, y);
         Position right = position.getRight();
-        assertEquals(6, right.getX());
-        assertEquals(5, right.getY());
+        assertEquals(x + 1, right.getX());
+        assertEquals(y, right.getY());
     }
 
-    @Test
-    public void testGetUp()
+    @Property
+    public void testGetUp(@ForAll int x, @ForAll int y)
     {
-        Position position = new Position(5, 5);
+        Position position = new Position(x, y);
         Position up = position.getUp();
-        assertEquals(5, up.getX());
-        assertEquals(4, up.getY());
+        assertEquals(x, up.getX());
+        assertEquals(y - 1, up.getY());
     }
 
-    @Test
-    public void testGetDown()
+    @Property
+    public void testGetDown(@ForAll int x, @ForAll int y)
     {
-        Position position = new Position(5, 5);
+        Position position = new Position(x, y);
         Position down = position.getDown();
-        assertEquals(5, down.getX());
-        assertEquals(6, down.getY());
-    }
-
-    @Test
-    public void testGetLeftEdgeCase() {
-        Position position = new Position(Integer.MIN_VALUE, 5);
-        Position left = position.getLeft();
-        assertEquals(Integer.MIN_VALUE - 1, left.getX());
-        assertEquals(5, left.getY());
-    }
-
-    @Test
-    public void testGetRightEdgeCase() {
-        Position position = new Position(Integer.MAX_VALUE, 5);
-        Position right = position.getRight();
-        assertEquals(Integer.MAX_VALUE + 1, right.getX());
-        assertEquals(5, right.getY());
-    }
-
-    @Test
-    public void testGetUpEdgeCase() {
-        Position position = new Position(5, Integer.MIN_VALUE);
-        Position up = position.getUp();
-        assertEquals(5, up.getX());
-        assertEquals(Integer.MIN_VALUE - 1, up.getY());
-    }
-
-    @Test
-    public void testGetDownEdgeCase() {
-        Position position = new Position(5, Integer.MAX_VALUE);
-        Position down = position.getDown();
-        assertEquals(5, down.getX());
-        assertEquals(Integer.MAX_VALUE + 1, down.getY());
+        assertEquals(x, down.getX());
+        assertEquals(y + 1, down.getY());
     }
 }
