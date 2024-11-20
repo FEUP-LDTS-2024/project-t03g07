@@ -26,3 +26,7 @@ test {
 application {
     mainClass = 'spacewars.Application'
 }
+
+pitest {
+    junit5PluginVersion = '1.0.0'
+}
