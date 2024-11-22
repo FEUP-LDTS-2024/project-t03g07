@@ -1,4 +1,6 @@
-package spacewars.model;
+package spacewars.model.elements;
+
+import spacewars.model.Position;
 
 public abstract class Entity {
     private Position position;
