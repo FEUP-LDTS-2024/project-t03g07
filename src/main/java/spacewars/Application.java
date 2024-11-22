@@ -1,7 +1,9 @@
 package spacewars;
 
 import spacewars.gui.LanternaFrame;
+import spacewars.model.GamePanel;
 import spacewars.model.elements.Player;
+import spacewars.view.GamePanelViewer;
 import spacewars.view.PlayerViewer;
 
 import java.io.IOException;
@@ -14,6 +16,7 @@ public class Application {
 
             //temporary code
             try {
+                GamePanelViewer gpViewer = new GamePanelViewer(new GamePanel(1280,720), lanternaFrame);
 
                 // Create a player at position (10, 10)
                 Player player = new Player(10, 10);
