@@ -1,6 +1,8 @@
-package spacewars.model;
+package spacewars.model.bullets;
 
-public class Bullet
+import spacewars.model.Position;
+
+public abstract class Bullet
 {
     private Position position;
     private int speed;
