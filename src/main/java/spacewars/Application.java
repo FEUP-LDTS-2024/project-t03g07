@@ -1,6 +1,8 @@
 package spacewars;
 
 import spacewars.gui.LanternaFrame;
+import spacewars.model.elements.Player;
+import spacewars.view.PlayerViewer;
 
 import java.io.IOException;
 
@@ -9,6 +11,25 @@ public class Application {
         try {
             LanternaFrame lanternaFrame = new LanternaFrame("Space Wars");
             lanternaFrame.startScreen();
+
+            //temporary code
+            try {
+
+                // Create a player at position (10, 10)
+                Player player = new Player(10, 10);
+
+                // Create a PlayerViewer with the player's image filepath
+                PlayerViewer playerViewer = new PlayerViewer("millenium_falcon.png");
+
+                // Draw the player on the frame
+                playerViewer.drawPlayer(lanternaFrame, player);
+
+                // Refresh the frame to display the changes
+                lanternaFrame.refresh();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //-----
 
             //app.run(); -> when close method is implemented
         } catch (IOException e) {

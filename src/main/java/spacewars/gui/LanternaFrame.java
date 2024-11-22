@@ -64,4 +64,13 @@ public class LanternaFrame {
         graphics.setBackgroundColor(color);
         graphics.putString(x, y, " "); // Use a space character to create a "pixel"
     }
+
+    public void refresh()
+    {
+        try {
+            this.screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
