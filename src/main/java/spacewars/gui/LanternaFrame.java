@@ -1,6 +1,7 @@
 package spacewars.gui;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
@@ -55,5 +56,21 @@ public class LanternaFrame {
     }
     public static int getHEIGHT() {
         return HEIGHT;
+    }
+
+    public void drawPixel(int x, int y, TextColor.RGB color)
+    {
+        var graphics = this.screen.newTextGraphics();
+        graphics.setBackgroundColor(color);
+        graphics.putString(x, y, " "); // Use a space character to create a "pixel"
+    }
+
+    public void refresh()
+    {
+        try {
+            this.screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
