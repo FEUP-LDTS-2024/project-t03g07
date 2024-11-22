@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 public abstract class Viewer
@@ -15,9 +16,11 @@ public abstract class Viewer
 
     public Viewer(String filepath) throws IOException
     {
-        URL resource = getClass().getClassLoader().getResource(filepath);
-        assert resource != null;
-        image = ImageIO.read(new File((resource.getFile())));
+        InputStream resourceStream = getClass().getClassLoader().getResourceAsStream(filepath);
+        if (resourceStream == null) {
+            throw new IOException("Resource not found: " + filepath);
+        }
+        image = ImageIO.read(resourceStream);
     }
 
     public void draw(LanternaFrame frame, int a, int b)
