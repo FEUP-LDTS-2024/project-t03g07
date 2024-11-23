@@ -61,6 +61,10 @@ public class LanternaFrame {
         this.screen.startScreen();
     }
 
+    public void stopScreen() throws IOException {
+        this.screen.stopScreen();
+    }
+
     public static int getWIDTH() {
         return WIDTH;
     }

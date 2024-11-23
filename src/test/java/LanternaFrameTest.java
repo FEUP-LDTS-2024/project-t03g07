@@ -54,7 +54,16 @@ public class LanternaFrameTest {
         verifyNoMoreInteractions(graphics);
     }
 
-    
+    @Test
+    public void stopScreen() throws IOException {
+        LanternaFrame lanternaFrame = new LanternaFrame("stopScreen Test");
+
+        lanternaFrame.stopScreen();
+
+        verify(graphics, times(0)).setBackgroundColor(any());
+        verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
+        verifyNoMoreInteractions(graphics);
+    }
 
 
     @Property
