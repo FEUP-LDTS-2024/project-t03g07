@@ -5,10 +5,8 @@ import spacewars.gui.LanternaFrame;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
 public abstract class Viewer
 {
