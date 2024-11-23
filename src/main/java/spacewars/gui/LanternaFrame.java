@@ -2,6 +2,7 @@ package spacewars.gui;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
@@ -14,6 +15,7 @@ public class LanternaFrame {
 
     private final TerminalScreen screen;
     private final AWTTerminalFrame terminal;
+    private final TextGraphics graphics;
 
     public LanternaFrame(String title) throws IOException {
         TerminalSize terminalSize = new TerminalSize(WIDTH, HEIGHT);
@@ -24,6 +26,7 @@ public class LanternaFrame {
 
         this.screen = terminalFactory.createScreen();
         this.screen.setCursorPosition(null);
+        this.graphics = this.screen.newTextGraphics();
         this.terminal = (AWTTerminalFrame) this.screen.getTerminal();
         this.terminal.setTitle(title);
         this.terminal.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -37,6 +40,13 @@ public class LanternaFrame {
                 terminal.dispose();
             }
         });
+    }
+
+    //constructor for testing
+    public LanternaFrame(TextGraphics graphics) {
+        this.screen = null;
+        this.terminal = null;
+        this.graphics = graphics;
     }
 
     public TerminalScreen getScreen() {
@@ -60,7 +70,6 @@ public class LanternaFrame {
 
     public void drawPixel(int x, int y, TextColor.RGB color)
     {
-        var graphics = this.screen.newTextGraphics();
         graphics.setBackgroundColor(color);
         graphics.putString(x, y, " "); // Use a space character to create a "pixel"
     }
