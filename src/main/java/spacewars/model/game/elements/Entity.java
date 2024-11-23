@@ -16,5 +16,6 @@ public abstract class Entity {
     public void setPosition(Position position) {
         this.position = position;
     }
+
     public abstract void update();
 }
