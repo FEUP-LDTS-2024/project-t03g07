@@ -23,9 +23,20 @@ public class LanternaFrameTest {
 
     @Test
     public void getScreen() throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("Test");
+        LanternaFrame lanternaFrame = new LanternaFrame("getScreen Test");
 
         lanternaFrame.getScreen();
+
+        verify(graphics, times(0)).setBackgroundColor(any());
+        verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
+        verifyNoMoreInteractions(graphics);
+    }
+
+    @Test
+    public void getTerminal() throws IOException {
+        LanternaFrame lanternaFrame = new LanternaFrame("getTerminal Test");
+
+        lanternaFrame.getTerminal();
 
         verify(graphics, times(0)).setBackgroundColor(any());
         verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
