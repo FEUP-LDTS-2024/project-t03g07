@@ -1,7 +1,6 @@
 package spacewars;
 
 import spacewars.gui.LanternaFrame;
-import spacewars.model.game.Game;
 import spacewars.model.game.elements.Player;
 import spacewars.view.game.GameViewer;
 import spacewars.view.game.PlayerViewer;
@@ -13,13 +12,13 @@ public class Application {
         LanternaFrame lanternaFrame = new LanternaFrame("Space Wars");
         lanternaFrame.startScreen();
 
-        new GameViewer(new Game(1280, 720), lanternaFrame);
+        new GameViewer(lanternaFrame);
 
         Player player = new Player(10, 10);
 
         PlayerViewer playerViewer = new PlayerViewer("millennium_falcon.png");
 
-        playerViewer.drawPlayer(lanternaFrame, player);
+        playerViewer.drawEntity(lanternaFrame, player);
         
         lanternaFrame.refresh();
     }
