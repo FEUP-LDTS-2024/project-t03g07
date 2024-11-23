@@ -3,6 +3,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import net.jqwik.api.*;
 import net.jqwik.api.lifecycle.BeforeTry;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import spacewars.gui.LanternaFrame;
 
 import java.awt.*;
@@ -19,6 +20,18 @@ public class LanternaFrameTest {
     public void setup() {
         this.graphics = mock(TextGraphics.class);
     }
+
+    @Test
+    public void getScreen() throws IOException {
+        LanternaFrame lanternaFrame = new LanternaFrame("Test");
+
+        lanternaFrame.getScreen();
+
+        verify(graphics, times(0)).setBackgroundColor(any());
+        verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
+        verifyNoMoreInteractions(graphics);
+    }
+
 
     @Property
     public void drawPixel(@ForAll int x, @ForAll int y, @ForAll("color") TextColor.RGB color) {
