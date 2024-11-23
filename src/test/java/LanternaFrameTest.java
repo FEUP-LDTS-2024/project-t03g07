@@ -43,6 +43,19 @@ public class LanternaFrameTest {
         verifyNoMoreInteractions(graphics);
     }
 
+    @Test
+    public void startScreen() throws IOException {
+        LanternaFrame lanternaFrame = new LanternaFrame("startScreen Test");
+
+        lanternaFrame.startScreen();
+
+        verify(graphics, times(0)).setBackgroundColor(any());
+        verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
+        verifyNoMoreInteractions(graphics);
+    }
+
+    
+
 
     @Property
     public void drawPixel(@ForAll int x, @ForAll int y, @ForAll("color") TextColor.RGB color) {
