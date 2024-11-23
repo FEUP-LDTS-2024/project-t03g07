@@ -65,6 +65,28 @@ public class LanternaFrameTest {
         verifyNoMoreInteractions(graphics);
     }
 
+    @Test
+    public void getWIDTH() throws IOException {
+        LanternaFrame lanternaFrame = new LanternaFrame("getWIDTH Test");
+
+        lanternaFrame.getWIDTH();
+
+        verify(graphics, times(0)).setBackgroundColor(any());
+        verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
+        verifyNoMoreInteractions(graphics);
+    }
+
+    @Test
+    public void getHEIGHT() throws IOException {
+        LanternaFrame lanternaFrame = new LanternaFrame("getHEIGHT Test");
+
+        lanternaFrame.getHEIGHT();
+
+        verify(graphics, times(0)).setBackgroundColor(any());
+        verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
+        verifyNoMoreInteractions(graphics);
+    }
+
 
     @Property
     public void drawPixel(@ForAll int x, @ForAll int y, @ForAll("color") TextColor.RGB color) {
