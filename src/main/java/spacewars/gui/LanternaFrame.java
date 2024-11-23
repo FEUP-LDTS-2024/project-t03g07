@@ -9,8 +9,8 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import java.io.IOException;
 
 public class LanternaFrame {
-    private static final int WIDTH = 1280;
-    private static final int HEIGHT = 720;
+    private static final int WIDTH = 1024;
+    private static final int HEIGHT = 576;
 
     private final TerminalScreen screen;
     private final AWTTerminalFrame terminal;
@@ -18,9 +18,7 @@ public class LanternaFrame {
     public LanternaFrame(String title) throws IOException {
         TerminalSize terminalSize = new TerminalSize(WIDTH, HEIGHT);
 
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
-                .setInitialTerminalSize(terminalSize)
-                .setForceAWTOverSwing(true);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize).setForceAWTOverSwing(true);
 
         this.screen = terminalFactory.createScreen();
         this.screen.setCursorPosition(null);
@@ -32,11 +30,19 @@ public class LanternaFrame {
                 try {
                     screen.stopScreen();
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    throw new RuntimeException(ex);
                 }
                 terminal.dispose();
             }
         });
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
     }
 
     public TerminalScreen getScreen() {
@@ -51,26 +57,13 @@ public class LanternaFrame {
         this.screen.startScreen();
     }
 
-    public static int getWIDTH() {
-        return WIDTH;
-    }
-    public static int getHEIGHT() {
-        return HEIGHT;
-    }
-
-    public void drawPixel(int x, int y, TextColor.RGB color)
-    {
+    public void drawPixel(int x, int y, TextColor.RGB color) {
         var graphics = this.screen.newTextGraphics();
         graphics.setBackgroundColor(color);
         graphics.putString(x, y, " "); // Use a space character to create a "pixel"
     }
 
-    public void refresh()
-    {
-        try {
-            this.screen.refresh();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void refresh() throws IOException {
+        this.screen.refresh();
     }
 }
