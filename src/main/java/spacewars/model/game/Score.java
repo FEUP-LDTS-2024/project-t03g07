@@ -1,4 +1,4 @@
-package spacewars.model;
+package spacewars.model.game;
 
 public class Score {
     private int score;

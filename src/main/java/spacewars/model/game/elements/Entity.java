@@ -1,4 +1,4 @@
-package spacewars.model.elements;
+package spacewars.model.game.elements;
 
 import spacewars.model.Position;
 
@@ -16,5 +16,6 @@ public abstract class Entity {
     public void setPosition(Position position) {
         this.position = position;
     }
+
     public abstract void update();
 }

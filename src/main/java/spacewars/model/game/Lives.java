@@ -1,4 +1,4 @@
-package spacewars.model;
+package spacewars.model.game;
 
 public class Lives {
     private int lives;

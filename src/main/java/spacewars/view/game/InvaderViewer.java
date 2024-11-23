@@ -1,7 +1,8 @@
-package spacewars.view;
+package spacewars.view.game;
 
 import spacewars.gui.LanternaFrame;
-import spacewars.model.elements.invaders.Invader;
+import spacewars.model.game.elements.invaders.Invader;
+import spacewars.view.Viewer;
 
 import java.io.IOException;
 

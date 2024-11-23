@@ -1,6 +1,6 @@
-package spacewars.model.elements;
+package spacewars.model.game.elements;
 
-import spacewars.model.Lives;
+import spacewars.model.game.Lives;
 
 public class Player extends Entity {
     private Lives lives;
