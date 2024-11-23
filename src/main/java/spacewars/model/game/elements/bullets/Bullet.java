@@ -1,4 +1,4 @@
-package spacewars.model.bullets;
+package spacewars.model.game.elements.bullets;
 
 import spacewars.model.Position;
 

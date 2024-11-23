@@ -1,4 +1,4 @@
-package spacewars.model.elements;
+package spacewars.model.game.elements;
 
 import spacewars.model.Position;
 

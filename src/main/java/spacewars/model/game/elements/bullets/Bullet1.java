@@ -1,4 +1,4 @@
-package spacewars.model.bullets;
+package spacewars.model.game.elements.bullets;
 
 public class Bullet1 extends Bullet
 {

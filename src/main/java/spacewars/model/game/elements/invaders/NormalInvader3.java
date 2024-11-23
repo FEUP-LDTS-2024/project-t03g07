@@ -1,4 +1,4 @@
-package spacewars.model.elements.invaders;
+package spacewars.model.game.elements.invaders;
 
 public class NormalInvader3 extends Invader
 {

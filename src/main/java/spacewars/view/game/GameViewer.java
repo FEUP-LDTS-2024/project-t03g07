@@ -1,15 +1,15 @@
-package spacewars.view;
+package spacewars.view.game;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import spacewars.gui.LanternaFrame;
-import spacewars.model.GamePanel;
+import spacewars.model.game.Game;
 
 import java.util.Random;
 
-public class GamePanelViewer
+public class GameViewer
 {
-    public GamePanelViewer(GamePanel gamePanel, LanternaFrame frame)
+    public GameViewer(Game game, LanternaFrame frame)
     {
         int width = frame.getScreen().getTerminalSize().getColumns();
         int height = frame.getScreen().getTerminalSize().getRows();
