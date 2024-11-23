@@ -43,9 +43,9 @@ public class LanternaFrame {
     }
 
     //constructor for testing
-    public LanternaFrame(TextGraphics graphics) {
-        this.screen = null;
-        this.terminal = null;
+    public LanternaFrame(String name, TextGraphics graphics,TerminalScreen screen, AWTTerminalFrame terminal) {
+        this.screen = screen;
+        this.terminal = terminal;
         this.graphics = graphics;
     }
 
@@ -78,12 +78,8 @@ public class LanternaFrame {
         graphics.putString(x, y, " "); // Use a space character to create a "pixel"
     }
 
-    public void refresh()
+    public void refresh() throws IOException
     {
-        try {
-            this.screen.refresh();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.screen.refresh();
     }
 }
