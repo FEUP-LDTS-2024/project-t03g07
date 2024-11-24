@@ -10,8 +10,8 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import java.io.IOException;
 
 public class LanternaFrame {
-    private static final int WIDTH = 1280;
-    private static final int HEIGHT = 720;
+    private static final int WIDTH = 1024;
+    private static final int HEIGHT = 576;
 
     private final TerminalScreen screen;
     private final AWTTerminalFrame terminal;
@@ -20,9 +20,7 @@ public class LanternaFrame {
     public LanternaFrame(String title) throws IOException {
         TerminalSize terminalSize = new TerminalSize(WIDTH, HEIGHT);
 
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
-                .setInitialTerminalSize(terminalSize)
-                .setForceAWTOverSwing(true);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize).setForceAWTOverSwing(true);
 
         this.screen = terminalFactory.createScreen();
         this.screen.setCursorPosition(null);
@@ -35,12 +33,13 @@ public class LanternaFrame {
                 try {
                     screen.stopScreen();
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    throw new RuntimeException(ex);
                 }
                 terminal.dispose();
             }
         });
     }
+
 
     //constructor for testing
     public LanternaFrame(String name, TextGraphics graphics,TerminalScreen screen, AWTTerminalFrame terminal) {
@@ -71,15 +70,15 @@ public class LanternaFrame {
     public static int getHEIGHT() {
         return HEIGHT;
     }
-
-    public void drawPixel(int x, int y, TextColor.RGB color)
-    {
+  
+    public void drawPixel(int x, int y, TextColor.RGB color) {
+        var graphics = this.screen.newTextGraphics();
         graphics.setBackgroundColor(color);
         graphics.putString(x, y, " "); // Use a space character to create a "pixel"
     }
 
-    public void refresh() throws IOException
-    {
+
+    public void refresh() throws IOException {
         this.screen.refresh();
     }
 }

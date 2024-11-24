@@ -6,14 +6,17 @@ import spacewars.view.Viewer;
 
 import java.io.IOException;
 
-public class BulletViewer extends Viewer
-{
+public class BulletViewer extends Viewer {
     public BulletViewer(String filepath) throws IOException {
         super(filepath);
     }
 
-    public void drawBullet(LanternaFrame frame, Bullet bullet) throws IOException
-    {
-        draw(frame, bullet.getPosition().getX(), bullet.getPosition().getY());
+    @Override
+    public void drawEntity(LanternaFrame frame, Object entity) {
+        if (entity instanceof Bullet bullet) {
+            draw(frame, bullet.getPosition().getX(), bullet.getPosition().getY());
+        } else {
+            throw new IllegalArgumentException("Invalid entity type");
+        }
     }
 }

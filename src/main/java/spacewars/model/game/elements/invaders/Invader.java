@@ -7,6 +7,8 @@ public abstract class Invader extends Entity {
         super(x, y);
     }
 
+    public abstract int getPoints();
+
     @Override
     public void update() {
     }

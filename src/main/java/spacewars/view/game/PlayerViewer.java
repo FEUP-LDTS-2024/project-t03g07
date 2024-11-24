@@ -6,14 +6,17 @@ import spacewars.view.Viewer;
 
 import java.io.IOException;
 
-public class PlayerViewer extends Viewer
-{
+public class PlayerViewer extends Viewer {
     public PlayerViewer(String filepath) throws IOException {
         super(filepath);
     }
 
-    public void drawPlayer(LanternaFrame frame, Player player) throws IOException
-    {
-        draw(frame, player.getPosition().getX(), player.getPosition().getY());
+    @Override
+    public void drawEntity(LanternaFrame frame, Object entity) {
+        if (entity instanceof Player player) {
+            draw(frame, player.getPosition().getX(), player.getPosition().getY());
+        } else {
+            throw new IllegalArgumentException("Invalid entity type");
+        }
     }
 }
