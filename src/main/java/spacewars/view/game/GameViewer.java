@@ -11,7 +11,6 @@ public class GameViewer {
 
     public GameViewer(LanternaFrame frame) {
         this.frame = frame;
-        draw();
     }
 
     public void draw() {

@@ -14,6 +14,7 @@ import static org.mockito.Mockito.*;
 public class ViewerTest {
     private LanternaFrame frame;
     private Viewer viewer;
+    private BufferedImage image;
 
     @BeforeEach
     public void setup() throws IOException {
@@ -24,6 +25,8 @@ public class ViewerTest {
                 // Implementation not needed for this test
             }
         };
+        image = mock(BufferedImage.class);
+        viewer.image = image;
     }
 
     @Test
@@ -34,23 +37,18 @@ public class ViewerTest {
 
     @Test
     public void testDraw() {
-        viewer.image = mock(BufferedImage.class);
-        when(viewer.image.getHeight()).thenReturn(10);
-        when(viewer.image.getWidth()).thenReturn(10);
-        when(viewer.image.getRGB(0, 0)).thenReturn(0);
-        when(viewer.image.getRGB(1, 1)).thenReturn(1);
-        when(viewer.image.getRGB(2, 2)).thenReturn(2);
-        when(viewer.image.getRGB(3, 3)).thenReturn(3);
-        when(viewer.image.getRGB(4, 4)).thenReturn(4);
-        when(viewer.image.getRGB(5, 5)).thenReturn(5);
-        when(viewer.image.getRGB(6, 6)).thenReturn(6);
-        when(viewer.image.getRGB(7, 7)).thenReturn(7);
-        when(viewer.image.getRGB(8, 8)).thenReturn(8);
-        when(viewer.image.getRGB(9, 9)).thenReturn(9);
+        when(image.getWidth()).thenReturn(2);
+        when(image.getHeight()).thenReturn(2);
+        when(image.getRGB(0, 0)).thenReturn(0xFF0000); // Red
+        when(image.getRGB(1, 0)).thenReturn(0x00FF00); // Green
+        when(image.getRGB(0, 1)).thenReturn(0x0000FF); // Blue
+        when(image.getRGB(1, 1)).thenReturn(0xFFFFFF); // White
 
-        viewer.draw(frame, 5, 15);
+        viewer.draw(frame, 10, 20);
 
-        verify(frame, times(100)).drawPixel(anyInt(), anyInt(), any(TextColor.RGB.class));
-
+        verify(frame).drawPixel(10, 20, new TextColor.RGB(255, 0, 0));
+        verify(frame).drawPixel(11, 20, new TextColor.RGB(0, 255, 0));
+        verify(frame).drawPixel(10, 21, new TextColor.RGB(0, 0, 255));
+        verify(frame).drawPixel(11, 21, new TextColor.RGB(255, 255, 255));
     }
 }
