@@ -1,6 +1,7 @@
+package spacewars.model;
+
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
-import spacewars.model.Position;
 
 import static org.junit.jupiter.api.Assertions.*;
 

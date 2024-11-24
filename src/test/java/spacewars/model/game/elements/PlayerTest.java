@@ -1,6 +1,7 @@
+package spacewars.model.game.elements;
+
 import org.junit.jupiter.api.Test;
 import spacewars.model.game.Lives;
-import spacewars.model.game.elements.Player;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

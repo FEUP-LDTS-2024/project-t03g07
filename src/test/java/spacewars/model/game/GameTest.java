@@ -1,5 +1,6 @@
+package spacewars.model.game;
+
 import org.junit.jupiter.api.Test;
-import spacewars.model.game.Game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
