@@ -1,4 +1,4 @@
-package view.game;
+package spacewars.view.game;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

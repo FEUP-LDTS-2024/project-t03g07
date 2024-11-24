@@ -1,4 +1,4 @@
-package view.game;
+package spacewars.view.game;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
