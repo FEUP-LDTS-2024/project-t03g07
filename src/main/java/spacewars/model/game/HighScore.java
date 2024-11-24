@@ -6,7 +6,7 @@ import java.util.List;
 public class HighScore {
     private static final String FILE_PATH = "highscores.txt";
 
-    public static void saveHighScore(int highScore) {
+    public static void saveHighScore(int highScore){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             writer.write(String.valueOf(highScore));
             writer.newLine();
@@ -34,5 +34,13 @@ public class HighScore {
             return 0;
         }
         return highScores.get(highScores.size() - 1);
+    }
+
+    public static void clearHighScores() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
