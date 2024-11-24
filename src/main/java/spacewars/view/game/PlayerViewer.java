@@ -12,9 +12,10 @@ public class PlayerViewer extends Viewer {
     }
 
     @Override
-    public void drawEntity(LanternaFrame frame, Object entity) {
+    public void drawEntity(LanternaFrame frame, Object entity) throws IOException {
         if (entity instanceof Player player) {
             draw(frame, player.getPosition().getX(), player.getPosition().getY());
+            frame.refresh();
         } else {
             throw new IllegalArgumentException("Invalid entity type");
         }
