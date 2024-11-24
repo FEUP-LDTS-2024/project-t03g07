@@ -81,4 +81,18 @@ public class LanternaFrame {
     public void refresh() throws IOException {
         this.screen.refresh();
     }
+
+    public void close()
+    {
+        try {
+            this.screen.stopScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.terminal.dispose();
+    }
+
+    public boolean isRunning() {
+        return this.terminal.isVisible();
+    }
 }
