@@ -1,46 +1,46 @@
-package view.game;
+package spacewars.view.game;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spacewars.gui.LanternaFrame;
 import spacewars.model.Position;
-import spacewars.model.game.elements.Player;
-import spacewars.view.game.PlayerViewer;
+import spacewars.model.game.elements.invaders.Invader;
+import spacewars.view.game.InvaderViewer;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-public class PlayerViewerTest {
-    private PlayerViewer playerViewer;
+public class InvaderViewerTest {
+    private InvaderViewer invaderViewer;
     private LanternaFrame frame;
-    private Player player;
+    private Invader invaders;
     private Position position;
 
     @BeforeEach
     void setUp() throws IOException {
-        playerViewer = spy(new PlayerViewer("millennium_falcon.png"));
+        invaderViewer = spy(new InvaderViewer("empire_fighter.png"));
         frame = mock(LanternaFrame.class);
-        player = mock(Player.class);
+        invaders = mock(Invader.class);
         position = mock(Position.class);
     }
 
     @Test
     void testDrawEntityWithPlayer() {
-        when(player.getPosition()).thenReturn(position);
+        when(invaders.getPosition()).thenReturn(position);
         when(position.getX()).thenReturn(5);
-        when(position.getY()).thenReturn(10);
+        when(position.getY()).thenReturn(60);
 
-        playerViewer.drawEntity(frame, player);
+        invaderViewer.drawEntity(frame, invaders);
 
-        verify(playerViewer).draw(frame, 5, 10);
+        verify(invaderViewer).draw(frame, 5, 60);
     }
 
     @Test
     void testDrawEntityWithInvalidEntity() {
         Object invalidEntity = new Object();
 
-        assertThrows(IllegalArgumentException.class, () -> playerViewer.drawEntity(frame, invalidEntity));
+        assertThrows(IllegalArgumentException.class, () -> invaderViewer.drawEntity(frame, invalidEntity));
     }
 }
