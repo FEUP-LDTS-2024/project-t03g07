@@ -40,6 +40,6 @@ public abstract class Viewer {
         return new TextColor.RGB(red, green, blue);
     }
 
-    public abstract void drawEntity(LanternaFrame frame, Object entity);
+    public abstract void drawEntity(LanternaFrame frame, Object entity) throws IOException;
 }
 

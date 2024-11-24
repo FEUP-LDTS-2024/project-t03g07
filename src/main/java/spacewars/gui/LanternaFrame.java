@@ -10,8 +10,8 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import java.io.IOException;
 
 public class LanternaFrame {
-    private static final int WIDTH = 1024;
-    private static final int HEIGHT = 576;
+    private static final int WIDTH = 200;
+    private static final int HEIGHT = 40;
 
     private final TerminalScreen screen;
     private final AWTTerminalFrame terminal;
@@ -36,6 +36,7 @@ public class LanternaFrame {
                     throw new RuntimeException(ex);
                 }
                 terminal.dispose();
+                System.exit(0);
             }
         });
     }
