@@ -31,11 +31,11 @@ public class BulletViewerTest {
     public void testDrawEntityWithBullet() {
         when(bullet.getPosition()).thenReturn(position);
         when(position.getX()).thenReturn(5);
-        when(position.getY()).thenReturn(10);
+        when(position.getY()).thenReturn(15);
 
         bulletViewer.drawEntity(frame, bullet);
 
-        verify(bulletViewer).draw(frame, 5, 10);
+        verify(bulletViewer).draw(frame, 5, 15);
     }
 
     @Test
