@@ -8,10 +8,10 @@ import spacewars.view.game.PlayerViewer;
 import java.io.IOException;
 
 public class Application {
-    private LanternaFrame lanternaFrame;
-    private GameViewer gameViewer;
-    private Player player;
-    private PlayerViewer playerViewer;
+    private final LanternaFrame lanternaFrame;
+    private final GameViewer gameViewer;
+    private final Player player;
+    private final PlayerViewer playerViewer;
     private boolean running;
 
     public Application() throws IOException {
@@ -29,14 +29,14 @@ public class Application {
 
     public void run() throws InterruptedException, IOException {
         int FPS = 30;
-        int frameTime = 1000 / FPS;
-        long lastTime = System.currentTimeMillis();
+        double frameTime = (double) 1000000000 / FPS;
+        long lastTime = System.nanoTime();
         int frames = 0;
 
         lanternaFrame.startScreen();
 
         while (running) {
-            long startTime = System.currentTimeMillis();
+            long startTime = System.nanoTime();
 
             // Check if screen is closed
             if (!lanternaFrame.isRunning()) {
@@ -53,15 +53,15 @@ public class Application {
             //update here
 
             frames++;
-            long elapsedTime = System.currentTimeMillis() - startTime;
-            long sleepTime = frameTime - elapsedTime;
+            long elapsedTime = System.nanoTime() - startTime;
+            long sleepTime = (long)frameTime - elapsedTime;
 
             if (sleepTime > 0) Thread.sleep(sleepTime);
 
-            if (System.currentTimeMillis() - lastTime >= 1000) {    // each second
+            if (System.nanoTime() - lastTime >= 1000000000) {    // each second
                 System.out.println("FPS: " + frames);
                 frames = 0;
-                lastTime = System.currentTimeMillis();
+                lastTime = System.nanoTime();
             }
         }
 
