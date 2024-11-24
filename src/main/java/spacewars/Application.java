@@ -8,32 +8,49 @@ import spacewars.view.game.PlayerViewer;
 import java.io.IOException;
 
 public class Application {
-    public static void main(String[] args) throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("Space Wars");
-        lanternaFrame.startScreen();
+    private LanternaFrame lanternaFrame;
+    private GameViewer gameViewer;
+    private Player player;
+    private PlayerViewer playerViewer;
+    private boolean running;
 
-        new GameViewer(lanternaFrame);
-
-        Player player = new Player(10, 10);
-
-        PlayerViewer playerViewer = new PlayerViewer("millennium_falcon.png");
-
-        playerViewer.drawEntity(lanternaFrame, player);
-        
-        lanternaFrame.refresh();
+    public Application() throws IOException {
+        lanternaFrame = new LanternaFrame("Space Wars");
+        gameViewer = new GameViewer(lanternaFrame);
+        player = new Player(10, 10);
+        playerViewer = new PlayerViewer("millennium_falcon.png");
+        running = true;
     }
 
-    private void run() throws InterruptedException {
-        int FPS = 60;
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Application app = new Application();
+        app.run();
+    }
+
+    public void run() throws InterruptedException, IOException {
+        int FPS = 30;
         int frameTime = 1000 / FPS;
         long lastTime = System.currentTimeMillis();
         int frames = 0;
 
-        while (true) {
+        lanternaFrame.startScreen();
+
+        while (running) {
             long startTime = System.currentTimeMillis();
 
-            // Update game state
-            // Render game state
+            // Check if screen is closed
+            if (!lanternaFrame.isRunning()) {
+                running = false;
+                break;
+            }
+
+            gameViewer.draw();
+
+            playerViewer.drawEntity(lanternaFrame, player);
+
+            lanternaFrame.refresh();
+
+            //update here
 
             frames++;
             long elapsedTime = System.currentTimeMillis() - startTime;
@@ -41,13 +58,13 @@ public class Application {
 
             if (sleepTime > 0) Thread.sleep(sleepTime);
 
-            if (System.currentTimeMillis() - lastTime >= 1000) {    //each second
+            if (System.currentTimeMillis() - lastTime >= 1000) {    // each second
                 System.out.println("FPS: " + frames);
                 frames = 0;
                 lastTime = System.currentTimeMillis();
             }
-
         }
-        //close game (gui probably)
+
+        lanternaFrame.close();
     }
 }
