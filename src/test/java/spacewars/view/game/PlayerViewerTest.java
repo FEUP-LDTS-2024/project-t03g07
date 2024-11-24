@@ -27,7 +27,7 @@ public class PlayerViewerTest {
     }
 
     @Test
-    void testDrawEntityWithPlayer() {
+    void testDrawEntityWithPlayer() throws IOException {
         when(player.getPosition()).thenReturn(position);
         when(position.getX()).thenReturn(5);
         when(position.getY()).thenReturn(10);
