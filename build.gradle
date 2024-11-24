@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.15.0'
+}
+
+group = 'spacewars'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass.set('spacewars.Application')
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:3.7.7'
+    testImplementation 'net.jqwik:jqwik:1.5.1'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.2'
+}
+
+test {
+    useJUnitPlatform{
+        includeEngines ('junit-jupiter','jqwik')
+    }
+}
+
+pitest {
+    junit5PluginVersion = '1.2.0'
+    pitestVersion = '1.15.0'
+}
