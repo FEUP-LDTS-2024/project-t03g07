@@ -23,11 +23,12 @@ public class GameViewer {
         textGraphics.setBackgroundColor(customBackgroundColor);
         textGraphics.fill(' ');
 
+        Random random = new Random();
         int numberOfStars = (width * height) / 300;
 
         for (int i = 0; i < numberOfStars; i++) {
-            int x = (i * 7) % width; // Example pattern for x
-            int y = (i * 5) % height; // Example pattern for y
+            int x = random.nextInt(width);
+            int y = random.nextInt(height);
             textGraphics.setForegroundColor(TextColor.ANSI.WHITE);
             textGraphics.setCharacter(x, y, '·');
         }
