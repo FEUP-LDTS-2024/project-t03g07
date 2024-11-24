@@ -1,5 +1,5 @@
 <div align="center">
-  <img width=200px src="./docs/assets/logo/logo.png">
+  <img width=200px src="./docs/assets/logo/logo.png" alt="Logo">
 </div>
 
 <h1 style= "text-align: center;">Space Wars</h1>
@@ -25,24 +25,15 @@ This game was developed as a project for Software Design and Testing Laboratory 
 ## Mockups
 > **Note:** The actual game may differ from the mockups shown below. These mockups are for illustrative purposes only and the final design and features may vary.
 <div align="center">
-  <img width=600px src="./docs/assets/mockups/main_menu.png">
+  <img width=600px src="./docs/assets/mockups/main_menu.png" alt="Main Menu Screen Mockup">
   <p><b>Main Menu</b></p>
   <p>‎</p>
-  <img width=600px src="./docs/assets/mockups/how_to_play.png">
+  <img width=600px src="./docs/assets/mockups/how_to_play.png" alt="How to Play Screen Mockup">
   <p><b>How to play</b></p>
   <p>‎</p>
-  <img width=600px src="./docs/assets/mockups/running_game.png">
+  <img width=600px src="./docs/assets/mockups/running_game.png" alt="Running Game Screen Mockup">
   <p><b>Running game</b></p>
   <p>‎</p>
-  <img width=600px src="./docs/assets/mockups/game_over.png">
+  <img width=600px src="./docs/assets/mockups/game_over.png" alt="Game Over Screen Mockup">
   <p><b>Game Over</b></p>
 </div>
-
-## Expected Features
-- **Main Menu:** An initial screen that lets the user start the game, know how to play the game, view the credits screen and exit the game.
-- **Images:** A way to load images into the game by transforming them into pixels in Lanterna.
-- **Player and Invader movement:** Making the player move with the arrow keys and the invader move randomly.
-- **Player and Invader shooting:** Making the player shoot bullets with the space key and the invader randomly.
-- **Score system:** When the player kills a type of invader, the score is incremented by a certain quantity of points. An high score will be saved in a separate file.
-- **Lives system:** At the beginning of the game, the player has 3 lives that will be decremented if an invader shoots the player. The game ends when the player rans out of lives.
-- **Credits:** The credits are accessible through the main menu, showing the developers of this game.
