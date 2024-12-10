@@ -5,7 +5,9 @@ import spacewars.model.game.elements.Player;
 import spacewars.view.game.GameViewer;
 import spacewars.view.game.PlayerViewer;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Application {
     private final LanternaFrame lanternaFrame;
@@ -14,7 +16,7 @@ public class Application {
     private final PlayerViewer playerViewer;
     private boolean running;
 
-    public Application() throws IOException {
+    public Application() throws IOException, URISyntaxException, FontFormatException {
         lanternaFrame = new LanternaFrame("Space Wars");
         gameViewer = new GameViewer(lanternaFrame);
         player = new Player(10, 10);
@@ -22,7 +24,7 @@ public class Application {
         running = true;
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         Application app = new Application();
         app.run();
     }
