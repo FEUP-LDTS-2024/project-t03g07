@@ -12,6 +12,6 @@ public abstract class GameController extends Controller<Game> {
     public GameController(Game game) {
         super(game);
         this.playerController = new PlayerController(game);
-        this.InvaderController = new InvaderController(game);
+        this.invaderController = new InvaderController(game);
     }
 }
