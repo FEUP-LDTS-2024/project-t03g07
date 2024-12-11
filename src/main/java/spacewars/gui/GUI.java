@@ -8,4 +8,6 @@ public interface GUI {
     void refresh() throws IOException;
 
     void close() throws IOException;
+
+    enum ACTION {RIGHT, LEFT, NONE, QUIT, SELECT}
 }
