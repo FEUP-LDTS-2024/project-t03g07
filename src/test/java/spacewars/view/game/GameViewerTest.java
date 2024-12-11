@@ -6,13 +6,12 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import spacewars.gui.LanternaFrame;
-import spacewars.view.game.GameViewer;
+import spacewars.gui.LanternaGUI;
 
 import static org.mockito.Mockito.*;
 
 public class GameViewerTest {
-    private LanternaFrame frame;
+    private LanternaGUI frame;
     private TextGraphics textGraphics;
     private GameViewer gameViewer;
     private TerminalSize terminalSize;
@@ -20,7 +19,7 @@ public class GameViewerTest {
 
     @BeforeEach
     public void setup() {
-        frame = mock(LanternaFrame.class);
+        frame = mock(LanternaGUI.class);
         screen = mock(TerminalScreen.class);
         textGraphics = mock(TextGraphics.class);
         terminalSize = mock(TerminalSize.class);

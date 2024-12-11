@@ -2,14 +2,14 @@ package spacewars.view.game;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import spacewars.gui.LanternaFrame;
+import spacewars.gui.LanternaGUI;
 
 import java.util.Random;
 
 public class GameViewer {
-    private final LanternaFrame frame;
+    private final LanternaGUI frame;
 
-    public GameViewer(LanternaFrame frame) {
+    public GameViewer(LanternaGUI frame) {
         this.frame = frame;
     }
 
