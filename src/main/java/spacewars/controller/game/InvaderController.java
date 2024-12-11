@@ -1,5 +1,6 @@
 package spacewars.controller.game;
 
+import spacewars.Application;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
 
@@ -11,7 +12,7 @@ public class InvaderController extends GameController {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(Application application, GUI.ACTION action, long time) throws IOException {
 
     }
 }
