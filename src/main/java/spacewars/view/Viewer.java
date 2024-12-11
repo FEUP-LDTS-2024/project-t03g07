@@ -28,9 +28,15 @@ public abstract class Viewer {
             for (int x = 0; x < image.getWidth(); x++) {
                 int rgb = image.getRGB(x, y);
                 TextColor.RGB color = getLanternaColor(rgb);
+                if (getTransparency(rgb)==0)
+                    continue;
                 frame.drawPixel(a + x, b + y, color);
             }
         }
+    }
+
+    private int getTransparency(int rgb) {
+        return rgb >> 24;
     }
 
     private TextColor.RGB getLanternaColor(int rgb) {
