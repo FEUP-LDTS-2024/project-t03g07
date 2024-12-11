@@ -1,5 +1,7 @@
 package spacewars.gui;
 
+import spacewars.model.Position;
+
 import java.io.IOException;
 
 public interface GUI {
@@ -9,5 +11,15 @@ public interface GUI {
 
     void close() throws IOException;
 
-    enum ACTION {RIGHT, LEFT, NONE, QUIT, SELECT}
+    void drawPlayer(Position position) throws IOException;
+
+    void drawInvader(Position position);
+
+    void drawBullet(Position position) throws IOException;
+
+    void drawText(Position position, String text, String color);
+
+    ACTION getNextAction() throws IOException;
+
+    enum ACTION {UP, DOWN, RIGHT, LEFT, NONE, QUIT, SELECT}
 }

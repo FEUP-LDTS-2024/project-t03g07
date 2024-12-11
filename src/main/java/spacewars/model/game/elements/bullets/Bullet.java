@@ -1,9 +1,9 @@
 package spacewars.model.game.elements.bullets;
 
 import spacewars.model.Position;
+import spacewars.model.game.elements.Element;
 
-public abstract class Bullet
-{
+public abstract class Bullet extends Element {
     private Position position;
     private int speed;
 

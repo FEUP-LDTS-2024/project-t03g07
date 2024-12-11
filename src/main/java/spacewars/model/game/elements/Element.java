@@ -2,10 +2,10 @@ package spacewars.model.game.elements;
 
 import spacewars.model.Position;
 
-public abstract class Entity {
+public abstract class Element {
     private Position position;
 
-    public Entity(int x, int y) {
+    public Element(int x, int y) {
         this.position = new Position(x, y);
     }
 

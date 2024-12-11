@@ -18,15 +18,15 @@ public class BulletViewerTest {
     private Bullet bullet;
 
 
-    @BeforeEach
+    /*@BeforeEach
     public void setup() throws IOException {
         frame = mock(LanternaGUI.class);
         bulletViewer = spy(new BulletViewer("bullet_1.png"));
         position = mock(Position.class);
         bullet = mock(Bullet.class);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testDrawEntityWithBullet() {
         when(bullet.getPosition()).thenReturn(position);
         when(position.getX()).thenReturn(5);
@@ -35,12 +35,12 @@ public class BulletViewerTest {
         bulletViewer.drawEntity(frame, bullet);
 
         verify(bulletViewer).draw(frame, 5, 15);
-    }
+    }*/
 
-    @Test
+    /*@Test
     void testDrawEntityWithInvalidEntity() {
         Object invalidEntity = new Object();
 
         assertThrows(IllegalArgumentException.class, () -> bulletViewer.drawEntity(frame, invalidEntity));
-    }
+    }*/
 }

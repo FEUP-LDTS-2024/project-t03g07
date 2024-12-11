@@ -4,23 +4,26 @@ import spacewars.gui.LanternaGUI;
 import spacewars.model.game.elements.Player;
 import spacewars.view.game.GameViewer;
 import spacewars.view.game.PlayerViewer;
+import spacewars.states.State;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Application {
-    private final LanternaGUI lanternaGUI;
-    private final GameViewer gameViewer;
-    private final Player player;
-    private final PlayerViewer playerViewer;
+    //private final GameViewer gameViewer;
+    //private final Player player;
+    //private final PlayerViewer playerViewer;
     private boolean running;
 
+    private final LanternaGUI lanternaGUI;
+
     public Application() throws IOException, URISyntaxException, FontFormatException {
-        lanternaGUI = new LanternaGUI(320, 192);
-        gameViewer = new GameViewer(lanternaGUI);
-        player = new Player(10, 10);
-        playerViewer = new PlayerViewer("millennium_falcon.png");
+        this.lanternaGUI = new LanternaGUI(320, 192);
+
+        //gameViewer = new GameViewer(lanternaGUI);
+        //player = new Player(10, 10);
+        //playerViewer = new PlayerViewer("millennium_falcon.png");
         running = true;
     }
 
@@ -28,6 +31,11 @@ public class Application {
         Application app = new Application();
         app.run();
     }
+
+    /*public void setState(State state)
+    {
+        this.state = state;
+    }*/
 
     public void run() throws InterruptedException, IOException {
         int FPS = 30;
@@ -40,13 +48,7 @@ public class Application {
         while (running) {
             long startTime = System.nanoTime();
 
-            gameViewer.draw();
-
-            playerViewer.drawEntity(lanternaGUI, player);
-
-            lanternaGUI.refresh();
-
-            //update here
+            //state.step(this,lanternaGUI,startTime);
 
             frames++;
             long elapsedTime = System.nanoTime() - startTime;

@@ -1,22 +1,15 @@
 package spacewars.view.game;
 
+import spacewars.gui.GUI;
 import spacewars.gui.LanternaGUI;
 import spacewars.model.game.elements.bullets.Bullet;
-import spacewars.view.Viewer;
 
 import java.io.IOException;
 
-public class BulletViewer extends Viewer {
-    public BulletViewer(String filepath) throws IOException {
-        super(filepath);
-    }
-
+public class BulletViewer implements ElementViewer<Bullet> {
     @Override
-    public void drawEntity(LanternaGUI frame, Object entity) {
-        if (entity instanceof Bullet bullet) {
-            draw(frame, bullet.getPosition().getX(), bullet.getPosition().getY());
-        } else {
-            throw new IllegalArgumentException("Invalid entity type");
-        }
+    public void draw(Bullet bullet, GUI gui) throws IOException
+    {
+        gui.drawBullet(bullet.getPosition());
     }
 }

@@ -2,35 +2,32 @@ package spacewars.view.game;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import spacewars.gui.GUI;
 import spacewars.gui.LanternaGUI;
+import spacewars.model.game.Game;
+import spacewars.model.game.elements.Element;
+import spacewars.view.Viewer;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
-public class GameViewer {
-    private final LanternaGUI frame;
-
-    public GameViewer(LanternaGUI frame) {
-        this.frame = frame;
+public class GameViewer extends Viewer<Game> {
+    public GameViewer(Game game) {
+        super(game);
     }
 
-    public void draw() {
-        int width = frame.getScreen().getTerminalSize().getColumns();
-        int height = frame.getScreen().getTerminalSize().getRows();
+    @Override
+    protected void drawElements(GUI gui) {
 
-        TextGraphics textGraphics = frame.getScreen().newTextGraphics();
+    }
 
-        TextColor.RGB customBackgroundColor = new TextColor.RGB(0, 10, 32);
-        textGraphics.setBackgroundColor(customBackgroundColor);
-        textGraphics.fill(' ');
+    private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) throws IOException {
+        for (T element : elements)
+            drawElement(gui, element, viewer);
+    }
 
-        Random random = new Random();
-        int numberOfStars = (width * height) / 300;
-
-        for (int i = 0; i < numberOfStars; i++) {
-            int x = random.nextInt(width);
-            int y = random.nextInt(height);
-            textGraphics.setForegroundColor(TextColor.ANSI.WHITE);
-            textGraphics.setCharacter(x, y, '·');
-        }
+    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) throws IOException {
+        viewer.draw(element,gui);
     }
 }

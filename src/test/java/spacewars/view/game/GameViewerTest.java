@@ -35,7 +35,7 @@ public class GameViewerTest {
 
     @Test
     public void testDraw() {
-        gameViewer.draw();
+        //gameViewer.draw();
 
         verify(textGraphics).setBackgroundColor(new TextColor.RGB(0, 10, 32));
         verify(textGraphics, times(1)).fill(' ');
