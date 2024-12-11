@@ -1,7 +1,7 @@
 package spacewars.view;
 
 import com.googlecode.lanterna.TextColor;
-import spacewars.gui.LanternaFrame;
+import spacewars.gui.LanternaGUI;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -23,7 +23,7 @@ public abstract class Viewer {
         image = ImageIO.read(resourceStream);
     }
 
-    public final void draw(LanternaFrame frame, int a, int b) {
+    public final void draw(LanternaGUI frame, int a, int b) {
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int rgb = image.getRGB(x, y);
@@ -46,6 +46,6 @@ public abstract class Viewer {
         return new TextColor.RGB(red, green, blue);
     }
 
-    public abstract void drawEntity(LanternaFrame frame, Object entity) throws IOException;
+    public abstract void drawEntity(LanternaGUI frame, Object entity) throws IOException;
 }
 

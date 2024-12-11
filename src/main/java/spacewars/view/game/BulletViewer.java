@@ -1,6 +1,6 @@
 package spacewars.view.game;
 
-import spacewars.gui.LanternaFrame;
+import spacewars.gui.LanternaGUI;
 import spacewars.model.game.elements.bullets.Bullet;
 import spacewars.view.Viewer;
 
@@ -12,7 +12,7 @@ public class BulletViewer extends Viewer {
     }
 
     @Override
-    public void drawEntity(LanternaFrame frame, Object entity) {
+    public void drawEntity(LanternaGUI frame, Object entity) {
         if (entity instanceof Bullet bullet) {
             draw(frame, bullet.getPosition().getX(), bullet.getPosition().getY());
         } else {

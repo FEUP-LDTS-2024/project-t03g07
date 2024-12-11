@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
-public class LanternaFrameTest {
+public class LanternaGUITest {
     private TextGraphics graphics;
     private TerminalScreen screen;
     private AWTTerminalFrame terminal;
@@ -28,9 +28,9 @@ public class LanternaFrameTest {
 
     @Test
     public void getScreen() throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("getScreen Test", graphics, screen, terminal);
+        LanternaGUI lanternaGUI = new LanternaGUI("getScreen Test", graphics, screen, terminal);
 
-        lanternaFrame.getScreen();
+        lanternaGUI.getScreen();
 
         verify(graphics, times(0)).setBackgroundColor(any());
         verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
@@ -39,9 +39,9 @@ public class LanternaFrameTest {
 
     @Test
     public void getTerminal() throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("getTerminal Test", graphics, screen, terminal);
+        LanternaGUI lanternaGUI = new LanternaGUI("getTerminal Test", graphics, screen, terminal);
 
-        lanternaFrame.getTerminal();
+        lanternaGUI.getTerminal();
 
         verify(graphics, times(0)).setBackgroundColor(any());
         verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
@@ -50,9 +50,9 @@ public class LanternaFrameTest {
 
     @Test
     public void startScreen() throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("startScreen Test", graphics, screen, terminal);
+        LanternaGUI lanternaGUI = new LanternaGUI("startScreen Test", graphics, screen, terminal);
 
-        lanternaFrame.startScreen();
+        lanternaGUI.startScreen();
 
         verify(graphics, times(0)).setBackgroundColor(any());
         verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
@@ -61,9 +61,9 @@ public class LanternaFrameTest {
 
     @Test
     public void stopScreen() throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("stopScreen Test", graphics, screen, terminal);
+        LanternaGUI lanternaGUI = new LanternaGUI("stopScreen Test", graphics, screen, terminal);
 
-        lanternaFrame.stopScreen();
+        lanternaGUI.stopScreen();
 
         verify(graphics, times(0)).setBackgroundColor(any());
         verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
@@ -72,9 +72,9 @@ public class LanternaFrameTest {
 
     @Test
     public void getWIDTH() throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("getWIDTH Test", graphics, screen, terminal);
+        LanternaGUI lanternaGUI = new LanternaGUI("getWIDTH Test", graphics, screen, terminal);
 
-        lanternaFrame.getWIDTH();
+        lanternaGUI.getWIDTH();
 
         verify(graphics, times(0)).setBackgroundColor(any());
         verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
@@ -83,9 +83,9 @@ public class LanternaFrameTest {
 
     @Test
     public void getHEIGHT() throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("getHEIGHT Test", graphics, screen, terminal);
+        LanternaGUI lanternaGUI = new LanternaGUI("getHEIGHT Test", graphics, screen, terminal);
 
-        lanternaFrame.getHEIGHT();
+        lanternaGUI.getHEIGHT();
 
         verify(graphics, times(0)).setBackgroundColor(any());
         verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
@@ -94,9 +94,9 @@ public class LanternaFrameTest {
 
     @Test
     public void refresh() throws IOException {
-        LanternaFrame lanternaFrame = new LanternaFrame("refresh Test", graphics, screen, terminal);
+        LanternaGUI lanternaGUI = new LanternaGUI("refresh Test", graphics, screen, terminal);
 
-        lanternaFrame.refresh();
+        lanternaGUI.refresh();
 
         verify(graphics, times(0)).setBackgroundColor(any());
         verify(graphics, times(0)).putString(anyInt(), anyInt(), anyString());
@@ -105,9 +105,9 @@ public class LanternaFrameTest {
 
     @Property
     public void drawPixel(@ForAll int x, @ForAll int y, @ForAll("color") TextColor.RGB color) {
-        LanternaFrame lanternaFrame = new LanternaFrame("drawPixel Test", graphics, screen, terminal);
+        LanternaGUI lanternaGUI = new LanternaGUI("drawPixel Test", graphics, screen, terminal);
 
-        lanternaFrame.drawPixel(x, y, color);
+        lanternaGUI.drawPixel(x, y, color);
 
         verify(graphics, times(1)).setBackgroundColor(color);
         verify(graphics, times(1)).putString(x, y, " ");

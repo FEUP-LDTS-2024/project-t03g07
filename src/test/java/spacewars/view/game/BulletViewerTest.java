@@ -2,9 +2,8 @@ package spacewars.view.game;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import spacewars.gui.LanternaFrame;
+import spacewars.gui.LanternaGUI;
 import spacewars.model.Position;
-import spacewars.view.game.BulletViewer;
 import spacewars.model.game.elements.bullets.Bullet;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class BulletViewerTest {
-    private LanternaFrame frame;
+    private LanternaGUI frame;
     private BulletViewer bulletViewer;
     private Position position;
     private Bullet bullet;
@@ -21,7 +20,7 @@ public class BulletViewerTest {
 
     @BeforeEach
     public void setup() throws IOException {
-        frame = mock(LanternaFrame.class);
+        frame = mock(LanternaGUI.class);
         bulletViewer = spy(new BulletViewer("bullet_1.png"));
         position = mock(Position.class);
         bullet = mock(Bullet.class);

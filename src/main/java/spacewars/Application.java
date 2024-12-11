@@ -1,6 +1,6 @@
 package spacewars;
 
-import spacewars.gui.LanternaFrame;
+import spacewars.gui.LanternaGUI;
 import spacewars.model.game.elements.Player;
 import spacewars.view.game.GameViewer;
 import spacewars.view.game.PlayerViewer;
@@ -10,15 +10,15 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Application {
-    private final LanternaFrame lanternaFrame;
+    private final LanternaGUI lanternaGUI;
     private final GameViewer gameViewer;
     private final Player player;
     private final PlayerViewer playerViewer;
     private boolean running;
 
     public Application() throws IOException, URISyntaxException, FontFormatException {
-        lanternaFrame = new LanternaFrame("Space Wars");
-        gameViewer = new GameViewer(lanternaFrame);
+        lanternaGUI = new LanternaGUI(320, 192);
+        gameViewer = new GameViewer(lanternaGUI);
         player = new Player(10, 10);
         playerViewer = new PlayerViewer("millennium_falcon.png");
         running = true;
@@ -35,22 +35,16 @@ public class Application {
         long lastTime = System.nanoTime();
         int frames = 0;
 
-        lanternaFrame.startScreen();
+        lanternaGUI.startScreen();
 
         while (running) {
             long startTime = System.nanoTime();
 
-            // Check if screen is closed
-            if (!lanternaFrame.isRunning()) {
-                running = false;
-                break;
-            }
-
             gameViewer.draw();
 
-            playerViewer.drawEntity(lanternaFrame, player);
+            playerViewer.drawEntity(lanternaGUI, player);
 
-            lanternaFrame.refresh();
+            lanternaGUI.refresh();
 
             //update here
 
@@ -67,6 +61,6 @@ public class Application {
             }
         }
 
-        lanternaFrame.close();
+        lanternaGUI.close();
     }
 }

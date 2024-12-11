@@ -2,10 +2,9 @@ package spacewars.view.game;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import spacewars.gui.LanternaFrame;
+import spacewars.gui.LanternaGUI;
 import spacewars.model.Position;
 import spacewars.model.game.elements.invaders.Invader;
-import spacewars.view.game.InvaderViewer;
 
 import java.io.IOException;
 
@@ -14,14 +13,14 @@ import static org.mockito.Mockito.*;
 
 public class InvaderViewerTest {
     private InvaderViewer invaderViewer;
-    private LanternaFrame frame;
+    private LanternaGUI frame;
     private Invader invaders;
     private Position position;
 
     @BeforeEach
     void setUp() throws IOException {
         invaderViewer = spy(new InvaderViewer("empire_fighter.png"));
-        frame = mock(LanternaFrame.class);
+        frame = mock(LanternaGUI.class);
         invaders = mock(Invader.class);
         position = mock(Position.class);
     }

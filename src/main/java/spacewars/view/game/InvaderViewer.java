@@ -1,6 +1,6 @@
 package spacewars.view.game;
 
-import spacewars.gui.LanternaFrame;
+import spacewars.gui.LanternaGUI;
 import spacewars.model.game.elements.invaders.Invader;
 import spacewars.view.Viewer;
 
@@ -12,7 +12,7 @@ public class InvaderViewer extends Viewer {
     }
 
     @Override
-    public void drawEntity(LanternaFrame frame, Object entity) {
+    public void drawEntity(LanternaGUI frame, Object entity) {
         if (entity instanceof Invader invader) {
             draw(frame, invader.getPosition().getX(), invader.getPosition().getY());
         } else {

@@ -3,7 +3,7 @@ package spacewars.view;
 import com.googlecode.lanterna.TextColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import spacewars.gui.LanternaFrame;
+import spacewars.gui.LanternaGUI;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -12,16 +12,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class ViewerTest {
-    private LanternaFrame frame;
+    private LanternaGUI frame;
     private Viewer viewer;
     private BufferedImage image;
 
     @BeforeEach
     public void setup() throws IOException {
-        frame = mock(LanternaFrame.class);
+        frame = mock(LanternaGUI.class);
         viewer = new Viewer("bullet_1.png") {
             @Override
-            public void drawEntity(LanternaFrame frame, Object entity) {
+            public void drawEntity(LanternaGUI frame, Object entity) {
                 // Implementation not needed for this test
             }
         };
