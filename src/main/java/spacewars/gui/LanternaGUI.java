@@ -2,12 +2,15 @@ package spacewars.gui;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+
+import spacewars.model.Position;
 
 import java.awt.*;
 import java.io.File;
@@ -18,9 +21,9 @@ import java.net.URL;
 public class LanternaGUI implements GUI {
     private final Screen screen;
 
-    public LanternaGUI(Screen screen) {
+    /*public LanternaGUI(Screen screen) {
         this.screen = screen;
-    }
+    }*/
 
     public LanternaGUI(int width, int height) throws URISyntaxException, IOException, FontFormatException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
@@ -42,7 +45,7 @@ public class LanternaGUI implements GUI {
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, IOException, FontFormatException {
-        URL resource = getClass().getClassLoader().getResource("square.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
         assert resource != null;
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -72,6 +75,7 @@ public class LanternaGUI implements GUI {
         return screen;
     }
 
+    @Override
     public Screen getScreen() {
         return screen;
     }
@@ -84,10 +88,23 @@ public class LanternaGUI implements GUI {
         screen.stopScreen();
     }
 
+    @Override
     public void drawPixel(int x, int y, TextColor.RGB color) {
         var graphics = this.screen.newTextGraphics();
         graphics.setBackgroundColor(color);
         graphics.putString(x, y, " "); // Use a space character to create a "pixel"
+    }
+
+    @Override
+    public void drawText(Position position, String text, String color) {
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.Factory.fromString(color));
+        tg.putString(position.getX(), position.getY(), text);
+    }
+
+    @Override
+    public ACTION getNextAction() throws IOException {
+        return null;
     }
 
     @Override

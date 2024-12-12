@@ -2,7 +2,7 @@ package spacewars.model.game.elements;
 
 import org.junit.jupiter.api.Test;
 import spacewars.model.Position;
-import spacewars.model.game.elements.bullets.Bullet1;
+import spacewars.model.game.elements.bullets.BulletNormalInvader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -16,32 +16,32 @@ public class BulletTest
         Position mockPosition = mock(Position.class);
         when(mockPosition.getX()).thenReturn(0);
         when(mockPosition.getY()).thenReturn(0);
-        Bullet1 bullet1 = new Bullet1(0, 0);
-        bullet1.setPosition(mockPosition);
-        assertEquals(0, bullet1.getPosition().getX());
-        assertEquals(0, bullet1.getPosition().getY());
+        BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(0, 0);
+        bulletNormalInvader.setPosition(mockPosition);
+        assertEquals(0, bulletNormalInvader.getPosition().getX());
+        assertEquals(0, bulletNormalInvader.getPosition().getY());
     }
 
     @Test
     public void setPosition()
     {
-        Bullet1 bullet1 = new Bullet1(0, 0);
-        bullet1.setPosition(new Position(10, 10));
-        assertEquals(new Position (10,10), bullet1.getPosition());
+        BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(0, 0);
+        bulletNormalInvader.setPosition(new Position(10, 10));
+        assertEquals(new Position (10,10), bulletNormalInvader.getPosition());
     }
 
     @Test
     public void getSpeed()
     {
-        Bullet1 bullet1 = new Bullet1(0, 0);
-        assertEquals(10, bullet1.getSpeed());
+        BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(0, 0);
+        assertEquals(10, bulletNormalInvader.getSpeed());
     }
 
     @Test
     public void setSpeed()
     {
-        Bullet1 bullet1 = new Bullet1(0, 0);
-        bullet1.setSpeed(20);
-        assertEquals(20, bullet1.getSpeed());
+        BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(0, 0);
+        bulletNormalInvader.setSpeed(20);
+        assertEquals(20, bulletNormalInvader.getSpeed());
     }
 }

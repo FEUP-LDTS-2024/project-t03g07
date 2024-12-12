@@ -2,7 +2,7 @@ package spacewars.model.game.elements;
 
 import spacewars.model.game.Lives;
 
-public class Player extends Entity {
+public class Player extends Element {
     private Lives lives;
 
     public Player(int x, int y) {

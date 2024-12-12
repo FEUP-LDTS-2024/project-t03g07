@@ -1,42 +1,39 @@
-package spacewars.view;
+package spacewars.view.images;
 
 import com.googlecode.lanterna.TextColor;
-import spacewars.gui.LanternaGUI;
+import spacewars.gui.GUI;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-public abstract class Viewer {
-    BufferedImage image;
+public class Image {
+    private final BufferedImage image;
 
-    public Viewer(String filepath) throws IOException {
-        loadImage(filepath);
+    public Image(String filepath) throws IOException {
+        this.image = loadImage(filepath);
+
     }
 
-    public void loadImage(String filepath) throws IOException {
+    public BufferedImage loadImage(String filepath) throws IOException {
         InputStream resourceStream = getClass().getClassLoader().getResourceAsStream(filepath);
         if (resourceStream == null) {
             throw new IOException("Resource not found: " + filepath);
         }
-        image = ImageIO.read(resourceStream);
+        return ImageIO.read(resourceStream);
     }
 
-    public final void draw(LanternaGUI frame, int a, int b) {
+    public final void draw(GUI gui, int a, int b) throws IOException {
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int rgb = image.getRGB(x, y);
                 TextColor.RGB color = getLanternaColor(rgb);
                 if (getTransparency(rgb)==0)
                     continue;
-                frame.drawPixel(a + x, b + y, color);
+                gui.drawPixel(a + x, b + y, color);
             }
         }
-    }
-
-    private int getTransparency(int rgb) {
-        return rgb >> 24;
     }
 
     private TextColor.RGB getLanternaColor(int rgb) {
@@ -46,6 +43,8 @@ public abstract class Viewer {
         return new TextColor.RGB(red, green, blue);
     }
 
-    public abstract void drawEntity(LanternaGUI frame, Object entity) throws IOException;
-}
+    private int getTransparency(int rgb) {
+        return rgb >> 24;
+    }
 
+}

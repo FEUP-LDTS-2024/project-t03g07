@@ -1,32 +1,42 @@
 package spacewars;
 
 import spacewars.gui.LanternaGUI;
-import spacewars.model.game.elements.Player;
-import spacewars.view.game.GameViewer;
-import spacewars.view.game.PlayerViewer;
+import spacewars.model.menu.Menu;
+import spacewars.states.MenuState;
+import spacewars.states.State;
+import spacewars.view.images.AppImageLoader;
+import spacewars.view.images.ImageLoader;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Application {
-    private final LanternaGUI lanternaGUI;
-    private final GameViewer gameViewer;
-    private final Player player;
-    private final PlayerViewer playerViewer;
-    private boolean running;
+    private final LanternaGUI gui;
+    private final ImageLoader imageLoader;
+    private State<?> state;
 
     public Application() throws IOException, URISyntaxException, FontFormatException {
-        lanternaGUI = new LanternaGUI(320, 192);
-        gameViewer = new GameViewer(lanternaGUI);
-        player = new Player(10, 10);
-        playerViewer = new PlayerViewer("millennium_falcon.png");
-        running = true;
+        this.gui = new LanternaGUI(320, 192);
+        this.imageLoader = new AppImageLoader();
+        this.state = new MenuState(new Menu(), imageLoader);
+
+        /*lanternaGUI.clear();
+        Player player = new Player(10, 10);
+        ViewerProvider viewerProvider = new ViewerProvider(new GameImageLoader());
+        PlayerViewer playerViewer = viewerProvider.getPlayerViewer();
+        playerViewer.draw(player, lanternaGUI);
+        lanternaGUI.refresh();*/
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         Application app = new Application();
         app.run();
+    }
+
+    public void setState(State<?> state)
+    {
+        this.state = state;
     }
 
     public void run() throws InterruptedException, IOException {
@@ -35,18 +45,12 @@ public class Application {
         long lastTime = System.nanoTime();
         int frames = 0;
 
-        lanternaGUI.startScreen();
+        gui.startScreen();
 
-        while (running) {
+        while (this.state != null) {
             long startTime = System.nanoTime();
 
-            gameViewer.draw();
-
-            playerViewer.drawEntity(lanternaGUI, player);
-
-            lanternaGUI.refresh();
-
-            //update here
+            state.step(this,gui,startTime);
 
             frames++;
             long elapsedTime = System.nanoTime() - startTime;
@@ -60,7 +64,6 @@ public class Application {
                 lastTime = System.nanoTime();
             }
         }
-
-        lanternaGUI.close();
+        gui.close();
     }
 }
