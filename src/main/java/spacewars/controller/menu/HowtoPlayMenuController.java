@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class HowtoPlayMenuController extends MenuController<HowToPlayMenu> {
 
-    public HowtoPlayMenuController(HowToPlayMenu menu) {
-        super(menu);
+    public HowtoPlayMenuController(HowToPlayMenu menu, EntryController entryController) {
+        super(menu,entryController);
     }
 
     @Override

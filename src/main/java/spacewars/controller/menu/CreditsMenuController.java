@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class CreditsMenuController extends MenuController<CreditsMenu> {
 
-    public CreditsMenuController(CreditsMenu menu) {
-        super(menu);
+    public CreditsMenuController(CreditsMenu menu, EntryController en) {
+        super(menu,en);
     }
 
     @Override

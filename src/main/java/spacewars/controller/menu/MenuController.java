@@ -8,9 +8,11 @@ import spacewars.model.menu.Menu;
 import java.io.IOException;
 
 public abstract class MenuController <T extends Menu> extends Controller<T> {
+    private final EntryController entryController;
 
-    public MenuController(T menu) {
+    public MenuController(T menu, EntryController entryController) {
         super(menu);
+        this.entryController = entryController;
     }
 
     @Override
@@ -26,7 +28,7 @@ public abstract class MenuController <T extends Menu> extends Controller<T> {
                 onQuit(app);
                 break;
             default:
-
+                entryController.step(app, action, time);
         }
     }
 

@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class MainMenuController extends MenuController<MainMenu> {
 
-    public MainMenuController(MainMenu menu) {
-        super(menu);
+    public MainMenuController(MainMenu menu, EntryController entrycontroller) {
+        super(menu,entrycontroller);
     }
 
 

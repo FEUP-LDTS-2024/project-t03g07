@@ -1,6 +1,7 @@
 package spacewars.states;
 
 import spacewars.controller.Controller;
+import spacewars.controller.menu.EntryController;
 import spacewars.controller.menu.MainMenuController;
 import spacewars.model.menu.MainMenu;
 import spacewars.model.menu.Menu;
@@ -11,8 +12,8 @@ import spacewars.view.screens.ScreenViewer;
 
 import java.io.IOException;
 
-public class MainMenuState extends State<Menu> {
-    public MainMenuState(Menu model, ImageLoader imageLoader) throws IOException {
+public class MainMenuState extends State<MainMenu> {
+    public MainMenuState(MainMenu model, ImageLoader imageLoader) throws IOException {
         super(model, imageLoader);
     }
 
@@ -23,6 +24,6 @@ public class MainMenuState extends State<Menu> {
 
     @Override
     protected Controller<MainMenu> getController() {
-        return new MainMenuController(getModel());
+        return new MainMenuController(getModel(), new EntryController(getModel()));
     }
 }

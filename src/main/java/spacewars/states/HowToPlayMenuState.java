@@ -1,6 +1,7 @@
 package spacewars.states;
 
 import spacewars.controller.Controller;
+import spacewars.controller.menu.EntryController;
 import spacewars.controller.menu.HowtoPlayMenuController;
 import spacewars.model.menu.HowToPlayMenu;
 import spacewars.view.ViewerProvider;
@@ -23,6 +24,6 @@ public class HowToPlayMenuState extends State<HowToPlayMenu> {
 
     @Override
     protected Controller<HowToPlayMenu> getController() {
-        return new HowtoPlayMenuController(getModel());
+        return new HowtoPlayMenuController(getModel(),new EntryController(getModel()));
     }
 }

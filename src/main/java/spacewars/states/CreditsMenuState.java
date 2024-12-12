@@ -2,6 +2,7 @@ package spacewars.states;
 
 import spacewars.controller.Controller;
 import spacewars.controller.menu.CreditsMenuController;
+import spacewars.controller.menu.EntryController;
 import spacewars.model.menu.CreditsMenu;
 import spacewars.view.ViewerProvider;
 import spacewars.view.images.ImageLoader;
@@ -22,6 +23,6 @@ public class CreditsMenuState extends State<CreditsMenu>{
 
     @Override
     protected Controller<CreditsMenu> getController() {
-        return new CreditsMenuController(getModel());
+        return new CreditsMenuController(getModel(),new EntryController(getModel()));
     }
 }
