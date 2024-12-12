@@ -27,7 +27,7 @@ public abstract class Menu {
         currentEntry = currentEntry % getNumberEntries();
     }
 
-    public String getCurrentEntry() {
+    public Entry getCurrentEntry() {
         return entries.get(currentEntry);
     }
 }

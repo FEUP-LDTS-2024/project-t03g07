@@ -24,7 +24,7 @@ public class EntryController extends Controller<Menu> {
 
     @Override
     public void step(Application app, GUI.ACTION action, long time) throws IOException {
-        switch (getModel().getCurrentEntry().get) { //"play", "how to play", "credits", "quit", "return to menu"
+        switch (getModel().getCurrentEntry().getType()) { //"play", "how to play", "credits", "quit", "return to menu"
             case PLAY:
                 if (action==GUI.ACTION.SELECT) {
 //                    app.setState(new GameState(
@@ -34,25 +34,25 @@ public class EntryController extends Controller<Menu> {
                 }
                 break;
 
-            case "how to play":
+            case HOW_TO_PLAY:
                 if (action==GUI.ACTION.SELECT) {
                     app.setState(new HowToPlayMenuState(new HowToPlayMenu(), app.getImageLoader()));
                 }
                 break;
 
-            case "credits":
+            case CREDITS:
                 if (action==GUI.ACTION.SELECT) {
                     app.setState(new CreditsMenuState(new CreditsMenu(), app.getImageLoader()));
                 }
                 break;
 
-            case "quit":
+            case QUIT:
                 if (action == GUI.ACTION.SELECT) {
                     app.setState(null);
                 }
                 break;
 
-            case "return to menu":
+            case RETURN_TO_MENU:
                 if (action == GUI.ACTION.SELECT) {
                     app.setState(new MainMenuState(new MainMenu(), app.getImageLoader()));
                 }

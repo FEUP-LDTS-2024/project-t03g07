@@ -2,6 +2,7 @@ package spacewars.states;
 
 import spacewars.controller.Controller;
 import spacewars.controller.menu.MainMenuController;
+import spacewars.model.menu.MainMenu;
 import spacewars.model.menu.Menu;
 import spacewars.view.ViewerProvider;
 import spacewars.view.images.ImageLoader;
@@ -16,12 +17,12 @@ public class MainMenuState extends State<Menu> {
     }
 
     @Override
-    protected ScreenViewer<Menu> getScreenViewer(ViewerProvider viewerProvider) throws IOException {
+    protected ScreenViewer<MainMenu> getScreenViewer(ViewerProvider viewerProvider) throws IOException {
         return new MainMenuViewer(getModel());
     }
 
     @Override
-    protected Controller<Menu> getController() {
+    protected Controller<MainMenu> getController() {
         return new MainMenuController(getModel());
     }
 }

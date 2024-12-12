@@ -1,5 +1,6 @@
 package spacewars.gui;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -13,6 +14,7 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import spacewars.model.Position;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -96,6 +98,15 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
+    public void drawRectangle(double x, double y, int width, int height, TextColor color) {
+        if (width > 0 && height > 0) {
+            TextGraphics tg = screen.newTextGraphics();
+            tg.setBackgroundColor(color);
+            tg.fillRectangle(new TerminalPosition((int) x, (int) y), new TerminalSize(width, height), ' ');
+        }
+    }
+
+    @Override
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
@@ -105,6 +116,32 @@ public class LanternaGUI implements GUI {
     @Override
     public ACTION getNextAction() throws IOException {
         return null;
+    }
+
+    @Override
+    public void drawImage(BufferedImage charImage, int x, int y) {
+        TextGraphics tg = screen.newTextGraphics();
+
+        for (int i = 0; i < charImage.getWidth(); i++) {
+            for (int j = 0; j < charImage.getHeight(); j++) {
+                int rgb = charImage.getRGB(i, j);
+                int alpha = (rgb >> 24) & 0xFF;
+
+                // Only draw non-transparent pixels
+                if (alpha != 0) {
+                    int red = (rgb >> 16) & 0xFF;
+                    int green = (rgb >> 8) & 0xFF;
+                    int blue = rgb & 0xFF;
+
+                    // Convert RGB to hex string
+                    String hexColor = String.format("#%02X%02X%02X", red, green, blue);
+
+                    // Set color and draw a block character
+                    tg.setForegroundColor(TextColor.Factory.fromString(hexColor));
+                    tg.putString(x + i, y + j, "█");
+                }
+            }
+        }
     }
 
     @Override
