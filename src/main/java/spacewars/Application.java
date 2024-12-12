@@ -1,6 +1,7 @@
 package spacewars;
 
 import spacewars.gui.LanternaGUI;
+import spacewars.model.menu.MainMenu;
 import spacewars.model.menu.Menu;
 import spacewars.states.MenuState;
 import spacewars.states.State;
@@ -19,7 +20,7 @@ public class Application {
     public Application() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(320, 192);
         this.imageLoader = new AppImageLoader();
-        this.state = new MenuState(new Menu(), imageLoader);
+        this.state = new MenuState(new MainMenu(), imageLoader);
 
         /*lanternaGUI.clear();
         Player player = new Player(10, 10);
