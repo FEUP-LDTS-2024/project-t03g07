@@ -8,8 +8,8 @@ import spacewars.view.screens.ScreenViewer;
 
 import java.io.IOException;
 
-public class MenuState extends State<Menu> {
-    public MenuState(Menu model, ImageLoader imageLoader) throws IOException {
+public class MainMenuState extends State<Menu> {
+    public MainMenuState(Menu model, ImageLoader imageLoader) throws IOException {
         super(model, imageLoader);
     }
 
