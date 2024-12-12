@@ -1,5 +1,6 @@
 package spacewars.model.game;
 
+import spacewars.model.Position;
 import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.bullets.BulletBossInvader;
 import spacewars.model.game.elements.bullets.BulletNormalInvader;
@@ -88,5 +89,11 @@ public class Game {
 
     public BulletBossInvader getBulletBossInvader() {
         return bulletBossInvader;
+    }
+
+    public boolean isBullet(Position position) {
+        if (bulletNormalInvader.getPosition().equals(position))
+            return true;
+        return false;
     }
 }
