@@ -10,6 +10,9 @@ public class Player extends Element {
         this.lives = new Lives(3);
     }
 
+    public void decreaseLives() {
+    }
+
     public Lives getLives() {
         return lives;
     }
