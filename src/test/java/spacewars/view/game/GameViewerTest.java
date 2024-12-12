@@ -1,14 +1,10 @@
 package spacewars.view.game;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import spacewars.gui.LanternaGUI;
-
-import static org.mockito.Mockito.*;
+import spacewars.view.screens.GameViewer;
 
 public class GameViewerTest {
     private LanternaGUI frame;

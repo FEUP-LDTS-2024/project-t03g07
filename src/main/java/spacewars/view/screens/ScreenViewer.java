@@ -1,4 +1,4 @@
-package spacewars.view.game;
+package spacewars.view.screens;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;

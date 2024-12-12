@@ -1,10 +1,10 @@
-package spacewars.view.game;
+package spacewars.view.screens;
 
 import com.googlecode.lanterna.TextColor;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
 import spacewars.model.game.elements.Element;
-import spacewars.view.Viewer;
+import spacewars.view.ViewerProvider;
 import spacewars.view.game.elements.ElementViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.BulletBossInvaderViewer;

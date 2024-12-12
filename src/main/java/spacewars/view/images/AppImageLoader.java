@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class GameImageLoader implements ImageLoader {
+public final class AppImageLoader implements ImageLoader {
     final Map<String, Image> imageMap;
 
-    public GameImageLoader() {
+    public AppImageLoader() {
         imageMap = new HashMap<>();
     }
 

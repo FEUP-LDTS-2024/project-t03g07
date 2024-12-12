@@ -1,6 +1,5 @@
-package spacewars.view.game;
+package spacewars.view;
 
-import spacewars.model.game.elements.bullets.BulletPlayer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.BulletBossInvaderViewer;
 import spacewars.view.game.elements.bullets.BulletNormalInvaderViewer;
