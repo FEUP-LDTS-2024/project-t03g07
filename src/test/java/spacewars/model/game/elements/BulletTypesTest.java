@@ -3,11 +3,9 @@ package spacewars.model.game.elements;
 
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
-import spacewars.model.game.elements.bullets.Bullet1;
-import spacewars.model.game.elements.bullets.Bullet2;
-import spacewars.model.game.elements.bullets.Bullet3;
+import spacewars.model.game.elements.bullets.BulletNormalInvader;
 import spacewars.model.game.elements.bullets.BulletPlayer;
-import spacewars.model.game.elements.bullets.BulletBoss;
+import spacewars.model.game.elements.bullets.BulletBossInvader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,16 +14,16 @@ public class BulletTypesTest
     @Property
     void Bullet1PositionTest(@ForAll int x, @ForAll int y)
     {
-        Bullet1 bullet1 = new Bullet1(x, y);
-        assertEquals(x, bullet1.getPosition().getX());
-        assertEquals(y, bullet1.getPosition().getY());
+        BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(x, y);
+        assertEquals(x, bulletNormalInvader.getPosition().getX());
+        assertEquals(y, bulletNormalInvader.getPosition().getY());
     }
 
     @Property
     void Bullet1SpeedTest(@ForAll int x, @ForAll int y)
     {
-        Bullet1 bullet1 = new Bullet1(x, y);
-        assertEquals(10, bullet1.getSpeed());
+        BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(x, y);
+        assertEquals(10, bulletNormalInvader.getSpeed());
     }
 
     @Property
@@ -76,15 +74,15 @@ public class BulletTypesTest
     @Property
     void BulletBossPositionTest(@ForAll int x, @ForAll int y)
     {
-        BulletBoss bulletBoss = new BulletBoss(x, y);
-        assertEquals(x, bulletBoss.getPosition().getX());
-        assertEquals(y, bulletBoss.getPosition().getY());
+        BulletBossInvader bulletBossInvader = new BulletBossInvader(x, y);
+        assertEquals(x, bulletBossInvader.getPosition().getX());
+        assertEquals(y, bulletBossInvader.getPosition().getY());
     }
 
     @Property
     void BulletBossSpeedTest(@ForAll int x, @ForAll int y)
     {
-        BulletBoss bulletBoss = new BulletBoss(x, y);
-        assertEquals(40, bulletBoss.getSpeed());
+        BulletBossInvader bulletBossInvader = new BulletBossInvader(x, y);
+        assertEquals(40, bulletBossInvader.getSpeed());
     }
 }

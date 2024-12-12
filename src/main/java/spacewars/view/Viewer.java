@@ -1,13 +1,7 @@
 package spacewars.view;
 
-import com.googlecode.lanterna.TextColor;
 import spacewars.gui.GUI;
-import spacewars.gui.LanternaGUI;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 
 public abstract class Viewer<T> {
     private final T model;

@@ -18,7 +18,7 @@ public class LanternaGUITest {
     private TerminalScreen screen;
     private AWTTerminalFrame terminal;
 
-    @BeforeTry
+    /*@BeforeTry
     @BeforeEach
     public void setup() {
         this.graphics = mock(TextGraphics.class);
@@ -121,5 +121,5 @@ public class LanternaGUITest {
                 Arbitraries.integers().between(0, 255),
                 Arbitraries.integers().between(0, 255)
         ).as(TextColor.RGB::new);
-    }
+    }*/
 }

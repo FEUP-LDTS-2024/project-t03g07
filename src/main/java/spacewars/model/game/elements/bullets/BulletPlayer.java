@@ -6,4 +6,9 @@ public class BulletPlayer extends Bullet
     {
         super(x, y, 30);
     }
+
+    @Override
+    public void update() {
+
+    }
 }

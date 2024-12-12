@@ -1,10 +1,14 @@
 package spacewars;
 
+import com.googlecode.lanterna.TextColor;
 import spacewars.gui.LanternaGUI;
+import spacewars.model.game.Game;
 import spacewars.model.game.elements.Player;
 import spacewars.view.game.GameViewer;
-import spacewars.view.game.PlayerViewer;
-import spacewars.states.State;
+import spacewars.view.game.ViewerProvider;
+import spacewars.view.game.elements.PlayerViewer;
+import spacewars.view.images.GameImageLoader;
+import spacewars.view.images.ImageLoader;
 
 import java.awt.*;
 import java.io.IOException;
@@ -21,9 +25,13 @@ public class Application {
     public Application() throws IOException, URISyntaxException, FontFormatException {
         this.lanternaGUI = new LanternaGUI(320, 192);
 
-        //gameViewer = new GameViewer(lanternaGUI);
-        //player = new Player(10, 10);
-        //playerViewer = new PlayerViewer("millennium_falcon.png");
+        /*lanternaGUI.clear();
+        Player player = new Player(10, 10);
+        ViewerProvider viewerProvider = new ViewerProvider(new GameImageLoader());
+        PlayerViewer playerViewer = viewerProvider.getPlayerViewer();
+        playerViewer.draw(player, lanternaGUI);
+        lanternaGUI.refresh();*/
+
         running = true;
     }
 
@@ -48,6 +56,8 @@ public class Application {
         while (running) {
             long startTime = System.nanoTime();
 
+
+
             //state.step(this,lanternaGUI,startTime);
 
             frames++;
@@ -62,7 +72,6 @@ public class Application {
                 lastTime = System.nanoTime();
             }
         }
-
         lanternaGUI.close();
     }
 }
