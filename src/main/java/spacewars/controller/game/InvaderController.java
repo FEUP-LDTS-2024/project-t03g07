@@ -12,23 +12,39 @@ import java.io.IOException;
 
 public class InvaderController extends GameController {
     private long lastMovement;
+    private final int borderLeft;
+    private final int borderRight;
 
     public InvaderController(Game game) {
         super(game);
         this.lastMovement = 0;
+        this.borderLeft = 0;
+        this.borderRight = 320;
     }
 
     @Override
     public void step(Application application, GUI.ACTION action, long time) throws IOException {
         if (time - lastMovement > 500) {
-            for (Invader invader1 : getModel().getInvaders1())
-                moveInvaderRight(invader1.getPosition());
-            for (Invader invader2 : getModel().getInvaders2())
-                moveInvaderRight(invader2.getPosition());
-            for (Invader invader3 : getModel().getInvaders3())
-                moveInvaderRight(invader3.getPosition());
-            Invader bossInvader = getModel().getBossInvader();
-            moveInvaderRight(bossInvader.getPosition());
+            if(rightBorderHit(borderRight, getModel().getInvaders1().get(0).getPosition())) {
+                for (Invader invader1 : getModel().getInvaders1())
+                    moveInvaderRight(invader1.getPosition());
+                for (Invader invader2 : getModel().getInvaders2())
+                    moveInvaderRight(invader2.getPosition());
+                for (Invader invader3 : getModel().getInvaders3())
+                    moveInvaderRight(invader3.getPosition());
+                Invader bossInvader = getModel().getBossInvader();
+                moveInvaderRight(bossInvader.getPosition());
+            }
+            if(leftBorderHit(borderLeft, getModel().getInvaders1().get(0).getPosition())) {
+                for (Invader invader1 : getModel().getInvaders1())
+                    moveInvaderLeft(invader1.getPosition());
+                for (Invader invader2 : getModel().getInvaders2())
+                    moveInvaderLeft(invader2.getPosition());
+                for (Invader invader3 : getModel().getInvaders3())
+                    moveInvaderLeft(invader3.getPosition());
+                Invader bossInvader = getModel().getBossInvader();
+                moveInvaderLeft(bossInvader.getPosition());
+            }
 
 
             this.lastMovement = time;
@@ -63,4 +79,16 @@ public class InvaderController extends GameController {
         bossInvader.setPosition(new Position(position.getX() - 1, position.getY()));
     }
 
+    public boolean rightBorderHit(int borderRight, Position position) {
+        Invader invader1 = getModel().getInvaders1().get(0);
+        return invader1.getPosition().getX() == borderRight - 1;
+    }
+
+    public boolean leftBorderHit(int borderLeft, Position position) {
+        Invader invader1 = getModel().getInvaders1().get(0);
+        return invader1.getPosition().getX() == borderLeft - 1;
+    }
+
 }
+
+
