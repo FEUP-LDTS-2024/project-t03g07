@@ -35,6 +35,6 @@ public class PlayerController extends GameController {
     public void step(Application application, GUI.ACTION action, long time) throws IOException {
         if (action == GUI.ACTION.RIGHT) moveHeroRight();
         if (action == GUI.ACTION.LEFT) moveHeroLeft();
-        if (action == GUI.ACTION.SPACE) getModel().getPlayer().shoot();
+        //if (action == GUI.ACTION.SPACE) getModel().getPlayer().shoot();
     }
 }
