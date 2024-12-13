@@ -9,10 +9,12 @@ public class MainMenu extends Menu {
 
     @Override
     protected List<Entry> createEntries() {
-        Position pos_play = new Position(10,10);
-        Position pos_howToPlay = new Position(10,15);
-        Position pos_credits = new Position(10,20);
-        Position pos_quit = new Position(10,25);
+
+        //x pos are centered according to the screen width (do not change!)
+        Position pos_play = new Position(153,130);
+        Position pos_howToPlay = new Position(139,138);
+        Position pos_credits = new Position(147,146);
+        Position pos_quit = new Position(153,154);
 
         Entry play = new Entry(pos_play,Entry.TYPE.PLAY);
         Entry howToPlay = new Entry(pos_howToPlay, Entry.TYPE.HOW_TO_PLAY);
