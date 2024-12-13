@@ -7,6 +7,7 @@ import spacewars.view.ViewerProvider;
 import spacewars.view.images.ImageLoader;
 import spacewars.view.screens.ScreenViewer;
 
+import java.awt.*;
 import java.io.IOException;
 
 public abstract class State<T> {
@@ -14,7 +15,7 @@ public abstract class State<T> {
     private final Controller<T> controller;
     private final ScreenViewer<T> screenViewer;
 
-    public State(T model, ImageLoader imageLoader) throws IOException {
+    public State(T model, ImageLoader imageLoader) throws IOException, FontFormatException {
         this.model = model;
         this.controller = getController();
         this.screenViewer = getScreenViewer(new ViewerProvider(imageLoader));
@@ -28,7 +29,7 @@ public abstract class State<T> {
 
     protected abstract Controller<T> getController();
 
-    public void step(Application application, GUI gui, long time) throws IOException {
+    public void step(Application application, GUI gui, long time) throws IOException, FontFormatException {
         GUI.ACTION action = gui.getNextAction();
         controller.step(application, action, time);
         screenViewer.draw(gui);

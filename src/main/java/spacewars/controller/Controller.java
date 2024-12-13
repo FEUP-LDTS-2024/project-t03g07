@@ -4,6 +4,7 @@ import spacewars.Application;
 import spacewars.model.game.Game;
 import spacewars.gui.GUI;
 
+import java.awt.*;
 import java.io.IOException;
 
 public abstract class Controller<T> {
@@ -17,5 +18,5 @@ public abstract class Controller<T> {
         return model;
     }
 
-    public abstract void step(Application application, GUI.ACTION action, long time) throws IOException;
+    public abstract void step(Application application, GUI.ACTION action, long time) throws IOException, FontFormatException;
 }

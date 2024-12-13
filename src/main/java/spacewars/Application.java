@@ -1,8 +1,8 @@
 package spacewars;
 
 import spacewars.gui.LanternaGUI;
-import spacewars.model.menu.Menu;
-import spacewars.states.MenuState;
+import spacewars.model.menu.MainMenu;
+import spacewars.states.MainMenuState;
 import spacewars.states.State;
 import spacewars.view.images.AppImageLoader;
 import spacewars.view.images.ImageLoader;
@@ -19,7 +19,7 @@ public class Application {
     public Application() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(320, 192);
         this.imageLoader = new AppImageLoader();
-        this.state = new MenuState(new Menu(), imageLoader);
+        this.state = new MainMenuState(new MainMenu(), imageLoader);
 
         /*lanternaGUI.clear();
         Player player = new Player(10, 10);
@@ -39,7 +39,11 @@ public class Application {
         this.state = state;
     }
 
-    public void run() throws InterruptedException, IOException {
+    public ImageLoader getImageLoader() {
+        return imageLoader;
+    }
+
+    public void run() throws InterruptedException, IOException, FontFormatException {
         int FPS = 30;
         double frameTime = (double) 1000000000 / FPS;
         long lastTime = System.nanoTime();
