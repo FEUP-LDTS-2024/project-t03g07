@@ -25,7 +25,7 @@ public class InvaderController extends GameController {
     @Override
     public void step(Application application, GUI.ACTION action, long time) throws IOException {
         if (time - lastMovement > 500) {
-            if(rightBorderHit(borderRight, getModel().getInvaders1().get(0).getPosition())) {
+            if(!leftBorderHit(borderLeft)) {
                 for (Invader invader1 : getModel().getInvaders1())
                     moveInvaderRight(invader1.getPosition());
                 for (Invader invader2 : getModel().getInvaders2())
@@ -35,7 +35,7 @@ public class InvaderController extends GameController {
                 Invader bossInvader = getModel().getBossInvader();
                 moveInvaderRight(bossInvader.getPosition());
             }
-            if(leftBorderHit(borderLeft, getModel().getInvaders1().get(0).getPosition())) {
+            else if(!rightBorderHit(borderRight)) {
                 for (Invader invader1 : getModel().getInvaders1())
                     moveInvaderLeft(invader1.getPosition());
                 for (Invader invader2 : getModel().getInvaders2())
@@ -79,14 +79,23 @@ public class InvaderController extends GameController {
         bossInvader.setPosition(new Position(position.getX() - 1, position.getY()));
     }
 
-    public boolean rightBorderHit(int borderRight, Position position) {
+    public boolean rightBorderHit(int borderRight) {
         Invader invader1 = getModel().getInvaders1().get(0);
-        return invader1.getPosition().getX() == borderRight - 1;
+        Invader invader2 = getModel().getInvaders2().get(0);
+        Invader invader3 = getModel().getInvaders3().get(0);
+        return (invader1.getPosition().getX() == borderRight - 1
+                || invader2.getPosition().getX() == borderRight - 1
+                || invader3.getPosition().getX() == borderRight - 1);
     }
 
-    public boolean leftBorderHit(int borderLeft, Position position) {
+    public boolean leftBorderHit(int borderLeft) {
         Invader invader1 = getModel().getInvaders1().get(0);
-        return invader1.getPosition().getX() == borderLeft - 1;
+        Invader invader2 = getModel().getInvaders2().get(0);
+        Invader invader3 = getModel().getInvaders3().get(0);
+
+        return (invader1.getPosition().getX() == borderLeft - 1
+                || invader2.getPosition().getX() == borderLeft - 1
+                || invader3.getPosition().getX() == borderLeft - 1);
     }
 
 }
