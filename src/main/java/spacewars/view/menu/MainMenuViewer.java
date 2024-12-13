@@ -12,6 +12,7 @@ import java.util.List;
 
 public class MainMenuViewer<T extends Menu> extends ScreenViewer<T> {
     private final EntryViewer entryViewer;
+    private final LogoViewer logoViewer;
 
     public static final TextColor unselectedColor = new TextColor.RGB(255,255,255); //white
     public static final TextColor selectedColor = new TextColor.RGB(255,195,0);     //yellow
@@ -20,6 +21,7 @@ public class MainMenuViewer<T extends Menu> extends ScreenViewer<T> {
     public MainMenuViewer(T model, ViewerProvider viewerProvider) {
         super(model);
         this.entryViewer = viewerProvider.getEntryViewer();
+        this.logoViewer = viewerProvider.getLogoViewer();
     }
 
     @Override
@@ -27,6 +29,7 @@ public class MainMenuViewer<T extends Menu> extends ScreenViewer<T> {
         gui.clear();
         drawBackground(gui, backgroundColor);
         drawEntries(gui, getModel().getEntries());
+        logoViewer.draw(gui, 147, 70);
         gui.refresh();
     }
 

@@ -9,7 +9,6 @@ public class MainMenu extends Menu {
 
     @Override
     protected List<Entry> createEntries() {
-
         //x pos are centered according to the screen width (do not change!)
         Position pos_play = new Position(153,130);
         Position pos_howToPlay = new Position(139,138);

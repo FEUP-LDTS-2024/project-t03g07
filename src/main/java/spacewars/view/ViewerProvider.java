@@ -10,6 +10,7 @@ import spacewars.view.game.elements.invaders.Invader2Viewer;
 import spacewars.view.game.elements.invaders.Invader3Viewer;
 import spacewars.view.images.ImageLoader;
 import spacewars.view.menu.EntryViewer;
+import spacewars.view.menu.LogoViewer;
 
 import java.awt.*;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class ViewerProvider {
 
     private final TextViewer textViewer;
     private final EntryViewer entryViewer;
+    private final LogoViewer logoViewer;
 
 
     public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException {
@@ -44,6 +46,7 @@ public class ViewerProvider {
 
         this.textViewer = new AppTextViewer();
         this.entryViewer = new EntryViewer(textViewer);
+        this.logoViewer = new LogoViewer(imageLoader);
     }
 
 
@@ -82,5 +85,9 @@ public class ViewerProvider {
 
     public EntryViewer getEntryViewer() {
         return entryViewer;
+    }
+
+    public LogoViewer getLogoViewer() {
+        return logoViewer;
     }
 }
