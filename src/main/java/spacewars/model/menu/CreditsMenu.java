@@ -11,7 +11,7 @@ public class CreditsMenu extends Menu{
     private String details;
 
     public CreditsMenu() {
-        title = "Credits";
+        title = "CREDITS";
         details = "Class 3 Group 7 Members:";
 
         names = new String[3];

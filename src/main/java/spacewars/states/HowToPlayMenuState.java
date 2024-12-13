@@ -20,7 +20,7 @@ public class HowToPlayMenuState extends State<HowToPlayMenu> {
 
     @Override
     protected ScreenViewer<HowToPlayMenu> getScreenViewer(ViewerProvider viewerProvider) throws IOException {
-        return new HowToPlayMenuViewer(getModel());
+        return new HowToPlayMenuViewer(getModel(), viewerProvider);
     }
 
     @Override

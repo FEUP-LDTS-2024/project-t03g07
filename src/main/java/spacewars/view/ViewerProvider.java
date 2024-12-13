@@ -31,6 +31,8 @@ public class ViewerProvider {
     private final EntryViewer entryViewer;
     private final LogoViewer logoViewer;
 
+    private final EmpireFighterViewer empireFighterViewer;
+
 
     public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException {
         this.playerViewer = new PlayerViewer(imageLoader);
@@ -47,6 +49,8 @@ public class ViewerProvider {
         this.textViewer = new AppTextViewer();
         this.entryViewer = new EntryViewer(textViewer);
         this.logoViewer = new LogoViewer(imageLoader);
+
+        this.empireFighterViewer = new EmpireFighterViewer(imageLoader);
     }
 
 
@@ -93,5 +97,9 @@ public class ViewerProvider {
 
     public TextViewer getTextViewer() {
         return textViewer;
+    }
+
+    public EmpireFighterViewer getEmpireFighterViewer() {
+        return empireFighterViewer;
     }
 }
