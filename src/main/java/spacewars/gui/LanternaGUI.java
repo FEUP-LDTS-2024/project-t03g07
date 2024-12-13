@@ -14,17 +14,32 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import spacewars.model.Position;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
+
+import static java.awt.event.KeyEvent.*;
+import static java.awt.event.KeyEvent.VK_X;
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
 
+    private static final java.util.List<Integer> SPAM_KEYS = List.of(VK_LEFT, VK_RIGHT);
+    private boolean keySpam;
+    private KeyEvent priorityKeyPressed;
+    private final KeyAdapter keyAdapter;
+    private KeyEvent keyPressed;
+
     /*public LanternaGUI(Screen screen) {
-        this.screen = screen;
+        this.screen = screen; this.keySpam = false;
+        this.priorityKeyPressed = null;
+        this.keyAdapter = createKeyAdapter();
+        this.keyPressed = null;
     }*/
 
     public LanternaGUI(int width, int height) throws URISyntaxException, IOException, FontFormatException {
@@ -44,6 +59,10 @@ public class LanternaGUI implements GUI {
             }
         });
         this.screen = createScreen(terminal);
+        this.keySpam = false;
+        this.priorityKeyPressed = null;
+        this.keyAdapter = createKeyAdapter();
+        this.keyPressed = null;
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, IOException, FontFormatException {
@@ -75,6 +94,27 @@ public class LanternaGUI implements GUI {
         screen.startScreen();
         screen.doResizeIfNecessary();
         return screen;
+    }
+
+    private KeyAdapter createKeyAdapter() {
+        return new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println("Key pressed");
+                if (keySpam && SPAM_KEYS.contains(e.getKeyCode()))
+                    keyPressed = priorityKeyPressed = e;
+                else
+                    keyPressed = e;
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (keySpam && SPAM_KEYS.contains(e.getKeyCode()))
+                    keyPressed = priorityKeyPressed = null;
+                else
+                    keyPressed = priorityKeyPressed;
+            }
+        };
     }
 
     @Override
@@ -115,7 +155,29 @@ public class LanternaGUI implements GUI {
 
     @Override
     public ACTION getNextAction() throws IOException {
-        return null;
+        if (keyPressed == null)
+            return ACTION.NONE;
+
+        int keyCode = keyPressed.getKeyCode();
+        keyPressed = priorityKeyPressed;
+
+        return switch (keyCode) {
+            case VK_UP -> ACTION.UP;
+            case VK_DOWN -> ACTION.DOWN;
+            case VK_ESCAPE -> ACTION.QUIT;
+            case VK_ENTER -> ACTION.SELECT;
+            default -> ACTION.NONE;
+        };
+    }
+
+    public void setKeySpam(boolean keySpam) {
+        if (!keySpam)
+            priorityKeyPressed = null;
+        this.keySpam = keySpam;
+    }
+
+    public KeyAdapter getKeyAdapter() {
+        return keyAdapter;
     }
 
     @Override
