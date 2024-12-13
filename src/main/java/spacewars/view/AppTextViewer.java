@@ -2,72 +2,94 @@ package spacewars.view;
 
 import com.googlecode.lanterna.TextColor;
 import spacewars.gui.GUI;
-import com.googlecode.lanterna.TerminalPosition;
+import spacewars.view.TextViewer;
 
-import java.awt.*;
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+record CharPosition(int row, int col) {}
 
 public class AppTextViewer implements TextViewer {
-    private static final int charWidth = 16; // Width for each character
-    private static final int charHeight = 16; // Height for each character
-    private static final int spacing = 1; // Spacing between characters
+    private static final int charWidth = 3;
+    private static final int charHeight = 5;
+    private static final int spacing = 1;
 
-    private final Font customFont;
-    private final Map<Character, BufferedImage> charImages;
+    private final BufferedImage fontImage;
+    private final Map<Character, CharPosition> charMap;
 
-    public AppTextViewer(String fontPath, float fontSize) throws IOException, FontFormatException {
-        // Load the custom font from the .ttf file
-        this.customFont = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath)).deriveFont(fontSize);
-        this.charImages = new HashMap<>();
-        preloadCharacters();
+    public AppTextViewer() throws IOException {
+        URL resource = getClass().getClassLoader().getResource("fonts/font_custom.png");
+        this.fontImage = ImageIO.read(Objects.requireNonNull(resource));
+        this.charMap = parseCharMap();
     }
 
-    private void preloadCharacters() {
-        // Pre-render ASCII characters into images
-        for (char c = 32; c < 127; c++) {
-            charImages.put(c, renderCharacter(c));
+    private Map<Character, CharPosition> parseCharMap() throws IOException {
+        Map<Character, CharPosition> charMap = new HashMap<>();
+        URL resource = getClass().getClassLoader().getResource("fonts/font_map.txt");
+        BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(Objects.requireNonNull(resource).getFile()), UTF_8);
+
+        int y = 0;
+        for (String line; (line = bufferedReader.readLine()) != null; y++) {
+            for (int x = 0; x < line.length(); x++)
+                charMap.put(line.charAt(x), new CharPosition(x, y));
         }
-    }
 
-    private BufferedImage renderCharacter(char character) {
-        // Create an image to render the character
-        BufferedImage image = new BufferedImage(charWidth, charHeight, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = image.createGraphics();
-
-        // Set font and rendering hints
-        g2d.setFont(customFont);
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        // Draw the character
-        g2d.setColor(Color.WHITE); // Default color; can be overridden in draw()
-        FontMetrics metrics = g2d.getFontMetrics(customFont);
-        int x = (charWidth - metrics.charWidth(character)) / 2;
-        int y = (charHeight - metrics.getHeight()) / 2 + metrics.getAscent();
-        g2d.drawString(String.valueOf(character), x, y);
-        g2d.dispose();
-        return image;
+        return charMap;
     }
 
     @Override
     public void draw(char character, double x, double y, TextColor foregroundColor, GUI gui) {
-        BufferedImage charImage = charImages.get(character);
-        if (charImage != null) {
-            gui.drawImage(charImage, (int) Math.round(x), (int) Math.round(y));
+        if (charMap.containsKey(character)) {
+            CharPosition charPosition = charMap.get(character);
+            drawKnownChar(charPosition, x, y, foregroundColor, gui);
+        } else {
+            drawUnknownChar(x, y, foregroundColor, gui);
         }
+    }
+
+    private void drawKnownChar(CharPosition position, double x, double y, TextColor foregroundColor, GUI gui) {
+        final int COLOR_WHITE = 0xFFFFFFFF;
+        int imgX = position.row() * (charWidth + 1);
+        int imgY = position.col() * (charHeight + 1);
+        for (int dy = 0; dy < charHeight; dy++) {
+            for (int dx = 0; dx < charWidth; dx++) {
+                if (fontImage.getRGB(imgX + dx, imgY + dy) != COLOR_WHITE)
+                    gui.drawPixel((int)x + dx, (int)y + dy, new TextColor.RGB(foregroundColor.getRed(), foregroundColor.getGreen(), foregroundColor.getBlue()));
+            }
+        }
+    }
+
+    private void drawUnknownChar(double x, double y, TextColor foregroundColor, GUI gui) {
+        gui.drawRectangle(x, y, charWidth, charHeight, foregroundColor);
     }
 
     @Override
     public void draw(String string, double x, double y, TextColor foregroundColor, GUI gui) {
-        double currentX = x;
-
-        for (char character : string.toCharArray()) {
-            draw(character, currentX, y, foregroundColor, gui);
-            currentX += charWidth + spacing;
+        for (int i = 0; i < string.length(); i++) {
+            int xOffset = i * (charWidth + spacing);
+            draw(string.charAt(i), x + xOffset, y, foregroundColor, gui);
         }
+    }
+
+    public static int getCharHeight() {
+        return charHeight;
+    }
+
+    public static int getCharWidth() {
+        return charWidth;
+    }
+
+    public static int getSpacing() {
+        return spacing;
     }
 }

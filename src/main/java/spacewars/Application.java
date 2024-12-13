@@ -43,7 +43,7 @@ public class Application {
         return imageLoader;
     }
 
-    public void run() throws InterruptedException, IOException {
+    public void run() throws InterruptedException, IOException, FontFormatException {
         int FPS = 30;
         double frameTime = (double) 1000000000 / FPS;
         long lastTime = System.nanoTime();

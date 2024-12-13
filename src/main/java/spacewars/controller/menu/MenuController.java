@@ -5,6 +5,7 @@ import spacewars.controller.Controller;
 import spacewars.gui.GUI;
 import spacewars.model.menu.Menu;
 
+import java.awt.*;
 import java.io.IOException;
 
 public abstract class MenuController <T extends Menu> extends Controller<T> {
@@ -16,7 +17,7 @@ public abstract class MenuController <T extends Menu> extends Controller<T> {
     }
 
     @Override
-    public void step(Application app, GUI.ACTION action, long time) throws IOException {
+    public void step(Application app, GUI.ACTION action, long time) throws IOException, FontFormatException {
         switch (action) {
             case UP:
                 this.getModel().previousEntry();
@@ -25,12 +26,16 @@ public abstract class MenuController <T extends Menu> extends Controller<T> {
                 this.getModel().nextEntry();
                 break;
             case QUIT:
-                onQuit(app);
+                try {
+                    onQuit(app);
+                } catch (FontFormatException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             default:
                 entryController.step(app, action, time);
         }
     }
 
-    protected abstract void onQuit(Application app) throws IOException;
+    protected abstract void onQuit(Application app) throws IOException, FontFormatException;
 }

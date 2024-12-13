@@ -5,6 +5,7 @@ import spacewars.model.menu.HowToPlayMenu;
 import spacewars.model.menu.MainMenu;
 import spacewars.states.MainMenuState;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class HowtoPlayMenuController extends MenuController<HowToPlayMenu> {
@@ -14,7 +15,7 @@ public class HowtoPlayMenuController extends MenuController<HowToPlayMenu> {
     }
 
     @Override
-    protected void onQuit(Application app) throws IOException {
+    protected void onQuit(Application app) throws IOException, FontFormatException {
         app.setState(new MainMenuState(new MainMenu(), app.getImageLoader()));
     }
 }

@@ -14,6 +14,7 @@ import spacewars.states.GameState;
 import spacewars.states.HowToPlayMenuState;
 import spacewars.states.MainMenuState;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class EntryController extends Controller<Menu> {
@@ -23,7 +24,7 @@ public class EntryController extends Controller<Menu> {
     }
 
     @Override
-    public void step(Application app, GUI.ACTION action, long time) throws IOException {
+    public void step(Application app, GUI.ACTION action, long time) throws IOException, FontFormatException {
         switch (getModel().getCurrentEntry().getType()) { //"play", "how to play", "credits", "quit", "return to menu"
             case PLAY:
                 if (action==GUI.ACTION.SELECT) {

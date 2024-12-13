@@ -9,10 +9,11 @@ import spacewars.view.images.ImageLoader;
 import spacewars.view.menu.CreditsMenuViewer;
 import spacewars.view.screens.ScreenViewer;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class CreditsMenuState extends State<CreditsMenu>{
-    public CreditsMenuState(CreditsMenu model, ImageLoader imageLoader) throws IOException {
+    public CreditsMenuState(CreditsMenu model, ImageLoader imageLoader) throws IOException, FontFormatException {
         super(model, imageLoader);
     }
 

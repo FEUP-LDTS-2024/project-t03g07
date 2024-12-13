@@ -30,4 +30,8 @@ public abstract class Menu {
     public Entry getCurrentEntry() {
         return entries.get(currentEntry);
     }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
 }

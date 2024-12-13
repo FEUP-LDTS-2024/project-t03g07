@@ -7,10 +7,11 @@ import spacewars.view.screens.GameViewer;
 import spacewars.view.screens.ScreenViewer;
 import spacewars.view.ViewerProvider;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class GameState extends State<Game> {
-    public GameState(Game model, ImageLoader imageLoader) throws IOException {
+    public GameState(Game model, ImageLoader imageLoader) throws IOException, FontFormatException {
         super(model, imageLoader);
     }
 
