@@ -23,8 +23,6 @@ public interface GUI {
     void drawText(Position position, String text, String color);
 
     ACTION getNextAction() throws IOException;
-
-    void drawImage(BufferedImage charImage, int x, int y);
   
     enum ACTION {UP, DOWN, RIGHT, LEFT, NONE, QUIT, SELECT, SHOOT}
 }
