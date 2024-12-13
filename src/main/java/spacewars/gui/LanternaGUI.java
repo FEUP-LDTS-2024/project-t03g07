@@ -63,6 +63,8 @@ public class LanternaGUI implements GUI {
         this.priorityKeyPressed = null;
         this.keyAdapter = createKeyAdapter();
         this.keyPressed = null;
+
+        terminal.getComponent(0).addKeyListener(this.keyAdapter);
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, IOException, FontFormatException {
