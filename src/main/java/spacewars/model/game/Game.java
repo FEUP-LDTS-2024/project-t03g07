@@ -1,5 +1,6 @@
 package spacewars.model.game;
 
+import spacewars.model.Position;
 import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.bullets.BulletBossInvader;
 import spacewars.model.game.elements.bullets.BulletNormalInvader;
@@ -19,7 +20,7 @@ public class Game {
     private List<Invader3> invaders3;
     private  BossInvader bossInvader;
 
-    private BulletPlayer bulletPlayer;
+    private List<BulletPlayer> bulletsPlayer;
     private BulletNormalInvader bulletNormalInvader;
     private BulletBossInvader bulletBossInvader;
 
@@ -45,8 +46,8 @@ public class Game {
         this.bossInvader = bossInvader;
     }
 
-    public void setBulletPlayer(BulletPlayer bulletPlayer) {
-        this.bulletPlayer = bulletPlayer;
+    public void addPlayerBullet(BulletPlayer bullet) {
+        bulletsPlayer.add(bullet);
     }
 
     public void setBulletNormalInvader(BulletNormalInvader bulletNormalInvader) {
@@ -78,8 +79,8 @@ public class Game {
         return bossInvader;
     }
 
-    public BulletPlayer getBulletPlayer() {
-        return bulletPlayer;
+    public List<BulletPlayer> getBulletPlayer() {
+        return bulletsPlayer;
     }
 
     public BulletNormalInvader getBulletNormalInvader() {
@@ -88,5 +89,13 @@ public class Game {
 
     public BulletBossInvader getBulletBossInvader() {
         return bulletBossInvader;
+    }
+
+
+
+    public boolean isBullet(Position position) {
+        if (bulletNormalInvader.getPosition().equals(position))
+            return true;
+        return false;
     }
 }
