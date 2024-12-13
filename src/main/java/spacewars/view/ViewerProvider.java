@@ -90,4 +90,8 @@ public class ViewerProvider {
     public LogoViewer getLogoViewer() {
         return logoViewer;
     }
+
+    public TextViewer getTextViewer() {
+        return textViewer;
+    }
 }

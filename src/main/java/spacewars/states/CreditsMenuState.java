@@ -19,7 +19,7 @@ public class CreditsMenuState extends State<CreditsMenu>{
 
     @Override
     protected ScreenViewer<CreditsMenu> getScreenViewer(ViewerProvider viewerProvider) throws IOException {
-        return new CreditsMenuViewer(getModel());
+        return new CreditsMenuViewer(getModel(), viewerProvider);
     }
 
     @Override
