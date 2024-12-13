@@ -1,6 +1,7 @@
 package spacewars.model.game.elements;
 
 import spacewars.model.game.Lives;
+import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class Player extends Element {
     private Lives lives;
@@ -19,6 +20,10 @@ public class Player extends Element {
 
     public void setLives(Lives lives) {
         this.lives = lives;
+    }
+
+    public BulletPlayer shoot() {
+        return new BulletPlayer(this.getPosition().getX(), this.getPosition().getY() - 1);
     }
 
     @Override
