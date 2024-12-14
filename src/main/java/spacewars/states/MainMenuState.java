@@ -4,10 +4,9 @@ import spacewars.controller.Controller;
 import spacewars.controller.menu.EntryController;
 import spacewars.controller.menu.MainMenuController;
 import spacewars.model.menu.MainMenu;
-import spacewars.model.menu.Menu;
 import spacewars.view.ViewerProvider;
 import spacewars.view.images.ImageLoader;
-import spacewars.view.menu.MainMenuViewer;
+import spacewars.view.screens.menus.MainMenuViewer;
 import spacewars.view.screens.ScreenViewer;
 
 import java.awt.*;

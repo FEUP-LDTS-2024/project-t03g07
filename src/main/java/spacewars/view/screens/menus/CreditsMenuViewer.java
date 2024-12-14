@@ -1,19 +1,19 @@
-package spacewars.view.menu;
+package spacewars.view.screens.menus;
 
 import com.googlecode.lanterna.TextColor;
-import org.w3c.dom.Text;
 import spacewars.gui.GUI;
 import spacewars.model.Position;
 import spacewars.model.menu.CreditsMenu;
 import spacewars.model.menu.Entry;
-import spacewars.view.TextViewer;
+import spacewars.view.texts.TextViewer;
 import spacewars.view.ViewerProvider;
+import spacewars.view.menus.EntryViewer;
 import spacewars.view.screens.ScreenViewer;
 
 import java.io.IOException;
 import java.util.List;
 
-import static spacewars.view.AppTextViewer.getCharHeight;
+import static spacewars.view.texts.AppTextViewer.getCharHeight;
 
 public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
     private final EntryViewer entryViewer;

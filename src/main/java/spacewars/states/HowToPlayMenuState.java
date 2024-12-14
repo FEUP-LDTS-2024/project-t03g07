@@ -6,7 +6,7 @@ import spacewars.controller.menu.HowtoPlayMenuController;
 import spacewars.model.menu.HowToPlayMenu;
 import spacewars.view.ViewerProvider;
 import spacewars.view.images.ImageLoader;
-import spacewars.view.menu.HowToPlayMenuViewer;
+import spacewars.view.screens.menus.HowToPlayMenuViewer;
 import spacewars.view.screens.ScreenViewer;
 
 import java.awt.*;

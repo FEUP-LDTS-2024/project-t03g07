@@ -1,9 +1,9 @@
-package spacewars.view.menu;
+package spacewars.view.menus;
 
 import com.googlecode.lanterna.TextColor;
 import spacewars.gui.GUI;
 import spacewars.model.menu.Entry;
-import spacewars.view.TextViewer;
+import spacewars.view.texts.TextViewer;
 
 
 public class EntryViewer {
