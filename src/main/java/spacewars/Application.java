@@ -54,7 +54,10 @@ public class Application {
         while (this.state != null) {
             long startTime = System.nanoTime();
 
+            long stepStartTime = System.nanoTime();
             state.step(this, gui, startTime);
+            long stepDuration = System.nanoTime() - stepStartTime;
+            System.out.println("Step duration: " + stepDuration + " ns");
 
             frames++;
             long elapsedTime = System.nanoTime() - startTime;
@@ -63,9 +66,10 @@ public class Application {
             if (sleepTime > 0) {
                 Thread.sleep(sleepTime / 1_000_000, (int) (sleepTime % 1_000_000));
             }
-
+            
             while (System.nanoTime() - startTime < frameTime) {}
 
+            // Display FPS every second
             if (System.nanoTime() - lastTime >= 1_000_000_000) {
                 System.out.println("FPS: " + frames);
                 frames = 0;
