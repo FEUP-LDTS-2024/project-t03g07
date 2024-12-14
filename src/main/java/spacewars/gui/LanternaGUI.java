@@ -183,32 +183,6 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawImage(BufferedImage charImage, int x, int y) {
-        TextGraphics tg = screen.newTextGraphics();
-
-        for (int i = 0; i < charImage.getWidth(); i++) {
-            for (int j = 0; j < charImage.getHeight(); j++) {
-                int rgb = charImage.getRGB(i, j);
-                int alpha = (rgb >> 24) & 0xFF;
-
-                // Only draw non-transparent pixels
-                if (alpha != 0) {
-                    int red = (rgb >> 16) & 0xFF;
-                    int green = (rgb >> 8) & 0xFF;
-                    int blue = rgb & 0xFF;
-
-                    // Convert RGB to hex string
-                    String hexColor = String.format("#%02X%02X%02X", red, green, blue);
-
-                    // Set color and draw a block character
-                    tg.setForegroundColor(TextColor.Factory.fromString(hexColor));
-                    tg.putString(x + i, y + j, "█");
-                }
-            }
-        }
-    }
-
-    @Override
     public void clear() {
         screen.clear();
     }

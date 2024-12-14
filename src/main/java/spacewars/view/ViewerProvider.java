@@ -32,6 +32,14 @@ public class ViewerProvider {
     private final EntryViewer entryViewer;
     private final LogoViewer logoViewer;
 
+    private final ArrowsViewer arrowsViewer;
+    private final SpacebarViewer spacebarViewer;
+
+    private final EmpireFighterViewer empireFighterViewer;
+    private final TIEExecutorViewer tieExecutorViewer;
+    private final StarDestroyerViewer starDestroyerViewer;
+    private final DeathStarViewer deathStarViewer;
+
 
     public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
         this.playerViewer = new PlayerViewer(imageLoader);
@@ -48,6 +56,14 @@ public class ViewerProvider {
         this.textViewer = new AppTextViewer();
         this.entryViewer = new EntryViewer(textViewer);
         this.logoViewer = new LogoViewer(imageLoader);
+
+        this.arrowsViewer = new ArrowsViewer(imageLoader);
+        this.spacebarViewer = new SpacebarViewer(imageLoader);
+
+        this.empireFighterViewer = new EmpireFighterViewer(imageLoader);
+        this.tieExecutorViewer = new TIEExecutorViewer(imageLoader);
+        this.starDestroyerViewer = new StarDestroyerViewer(imageLoader);
+        this.deathStarViewer = new DeathStarViewer(imageLoader);
     }
 
 
@@ -94,5 +110,29 @@ public class ViewerProvider {
 
     public TextViewer getTextViewer() {
         return textViewer;
+    }
+
+    public EmpireFighterViewer getEmpireFighterViewer() {
+        return empireFighterViewer;
+    }
+
+    public ArrowsViewer getArrowsViewer() {
+        return arrowsViewer;
+    }
+
+    public SpacebarViewer getSpacebarViewer() {
+        return spacebarViewer;
+    }
+
+    public TIEExecutorViewer getTIEExecutorViewer() {
+        return tieExecutorViewer;
+    }
+
+    public StarDestroyerViewer getStarDestroyerViewer() {
+        return starDestroyerViewer;
+    }
+
+    public DeathStarViewer getDeathStarViewer() {
+        return deathStarViewer;
     }
 }
