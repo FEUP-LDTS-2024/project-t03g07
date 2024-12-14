@@ -23,7 +23,7 @@ public class Player extends Element {
     }
 
     public BulletPlayer shoot() {
-        return new BulletPlayer(this.getPosition().getX(), this.getPosition().getY() - 1);
+        return new BulletPlayer(this.getPosition().getX(), this.getPosition().getY() + 1);
     }
 
     @Override
