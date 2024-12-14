@@ -12,7 +12,7 @@ public class Invader2Viewer implements ElementViewer<Invader2> {
     private final Image image;
 
     public Invader2Viewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("elements/invaders/TIE_executor.png");
+        this.image = imageLoader.get("elements/invaders/tie_executor.png");
     }
 
     @Override

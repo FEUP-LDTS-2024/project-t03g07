@@ -10,7 +10,7 @@ public class DeathStarViewer {
     private final Image image;
 
     public DeathStarViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("death_star16x16.png");
+        this.image = imageLoader.get("elements/invaders/death_star.png");
     }
 
     public void draw(GUI gui, int x, int y) throws IOException {

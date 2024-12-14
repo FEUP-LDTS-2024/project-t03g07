@@ -10,7 +10,7 @@ public class EmpireFighterViewer {
     private final Image image;
 
     public EmpireFighterViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("empire_fighter16x16.png");
+        this.image = imageLoader.get("elements/invaders/empire_fighter.png");
     }
 
     public void draw(GUI gui, int x, int y) throws IOException {

@@ -10,7 +10,7 @@ public class ArrowsViewer {
     private final Image image;
 
     public ArrowsViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("arrows_how_to_play.png");
+        this.image = imageLoader.get("images/arrows_how_to_play.png");
     }
 
     public void draw(GUI gui, int x, int y) throws IOException {

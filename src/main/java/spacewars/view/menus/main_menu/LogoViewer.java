@@ -10,7 +10,7 @@ public class LogoViewer {
     private final Image image;
 
     public LogoViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("logo.png");
+        this.image = imageLoader.get("images/logo.png");
     }
 
     public void draw(GUI gui, int x, int y) throws IOException {
