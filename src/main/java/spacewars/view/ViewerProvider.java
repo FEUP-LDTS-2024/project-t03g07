@@ -14,6 +14,7 @@ import spacewars.view.menu.LogoViewer;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class ViewerProvider {
     private final PlayerViewer playerViewer;
@@ -32,7 +33,7 @@ public class ViewerProvider {
     private final LogoViewer logoViewer;
 
 
-    public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException {
+    public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
         this.playerViewer = new PlayerViewer(imageLoader);
 
         this.invader1Viewer = new Invader1Viewer(imageLoader);

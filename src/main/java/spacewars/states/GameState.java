@@ -9,9 +9,10 @@ import spacewars.view.ViewerProvider;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class GameState extends State<Game> {
-    public GameState(Game model, ImageLoader imageLoader) throws IOException, FontFormatException {
+    public GameState(Game model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
         super(model, imageLoader);
     }
 

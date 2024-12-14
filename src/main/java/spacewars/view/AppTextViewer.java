@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,16 +28,16 @@ public class AppTextViewer implements TextViewer {
     private final BufferedImage fontImage;
     private final Map<Character, CharPosition> charMap;
 
-    public AppTextViewer() throws IOException {
+    public AppTextViewer() throws IOException, URISyntaxException {
         URL resource = getClass().getClassLoader().getResource("fonts/font_custom.png");
         this.fontImage = ImageIO.read(Objects.requireNonNull(resource));
         this.charMap = parseCharMap();
     }
 
-    private Map<Character, CharPosition> parseCharMap() throws IOException {
+    private Map<Character, CharPosition> parseCharMap() throws IOException, URISyntaxException {
         Map<Character, CharPosition> charMap = new HashMap<>();
         URL resource = getClass().getClassLoader().getResource("fonts/font_map.txt");
-        BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(Objects.requireNonNull(resource).getFile()), UTF_8);
+        BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(Objects.requireNonNull(resource).toURI()), UTF_8);
 
         int y = 0;
         for (String line; (line = bufferedReader.readLine()) != null; y++) {
