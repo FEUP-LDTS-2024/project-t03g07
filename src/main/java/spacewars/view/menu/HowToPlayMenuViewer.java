@@ -7,9 +7,7 @@ import spacewars.model.menu.CreditsMenu;
 import spacewars.model.menu.Entry;
 import spacewars.model.menu.HowToPlayMenu;
 import spacewars.states.HowToPlayMenuState;
-import spacewars.view.EmpireFighterViewer;
-import spacewars.view.TextViewer;
-import spacewars.view.ViewerProvider;
+import spacewars.view.*;
 import spacewars.view.images.Image;
 import spacewars.view.screens.ScreenViewer;
 
@@ -20,7 +18,8 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
     private final EntryViewer entryViewer;
     private final TextViewer textViewer;
     private final EmpireFighterViewer empireFighterViewer;
-    //private final ArrowsViewer
+    private final ArrowsViewer arrowsViewer;
+    private final SpacebarViewer spacebarViewer;
 
     public static final TextColor unselectedColor = new TextColor.RGB(255,255,255); //white
     public static final TextColor selectedColor = new TextColor.RGB(255,195,0);     //yellow
@@ -33,6 +32,8 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
         this.entryViewer = viewerProvider.getEntryViewer();
         this.textViewer = viewerProvider.getTextViewer();
         this.empireFighterViewer = viewerProvider.getEmpireFighterViewer();
+        this.arrowsViewer = viewerProvider.getArrowsViewer();
+        this.spacebarViewer = viewerProvider.getSpacebarViewer();
         //this.logoViewer = viewerProvider.getLogoViewer();
     }
 
@@ -44,14 +45,18 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
         drawTitle(gui);
         drawSubtitle(gui);
         drawArrowsandText(gui);
-//        drawSpaceBarandText(gui);
+        drawSpacebarandText(gui);
 //        drawSpaceShips(gui);
 //        drawPoints(gui);
         gui.refresh();
     }
 
+    private void drawSpacebarandText(GUI gui) throws IOException {
+        spacebarViewer.draw(gui,100,125);
+    }
+
     private void drawArrowsandText(GUI gui) throws IOException {
-        //arrowsViewer.draw(gui, 50, 70);
+        arrowsViewer.draw(gui, 50, 70);
         Position pos = new Position(95,70);
         textViewer.draw(getModel().getArrowText(), pos.getX(),pos.getY(),textColor,gui);
     }

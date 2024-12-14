@@ -6,10 +6,10 @@ import spacewars.view.images.ImageLoader;
 
 import java.io.IOException;
 
-public class ArrowViewer {
+public class ArrowsViewer {
     private final Image image;
 
-    public ArrowViewer(ImageLoader imageLoader) throws IOException {
+    public ArrowsViewer(ImageLoader imageLoader) throws IOException {
         this.image = imageLoader.get("arrows_how_to_play.png");
     }
 
