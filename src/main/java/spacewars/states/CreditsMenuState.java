@@ -6,7 +6,7 @@ import spacewars.controller.menu.EntryController;
 import spacewars.model.menu.CreditsMenu;
 import spacewars.view.ViewerProvider;
 import spacewars.view.images.ImageLoader;
-import spacewars.view.menu.CreditsMenuViewer;
+import spacewars.view.screens.menus.CreditsMenuViewer;
 import spacewars.view.screens.ScreenViewer;
 
 import java.awt.*;

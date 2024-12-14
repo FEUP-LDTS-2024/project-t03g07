@@ -1,8 +1,7 @@
-package spacewars.view;
+package spacewars.view.texts;
 
 import com.googlecode.lanterna.TextColor;
 import spacewars.gui.GUI;
-import spacewars.view.TextViewer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

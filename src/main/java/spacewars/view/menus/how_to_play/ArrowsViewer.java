@@ -1,4 +1,4 @@
-package spacewars.view;
+package spacewars.view.menus.how_to_play;
 
 import spacewars.gui.GUI;
 import spacewars.view.images.Image;
@@ -6,11 +6,11 @@ import spacewars.view.images.ImageLoader;
 
 import java.io.IOException;
 
-public class StarDestroyerViewer {
+public class ArrowsViewer {
     private final Image image;
 
-    public StarDestroyerViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("star_destroyer16x16.png");
+    public ArrowsViewer(ImageLoader imageLoader) throws IOException {
+        this.image = imageLoader.get("arrows_how_to_play.png");
     }
 
     public void draw(GUI gui, int x, int y) throws IOException {

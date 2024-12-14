@@ -9,8 +9,11 @@ import spacewars.view.game.elements.invaders.Invader1Viewer;
 import spacewars.view.game.elements.invaders.Invader2Viewer;
 import spacewars.view.game.elements.invaders.Invader3Viewer;
 import spacewars.view.images.ImageLoader;
-import spacewars.view.menu.EntryViewer;
-import spacewars.view.menu.LogoViewer;
+import spacewars.view.menus.EntryViewer;
+import spacewars.view.menus.how_to_play.*;
+import spacewars.view.menus.main_menu.LogoViewer;
+import spacewars.view.texts.AppTextViewer;
+import spacewars.view.texts.TextViewer;
 
 import java.awt.*;
 import java.io.IOException;

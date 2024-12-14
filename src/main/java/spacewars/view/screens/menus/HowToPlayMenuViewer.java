@@ -1,15 +1,15 @@
-package spacewars.view.menu;
+package spacewars.view.screens.menus;
 
 import com.googlecode.lanterna.TextColor;
 import spacewars.gui.GUI;
 import spacewars.model.Position;
-import spacewars.model.menu.CreditsMenu;
 import spacewars.model.menu.Entry;
 import spacewars.model.menu.HowToPlayMenu;
-import spacewars.states.HowToPlayMenuState;
 import spacewars.view.*;
-import spacewars.view.images.Image;
+import spacewars.view.menus.EntryViewer;
+import spacewars.view.menus.how_to_play.*;
 import spacewars.view.screens.ScreenViewer;
+import spacewars.view.texts.TextViewer;
 
 import java.io.IOException;
 import java.util.List;

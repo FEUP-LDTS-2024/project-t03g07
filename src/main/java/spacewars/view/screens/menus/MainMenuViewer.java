@@ -1,10 +1,12 @@
-package spacewars.view.menu;
+package spacewars.view.screens.menus;
 
 import com.googlecode.lanterna.TextColor;
 import spacewars.gui.GUI;
 import spacewars.model.menu.Entry;
 import spacewars.model.menu.Menu;
 import spacewars.view.ViewerProvider;
+import spacewars.view.menus.EntryViewer;
+import spacewars.view.menus.main_menu.LogoViewer;
 import spacewars.view.screens.ScreenViewer;
 
 import java.io.IOException;
