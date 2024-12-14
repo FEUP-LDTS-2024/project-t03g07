@@ -11,9 +11,10 @@ import spacewars.view.screens.ScreenViewer;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class CreditsMenuState extends State<CreditsMenu>{
-    public CreditsMenuState(CreditsMenu model, ImageLoader imageLoader) throws IOException, FontFormatException {
+    public CreditsMenuState(CreditsMenu model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
         super(model, imageLoader);
     }
 

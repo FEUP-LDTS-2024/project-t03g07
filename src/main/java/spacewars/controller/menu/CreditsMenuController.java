@@ -7,6 +7,7 @@ import spacewars.states.MainMenuState;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class CreditsMenuController extends MenuController<CreditsMenu> {
 
@@ -15,7 +16,7 @@ public class CreditsMenuController extends MenuController<CreditsMenu> {
     }
 
     @Override
-    protected void onQuit(Application app) throws IOException, FontFormatException {
+    protected void onQuit(Application app) throws IOException, FontFormatException, URISyntaxException {
         app.setState(new MainMenuState(new MainMenu(), app.getImageLoader()));
     }
 }

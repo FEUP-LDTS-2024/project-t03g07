@@ -12,9 +12,10 @@ import spacewars.view.screens.ScreenViewer;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class MainMenuState extends State<MainMenu> {
-    public MainMenuState(MainMenu model, ImageLoader imageLoader) throws IOException, FontFormatException {
+    public MainMenuState(MainMenu model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
         super(model, imageLoader);
     }
 

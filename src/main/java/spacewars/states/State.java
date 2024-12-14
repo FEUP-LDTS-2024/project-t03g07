@@ -9,13 +9,14 @@ import spacewars.view.screens.ScreenViewer;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public abstract class State<T> {
     private final T model;
     private final Controller<T> controller;
     private final ScreenViewer<T> screenViewer;
 
-    public State(T model, ImageLoader imageLoader) throws IOException, FontFormatException {
+    public State(T model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
         this.model = model;
         this.controller = getController();
         this.screenViewer = getScreenViewer(new ViewerProvider(imageLoader));
@@ -29,7 +30,7 @@ public abstract class State<T> {
 
     protected abstract Controller<T> getController();
 
-    public void step(Application application, GUI gui, long time) throws IOException, FontFormatException {
+    public void step(Application application, GUI gui, long time) throws IOException, FontFormatException, URISyntaxException {
         GUI.ACTION action = gui.getNextAction();
         controller.step(application, action, time);
         screenViewer.draw(gui);
