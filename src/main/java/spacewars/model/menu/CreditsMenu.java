@@ -12,7 +12,7 @@ public class CreditsMenu extends Menu{
 
     public CreditsMenu() {
         title = "CREDITS";
-        details = "Class 3 Group 7 Members:";
+        details = "Class 3 Group 7:";
 
         names = new String[3];
         names[0] = "Joao Miguel Lopes";
