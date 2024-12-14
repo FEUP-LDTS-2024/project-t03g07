@@ -56,51 +56,51 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
         drawEntries(gui, getModel().getEntries());
         drawTitle(gui);
         drawSubtitle(gui);
-        drawArrowsandText(gui);
-        drawSpacebarandText(gui);
+        drawArrowsAndText(gui);
+        drawSpacebarAndText(gui);
         drawSpaceShipsAndPoints(gui);
         gui.refresh();
     }
 
     private void drawSpaceShipsAndPoints(GUI gui) throws IOException {
-        empireFighterViewer.draw(gui,200,70);
-        Position pos_pointsInvader1 = new Position(220,70);
+        empireFighterViewer.draw(gui,201,60);
+        Position pos_pointsInvader1 = new Position(222,65);
         textViewer.draw(getModel().getPointsInvader1(), pos_pointsInvader1.getX(), pos_pointsInvader1.getY(), textColor, gui);
 
-        tieExecutorViewer.draw(gui,200,90);
-        Position pos_pointsInvader2 = new Position(220,90);
+        tieExecutorViewer.draw(gui,201,80);
+        Position pos_pointsInvader2 = new Position(222,85);
         textViewer.draw(getModel().getPointsInvader2(), pos_pointsInvader2.getX(), pos_pointsInvader2.getY(), textColor, gui);
 
-        starDestroyerViewer.draw(gui,200,110);
-        Position pos_pointsInvader3 = new Position(220,110);
+        starDestroyerViewer.draw(gui,201,100);
+        Position pos_pointsInvader3 = new Position(222,105);
         textViewer.draw(getModel().getPointsInvader3(), pos_pointsInvader3.getX(), pos_pointsInvader3.getY(), textColor, gui);
 
-        deathStarViewer.draw(gui,200,130);
-        Position pos_pointsBoss = new Position(220,130);
-        Position pos_pointsText = new Position(234,130);
+        deathStarViewer.draw(gui,201,120);
+        Position pos_pointsBoss = new Position(222,125);
+        Position pos_pointsText = new Position(236,125);
         textViewer.draw(getModel().getPointsBoss(), pos_pointsBoss.getX(), pos_pointsBoss.getY(), enigmaColor, gui);
         textViewer.draw(getModel().getTextPoints(),pos_pointsText.getX(),pos_pointsText.getY(),textColor,gui);
     }
 
-    private void drawSpacebarandText(GUI gui) throws IOException {
-        spacebarViewer.draw(gui,70,120);
-        Position pos = new Position(85,145);
+    private void drawSpacebarAndText(GUI gui) throws IOException {
+        spacebarViewer.draw(gui,63,110);
+        Position pos = new Position(80,135);
         textViewer.draw(getModel().getSpacebarText(), pos.getX(), pos.getY(),textColor,gui);
     }
 
-    private void drawArrowsandText(GUI gui) throws IOException {
-        arrowsViewer.draw(gui, 70, 70);
-        Position pos = new Position(70,95);
+    private void drawArrowsAndText(GUI gui) throws IOException {
+        arrowsViewer.draw(gui, 63, 60);
+        Position pos = new Position(55,85);
         textViewer.draw(getModel().getArrowText(), pos.getX(),pos.getY(),textColor,gui);
     }
 
     private void drawSubtitle(GUI gui) {
-        Position pos = new Position(215,60);
+        Position pos = new Position(223,50);
         textViewer.draw(getModel().getSubtitle(), pos.getX(),pos.getY(),titleColor,gui);
     }
 
     private void drawTitle(GUI gui) {
-        Position pos = new Position(139,40);
+        Position pos = new Position(139,30);
         textViewer.draw(getModel().getTitle(), pos.getX(),pos.getY(),titleColor,gui);
     }
 
