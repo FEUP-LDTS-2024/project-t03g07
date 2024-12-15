@@ -10,29 +10,37 @@ import spacewars.model.game.elements.invaders.Invader2;
 import spacewars.model.game.elements.invaders.Invader3;
 import spacewars.model.game.elements.invaders.BossInvader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-
-    private Player player;
-    private List<Invader1> invaders1;
+    private final Player player;
+    // private final List<Invader1> invaders1;
     private List<Invader2> invaders2;
     private List<Invader3> invaders3;
-    private  BossInvader bossInvader;
+    private BossInvader bossInvader;
 
     private List<BulletPlayer> bulletsPlayer;
     private BulletNormalInvader bulletNormalInvader;
     private BulletBossInvader bulletBossInvader;
 
-    public Game() {}
+    public Game() {
+        this.player = createPlayer();
+        // this.invaders1 = createInvaders1();
+    }
     
-    public void setPlayer(Player player) {
-        this.player = player;
+    private Player createPlayer() {
+        return new Player(155, 170);
     }
 
-    public void setInvaders1(List<Invader1> invaders1) {
-        this.invaders1 = invaders1;
-    }
+    /*public List<Invader1> createInvaders1() {
+        List<Invader1> list = new ArrayList<>(List.of());
+        for (int i = 0; i < 10; i++) {
+            assert invaders1 != null;
+            list.add(new Invader1(10 + i * 20, 10));
+        }
+        return list;
+    }*/
 
     public void setInvaders2(List<Invader2> invaders2) {
         this.invaders2 = invaders2;
