@@ -11,7 +11,7 @@ public class PlayerViewer implements ElementViewer<Player> {
     private final Image image;
 
     public PlayerViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("millennium_falcon16x16.png");
+        this.image = imageLoader.get("elements/player/millennium_falcon.png");
     }
 
     @Override
