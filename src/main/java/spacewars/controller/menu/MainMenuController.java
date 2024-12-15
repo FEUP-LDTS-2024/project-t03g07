@@ -11,8 +11,6 @@ public class MainMenuController extends MenuController<MainMenu> {
         super(menu,entrycontroller);
     }
 
-
-
     @Override
     protected void onQuit(Application app) throws IOException {
         app.setState(null);
