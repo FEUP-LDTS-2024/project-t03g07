@@ -15,9 +15,9 @@ import java.util.List;
 
 public class Game {
     private final Player player;
-    // private final List<Invader1> invaders1;
-    private List<Invader2> invaders2;
-    private List<Invader3> invaders3;
+    private final List<Invader1> invaders1;
+    private final List<Invader2> invaders2;
+    private final List<Invader3> invaders3;
     private BossInvader bossInvader;
 
     private List<BulletPlayer> bulletsPlayer;
@@ -26,28 +26,40 @@ public class Game {
 
     public Game() {
         this.player = createPlayer();
-        // this.invaders1 = createInvaders1();
+        this.invaders1 = createInvaders1();
+        this.invaders2 = createInvaders2();
+        this.invaders3 = createInvaders3();
     }
     
     private Player createPlayer() {
         return new Player(155, 170);
     }
 
-    /*public List<Invader1> createInvaders1() {
+    public List<Invader1> createInvaders1() {
         List<Invader1> list = new ArrayList<>(List.of());
         for (int i = 0; i < 10; i++) {
             assert invaders1 != null;
-            list.add(new Invader1(10 + i * 20, 10));
+            list.add(new Invader1(64 + i * 20, 110));
         }
         return list;
-    }*/
+    }
 
-    public void setInvaders2(List<Invader2> invaders2) {
-        this.invaders2 = invaders2;
+    public List<Invader2> createInvaders2() {
+        List<Invader2> list = new ArrayList<>(List.of());
+        for (int i = 0; i < 10; i++) {
+            assert invaders1 != null;
+            list.add(new Invader2(64 + i * 20, 90));
+        }
+        return list;
     }
     
-    public void setInvaders3(List<Invader3> invaders3) {
-        this.invaders3 = invaders3;
+    public List<Invader3> createInvaders3() {
+        List<Invader3> list = new ArrayList<>(List.of());
+        for (int i = 0; i < 10; i++) {
+            assert invaders1 != null;
+            list.add(new Invader3(64 + i * 20, 70));
+        }
+        return list;
     }
 
     public void setBossInvader(BossInvader bossInvader) {
