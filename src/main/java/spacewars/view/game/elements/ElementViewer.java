@@ -2,6 +2,7 @@ package spacewars.view.game.elements;
 
 import spacewars.gui.GUI;
 import spacewars.model.game.elements.Element;
+import spacewars.model.game.elements.Player;
 
 import java.io.IOException;
 

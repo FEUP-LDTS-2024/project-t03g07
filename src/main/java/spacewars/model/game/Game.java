@@ -1,6 +1,7 @@
 package spacewars.model.game;
 
 import spacewars.model.Position;
+import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.bullets.BulletBossInvader;
 import spacewars.model.game.elements.bullets.BulletNormalInvader;
@@ -26,11 +27,14 @@ public class Game {
 
     private final String ScoreText = "Score: ";
 
+    private final List<Live> lives;
+
     public Game() {
         this.player = createPlayer();
         this.invaders1 = createInvaders1();
         this.invaders2 = createInvaders2();
         this.invaders3 = createInvaders3();
+        this.lives = createLives();
     }
     
     private Player createPlayer() {
@@ -60,6 +64,14 @@ public class Game {
         for (int i = 0; i < 10; i++) {
             assert invaders1 != null;
             list.add(new Invader3(64 + i * 20, 70));
+        }
+        return list;
+    }
+
+    public List<Live> createLives() {
+        List<Live> list = new ArrayList<>(List.of());
+        for (int i = 0; i < 3; i++) {
+            list.add(new Live(273 + i * 15, 0, i));
         }
         return list;
     }
@@ -115,6 +127,10 @@ public class Game {
 
     public String getScoreText() {
         return ScoreText;
+    }
+
+    public List<Live> getLives() {
+        return lives;
     }
 
     public boolean isBullet(Position position) {

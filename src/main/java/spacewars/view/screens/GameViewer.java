@@ -6,6 +6,7 @@ import spacewars.model.game.Game;
 import spacewars.model.game.elements.Element;
 import spacewars.view.ViewerProvider;
 import spacewars.view.game.elements.ElementViewer;
+import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.BulletBossInvaderViewer;
 import spacewars.view.game.elements.bullets.BulletNormalInvaderViewer;
@@ -32,6 +33,7 @@ public class GameViewer extends ScreenViewer<Game> {
     private final BulletBossInvaderViewer bulletBossInvaderViewer;*/
 
     private final TextViewer textViewer;
+    private final LiveViewer liveViewer;
 
     public GameViewer(Game model, ViewerProvider viewerProvider) {
         super(model);
@@ -45,6 +47,7 @@ public class GameViewer extends ScreenViewer<Game> {
         this.bulletNormalInvaderViewer = viewerProvider.getBulletNormalInvaderViewer();
         this.bulletBossInvaderViewer = viewerProvider.getBulletBossInvaderViewer();*/
         this.textViewer = viewerProvider.getTextViewer();
+        this.liveViewer = viewerProvider.getLiveViewer();
     }
 
     @Override
@@ -60,6 +63,8 @@ public class GameViewer extends ScreenViewer<Game> {
         drawElements(gui,getModel().getInvaders3(),invader3Viewer);
 
         drawText(gui, getModel().getScoreText(), 5, 5, TextColor.ANSI.WHITE);
+
+        drawElements(gui, getModel().getLives(), liveViewer);
 
         /*drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
 

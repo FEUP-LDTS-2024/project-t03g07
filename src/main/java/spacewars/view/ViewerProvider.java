@@ -1,5 +1,6 @@
 package spacewars.view;
 
+import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.BulletBossInvaderViewer;
 import spacewars.view.game.elements.bullets.BulletNormalInvaderViewer;
@@ -42,6 +43,7 @@ public class ViewerProvider {
     private final TIEExecutorViewer tieExecutorViewer;
     private final StarDestroyerViewer starDestroyerViewer;
     private final DeathStarViewer deathStarViewer;
+    private final LiveViewer liveViewer;
 
 
     public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
@@ -67,6 +69,7 @@ public class ViewerProvider {
         this.tieExecutorViewer = new TIEExecutorViewer(imageLoader);
         this.starDestroyerViewer = new StarDestroyerViewer(imageLoader);
         this.deathStarViewer = new DeathStarViewer(imageLoader);
+        this.liveViewer = new LiveViewer(imageLoader);
     }
 
 
@@ -137,5 +140,9 @@ public class ViewerProvider {
 
     public DeathStarViewer getDeathStarViewer() {
         return deathStarViewer;
+    }
+
+    public LiveViewer getLiveViewer() {
+        return liveViewer;
     }
 }
