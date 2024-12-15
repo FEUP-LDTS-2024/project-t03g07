@@ -14,6 +14,7 @@ import spacewars.view.game.elements.invaders.Invader1Viewer;
 import spacewars.view.game.elements.invaders.Invader2Viewer;
 import spacewars.view.game.elements.invaders.Invader3Viewer;
 import spacewars.view.game.elements.invaders.BossInvaderViewer;
+import spacewars.view.texts.TextViewer;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +31,7 @@ public class GameViewer extends ScreenViewer<Game> {
     private final BulletNormalInvaderViewer bulletNormalInvaderViewer;
     private final BulletBossInvaderViewer bulletBossInvaderViewer;*/
 
+    private final TextViewer textViewer;
 
     public GameViewer(Game model, ViewerProvider viewerProvider) {
         super(model);
@@ -42,6 +44,7 @@ public class GameViewer extends ScreenViewer<Game> {
         this.bulletPlayerViewer = viewerProvider.getBulletPlayerViewer();
         this.bulletNormalInvaderViewer = viewerProvider.getBulletNormalInvaderViewer();
         this.bulletBossInvaderViewer = viewerProvider.getBulletBossInvaderViewer();*/
+        this.textViewer = viewerProvider.getTextViewer();
     }
 
     @Override
@@ -55,6 +58,8 @@ public class GameViewer extends ScreenViewer<Game> {
         drawElements(gui,getModel().getInvaders1(),invader1Viewer);
         drawElements(gui,getModel().getInvaders2(),invader2Viewer);
         drawElements(gui,getModel().getInvaders3(),invader3Viewer);
+
+        drawText(gui, getModel().getScoreText(), 5, 5, TextColor.ANSI.WHITE);
 
         /*drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
 
@@ -72,5 +77,9 @@ public class GameViewer extends ScreenViewer<Game> {
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) throws IOException {
         for (T element : elements)
             drawElement(gui, element, viewer);
+    }
+
+    private void drawText(GUI gui, String text, int x, int y, TextColor color) {
+        textViewer.draw(text, x, y, color, gui);
     }
 }

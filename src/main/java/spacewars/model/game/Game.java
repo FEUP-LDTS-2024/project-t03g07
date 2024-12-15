@@ -24,6 +24,8 @@ public class Game {
     private BulletNormalInvader bulletNormalInvader;
     private BulletBossInvader bulletBossInvader;
 
+    private final String ScoreText = "Score: ";
+
     public Game() {
         this.player = createPlayer();
         this.invaders1 = createInvaders1();
@@ -111,7 +113,9 @@ public class Game {
         return bulletBossInvader;
     }
 
-
+    public String getScoreText() {
+        return ScoreText;
+    }
 
     public boolean isBullet(Position position) {
         if (bulletNormalInvader.getPosition().equals(position))
