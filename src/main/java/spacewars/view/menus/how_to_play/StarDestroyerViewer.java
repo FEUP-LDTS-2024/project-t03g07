@@ -10,7 +10,7 @@ public class StarDestroyerViewer {
     private final Image image;
 
     public StarDestroyerViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("star_destroyer16x16.png");
+        this.image = imageLoader.get("elements/invaders/star_destroyer.png");
     }
 
     public void draw(GUI gui, int x, int y) throws IOException {

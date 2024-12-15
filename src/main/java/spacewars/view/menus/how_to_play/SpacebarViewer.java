@@ -10,7 +10,7 @@ public class SpacebarViewer {
     private final Image image;
 
     public SpacebarViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("spacebar_howtoplay.png");
+        this.image = imageLoader.get("images/spacebar_howtoplay.png");
     }
 
     public void draw(GUI gui, int x, int y) throws IOException {
