@@ -31,7 +31,7 @@ public class MainMenuViewer<T extends Menu> extends ScreenViewer<T> {
         gui.clear();
         drawBackground(gui, backgroundColor);
         drawEntries(gui, getModel().getEntries());
-        logoViewer.draw(gui, 147, 70);
+        logoViewer.draw(gui, 137, 50);
         gui.refresh();
     }
 
