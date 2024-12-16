@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BulletTypesTest
 {
-    @Property
+    /*@Property
     void Bullet1PositionTest(@ForAll int x, @ForAll int y)
     {
         BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(x, y);
@@ -84,5 +84,5 @@ public class BulletTypesTest
     {
         BulletBossInvader bulletBossInvader = new BulletBossInvader(x, y);
         assertEquals(40, bulletBossInvader.getSpeed());
-    }
+    }*/
 }

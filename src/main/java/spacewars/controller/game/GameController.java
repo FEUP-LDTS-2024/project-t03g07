@@ -26,6 +26,12 @@ public class GameController extends Controller<Game> {
     @Override
     public void step(Application application, GUI.ACTION action, long time) throws IOException, FontFormatException, URISyntaxException {
         switch (action) {
+            case LEFT:
+                playerController.moveHeroLeft();
+                break;
+            case RIGHT:
+                playerController.moveHeroRight();
+                break;
             case QUIT:
                 onQuit(application);
                 break;

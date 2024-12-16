@@ -6,6 +6,7 @@ import spacewars.model.Position;
 import spacewars.model.game.Game;
 import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.bullets.BulletPlayer;
+import spacewars.view.game.elements.PlayerViewer;
 
 import java.io.IOException;
 
@@ -17,15 +18,16 @@ public class PlayerController {
     }
 
     public void moveHeroLeft() {
-        moveHero(player.getPosition().getLeft());
+        moveHero(player.getPosition().getLeft(player.getSpeed()));
     }
 
     public void moveHeroRight() {
-        moveHero(player.getPosition().getRight());
+        moveHero(player.getPosition().getRight(player.getSpeed()));
     }
 
     private void moveHero(Position position) {
         player.setPosition(position);
+
         // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
     }
 
