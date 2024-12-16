@@ -46,6 +46,7 @@ public class LanternaGUI implements GUI {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         AWTTerminalFrame terminal = (AWTTerminalFrame) createTerminal(width, height, fontConfig);
         terminal.setTitle("Space Wars");
+        terminal.setResizable(false);
         terminal.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
