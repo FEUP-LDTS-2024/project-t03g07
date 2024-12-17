@@ -133,9 +133,23 @@ public class Game {
         return lives;
     }
 
+    public boolean checkOutsideBoundaries(int x1, int x2) {
+        return x1 < 0 || x2 > 320;
+    }
+
+    private boolean checkCollision(Position topLeft, Position bottomRight) {
+        return checkOutsideBoundaries(topLeft.getX(), bottomRight.getX());
+    }
+
+    public boolean collidesLeft(Position position, Position size) {
+        return checkCollision(position, new Position(position.getX() + 1, position.getY() + size.getY() - 1));
+    }
+
+    public boolean collidesRight(Position position, Position size) {
+        return checkCollision(new Position(position.getX() + size.getX() - 1, position.getY()), new Position(position.getX() + size.getX() - 1, position.getY() + size.getY() - 1));
+    }
+
     public boolean isBullet(Position position) {
-        if (bulletNormalInvader.getPosition().equals(position))
-            return true;
-        return false;
+        return bulletNormalInvader.getPosition().equals(position);
     }
 }
