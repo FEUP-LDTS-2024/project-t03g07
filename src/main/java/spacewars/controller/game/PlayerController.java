@@ -6,6 +6,8 @@ import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class PlayerController {
     private final Player player;
+    private static final int MAX_BULLETS = 5;
+    private static final long SHOOT_DELAY = 2000; // 2 seconds
 
     public PlayerController(Player player) {
         this.player = player;
@@ -47,7 +49,13 @@ public class PlayerController {
     }
 
     public void shoot() {
-        BulletPlayer bullet = player.shoot();
-        player.getGame().addPlayerBullet(bullet);
+        long currentTime = System.currentTimeMillis();
+        if (player.getBulletCount() < MAX_BULLETS || (currentTime - player.getLastShootTime() >= SHOOT_DELAY)) {
+            if (player.getBulletCount() >= MAX_BULLETS) {
+                player.resetBulletCount();
+            }
+            BulletPlayer bullet = player.shoot();
+            player.getGame().addPlayerBullet(bullet);
+        }
     }
 }

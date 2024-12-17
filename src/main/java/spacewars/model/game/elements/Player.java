@@ -11,6 +11,8 @@ public class Player extends Element {
     private final int playerSize;
     private Game game;
     private List<BulletPlayer> bulletsPlayer;
+    private int bulletCount;
+    private long lastShootTime;
 
     public Player(int x, int y, Game game) {
         super(x, y);
@@ -18,6 +20,8 @@ public class Player extends Element {
         this.playerSize = 10;
         this.game = game;
         this.bulletsPlayer = new ArrayList<>();
+        this.bulletCount = 0;
+        this.lastShootTime = 0;
     }
 
     public int getSpeed() {
@@ -34,7 +38,8 @@ public class Player extends Element {
     public BulletPlayer shoot() {
         BulletPlayer bullet = new BulletPlayer(this.getPosition().getX(), this.getPosition().getY() + 1);
         bulletsPlayer.add(bullet); // Add bullet to the list
-        System.out.println("Player shoots");
+        bulletCount++;
+        lastShootTime = System.currentTimeMillis();
         return bullet;
     }
 
@@ -52,5 +57,17 @@ public class Player extends Element {
 
     public List<BulletPlayer> getBulletsPlayer() {
         return bulletsPlayer;
+    }
+
+    public int getBulletCount() {
+        return bulletCount;
+    }
+
+    public void resetBulletCount() {
+        this.bulletCount = 0;
+    }
+
+    public long getLastShootTime() {
+        return lastShootTime;
     }
 }
