@@ -11,11 +11,13 @@ public class PlayerController {
     }
 
     public void moveHeroLeft() {
-        Position newPosition = player.getPosition().getLeft(player.getSpeed());
+        player.setSpeed(-Math.abs(player.getSpeed())); // Set speed to negative
+        Position newPosition = player.getPosition().getLeft(Math.abs(player.getSpeed()));
         player.setPosition(applyCollisions(newPosition));
     }
 
     public void moveHeroRight() {
+        player.setSpeed(Math.abs(player.getSpeed())); // Set speed to positive
         Position newPosition = player.getPosition().getRight(player.getSpeed());
         player.setPosition(applyCollisions(newPosition));
     }
@@ -30,17 +32,17 @@ public class PlayerController {
         int x = player.getPosition().getX();
         int y = player.getPosition().getY();
 
-        int vx = player.getSpeed();
+        int s = player.getSpeed();
 
         // Check collisions for horizontal movement
-        while (vx < 0 && player.getGame().collidesLeft(new Position(x + vx, y), player.getPlayerSize())) {
-            vx = Math.min(vx + 1, 0);
+        while (s < 0 && player.getGame().collidesLeft(new Position(x + s, y), player.getPlayerSize())) {
+            s++;
         }
 
-        while (vx > 0 && player.getGame().collidesRight(new Position(x + vx, y), player.getPlayerSize())) {
-            vx = Math.max(vx - 1, 0);
+        while (s > 0 && player.getGame().collidesRight(new Position(x + s, y), player.getPlayerSize())) {
+            s--;
         }
-        return new Position(x + vx, y);
+        return new Position(x + s, y);
     }
 
     /*public void shoot() {
