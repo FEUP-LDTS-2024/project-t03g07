@@ -39,6 +39,7 @@ public class GameController extends Controller<Game> {
                 onQuit(application);
                 break;
         }
+        getModel().updatePlayerBullets();
     }
 
     private void onQuit(Application application) throws IOException, URISyntaxException, FontFormatException {

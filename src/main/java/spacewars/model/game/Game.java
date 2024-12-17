@@ -21,7 +21,7 @@ public class Game {
     private final List<Invader3> invaders3;
     private BossInvader bossInvader;
 
-    private List<BulletPlayer> bulletsPlayer;
+    private List<BulletPlayer> playerBullets;
     private BulletNormalInvader bulletNormalInvader;
     private BulletBossInvader bulletBossInvader;
 
@@ -35,7 +35,7 @@ public class Game {
         this.invaders2 = createInvaders2();
         this.invaders3 = createInvaders3();
         this.lives = createLives();
-        this.bulletsPlayer = player.getBulletsPlayer();
+        this.playerBullets = player.getBulletsPlayer();
     }
     
     private Player createPlayer() {
@@ -82,11 +82,17 @@ public class Game {
     }
 
     public void addPlayerBullet(BulletPlayer bullet) {
-        bulletsPlayer.add(bullet);
+        playerBullets.add(bullet);
     }
 
     public List<BulletPlayer> getPlayerBullets() {
-        return bulletsPlayer;
+        return playerBullets;
+    }
+
+    public void updatePlayerBullets() {
+        for (BulletPlayer bullet : playerBullets) {
+            bullet.update();
+        }
     }
 
     public void setBulletNormalInvader(BulletNormalInvader bulletNormalInvader) {

@@ -27,8 +27,9 @@ public class GameViewer extends ScreenViewer<Game> {
     private final Invader1Viewer invader1Viewer;
     private final Invader2Viewer invader2Viewer;
     private final Invader3Viewer invader3Viewer;
-    /*private final BossInvaderViewer bossInvaderViewer;
+
     private final BulletPlayerViewer bulletPlayerViewer;
+    /*private final BossInvaderViewer bossInvaderViewer;
     private final BulletNormalInvaderViewer bulletNormalInvaderViewer;
     private final BulletBossInvaderViewer bulletBossInvaderViewer;*/
 
@@ -42,8 +43,8 @@ public class GameViewer extends ScreenViewer<Game> {
         this.invader1Viewer = viewerProvider.getInvader1Viewer();
         this.invader2Viewer = viewerProvider.getInvader2Viewer();
         this.invader3Viewer = viewerProvider.getInvader3Viewer();
-        /*this.bossInvaderViewer = viewerProvider.getBossInvaderViewer();
         this.bulletPlayerViewer = viewerProvider.getBulletPlayerViewer();
+        /*this.bossInvaderViewer = viewerProvider.getBossInvaderViewer();
         this.bulletNormalInvaderViewer = viewerProvider.getBulletNormalInvaderViewer();
         this.bulletBossInvaderViewer = viewerProvider.getBulletBossInvaderViewer();*/
         this.textViewer = viewerProvider.getTextViewer();
@@ -66,9 +67,9 @@ public class GameViewer extends ScreenViewer<Game> {
 
         drawElements(gui, getModel().getLives(), liveViewer);
 
-        /*drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
+        drawElements(gui, getModel().getPlayerBullets(), bulletPlayerViewer);
 
-        drawElements(gui, getModel().getBulletPlayer(), bulletPlayerViewer);
+        /*drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
         drawElement(gui,getModel().getBulletNormalInvader(), bulletNormalInvaderViewer);
         drawElement(gui, getModel().getBulletBossInvader(), bulletBossInvaderViewer);*/
 
