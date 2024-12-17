@@ -71,7 +71,7 @@ public class Game {
     public List<Live> createLives() {
         List<Live> list = new ArrayList<>(List.of());
         for (int i = 0; i < 3; i++) {
-            list.add(new Live(273 + i * 15, 0, i));
+            list.add(new Live(273 + i * 15, 5, i));
         }
         return list;
     }
