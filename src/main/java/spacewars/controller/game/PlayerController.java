@@ -29,8 +29,8 @@ public class PlayerController {
 //    }
 
     protected Position applyCollisions(Position position) {
-        int x = player.getPosition().getX();
-        int y = player.getPosition().getY();
+        double x = player.getPosition().getX();
+        double y = player.getPosition().getY();
 
         int s = player.getSpeed();
 

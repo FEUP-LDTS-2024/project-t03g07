@@ -133,7 +133,7 @@ public class Game {
         return lives;
     }
 
-    public boolean checkOutsideBoundaries(int x1, int x2) {
+    public boolean checkOutsideBoundaries(double x1, double x2) {
         return x1 < 20 || x2 > 300;
     }
 
@@ -141,11 +141,11 @@ public class Game {
         return checkOutsideBoundaries(topLeft.getX(), bottomRight.getX());
     }
 
-    public boolean collidesLeft(Position position, int size) {
+    public boolean collidesLeft(Position position, double size) {
         return checkCollision(position, new Position(position.getX() + 1, position.getY() + size - 1));
     }
 
-    public boolean collidesRight(Position position, int size) {
+    public boolean collidesRight(Position position, double size) {
         return checkCollision(new Position(position.getX() + size - 1, position.getY()), new Position(position.getX() + size - 1, position.getY() + size - 1));
     }
 
