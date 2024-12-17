@@ -11,18 +11,20 @@ public class PlayerController {
     }
 
     public void moveHeroLeft() {
-        moveHero(player.getPosition().getLeft(player.getSpeed()));
+        Position newPosition = player.getPosition().getLeft(player.getSpeed());
+        player.setPosition(applyCollisions(newPosition));
     }
 
     public void moveHeroRight() {
-        moveHero(player.getPosition().getRight(player.getSpeed()));
+        Position newPosition = player.getPosition().getRight(player.getSpeed());
+        player.setPosition(applyCollisions(newPosition));
     }
 
-    private void moveHero(Position position) {
-        player.setPosition(position);
-
-        // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
-    }
+//    private void moveHero(Position position) {
+//        player.setPosition(position);
+//
+//        // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
+//    }
 
     protected Position applyCollisions(Position position) {
         int x = player.getPosition().getX();
