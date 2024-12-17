@@ -4,37 +4,35 @@ import spacewars.Application;
 import spacewars.gui.GUI;
 import spacewars.model.Position;
 import spacewars.model.game.Game;
+import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.bullets.BulletPlayer;
+import spacewars.view.game.elements.PlayerViewer;
 
 import java.io.IOException;
 
-public class PlayerController extends GameController {
-    public PlayerController(Game game) {
-        super(game);
+public class PlayerController {
+    private final Player player;
+
+    public PlayerController(Player player) {
+        this.player = player;
     }
 
     public void moveHeroLeft() {
-        moveHero(getModel().getPlayer().getPosition().getLeft());
+        moveHero(player.getPosition().getLeft(player.getSpeed()));
     }
 
     public void moveHeroRight() {
-        moveHero(getModel().getPlayer().getPosition().getRight());
+        moveHero(player.getPosition().getRight(player.getSpeed()));
     }
 
     private void moveHero(Position position) {
-        getModel().getPlayer().setPosition(position);
-        if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
+        player.setPosition(position);
+
+        // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
     }
 
-    public void shoot() {
+    /*public void shoot() {
         BulletPlayer bullet = getModel().getPlayer().shoot();
         getModel().addPlayerBullet(bullet);
-    }
-
-    @Override
-    public void step(Application application, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.RIGHT) moveHeroRight();
-        if (action == GUI.ACTION.LEFT) moveHeroLeft();
-        //if (action == GUI.ACTION.SPACE) getModel().getPlayer().shoot();
-    }
+    }*/
 }

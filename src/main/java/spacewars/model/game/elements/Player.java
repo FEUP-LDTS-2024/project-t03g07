@@ -1,25 +1,24 @@
 package spacewars.model.game.elements;
 
-import spacewars.model.game.Lives;
 import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class Player extends Element {
-    private Lives lives;
+    private int speed;
 
     public Player(int x, int y) {
         super(x, y);
-        this.lives = new Lives(3);
+        this.speed = 2;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public void decreaseLives() {
-    }
-
-    public Lives getLives() {
-        return lives;
-    }
-
-    public void setLives(Lives lives) {
-        this.lives = lives;
     }
 
     public BulletPlayer shoot() {
@@ -28,5 +27,6 @@ public class Player extends Element {
 
     @Override
     public void update() {
+
     }
 }

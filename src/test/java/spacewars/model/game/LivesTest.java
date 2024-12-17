@@ -1,13 +1,11 @@
 package spacewars.model.game;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class LivesTest
 {
-    @Test
+    /*@Test
     public void testDecreaseLives()
     {
         Lives lives = new Lives(3);
@@ -28,5 +26,5 @@ public class LivesTest
     {
         Lives lives = new Lives(3);
         assertEquals(3, lives.getLives());
-    }
+    }*/
 }

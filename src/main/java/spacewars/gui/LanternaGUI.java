@@ -46,6 +46,7 @@ public class LanternaGUI implements GUI {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         AWTTerminalFrame terminal = (AWTTerminalFrame) createTerminal(width, height, fontConfig);
         terminal.setTitle("Space Wars");
+        terminal.setResizable(false);
         terminal.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -102,7 +103,6 @@ public class LanternaGUI implements GUI {
         return new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Key pressed");
                 if (keySpam && SPAM_KEYS.contains(e.getKeyCode()))
                     keyPressed = priorityKeyPressed = e;
                 else
@@ -166,6 +166,8 @@ public class LanternaGUI implements GUI {
         return switch (keyCode) {
             case VK_UP -> ACTION.UP;
             case VK_DOWN -> ACTION.DOWN;
+            case VK_LEFT -> ACTION.LEFT;
+            case VK_RIGHT -> ACTION.RIGHT;
             case VK_ESCAPE -> ACTION.QUIT;
             case VK_ENTER -> ACTION.SELECT;
             default -> ACTION.NONE;
