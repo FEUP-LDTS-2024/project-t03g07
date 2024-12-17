@@ -9,6 +9,5 @@ public class BulletPlayer extends Bullet
 
     @Override
     public void update() {
-
     }
 }

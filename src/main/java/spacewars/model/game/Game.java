@@ -35,6 +35,7 @@ public class Game {
         this.invaders2 = createInvaders2();
         this.invaders3 = createInvaders3();
         this.lives = createLives();
+        this.bulletsPlayer = player.getBulletsPlayer();
     }
     
     private Player createPlayer() {
@@ -84,6 +85,10 @@ public class Game {
         bulletsPlayer.add(bullet);
     }
 
+    public List<BulletPlayer> getPlayerBullets() {
+        return bulletsPlayer;
+    }
+
     public void setBulletNormalInvader(BulletNormalInvader bulletNormalInvader) {
         this.bulletNormalInvader = bulletNormalInvader;
     }
@@ -111,10 +116,6 @@ public class Game {
 
     public BossInvader getBossInvader() {
         return bossInvader;
-    }
-
-    public List<BulletPlayer> getBulletPlayer() {
-        return bulletsPlayer;
     }
 
     public BulletNormalInvader getBulletNormalInvader() {
@@ -152,4 +153,6 @@ public class Game {
     public boolean isBullet(Position position) {
         return bulletNormalInvader.getPosition().equals(position);
     }
+
+
 }

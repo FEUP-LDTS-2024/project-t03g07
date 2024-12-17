@@ -32,6 +32,9 @@ public class GameController extends Controller<Game> {
             case RIGHT:
                 playerController.moveHeroRight();
                 break;
+            case SHOOT:
+                playerController.shoot();
+                break;
             case QUIT:
                 onQuit(application);
                 break;

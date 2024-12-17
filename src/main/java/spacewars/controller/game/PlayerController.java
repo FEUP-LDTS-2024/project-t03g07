@@ -2,6 +2,7 @@ package spacewars.controller.game;
 
 import spacewars.model.Position;
 import spacewars.model.game.elements.Player;
+import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class PlayerController {
     private final Player player;
@@ -45,8 +46,8 @@ public class PlayerController {
         return new Position(x + s, y);
     }
 
-    /*public void shoot() {
-        BulletPlayer bullet = getModel().getPlayer().shoot();
-        getModel().addPlayerBullet(bullet);
-    }*/
+    public void shoot() {
+        BulletPlayer bullet = player.shoot();
+        player.getGame().addPlayerBullet(bullet);
+    }
 }
