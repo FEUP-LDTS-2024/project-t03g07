@@ -1,14 +1,7 @@
 package spacewars.controller.game;
 
-import spacewars.Application;
-import spacewars.gui.GUI;
 import spacewars.model.Position;
-import spacewars.model.game.Game;
 import spacewars.model.game.elements.Player;
-import spacewars.model.game.elements.bullets.BulletPlayer;
-import spacewars.view.game.elements.PlayerViewer;
-
-import java.io.IOException;
 
 public class PlayerController {
     private final Player player;
@@ -29,6 +22,23 @@ public class PlayerController {
         player.setPosition(position);
 
         // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
+    }
+
+    protected Position applyCollisions(Position position) {
+        int x = player.getPosition().getX();
+        int y = player.getPosition().getY();
+
+        int vx = player.getSpeed();
+
+        // Check collisions for horizontal movement
+        while (vx < 0 && player.getGame().collidesLeft(new Position(x + vx, y), player.getPlayerSize())) {
+            vx = Math.min(vx + 1, 0);
+        }
+
+        while (vx > 0 && player.getGame().collidesRight(new Position(x + vx, y), player.getPlayerSize())) {
+            vx = Math.max(vx - 1, 0);
+        }
+        return new Position(x + vx, y);
     }
 
     /*public void shoot() {

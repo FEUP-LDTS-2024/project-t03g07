@@ -38,7 +38,7 @@ public class Game {
     }
     
     private Player createPlayer() {
-        return new Player(155, 170);
+        return new Player(155, 170, this);
     }
 
     public List<Invader1> createInvaders1() {
@@ -141,12 +141,12 @@ public class Game {
         return checkOutsideBoundaries(topLeft.getX(), bottomRight.getX());
     }
 
-    public boolean collidesLeft(Position position, Position size) {
-        return checkCollision(position, new Position(position.getX() + 1, position.getY() + size.getY() - 1));
+    public boolean collidesLeft(Position position, int size) {
+        return checkCollision(position, new Position(position.getX() + 1, position.getY() + size - 1));
     }
 
-    public boolean collidesRight(Position position, Position size) {
-        return checkCollision(new Position(position.getX() + size.getX() - 1, position.getY()), new Position(position.getX() + size.getX() - 1, position.getY() + size.getY() - 1));
+    public boolean collidesRight(Position position, int size) {
+        return checkCollision(new Position(position.getX() + size - 1, position.getY()), new Position(position.getX() + size - 1, position.getY() + size - 1));
     }
 
     public boolean isBullet(Position position) {

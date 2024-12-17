@@ -1,13 +1,18 @@
 package spacewars.model.game.elements;
 
+import spacewars.model.game.Game;
 import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class Player extends Element {
     private int speed;
+    private final int playerSize;
+    private Game game;
 
-    public Player(int x, int y) {
+    public Player(int x, int y, Game game) {
         super(x, y);
         this.speed = 2;
+        this.playerSize = 10;
+        this.game = game;
     }
 
     public int getSpeed() {
@@ -27,6 +32,13 @@ public class Player extends Element {
 
     @Override
     public void update() {
+    }
 
+    public int getPlayerSize() {
+        return playerSize;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

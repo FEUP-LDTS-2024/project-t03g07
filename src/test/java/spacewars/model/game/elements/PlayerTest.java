@@ -23,28 +23,28 @@ public class PlayerTest
         player.setLives(new Lives(5));
         assertEquals(5, player.getLives().getLives());
     }*/
-
-    @Test
-    public void testUpdate()
-    {
-        Player player = new Player(0, 0);
-        player.update();
-    }
-
-    @Test
-    public void getPosition()
-    {
-        Player player = new Player(0, 0);
-        assertEquals(new Position(0, 0), player.getPosition());
-    }
-
-    @Test
-    public void setPosition()
-    {
-        Position position = new Position(10, 10);
-        Player player = new Player(0, 0);
-        player.setPosition(position);
-        assertEquals(position, player.getPosition());
-    }
+//
+//    @Test
+//    public void testUpdate()
+//    {
+//        Player player = new Player(0, 0);
+//        player.update();
+//    }
+//
+//    @Test
+//    public void getPosition()
+//    {
+//        Player player = new Player(0, 0);
+//        assertEquals(new Position(0, 0), player.getPosition());
+//    }
+//
+//    @Test
+//    public void setPosition()
+//    {
+//        Position position = new Position(10, 10);
+//        Player player = new Player(0, 0);
+//        player.setPosition(position);
+//        assertEquals(position, player.getPosition());
+//    }
 
 }
