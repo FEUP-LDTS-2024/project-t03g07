@@ -16,7 +16,7 @@ public interface GUI {
 
     void close() throws IOException;
 
-    void drawPixel(int x, int y, TextColor.RGB color);
+    void drawPixel(double x, double y, TextColor.RGB color);
 
     void drawRectangle(double x, double y, int width, int height, TextColor color);
 

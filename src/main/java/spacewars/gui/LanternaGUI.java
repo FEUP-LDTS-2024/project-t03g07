@@ -133,10 +133,10 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawPixel(int x, int y, TextColor.RGB color) {
+    public void drawPixel(double x, double y, TextColor.RGB color) {
         var graphics = this.screen.newTextGraphics();
         graphics.setBackgroundColor(color);
-        graphics.putString(x, y, " "); // Use a space character to create a "pixel"
+        graphics.putString((int)x, (int)y, " "); // Use a space character to create a "pixel"
     }
 
     @Override
@@ -152,7 +152,7 @@ public class LanternaGUI implements GUI {
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(position.getX(), position.getY(), text);
+        tg.putString((int)position.getX(), (int)position.getY(), text);
     }
 
     @Override

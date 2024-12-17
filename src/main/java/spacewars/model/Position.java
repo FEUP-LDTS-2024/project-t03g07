@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Position
 {
-    private final int x;
-    private final int y;
+    private final double x;
+    private final double y;
 
-    public Position(int x, int y)
+    public Position(double x, double y)
     {
         this.x = x;
         this.y = y;
@@ -25,19 +25,23 @@ public class Position
         if (o == null || getClass() != o.getClass()) return false;
 
         Position position = (Position) o;
-        return x == position.x && y == position.y;
+
+        if (Double.compare(position.x, x) != 0) return false;
+        return Double.compare(position.y, y) == 0;
     }
 
     @Override
     public int hashCode() {         //necessary for proper equality semantics
-        return Objects.hash(x, y);
+        int result = Double.hashCode(x);
+        result = 31 * result + Double.hashCode(y);
+        return result;
     }
 
-    public int getX()
+    public double getX()
     {
         return x;
     }
-    public int getY() {
+    public double getY() {
         return y;
     }
 }

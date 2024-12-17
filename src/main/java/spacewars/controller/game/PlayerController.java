@@ -1,14 +1,7 @@
 package spacewars.controller.game;
 
-import spacewars.Application;
-import spacewars.gui.GUI;
 import spacewars.model.Position;
-import spacewars.model.game.Game;
 import spacewars.model.game.elements.Player;
-import spacewars.model.game.elements.bullets.BulletPlayer;
-import spacewars.view.game.elements.PlayerViewer;
-
-import java.io.IOException;
 
 public class PlayerController {
     private final Player player;
@@ -18,17 +11,38 @@ public class PlayerController {
     }
 
     public void moveHeroLeft() {
-        moveHero(player.getPosition().getLeft(player.getSpeed()));
+        player.setSpeed(-Math.abs(player.getSpeed())); // Set speed to negative
+        Position newPosition = player.getPosition().getLeft(Math.abs(player.getSpeed()));
+        player.setPosition(applyCollisions(newPosition));
     }
 
     public void moveHeroRight() {
-        moveHero(player.getPosition().getRight(player.getSpeed()));
+        player.setSpeed(Math.abs(player.getSpeed())); // Set speed to positive
+        Position newPosition = player.getPosition().getRight(player.getSpeed());
+        player.setPosition(applyCollisions(newPosition));
     }
 
-    private void moveHero(Position position) {
-        player.setPosition(position);
+//    private void moveHero(Position position) {
+//        player.setPosition(position);
+//
+//        // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
+//    }
 
-        // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
+    protected Position applyCollisions(Position position) {
+        double x = player.getPosition().getX();
+        double y = player.getPosition().getY();
+
+        int s = player.getSpeed();
+
+        // Check collisions for horizontal movement
+        while (s < 0 && player.getGame().collidesLeft(new Position(x + s, y), player.getPlayerSize())) {
+            s++;
+        }
+
+        while (s > 0 && player.getGame().collidesRight(new Position(x + s, y), player.getPlayerSize())) {
+            s--;
+        }
+        return new Position(x + s, y);
     }
 
     /*public void shoot() {
