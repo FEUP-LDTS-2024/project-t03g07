@@ -134,7 +134,7 @@ public class Game {
     }
 
     public boolean checkOutsideBoundaries(int x1, int x2) {
-        return x1 < 0 || x2 > 320;
+        return x1 < 20 || x2 > 300;
     }
 
     private boolean checkCollision(Position topLeft, Position bottomRight) {
