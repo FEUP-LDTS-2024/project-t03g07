@@ -2,7 +2,7 @@ package spacewars.model.game.elements.bullets;
 
 public class BulletBossInvader extends Bullet
 {
-    public BulletBossInvader(int x, int y)
+    public BulletBossInvader(double x, double y)
     {
         super(x, y, 40);
     }

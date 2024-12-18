@@ -48,4 +48,13 @@ public class Invader1Controller {
         return (direction < 0 && invader1.getGame().collidesLeft(newPosition, invader1.getInvader1Size())) ||
                 (direction > 0 && invader1.getGame().collidesRight(newPosition, invader1.getInvader1Size()));
     }
+
+    public void shoot() {
+        for (Invader1 invader1 : invaders1) {
+            long currentTime = System.currentTimeMillis();
+            if (invader1.getInvader1Bullet() == null && (currentTime - invader1.getLastShootTime() >= 1000)) {
+                invader1.shoot();
+            }
+        }
+    }
 }
