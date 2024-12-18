@@ -14,13 +14,20 @@ import java.net.URISyntaxException;
 
 public class GameController extends Controller<Game> {
     private final PlayerController playerController;
-    // private final InvaderController invaderController;
+    private final Invader1Controller invader1Controller;
+    private final Invader2Controller invader2Controller;
+    private final Invader3Controller invader3Controller;
+    private long lastMoveTime; // Track the last time the invaders moved
+    private static final long MOVE_INTERVAL = 500; // Time in milliseconds between invader movements
 
 
     public GameController(Game game) {
         super(game);
         this.playerController = new PlayerController(getModel().getPlayer());
-        // this.invaderController = new InvaderController(game);
+        this.invader1Controller = new Invader1Controller(getModel().getInvaders1());
+        this.invader2Controller = new Invader2Controller(getModel().getInvaders2());
+        this.invader3Controller = new Invader3Controller(getModel().getInvaders3());
+        this.lastMoveTime = 0;
     }
 
     @Override
@@ -40,6 +47,13 @@ public class GameController extends Controller<Game> {
                 break;
         }
         getModel().updatePlayerBullets();
+        // Move invaders at regular intervals
+        if (time - lastMoveTime > MOVE_INTERVAL) {
+            invader1Controller.moveInvaders1();
+            invader2Controller.moveInvaders2();
+            invader3Controller.moveInvaders3();
+            lastMoveTime = time;
+        }
     }
 
     private void onQuit(Application application) throws IOException, URISyntaxException, FontFormatException {
