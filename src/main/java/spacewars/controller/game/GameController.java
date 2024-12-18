@@ -36,10 +36,10 @@ public class GameController extends Controller<Game> {
     public void step(Application application, GUI.ACTION action, long time) throws IOException, FontFormatException, URISyntaxException {
         switch (action) {
             case LEFT:
-                playerController.moveHeroLeft();
+                playerController.moveLeft();
                 break;
             case RIGHT:
-                playerController.moveHeroRight();
+                playerController.moveRight();
                 break;
             case SHOOT:
                 playerController.shoot();
@@ -48,7 +48,7 @@ public class GameController extends Controller<Game> {
                 onQuit(application);
                 break;
         }
-        //getModel().updatePlayerBullets();
+        getModel().updatePlayerBullet();
         // Move invaders at regular intervals
         if (time - lastMoveTime > MOVE_INTERVAL) {
             invader1Controller.moveInvaders1();

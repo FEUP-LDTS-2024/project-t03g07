@@ -6,20 +6,18 @@ import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class PlayerController {
     private final Player player;
-    private static final int MAX_BULLETS = 1;
     private static final long SHOOT_DELAY = 1000; // 1 seconds
-    private static final long BULLET_DELAY = 100; // 0.1 seconds
 
     public PlayerController(Player player) {
         this.player = player;
     }
 
-    public void moveHeroLeft() {
+    public void moveLeft() {
         player.setSpeed(-Math.abs(player.getSpeed())); // Set speed to negative
         player.setPosition(applyCollisions());
     }
 
-    public void moveHeroRight() {
+    public void moveRight() {
         player.setSpeed(Math.abs(player.getSpeed())); // Set speed to positive
         player.setPosition(applyCollisions());
     }
@@ -43,13 +41,8 @@ public class PlayerController {
 
     public void shoot() {
         long currentTime = System.currentTimeMillis();
-        if ((player.getBulletCount() < MAX_BULLETS && (currentTime - player.getLastShootTime() >= BULLET_DELAY)) ||
-                (currentTime - player.getLastShootTime() >= SHOOT_DELAY)) {
-            if (player.getBulletCount() >= MAX_BULLETS) {
-                player.resetBulletCount();
-            }
-            BulletPlayer bullet = player.shoot();
-            player.getGame().addPlayerBullet(bullet);
+        if (player.getBulletsPlayer() == null && (currentTime - player.getLastShootTime() >= SHOOT_DELAY)) {
+            player.shoot();
         }
     }
 }

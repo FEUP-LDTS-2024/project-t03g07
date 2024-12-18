@@ -3,15 +3,15 @@ package spacewars.model.game.elements;
 import spacewars.model.game.Game;
 import spacewars.model.game.elements.bullets.BulletPlayer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map.Entry;
+
+import static java.util.Map.entry;
 
 public class Player extends Element {
     private int speed;
     private final int playerSize;
-    private Game game;
-    private List<BulletPlayer> bulletsPlayer;
-    private int bulletCount;
+    private final Game game;
+    private Entry<BulletPlayer, Boolean> playerBullet;
     private long lastShootTime;
 
     public Player(int x, int y, Game game) {
@@ -19,8 +19,7 @@ public class Player extends Element {
         this.speed = 2;
         this.playerSize = 10;
         this.game = game;
-        this.bulletsPlayer = new ArrayList<>();
-        this.bulletCount = 0;
+        this.playerBullet = null;
         this.lastShootTime = 0;
     }
 
@@ -35,12 +34,10 @@ public class Player extends Element {
     public void decreaseLives() {
     }
 
-    public BulletPlayer shoot() {
+    public void shoot() {
         BulletPlayer bullet = new BulletPlayer(this.getPosition().getX(), this.getPosition().getY() + 1);
-        bulletsPlayer.add(bullet); // Add bullet to the list
-        bulletCount++;
+        playerBullet = entry(bullet, true);
         lastShootTime = System.currentTimeMillis();
-        return bullet;
     }
 
     @Override
@@ -55,16 +52,12 @@ public class Player extends Element {
         return game;
     }
 
-    public List<BulletPlayer> getBulletsPlayer() {
-        return bulletsPlayer;
+    public Entry<BulletPlayer, Boolean> getBulletsPlayer() {
+        return playerBullet;
     }
 
-    public int getBulletCount() {
-        return bulletCount;
-    }
-
-    public void resetBulletCount() {
-        this.bulletCount = 0;
+    public void setBulletsPlayer(Entry<BulletPlayer, Boolean> playerBullet) {
+        this.playerBullet = playerBullet;
     }
 
     public long getLastShootTime() {

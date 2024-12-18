@@ -68,8 +68,9 @@ public class GameViewer extends ScreenViewer<Game> {
 
         drawElements(gui, getModel().getLives(), liveViewer);
 
-        //drawElements(gui, getModel().getPlayerBullets(), bulletPlayerViewer);
-
+        if (getModel().getPlayer().getBulletsPlayer() != null) {
+            drawElement(gui, getModel().getPlayer().getBulletsPlayer().getKey(), bulletPlayerViewer);
+        }
 
         /*drawElement(gui,getModel().getBulletNormalInvader(), bulletNormalInvaderViewer);
         drawElement(gui, getModel().getBulletBossInvader(), bulletBossInvaderViewer);*/

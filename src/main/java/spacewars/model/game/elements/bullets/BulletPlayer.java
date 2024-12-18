@@ -4,7 +4,7 @@ import spacewars.model.Position;
 
 public class BulletPlayer extends Bullet
 {
-    private static final int SPEED = 1;
+    private static final int SPEED = 5;
 
     public BulletPlayer(double x, double y)
     {
