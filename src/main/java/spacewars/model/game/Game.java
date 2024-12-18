@@ -19,24 +19,23 @@ public class Game {
     private final List<Invader1> invaders1;
     private final List<Invader2> invaders2;
     private final List<Invader3> invaders3;
-    private BossInvader bossInvader;
-
-    private List<BulletPlayer> bulletsPlayer;
+    private final BossInvader bossInvader;
     private BulletNormalInvader bulletNormalInvader;
     private BulletBossInvader bulletBossInvader;
 
-    private final String ScoreText = "Score: ";
-
     private final List<Live> lives;
+
+    private static final double COLLISION_THRESHOLD = 8.0;
 
     public Game() {
         this.player = createPlayer();
         this.invaders1 = createInvaders1();
         this.invaders2 = createInvaders2();
         this.invaders3 = createInvaders3();
+        this.bossInvader = createBossInvader();
         this.lives = createLives();
     }
-    
+
     private Player createPlayer() {
         return new Player(155, 170, this);
     }
@@ -45,7 +44,7 @@ public class Game {
         List<Invader1> list = new ArrayList<>(List.of());
         for (int i = 0; i < 10; i++) {
             assert invaders1 != null;
-            list.add(new Invader1(64 + i * 20, 110));
+            list.add(new Invader1(64 + i * 20, 110, this));
         }
         return list;
     }
@@ -54,18 +53,22 @@ public class Game {
         List<Invader2> list = new ArrayList<>(List.of());
         for (int i = 0; i < 10; i++) {
             assert invaders1 != null;
-            list.add(new Invader2(64 + i * 20, 90));
+            list.add(new Invader2(64 + i * 20, 90,this));
         }
         return list;
     }
-    
+
     public List<Invader3> createInvaders3() {
         List<Invader3> list = new ArrayList<>(List.of());
         for (int i = 0; i < 10; i++) {
             assert invaders1 != null;
-            list.add(new Invader3(64 + i * 20, 70));
+            list.add(new Invader3(64 + i * 20, 70,this));
         }
         return list;
+    }
+
+    public BossInvader createBossInvader() {
+        return new BossInvader(0,30,this);
     }
 
     public List<Live> createLives() {
@@ -76,12 +79,11 @@ public class Game {
         return list;
     }
 
-    public void setBossInvader(BossInvader bossInvader) {
-        this.bossInvader = bossInvader;
-    }
-
-    public void addPlayerBullet(BulletPlayer bullet) {
-        bulletsPlayer.add(bullet);
+    public void updatePlayerBullet() {
+        if (player.getBulletsPlayer() != null) {
+            player.getBulletsPlayer().getKey().update();
+            checkBulletCollisions(player.getBulletsPlayer().getKey());
+        }
     }
 
     public void setBulletNormalInvader(BulletNormalInvader bulletNormalInvader) {
@@ -113,10 +115,6 @@ public class Game {
         return bossInvader;
     }
 
-    public List<BulletPlayer> getBulletPlayer() {
-        return bulletsPlayer;
-    }
-
     public BulletNormalInvader getBulletNormalInvader() {
         return bulletNormalInvader;
     }
@@ -126,19 +124,23 @@ public class Game {
     }
 
     public String getScoreText() {
-        return ScoreText;
+        return "Score: ";
     }
 
     public List<Live> getLives() {
         return lives;
     }
 
-    public boolean checkOutsideBoundaries(double x1, double x2) {
+    public boolean checkSideBoundaries(double x1, double x2) {
         return x1 < 20 || x2 > 300;
     }
 
+    public boolean checkTopBoundary(double y) {
+        return y < 20;
+    }
+
     private boolean checkCollision(Position topLeft, Position bottomRight) {
-        return checkOutsideBoundaries(topLeft.getX(), bottomRight.getX());
+        return checkSideBoundaries(topLeft.getX(), bottomRight.getX());
     }
 
     public boolean collidesLeft(Position position, double size) {
@@ -149,7 +151,49 @@ public class Game {
         return checkCollision(new Position(position.getX() + size - 1, position.getY()), new Position(position.getX() + size - 1, position.getY() + size - 1));
     }
 
+    private boolean isCollision(Position pos1, Position pos2) {
+        double distance = Math.sqrt(Math.pow(pos1.getX() - pos2.getX(), 2) + Math.pow(pos1.getY() - pos2.getY(), 2));
+        return distance < COLLISION_THRESHOLD;
+    }
+
+    public void checkBulletCollisions(BulletPlayer bullet) {
+        List<Invader1> invaders1ToRemove = new ArrayList<>();
+        List<Invader2> invaders2ToRemove = new ArrayList<>();
+        List<Invader3> invaders3ToRemove = new ArrayList<>();
+
+        for (Invader1 invader : invaders1) {
+            if (isCollision(invader.getPosition(), bullet.getPosition())) {
+                player.setBulletsPlayer(null);
+                invaders1ToRemove.add(invader);
+                break;
+            }
+        }
+        for (Invader2 invader : invaders2) {
+            if (isCollision(invader.getPosition(), bullet.getPosition())) {
+                player.setBulletsPlayer(null);
+                invaders2ToRemove.add(invader);
+                break;
+            }
+        }
+        for (Invader3 invader : invaders3) {
+            if (isCollision(invader.getPosition(), bullet.getPosition())) {
+                player.setBulletsPlayer(null);
+                invaders3ToRemove.add(invader);
+                break;
+            }
+        }
+        if (checkTopBoundary(bullet.getPosition().getY())) {
+            player.setBulletsPlayer(null);
+        }
+
+        invaders1.removeAll(invaders1ToRemove);
+        invaders2.removeAll(invaders2ToRemove);
+        invaders3.removeAll(invaders3ToRemove);
+    }
+
     public boolean isBullet(Position position) {
         return bulletNormalInvader.getPosition().equals(position);
     }
+
+
 }

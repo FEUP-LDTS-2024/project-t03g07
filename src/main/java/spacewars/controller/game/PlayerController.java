@@ -2,33 +2,27 @@ package spacewars.controller.game;
 
 import spacewars.model.Position;
 import spacewars.model.game.elements.Player;
+import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class PlayerController {
     private final Player player;
+    private static final long SHOOT_DELAY = 1000; // 1 seconds
 
     public PlayerController(Player player) {
         this.player = player;
     }
 
-    public void moveHeroLeft() {
+    public void moveLeft() {
         player.setSpeed(-Math.abs(player.getSpeed())); // Set speed to negative
-        Position newPosition = player.getPosition().getLeft(Math.abs(player.getSpeed()));
-        player.setPosition(applyCollisions(newPosition));
+        player.setPosition(applyCollisions());
     }
 
-    public void moveHeroRight() {
+    public void moveRight() {
         player.setSpeed(Math.abs(player.getSpeed())); // Set speed to positive
-        Position newPosition = player.getPosition().getRight(player.getSpeed());
-        player.setPosition(applyCollisions(newPosition));
+        player.setPosition(applyCollisions());
     }
 
-//    private void moveHero(Position position) {
-//        player.setPosition(position);
-//
-//        // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
-//    }
-
-    protected Position applyCollisions(Position position) {
+    protected Position applyCollisions() {
         double x = player.getPosition().getX();
         double y = player.getPosition().getY();
 
@@ -45,8 +39,10 @@ public class PlayerController {
         return new Position(x + s, y);
     }
 
-    /*public void shoot() {
-        BulletPlayer bullet = getModel().getPlayer().shoot();
-        getModel().addPlayerBullet(bullet);
-    }*/
+    public void shoot() {
+        long currentTime = System.currentTimeMillis();
+        if (player.getBulletsPlayer() == null && (currentTime - player.getLastShootTime() >= SHOOT_DELAY)) {
+            player.shoot();
+        }
+    }
 }
