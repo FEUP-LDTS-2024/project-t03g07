@@ -1,13 +1,20 @@
 package spacewars.model.game.elements.invaders;
 
+import spacewars.model.game.Game;
+
 import java.util.Random;
 
 public class BossInvader extends Invader{
     private final int points;
+    private Game game;
+    private boolean hidden; // Whether the boss is off-screen and waiting to reappear
+    private int size = 16;
 
-    public BossInvader(int x, int y) {
+    public BossInvader(int x, int y, Game game) {
         super(x, y);
         this.points = getRandomPoints();
+        this.game = game;
+        this.hidden = true; // Initially hidden
     }
 
 
@@ -27,9 +34,20 @@ public class BossInvader extends Invader{
         return possiblePoints[possiblePoints.length - 1]; //fallback in case of rounding errors
     }
 
-
     @Override
     public int getPoints() {
         return points;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 }

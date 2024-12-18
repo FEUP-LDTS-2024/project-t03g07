@@ -27,10 +27,10 @@ public class GameViewer extends ScreenViewer<Game> {
     private final Invader1Viewer invader1Viewer;
     private final Invader2Viewer invader2Viewer;
     private final Invader3Viewer invader3Viewer;
+    private final BossInvaderViewer bossInvaderViewer;
 
     private final BulletPlayerViewer bulletPlayerViewer;
-    /*private final BossInvaderViewer bossInvaderViewer;
-    private final BulletNormalInvaderViewer bulletNormalInvaderViewer;
+    /*private final BulletNormalInvaderViewer bulletNormalInvaderViewer;
     private final BulletBossInvaderViewer bulletBossInvaderViewer;*/
 
     private final TextViewer textViewer;
@@ -44,8 +44,8 @@ public class GameViewer extends ScreenViewer<Game> {
         this.invader2Viewer = viewerProvider.getInvader2Viewer();
         this.invader3Viewer = viewerProvider.getInvader3Viewer();
         this.bulletPlayerViewer = viewerProvider.getBulletPlayerViewer();
-        /*this.bossInvaderViewer = viewerProvider.getBossInvaderViewer();
-        this.bulletNormalInvaderViewer = viewerProvider.getBulletNormalInvaderViewer();
+        this.bossInvaderViewer = viewerProvider.getBossInvaderViewer();
+        /*this.bulletNormalInvaderViewer = viewerProvider.getBulletNormalInvaderViewer();
         this.bulletBossInvaderViewer = viewerProvider.getBulletBossInvaderViewer();*/
         this.textViewer = viewerProvider.getTextViewer();
         this.liveViewer = viewerProvider.getLiveViewer();
@@ -62,15 +62,16 @@ public class GameViewer extends ScreenViewer<Game> {
         drawElements(gui,getModel().getInvaders1(),invader1Viewer);
         drawElements(gui,getModel().getInvaders2(),invader2Viewer);
         drawElements(gui,getModel().getInvaders3(),invader3Viewer);
+        drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
 
         drawText(gui, getModel().getScoreText(), 5, 5, TextColor.ANSI.WHITE);
 
         drawElements(gui, getModel().getLives(), liveViewer);
 
-        drawElements(gui, getModel().getPlayerBullets(), bulletPlayerViewer);
+        //drawElements(gui, getModel().getPlayerBullets(), bulletPlayerViewer);
 
-        /*drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
-        drawElement(gui,getModel().getBulletNormalInvader(), bulletNormalInvaderViewer);
+
+        /*drawElement(gui,getModel().getBulletNormalInvader(), bulletNormalInvaderViewer);
         drawElement(gui, getModel().getBulletBossInvader(), bulletBossInvaderViewer);*/
 
         gui.refresh();

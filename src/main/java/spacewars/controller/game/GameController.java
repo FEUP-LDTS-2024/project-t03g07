@@ -17,6 +17,7 @@ public class GameController extends Controller<Game> {
     private final Invader1Controller invader1Controller;
     private final Invader2Controller invader2Controller;
     private final Invader3Controller invader3Controller;
+    private final BossInvaderController bossInvaderController;
     private long lastMoveTime; // Track the last time the invaders moved
     private static final long MOVE_INTERVAL = 500; // Time in milliseconds between invader movements
 
@@ -27,6 +28,7 @@ public class GameController extends Controller<Game> {
         this.invader1Controller = new Invader1Controller(getModel().getInvaders1());
         this.invader2Controller = new Invader2Controller(getModel().getInvaders2());
         this.invader3Controller = new Invader3Controller(getModel().getInvaders3());
+        this.bossInvaderController = new BossInvaderController(getModel().getBossInvader(),320);
         this.lastMoveTime = 0;
     }
 
@@ -46,7 +48,7 @@ public class GameController extends Controller<Game> {
                 onQuit(application);
                 break;
         }
-        getModel().updatePlayerBullets();
+        //getModel().updatePlayerBullets();
         // Move invaders at regular intervals
         if (time - lastMoveTime > MOVE_INTERVAL) {
             invader1Controller.moveInvaders1();
@@ -54,6 +56,7 @@ public class GameController extends Controller<Game> {
             invader3Controller.moveInvaders3();
             lastMoveTime = time;
         }
+        bossInvaderController.moveBoss(time);
     }
 
     private void onQuit(Application application) throws IOException, URISyntaxException, FontFormatException {
