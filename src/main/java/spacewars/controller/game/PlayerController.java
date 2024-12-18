@@ -6,9 +6,9 @@ import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class PlayerController {
     private final Player player;
-    private static final int MAX_BULLETS = 5;
+    private static final int MAX_BULLETS = 1;
     private static final long SHOOT_DELAY = 1000; // 1 seconds
-    private static final long BULLET_DELAY = 75; // 0.075 seconds
+    private static final long BULLET_DELAY = 100; // 0.1 seconds
 
     public PlayerController(Player player) {
         this.player = player;
@@ -16,23 +16,15 @@ public class PlayerController {
 
     public void moveHeroLeft() {
         player.setSpeed(-Math.abs(player.getSpeed())); // Set speed to negative
-        Position newPosition = player.getPosition().getLeft(Math.abs(player.getSpeed()));
-        player.setPosition(applyCollisions(newPosition));
+        player.setPosition(applyCollisions());
     }
 
     public void moveHeroRight() {
         player.setSpeed(Math.abs(player.getSpeed())); // Set speed to positive
-        Position newPosition = player.getPosition().getRight(player.getSpeed());
-        player.setPosition(applyCollisions(newPosition));
+        player.setPosition(applyCollisions());
     }
 
-//    private void moveHero(Position position) {
-//        player.setPosition(position);
-//
-//        // if (getModel().isBullet(position)) getModel().getPlayer().decreaseLives();
-//    }
-
-    protected Position applyCollisions(Position position) {
+    protected Position applyCollisions() {
         double x = player.getPosition().getX();
         double y = player.getPosition().getY();
 
