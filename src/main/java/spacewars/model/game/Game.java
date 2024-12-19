@@ -167,6 +167,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletsPlayer(null);
                 invaders1ToRemove.add(invader);
+                score.increaseScore(10);
                 break;
             }
         }
@@ -174,6 +175,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletsPlayer(null);
                 invaders2ToRemove.add(invader);
+                score.increaseScore(20);
                 break;
             }
         }
@@ -181,6 +183,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletsPlayer(null);
                 invaders3ToRemove.add(invader);
+                score.increaseScore(40);
                 break;
             }
         }
