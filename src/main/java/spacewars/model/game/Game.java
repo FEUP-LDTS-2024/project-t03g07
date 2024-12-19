@@ -24,7 +24,7 @@ public class Game {
     private BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
     private BulletInvader3 bulletInvader3;
-    private Bullet bossBullet;
+    private BulletBossInvader bossBullet;
     private long lastInvader1ShootTime = 0;
     private long lastInvader2ShootTime = 0;
     private long lastInvader3ShootTime = 0;
@@ -256,6 +256,17 @@ public class Game {
         }
     }
 
+    public void checkBulletBossInvaderCollisions(BulletBossInvader bullet) {
+        if (bullet == null) {
+            return;
+        }
+
+        if (isCollision(player.getPosition(), bullet.getPosition())) {
+            decreaseLives();
+            bulletBossInvader = null;
+        }
+    }
+
 //    public boolean isBullet(Position position) {
 //        return bulletInvader1.getPosition().equals(position);
 //    }
@@ -373,12 +384,23 @@ public class Game {
             if (bossBullet.getPosition().getY() > 192) {
                 bossBullet = null;
             }
+            checkBulletBossInvaderCollisions(bossBullet);
         }
     }
 
     public void decreaseLives() {
-        if (lives.size() > 0) {
-            lives.remove(lives.size() - 1);
+        if (!lives.isEmpty()) {
+            // Find the Live object with the lowest x-coordinate
+            Live leftmostLive = lives.stream()
+                    .min((live1, live2) -> Double.compare(live1.getPosition().getX(), live2.getPosition().getX()))
+                    .orElse(null);
+
+            // Remove the leftmost Live
+            if (leftmostLive != null) {
+                lives.remove(leftmostLive);
+            }
         }
     }
+
+
 }

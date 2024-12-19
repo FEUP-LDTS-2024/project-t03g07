@@ -9,7 +9,7 @@ import spacewars.controller.game.elements.invaders.Invader2Controller;
 import spacewars.controller.game.elements.invaders.Invader3Controller;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
-import spacewars.model.game.GameOver;
+import spacewars.model.menu.GameOver;
 import spacewars.model.menu.MainMenu;
 import spacewars.states.GameOverState;
 import spacewars.states.MainMenuState;

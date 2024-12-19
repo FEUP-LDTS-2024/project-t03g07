@@ -1,11 +1,12 @@
 package spacewars.states;
 
 import spacewars.controller.Controller;
-import spacewars.controller.game.GameOverController;
-import spacewars.model.game.GameOver;
+import spacewars.controller.menu.EntryController;
+import spacewars.controller.menu.GameOverController;
+import spacewars.model.menu.GameOver;
 import spacewars.view.ViewerProvider;
 import spacewars.view.images.ImageLoader;
-import spacewars.view.screens.GameOverViewer;
+import spacewars.view.screens.menus.GameOverViewer;
 import spacewars.view.screens.ScreenViewer;
 
 import java.awt.*;
@@ -24,6 +25,6 @@ public class GameOverState extends State<GameOver> {
 
     @Override
     protected Controller<GameOver> getController() {
-        return new GameOverController(getModel());
+        return new GameOverController(getModel(), new EntryController(getModel()));
     }
 }
