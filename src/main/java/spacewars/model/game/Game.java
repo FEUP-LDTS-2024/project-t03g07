@@ -207,7 +207,7 @@ public class Game {
         }
 
         if (isCollision(bossInvader.getPosition(), bullet.getPosition())) {
-            player.setBulletsPlayer(null);
+            player.setBulletPlayer(null);
             bossInvader = new BossInvader(0,30,this);
             score.increaseScore(bossInvader.getRandomPoints());
             bossInvader.setHidden(true);
