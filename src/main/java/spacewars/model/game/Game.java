@@ -4,7 +4,7 @@ import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.bullets.BulletBossInvader;
-import spacewars.model.game.elements.bullets.BulletNormalInvader;
+import spacewars.model.game.elements.bullets.BulletInvader1;
 import spacewars.model.game.elements.bullets.BulletPlayer;
 import spacewars.model.game.elements.invaders.Invader1;
 import spacewars.model.game.elements.invaders.Invader2;
@@ -13,6 +13,7 @@ import spacewars.model.game.elements.invaders.BossInvader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
     private final Player player;
@@ -20,7 +21,8 @@ public class Game {
     private final List<Invader2> invaders2;
     private final List<Invader3> invaders3;
     private final BossInvader bossInvader;
-    private BulletNormalInvader bulletNormalInvader;
+    private BulletInvader1 bulletInvader1;
+    private long lastInvaderShootTime = 0; // Track when the last bullet was sho
     private BulletBossInvader bulletBossInvader;
 
     private final List<Live> lives;
@@ -80,14 +82,14 @@ public class Game {
     }
 
     public void updatePlayerBullet() {
-        if (player.getBulletsPlayer() != null) {
-            player.getBulletsPlayer().getKey().update();
-            checkBulletCollisions(player.getBulletsPlayer().getKey());
+        if (player.getBulletPlayer() != null) {
+            player.getBulletPlayer().getKey().update();
+            checkBulletCollisions(player.getBulletPlayer().getKey());
         }
     }
 
-    public void setBulletNormalInvader(BulletNormalInvader bulletNormalInvader) {
-        this.bulletNormalInvader = bulletNormalInvader;
+    public void setBulletInvader1(BulletInvader1 bulletInvader1) {
+        this.bulletInvader1 = bulletInvader1;
     }
 
     public void setBulletBossInvader(BulletBossInvader bulletBossInvader) {
@@ -115,8 +117,8 @@ public class Game {
         return bossInvader;
     }
 
-    public BulletNormalInvader getBulletNormalInvader() {
-        return bulletNormalInvader;
+    public BulletInvader1 getBulletInvader1() {
+        return bulletInvader1;
     }
 
     public BulletBossInvader getBulletBossInvader() {
@@ -163,27 +165,27 @@ public class Game {
 
         for (Invader1 invader : invaders1) {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
-                player.setBulletsPlayer(null);
+                player.setBulletPlayer(null);
                 invaders1ToRemove.add(invader);
                 break;
             }
         }
         for (Invader2 invader : invaders2) {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
-                player.setBulletsPlayer(null);
+                player.setBulletPlayer(null);
                 invaders2ToRemove.add(invader);
                 break;
             }
         }
         for (Invader3 invader : invaders3) {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
-                player.setBulletsPlayer(null);
+                player.setBulletPlayer(null);
                 invaders3ToRemove.add(invader);
                 break;
             }
         }
         if (checkTopBoundary(bullet.getPosition().getY())) {
-            player.setBulletsPlayer(null);
+            player.setBulletPlayer(null);
         }
 
         invaders1.removeAll(invaders1ToRemove);
@@ -192,8 +194,48 @@ public class Game {
     }
 
     public boolean isBullet(Position position) {
-        return bulletNormalInvader.getPosition().equals(position);
+        return bulletInvader1.getPosition().equals(position);
     }
 
+    public List<BulletInvader1> getBulletsInvader1() {
+        List<BulletInvader1> bullets = new ArrayList<>();
+        for (Invader1 invader : invaders1) {
+            if (invader.getInvader1Bullet() != null) {
+                bullets.add(invader.getInvader1Bullet().getKey());
+            }
+        }
+        return bullets;
+    }
+
+    public void invader1Shoot() {
+        if (bulletInvader1 == null && System.currentTimeMillis() - lastInvaderShootTime > 2000) { // Shoot every 2 seconds
+            List<Invader1> activeInvaders = new ArrayList<>();
+
+            // Collect all active invaders
+            for (Invader1 invader : invaders1) {
+                if (invader != null) {
+                    activeInvaders.add(invader);
+                }
+            }
+
+            // Choose a random invader to shoot
+            if (!activeInvaders.isEmpty()) {
+                Invader1 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
+                bulletInvader1 = new BulletInvader1(randomInvader.getPosition().getX(), randomInvader.getPosition().getY() + 1);
+                lastInvaderShootTime = System.currentTimeMillis();
+            }
+        }
+    }
+
+    public void updateInvaderBullet() {
+        if (bulletInvader1 != null) {
+            bulletInvader1.update();
+
+            // Remove the bullet if it moves off the screen
+            if (bulletInvader1.getPosition().getY() > 192) {
+                bulletInvader1 = null;
+            }
+        }
+    }
 
 }

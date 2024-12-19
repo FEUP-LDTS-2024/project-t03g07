@@ -8,8 +8,7 @@ import spacewars.view.ViewerProvider;
 import spacewars.view.game.elements.ElementViewer;
 import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
-import spacewars.view.game.elements.bullets.BulletBossInvaderViewer;
-import spacewars.view.game.elements.bullets.BulletNormalInvaderViewer;
+import spacewars.view.game.elements.bullets.BulletInvader1Viewer;
 import spacewars.view.game.elements.bullets.BulletPlayerViewer;
 import spacewars.view.game.elements.invaders.Invader1Viewer;
 import spacewars.view.game.elements.invaders.Invader2Viewer;
@@ -30,7 +29,7 @@ public class GameViewer extends ScreenViewer<Game> {
     private final BossInvaderViewer bossInvaderViewer;
 
     private final BulletPlayerViewer bulletPlayerViewer;
-    private final BulletNormalInvaderViewer bulletNormalInvaderViewer;
+    private final BulletInvader1Viewer bulletNormalInvaderViewer;
     /*private final BulletBossInvaderViewer bulletBossInvaderViewer;*/
 
     private final TextViewer textViewer;
@@ -68,12 +67,15 @@ public class GameViewer extends ScreenViewer<Game> {
 
         drawElements(gui, getModel().getLives(), liveViewer);
 
-        if (getModel().getPlayer().getBulletsPlayer() != null) {
-            drawElement(gui, getModel().getPlayer().getBulletsPlayer().getKey(), bulletPlayerViewer);
+        if (getModel().getPlayer().getBulletPlayer() != null) {
+            drawElement(gui, getModel().getPlayer().getBulletPlayer().getKey(), bulletPlayerViewer);
+        }
+
+        if (getModel().getBulletInvader1() != null) {
+            drawElement(gui, getModel().getBulletInvader1(), bulletNormalInvaderViewer);
         }
 
 
-        drawElement(gui,getModel().getBulletNormalInvader(), bulletNormalInvaderViewer);
         /*drawElement(gui, getModel().getBulletBossInvader(), bulletBossInvaderViewer);*/
 
         gui.refresh();

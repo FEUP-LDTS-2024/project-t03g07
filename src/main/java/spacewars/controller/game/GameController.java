@@ -58,7 +58,9 @@ public class GameController extends Controller<Game> {
         }
         bossInvaderController.moveBoss(time);
 
-        invader1Controller.shoot();
+        //invader1Controller.shoot();
+        getModel().invader1Shoot();
+        getModel().updateInvaderBullet();
     }
 
     private void onQuit(Application application) throws IOException, URISyntaxException, FontFormatException {
