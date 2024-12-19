@@ -36,6 +36,8 @@ public class GameOver extends Menu {
     protected List<Entry> createEntries() {
         Position pos = new Position(130,154);
         Entry goBack = new Entry(pos, Entry.TYPE.RETURN_TO_MENU);
-        return Arrays.asList(goBack);
+        Position pos2 = new Position(138,165);
+        Entry playAgain = new Entry(pos2, Entry.TYPE.PLAY_AGAIN);
+        return Arrays.asList(goBack,playAgain);
     }
 }
