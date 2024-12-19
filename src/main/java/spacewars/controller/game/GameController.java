@@ -4,7 +4,9 @@ import spacewars.Application;
 import spacewars.controller.Controller;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
+import spacewars.model.game.GameOver;
 import spacewars.model.menu.MainMenu;
+import spacewars.states.GameOverState;
 import spacewars.states.MainMenuState;
 
 import java.awt.*;
@@ -57,9 +59,23 @@ public class GameController extends Controller<Game> {
             lastMoveTime = time;
         }
         bossInvaderController.moveBoss(time);
+
+        if (isGameOver()){
+            transitionToGameOver(application);
+        }
     }
 
     private void onQuit(Application application) throws IOException, URISyntaxException, FontFormatException {
         application.setState(new MainMenuState(new MainMenu(), application.getImageLoader()));
+    }
+
+    private boolean isGameOver() {
+        return getModel().getLives().isEmpty();
+    }
+
+    private void transitionToGameOver(Application application) throws IOException, URISyntaxException, FontFormatException {
+        GameOver gameOver = new GameOver();
+        GameOverState gameOverState = new GameOverState(gameOver, application.getImageLoader());
+        application.setState(gameOverState);
     }
 }
