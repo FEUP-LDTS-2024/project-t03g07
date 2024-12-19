@@ -22,6 +22,7 @@ public class Game {
     private final BossInvader bossInvader;
     private BulletNormalInvader bulletNormalInvader;
     private BulletBossInvader bulletBossInvader;
+    private Score score;
 
     private final List<Live> lives;
 
@@ -34,6 +35,7 @@ public class Game {
         this.invaders3 = createInvaders3();
         this.bossInvader = createBossInvader();
         this.lives = createLives();
+        this.score = new Score();
     }
 
     private Player createPlayer() {
@@ -124,7 +126,7 @@ public class Game {
     }
 
     public String getScoreText() {
-        return "Score: ";
+        return "Score: " + score.getScore();
     }
 
     public List<Live> getLives() {

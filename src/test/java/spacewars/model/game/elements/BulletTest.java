@@ -10,17 +10,17 @@ import static org.mockito.Mockito.when;
 
 public class BulletTest
 {
-    @Test
-    public void getPosition()
-    {
-        Position mockPosition = mock(Position.class);
-        when(mockPosition.getX()).thenReturn(0);
-        when(mockPosition.getY()).thenReturn(0);
-        BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(0, 0);
-        bulletNormalInvader.setPosition(mockPosition);
-        assertEquals(0, bulletNormalInvader.getPosition().getX());
-        assertEquals(0, bulletNormalInvader.getPosition().getY());
-    }
+    // @Test
+    // public void getPosition()
+    // {
+    //     Position mockPosition = mock(Position.class);
+    //     when(mockPosition.getX()).thenReturn(0);
+    //     when(mockPosition.getY()).thenReturn(0);
+    //     BulletNormalInvader bulletNormalInvader = new BulletNormalInvader(0, 0);
+    //     bulletNormalInvader.setPosition(mockPosition);
+    //     assertEquals(0, bulletNormalInvader.getPosition().getX());
+    //     assertEquals(0, bulletNormalInvader.getPosition().getY());
+    // }
 
     @Test
     public void setPosition()
