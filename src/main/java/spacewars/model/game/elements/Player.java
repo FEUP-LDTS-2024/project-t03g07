@@ -52,11 +52,11 @@ public class Player extends Element {
         return game;
     }
 
-    public Entry<BulletPlayer, Boolean> getBulletsPlayer() {
+    public Entry<BulletPlayer, Boolean> getBulletPlayer() {
         return playerBullet;
     }
 
-    public void setBulletsPlayer(Entry<BulletPlayer, Boolean> playerBullet) {
+    public void setBulletPlayer(Entry<BulletPlayer, Boolean> playerBullet) {
         this.playerBullet = playerBullet;
     }
 

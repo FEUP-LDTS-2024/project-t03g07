@@ -1,7 +1,7 @@
 package spacewars.model.game.elements.invaders;
 
 import spacewars.model.game.Game;
-import spacewars.model.game.elements.bullets.BulletNormalInvader;
+import spacewars.model.game.elements.bullets.BulletInvader1;
 
 import java.util.Map.Entry;
 
@@ -9,7 +9,7 @@ import static java.util.Map.entry;
 
 public class Invader1 extends Invader {
     private int speed;
-    private Entry<BulletNormalInvader, Boolean> invader1Bullet;
+    private Entry<BulletInvader1, Boolean> invader1Bullet;
     private int invader1Size;
     private Game game;
     private long lastShootTime;
@@ -46,7 +46,7 @@ public class Invader1 extends Invader {
     }
 
     public void shoot() {
-        BulletNormalInvader bullet = new BulletNormalInvader(this.getPosition().getX(), this.getPosition().getY() + 1);
+        BulletInvader1 bullet = new BulletInvader1(this.getPosition().getX(), this.getPosition().getY() + 1);
         invader1Bullet = entry(bullet, true);
         lastShootTime = System.currentTimeMillis();
     }
@@ -55,7 +55,7 @@ public class Invader1 extends Invader {
         return lastShootTime;
     }
 
-    public Entry<BulletNormalInvader, Boolean> getInvader1Bullet() {
+    public Entry<BulletInvader1, Boolean> getInvader1Bullet() {
         return invader1Bullet;
     }
 }
