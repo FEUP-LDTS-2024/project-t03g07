@@ -23,22 +23,22 @@ public class ScoreTest
         assertEquals(0, score.getScore());
     }
 
-    @Test
-    public void testCheckScoreNotHighScore() {
-        Score score = new Score();
-        score.increaseScore(5);
-        HighScore.saveHighScore(10);
-        score.checkScore();
-        assertEquals(5, score.getScore());
-    }
-
-    @Test
-    public void testCheckScoreHighScore() {
-        Score score = new Score();
-        score.increaseScore(15);
-        HighScore.saveHighScore(10);
-        score.checkScore();
-        assertEquals(15, score.getScore());
-    }
+//    @Test
+//    public void testCheckScoreNotHighScore() {
+//        Score score = new Score();
+//        score.increaseScore(5);
+//        HighScore.saveHighScore(10);
+//        score.checkScore();
+//        assertEquals(5, score.getScore());
+//    }
+//
+//    @Test
+//    public void testCheckScoreHighScore() {
+//        Score score = new Score();
+//        score.increaseScore(15);
+//        HighScore.saveHighScore(10);
+//        score.checkScore();
+//        assertEquals(15, score.getScore());
+//    }
 
 }

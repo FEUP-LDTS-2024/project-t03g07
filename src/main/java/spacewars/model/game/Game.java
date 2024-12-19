@@ -46,6 +46,7 @@ public class Game {
         this.lives = createLives();
         this.score = new Score();
         this.bossRespawnTimer = new Timer();
+        HighScore.loadHighScore();
     }
 
     private Player createPlayer() {
@@ -402,5 +403,11 @@ public class Game {
         }
     }
 
+    public String getScore() {
+        return score.getScore();
+    }
 
+    public int getRawScore() {
+        return score.getRawScore();
+    }
 }
