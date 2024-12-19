@@ -10,6 +10,7 @@ import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.BulletInvader1Viewer;
 import spacewars.view.game.elements.bullets.BulletInvader2Viewer;
+import spacewars.view.game.elements.bullets.BulletInvader3Viewer;
 import spacewars.view.game.elements.bullets.BulletPlayerViewer;
 import spacewars.view.game.elements.invaders.Invader1Viewer;
 import spacewars.view.game.elements.invaders.Invader2Viewer;
@@ -32,6 +33,7 @@ public class GameViewer extends ScreenViewer<Game> {
     private final BulletPlayerViewer bulletPlayerViewer;
     private final BulletInvader1Viewer bulletInvader1Viewer;
     private final BulletInvader2Viewer bulletInvader2Viewer;
+    private final BulletInvader3Viewer bulletInvader3Viewer;
     /*private final BulletBossInvaderViewer bulletBossInvaderViewer;*/
 
     private final TextViewer textViewer;
@@ -48,6 +50,7 @@ public class GameViewer extends ScreenViewer<Game> {
         this.bossInvaderViewer = viewerProvider.getBossInvaderViewer();
         this.bulletInvader1Viewer = viewerProvider.getBulletInvader1Viewer();
         this.bulletInvader2Viewer = viewerProvider.getBulletInvader2Viewer();
+        this.bulletInvader3Viewer = viewerProvider.getBulletInvader3Viewer();
         /*this.bulletBossInvaderViewer = viewerProvider.getBulletBossInvaderViewer();*/
         this.textViewer = viewerProvider.getTextViewer();
         this.liveViewer = viewerProvider.getLiveViewer();
@@ -82,7 +85,9 @@ public class GameViewer extends ScreenViewer<Game> {
             drawElement(gui, getModel().getBulletInvader2(), bulletInvader2Viewer);
         }
 
-        
+        if (getModel().getBulletInvader3() != null) {
+            drawElement(gui, getModel().getBulletInvader3(), bulletInvader3Viewer);
+        }
 
 
         /*drawElement(gui, getModel().getBulletBossInvader(), bulletBossInvaderViewer);*/

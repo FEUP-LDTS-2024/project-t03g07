@@ -69,6 +69,9 @@ public class GameController extends Controller<Game> {
 
         getModel().invader2Shoot();
         getModel().updateInvader2Bullet();
+
+        getModel().invader3Shoot();
+        getModel().updateInvader3Bullet();
     }
 
     private void onQuit(Application application) throws IOException, URISyntaxException, FontFormatException {
