@@ -28,6 +28,8 @@ public class Game {
     private long lastInvader3ShootTime = 0;
     private long lastBossShootTime = 0;
     private BulletBossInvader bulletBossInvader;
+    private Score score;
+    private Timer bossRespawnTimer;
 
     private final List<Live> lives;
 
@@ -40,6 +42,8 @@ public class Game {
         this.invaders3 = createInvaders3();
         this.bossInvader = createBossInvader();
         this.lives = createLives();
+        this.score = new Score();
+        this.bossRespawnTimer = new Timer();
     }
 
     private Player createPlayer() {
@@ -138,7 +142,7 @@ public class Game {
     }
 
     public String getScoreText() {
-        return "Score: ";
+        return "Score: " + score.getScore();
     }
 
     public List<Live> getLives() {
@@ -179,6 +183,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders1ToRemove.add(invader);
+                score.increaseScore(10);
                 break;
             }
         }
@@ -186,6 +191,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders2ToRemove.add(invader);
+                score.increaseScore(20);
                 break;
             }
         }
@@ -193,9 +199,18 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders3ToRemove.add(invader);
+                score.increaseScore(40);
                 break;
             }
         }
+
+        if (isCollision(bossInvader.getPosition(), bullet.getPosition())) {
+            player.setBulletsPlayer(null);
+            bossInvader = new BossInvader(0,30,this);
+            score.increaseScore(bossInvader.getRandomPoints());
+            bossInvader.setHidden(true);
+        }
+
         if (checkTopBoundary(bullet.getPosition().getY())) {
             player.setBulletPlayer(null);
         }
