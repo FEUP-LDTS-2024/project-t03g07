@@ -1,4 +1,4 @@
-package spacewars.controller.game;
+package spacewars.controller.game.elements.invaders;
 
 import spacewars.model.Position;
 import spacewars.model.game.elements.invaders.BossInvader;
@@ -38,5 +38,9 @@ public class BossInvaderController {
         // Reset the boss's position to the left side of the screen and make it visible again
         bossInvader.setPosition(new Position(-bossInvader.getSize(), bossInvader.getPosition().getY()));
         bossInvader.setHidden(false);
+    }
+
+    public BossInvader getBossInvader() {
+        return bossInvader;
     }
 }

@@ -1,8 +1,7 @@
-package spacewars.controller.game;
+package spacewars.controller.game.elements;
 
 import spacewars.model.Position;
 import spacewars.model.game.elements.Player;
-import spacewars.model.game.elements.bullets.BulletPlayer;
 
 public class PlayerController {
     private final Player player;
@@ -41,7 +40,7 @@ public class PlayerController {
 
     public void shoot() {
         long currentTime = System.currentTimeMillis();
-        if (player.getBulletsPlayer() == null && (currentTime - player.getLastShootTime() >= SHOOT_DELAY)) {
+        if (player.getBulletPlayer() == null && (currentTime - player.getLastShootTime() >= SHOOT_DELAY)) {
             player.shoot();
         }
     }

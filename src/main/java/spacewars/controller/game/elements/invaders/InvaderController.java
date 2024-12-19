@@ -1,12 +1,9 @@
-package spacewars.controller.game;
+package spacewars.controller.game.elements.invaders;
 
 import spacewars.Application;
+import spacewars.controller.game.GameController;
 import spacewars.gui.GUI;
-import spacewars.model.Position;
 import spacewars.model.game.Game;
-import spacewars.model.game.elements.bullets.BulletPlayer;
-import spacewars.model.game.elements.invaders.Invader;
-import spacewars.model.game.elements.invaders.Invader1;
 
 import java.io.IOException;
 

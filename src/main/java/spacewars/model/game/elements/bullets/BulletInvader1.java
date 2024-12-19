@@ -2,11 +2,11 @@ package spacewars.model.game.elements.bullets;
 
 import spacewars.model.Position;
 
-public class BulletBossInvader extends Bullet
+public class BulletInvader1 extends Bullet
 {
-    private static final int SPEED = 2;
+    private static final int SPEED = 1;
 
-    public BulletBossInvader(double x, double y)
+    public BulletInvader1(double x, double y)
     {
         super(x, y, 10);
     }

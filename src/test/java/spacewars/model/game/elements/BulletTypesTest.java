@@ -1,12 +1,6 @@
 package spacewars.model.game.elements;
 
 
-import net.jqwik.api.ForAll;
-import net.jqwik.api.Property;
-import spacewars.model.game.elements.bullets.BulletNormalInvader;
-import spacewars.model.game.elements.bullets.BulletPlayer;
-import spacewars.model.game.elements.bullets.BulletBossInvader;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BulletTypesTest

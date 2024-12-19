@@ -56,6 +56,12 @@ public class EntryController extends Controller<Menu> {
                 if (action == GUI.ACTION.SELECT) {
                     app.setState(new MainMenuState(new MainMenu(), app.getImageLoader()));
                 }
+                break;
+            case PLAY_AGAIN:
+                if (action == GUI.ACTION.SELECT) {
+                    //app.setState(new GameState(new GameBuilder().build(), app.getImageLoader()));
+                }
+                break;
         }
     }
 }

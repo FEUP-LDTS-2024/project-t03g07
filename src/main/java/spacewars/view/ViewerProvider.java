@@ -2,9 +2,7 @@ package spacewars.view;
 
 import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
-import spacewars.view.game.elements.bullets.BulletBossInvaderViewer;
-import spacewars.view.game.elements.bullets.BulletNormalInvaderViewer;
-import spacewars.view.game.elements.bullets.BulletPlayerViewer;
+import spacewars.view.game.elements.bullets.*;
 import spacewars.view.game.elements.invaders.BossInvaderViewer;
 import spacewars.view.game.elements.invaders.Invader1Viewer;
 import spacewars.view.game.elements.invaders.Invader2Viewer;
@@ -29,7 +27,9 @@ public class ViewerProvider {
     private final BossInvaderViewer bossInvaderViewer;
 
     private final BulletPlayerViewer bulletPlayerViewer;
-    private final BulletNormalInvaderViewer bulletNormalInvaderViewer;
+    private final BulletInvader1Viewer bulletInvader1Viewer;
+    private final BulletInvader2Viewer bulletInvader2Viewer;
+    private final BulletInvader3Viewer bulletInvader3Viewer;
     private final BulletBossInvaderViewer bulletBossInvaderViewer;
 
     private final TextViewer textViewer;
@@ -55,7 +55,9 @@ public class ViewerProvider {
         this.bossInvaderViewer = new BossInvaderViewer(imageLoader);
 
         this.bulletPlayerViewer = new BulletPlayerViewer(imageLoader);
-        this.bulletNormalInvaderViewer = new BulletNormalInvaderViewer(imageLoader);
+        this.bulletInvader1Viewer = new BulletInvader1Viewer(imageLoader);
+        this.bulletInvader2Viewer = new BulletInvader2Viewer(imageLoader);
+        this.bulletInvader3Viewer = new BulletInvader3Viewer(imageLoader);
         this.bulletBossInvaderViewer = new BulletBossInvaderViewer(imageLoader);
 
         this.textViewer = new AppTextViewer();
@@ -98,8 +100,8 @@ public class ViewerProvider {
         return bulletPlayerViewer;
     }
 
-    public BulletNormalInvaderViewer getBulletNormalInvaderViewer() {
-        return bulletNormalInvaderViewer;
+    public BulletInvader1Viewer getBulletInvader1Viewer() {
+        return bulletInvader1Viewer;
     }
 
     public BulletBossInvaderViewer getBulletBossInvaderViewer() {
@@ -144,5 +146,13 @@ public class ViewerProvider {
 
     public LiveViewer getLiveViewer() {
         return liveViewer;
+    }
+
+    public BulletInvader2Viewer getBulletInvader2Viewer() {
+        return bulletInvader2Viewer;
+    }
+
+    public BulletInvader3Viewer getBulletInvader3Viewer() {
+        return bulletInvader3Viewer;
     }
 }

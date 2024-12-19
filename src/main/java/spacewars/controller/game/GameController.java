@@ -2,9 +2,14 @@ package spacewars.controller.game;
 
 import spacewars.Application;
 import spacewars.controller.Controller;
+import spacewars.controller.game.elements.*;
+import spacewars.controller.game.elements.invaders.BossInvaderController;
+import spacewars.controller.game.elements.invaders.Invader1Controller;
+import spacewars.controller.game.elements.invaders.Invader2Controller;
+import spacewars.controller.game.elements.invaders.Invader3Controller;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
-import spacewars.model.game.GameOver;
+import spacewars.model.menu.GameOver;
 import spacewars.model.menu.MainMenu;
 import spacewars.states.GameOverState;
 import spacewars.states.MainMenuState;
@@ -50,7 +55,9 @@ public class GameController extends Controller<Game> {
                 onQuit(application);
                 break;
         }
+
         getModel().updatePlayerBullet();
+
         // Move invaders at regular intervals
         if (time - lastMoveTime > MOVE_INTERVAL) {
             invader1Controller.moveInvaders1();
@@ -59,6 +66,21 @@ public class GameController extends Controller<Game> {
             lastMoveTime = time;
         }
         bossInvaderController.moveBoss(time);
+
+        //invader1Controller.shoot();
+        getModel().invader1Shoot();
+        getModel().updateInvader1Bullet();
+
+        getModel().invader2Shoot();
+        getModel().updateInvader2Bullet();
+
+        getModel().invader3Shoot();
+        getModel().updateInvader3Bullet();
+
+        if (!bossInvaderController.getBossInvader().isHidden()) {
+            getModel().bossInvaderShoot(bossInvaderController.getBossInvader());
+            getModel().updateBossInvaderBullet();
+        }
 
         if (isGameOver()){
             transitionToGameOver(application);

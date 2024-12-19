@@ -3,6 +3,7 @@ package spacewars.model.game.elements;
 import spacewars.model.game.Game;
 import spacewars.model.game.elements.bullets.BulletPlayer;
 
+import java.util.List;
 import java.util.Map.Entry;
 
 import static java.util.Map.entry;
@@ -31,9 +32,6 @@ public class Player extends Element {
         this.speed = speed;
     }
 
-    public void decreaseLives() {
-    }
-
     public void shoot() {
         BulletPlayer bullet = new BulletPlayer(this.getPosition().getX(), this.getPosition().getY() + 1);
         playerBullet = entry(bullet, true);
@@ -52,11 +50,11 @@ public class Player extends Element {
         return game;
     }
 
-    public Entry<BulletPlayer, Boolean> getBulletsPlayer() {
+    public Entry<BulletPlayer, Boolean> getBulletPlayer() {
         return playerBullet;
     }
 
-    public void setBulletsPlayer(Entry<BulletPlayer, Boolean> playerBullet) {
+    public void setBulletPlayer(Entry<BulletPlayer, Boolean> playerBullet) {
         this.playerBullet = playerBullet;
     }
 

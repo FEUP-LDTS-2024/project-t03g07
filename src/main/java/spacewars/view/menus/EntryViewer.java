@@ -20,6 +20,7 @@ public class EntryViewer {
             case CREDITS -> "Credits";
             case QUIT -> "Quit";
             case RETURN_TO_MENU -> "Return to menu";
+            case PLAY_AGAIN -> "Play again";
         };
         textViewer.draw(entryText, (int) model.getPosition().getX(), (int) model.getPosition().getY(), color, gui);
     }
