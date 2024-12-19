@@ -402,5 +402,15 @@ public class Game {
         }
     }
 
+    public void respawnInvaders() {
+        if (invaders1.isEmpty() && invaders2.isEmpty() && invaders3.isEmpty()) {
+            invaders1.addAll(createInvaders1());
+            invaders2.addAll(createInvaders2());
+            invaders3.addAll(createInvaders3());
+            System.out.println("All invaders respawned!");
+        }
+    }
+
+
 
 }
