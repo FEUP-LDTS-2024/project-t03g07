@@ -55,7 +55,9 @@ public class GameController extends Controller<Game> {
                 onQuit(application);
                 break;
         }
+
         getModel().updatePlayerBullet();
+
         // Move invaders at regular intervals
         if (time - lastMoveTime > MOVE_INTERVAL) {
             invader1Controller.moveInvaders1();
@@ -63,8 +65,8 @@ public class GameController extends Controller<Game> {
             invader3Controller.moveInvaders3();
             lastMoveTime = time;
         }
-        bossInvaderController.moveBoss(time)
-          
+        bossInvaderController.moveBoss(time);
+
         //invader1Controller.shoot();
         getModel().invader1Shoot();
         getModel().updateInvader1Bullet();
@@ -78,6 +80,7 @@ public class GameController extends Controller<Game> {
         if (!bossInvaderController.getBossInvader().isHidden()) {
             getModel().bossInvaderShoot(bossInvaderController.getBossInvader());
             getModel().updateBossInvaderBullet();
+        }
 
         if (isGameOver()){
             transitionToGameOver(application);

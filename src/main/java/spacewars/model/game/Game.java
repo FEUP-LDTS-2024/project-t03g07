@@ -98,6 +98,8 @@ public class Game {
         }
     }
 
+
+
     public void setBulletInvader1(BulletInvader1 bulletInvader1) {
         this.bulletInvader1 = bulletInvader1;
     }
@@ -222,18 +224,40 @@ public class Game {
         invaders3.removeAll(invaders3ToRemove);
     }
 
-    public boolean isBullet(Position position) {
-        return bulletInvader1.getPosition().equals(position);
+    public void checkBulletInvader1Collisions(BulletInvader1 bullet) {
+        if (bullet == null) {
+            return;
+        }
+
+        if (isCollision(player.getPosition(), bullet.getPosition())) {
+            decreaseLives();
+            bulletInvader1 = null;
+        }
     }
 
-//    public List<BulletInvader1> getBulletsInvader1() {
-//        List<BulletInvader1> bullets = new ArrayList<>();
-//        for (Invader1 invader : invaders1) {
-//            if (invader.getInvader1Bullet() != null) {
-//                bullets.add(invader.getInvader1Bullet().getKey());
-//            }
-//        }
-//        return bullets;
+    public void checkBulletInvader2Collisions(BulletInvader2 bullet) {
+        if (bullet == null) {
+            return;
+        }
+        if (isCollision(player.getPosition(), bullet.getPosition())) {
+            decreaseLives();
+            bulletInvader2 = null;
+        }
+    }
+
+    public void checkBulletInvader3Collisions(BulletInvader3 bullet) {
+        if (bullet == null) {
+            return;
+        }
+
+        if (isCollision(player.getPosition(), bullet.getPosition())) {
+            decreaseLives();
+            bulletInvader3 = null;
+        }
+    }
+
+//    public boolean isBullet(Position position) {
+//        return bulletInvader1.getPosition().equals(position);
 //    }
 
     public void invader1Shoot() {
@@ -264,6 +288,7 @@ public class Game {
             if (bulletInvader1.getPosition().getY() > 192) {
                 bulletInvader1 = null;
             }
+            checkBulletInvader1Collisions(bulletInvader1);
         }
     }
 
@@ -295,6 +320,7 @@ public class Game {
             if (bulletInvader2.getPosition().getY() > 192) {
                 bulletInvader2 = null;
             }
+            checkBulletInvader2Collisions(bulletInvader2);
         }
     }
 
@@ -326,6 +352,7 @@ public class Game {
             if (bulletInvader3.getPosition().getY() > 192) {
                 bulletInvader3 = null;
             }
+            checkBulletInvader3Collisions(bulletInvader3);
         }
     }
 
@@ -346,6 +373,12 @@ public class Game {
             if (bossBullet.getPosition().getY() > 192) {
                 bossBullet = null;
             }
+        }
+    }
+
+    public void decreaseLives() {
+        if (lives.size() > 0) {
+            lives.remove(lives.size() - 1);
         }
     }
 }
