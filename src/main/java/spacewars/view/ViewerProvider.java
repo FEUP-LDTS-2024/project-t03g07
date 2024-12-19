@@ -4,6 +4,7 @@ import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.BulletBossInvaderViewer;
 import spacewars.view.game.elements.bullets.BulletInvader1Viewer;
+import spacewars.view.game.elements.bullets.BulletInvader2Viewer;
 import spacewars.view.game.elements.bullets.BulletPlayerViewer;
 import spacewars.view.game.elements.invaders.BossInvaderViewer;
 import spacewars.view.game.elements.invaders.Invader1Viewer;
@@ -29,7 +30,8 @@ public class ViewerProvider {
     private final BossInvaderViewer bossInvaderViewer;
 
     private final BulletPlayerViewer bulletPlayerViewer;
-    private final BulletInvader1Viewer bulletNormalInvaderViewer;
+    private final BulletInvader1Viewer bulletInvader1Viewer;
+    private final BulletInvader2Viewer bulletInvader2Viewer;
     private final BulletBossInvaderViewer bulletBossInvaderViewer;
 
     private final TextViewer textViewer;
@@ -55,7 +57,8 @@ public class ViewerProvider {
         this.bossInvaderViewer = new BossInvaderViewer(imageLoader);
 
         this.bulletPlayerViewer = new BulletPlayerViewer(imageLoader);
-        this.bulletNormalInvaderViewer = new BulletInvader1Viewer(imageLoader);
+        this.bulletInvader1Viewer = new BulletInvader1Viewer(imageLoader);
+        this.bulletInvader2Viewer = new BulletInvader2Viewer(imageLoader);
         this.bulletBossInvaderViewer = new BulletBossInvaderViewer(imageLoader);
 
         this.textViewer = new AppTextViewer();
@@ -98,8 +101,8 @@ public class ViewerProvider {
         return bulletPlayerViewer;
     }
 
-    public BulletInvader1Viewer getBulletNormalInvaderViewer() {
-        return bulletNormalInvaderViewer;
+    public BulletInvader1Viewer getBulletInvader1Viewer() {
+        return bulletInvader1Viewer;
     }
 
     public BulletBossInvaderViewer getBulletBossInvaderViewer() {
@@ -144,5 +147,9 @@ public class ViewerProvider {
 
     public LiveViewer getLiveViewer() {
         return liveViewer;
+    }
+
+    public BulletInvader2Viewer getBulletInvader2Viewer() {
+        return bulletInvader2Viewer;
     }
 }

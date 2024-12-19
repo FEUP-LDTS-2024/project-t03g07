@@ -9,6 +9,7 @@ import spacewars.view.game.elements.ElementViewer;
 import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.BulletInvader1Viewer;
+import spacewars.view.game.elements.bullets.BulletInvader2Viewer;
 import spacewars.view.game.elements.bullets.BulletPlayerViewer;
 import spacewars.view.game.elements.invaders.Invader1Viewer;
 import spacewars.view.game.elements.invaders.Invader2Viewer;
@@ -29,7 +30,8 @@ public class GameViewer extends ScreenViewer<Game> {
     private final BossInvaderViewer bossInvaderViewer;
 
     private final BulletPlayerViewer bulletPlayerViewer;
-    private final BulletInvader1Viewer bulletNormalInvaderViewer;
+    private final BulletInvader1Viewer bulletInvader1Viewer;
+    private final BulletInvader2Viewer bulletInvader2Viewer;
     /*private final BulletBossInvaderViewer bulletBossInvaderViewer;*/
 
     private final TextViewer textViewer;
@@ -44,7 +46,8 @@ public class GameViewer extends ScreenViewer<Game> {
         this.invader3Viewer = viewerProvider.getInvader3Viewer();
         this.bulletPlayerViewer = viewerProvider.getBulletPlayerViewer();
         this.bossInvaderViewer = viewerProvider.getBossInvaderViewer();
-        this.bulletNormalInvaderViewer = viewerProvider.getBulletNormalInvaderViewer();
+        this.bulletInvader1Viewer = viewerProvider.getBulletInvader1Viewer();
+        this.bulletInvader2Viewer = viewerProvider.getBulletInvader2Viewer();
         /*this.bulletBossInvaderViewer = viewerProvider.getBulletBossInvaderViewer();*/
         this.textViewer = viewerProvider.getTextViewer();
         this.liveViewer = viewerProvider.getLiveViewer();
@@ -72,8 +75,14 @@ public class GameViewer extends ScreenViewer<Game> {
         }
 
         if (getModel().getBulletInvader1() != null) {
-            drawElement(gui, getModel().getBulletInvader1(), bulletNormalInvaderViewer);
+            drawElement(gui, getModel().getBulletInvader1(), bulletInvader1Viewer);
         }
+
+        if (getModel().getBulletInvader2() != null) {
+            drawElement(gui, getModel().getBulletInvader2(), bulletInvader2Viewer);
+        }
+
+        
 
 
         /*drawElement(gui, getModel().getBulletBossInvader(), bulletBossInvaderViewer);*/
