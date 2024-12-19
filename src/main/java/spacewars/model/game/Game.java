@@ -1,5 +1,6 @@
 package spacewars.model.game;
 
+import spacewars.controller.game.elements.invaders.BossInvaderController;
 import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
@@ -30,6 +31,9 @@ public class Game {
     private long lastInvader3ShootTime = 0;
     private long lastBossShootTime = 0;
     private BulletBossInvader bulletBossInvader;
+
+    private BossInvaderController bossController;
+
     private Score score;
     private Timer bossRespawnTimer;
 
@@ -182,6 +186,7 @@ public class Game {
         List<Invader1> invaders1ToRemove = new ArrayList<>();
         List<Invader2> invaders2ToRemove = new ArrayList<>();
         List<Invader3> invaders3ToRemove = new ArrayList<>();
+        List<BossInvader> bossRemove = new ArrayList<>();
 
         for (Invader1 invader : invaders1) {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
@@ -208,11 +213,13 @@ public class Game {
             }
         }
 
-        if (isCollision(bossInvader.getPosition(), bullet.getPosition())) {
-            player.setBulletPlayer(null);
-            bossInvader = new BossInvader(0,30,this);
-            score.increaseScore(bossInvader.getRandomPoints());
-            bossInvader.setHidden(true);
+        if (bossInvader!=null) {
+            if (isCollision(bossInvader.getPosition(), bullet.getPosition())) {
+                player.setBulletPlayer(null);
+                score.increaseScore(bossInvader.getRandomPoints());
+                bossInvader = null;
+                respawnBoss();
+            }
         }
 
         if (checkTopBoundary(bullet.getPosition().getY())) {
@@ -407,10 +414,14 @@ public class Game {
             invaders1.addAll(createInvaders1());
             invaders2.addAll(createInvaders2());
             invaders3.addAll(createInvaders3());
-            System.out.println("All invaders respawned!");
         }
     }
 
-
-
+    public void respawnBoss() {
+        if (bossInvader == null) {
+            System.out.println("Respawning boss");
+            bossInvader = new BossInvader(-50, 30, this); // Create a new boss
+            bossController = new BossInvaderController(bossInvader, 320); // Update the controller
+        }
+    }
 }
