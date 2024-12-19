@@ -12,7 +12,7 @@ public class BulletBossInvaderViewer implements ElementViewer<BulletBossInvader>
     private final Image image;
 
     public BulletBossInvaderViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("elements/bullets/bullet_3.png");
+        this.image = imageLoader.get("elements/bullets/bullet_4.png");
     }
 
     @Override

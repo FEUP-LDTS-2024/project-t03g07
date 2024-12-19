@@ -39,4 +39,8 @@ public class BossInvaderController {
         bossInvader.setPosition(new Position(-bossInvader.getSize(), bossInvader.getPosition().getY()));
         bossInvader.setHidden(false);
     }
+
+    public BossInvader getBossInvader() {
+        return bossInvader;
+    }
 }

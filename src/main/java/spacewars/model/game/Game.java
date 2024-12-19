@@ -22,9 +22,11 @@ public class Game {
     private BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
     private BulletInvader3 bulletInvader3;
+    private Bullet bossBullet;
     private long lastInvader1ShootTime = 0;
     private long lastInvader2ShootTime = 0;
     private long lastInvader3ShootTime = 0;
+    private long lastBossShootTime = 0;
     private BulletBossInvader bulletBossInvader;
 
     private final List<Live> lives;
@@ -306,6 +308,26 @@ public class Game {
             // Remove the bullet if it moves off the screen
             if (bulletInvader3.getPosition().getY() > 192) {
                 bulletInvader3 = null;
+            }
+        }
+    }
+
+    public void bossInvaderShoot(BossInvader bossInvader) {
+        // Ensure boss is not hidden and enough time has passed since the last shot
+        if (!bossInvader.isHidden() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
+            bossBullet = new BulletBossInvader(bossInvader.getPosition().getX(), bossInvader.getPosition().getY() + 1); // Bullet starts below the boss
+            lastBossShootTime = System.currentTimeMillis();
+            System.out.println("Boss shot a bullet at position: " + bossBullet.getPosition().getX() + ", " + bossBullet.getPosition().getY());
+        }
+    }
+
+    public void updateBossInvaderBullet() {
+        if (bossBullet != null) {
+            bossBullet.update(); // Move the bullet
+
+            // Remove the bullet if it moves off the screen
+            if (bossBullet.getPosition().getY() > 192) {
+                bossBullet = null;
             }
         }
     }
