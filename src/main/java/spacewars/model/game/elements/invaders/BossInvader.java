@@ -18,7 +18,7 @@ public class BossInvader extends Invader{
     }
 
 
-    private int getRandomPoints() {
+    public int getRandomPoints() {
         int[] possiblePoints = {75, 100, 250, 500, 999};
         double[] probabilities = {0.5, 0.2, 0.15, 0.1, 0.05}; //probabilities must sum to 1
 
