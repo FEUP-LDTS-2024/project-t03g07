@@ -13,15 +13,19 @@ import spacewars.model.game.elements.invaders.BossInvader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Game {
     private final Player player;
     private final List<Invader1> invaders1;
     private final List<Invader2> invaders2;
     private final List<Invader3> invaders3;
-    private final BossInvader bossInvader;
+    private BossInvader bossInvader;
     private BulletNormalInvader bulletNormalInvader;
     private BulletBossInvader bulletBossInvader;
+    private Score score;
+    private Timer bossRespawnTimer;
 
     private final List<Live> lives;
 
@@ -34,6 +38,8 @@ public class Game {
         this.invaders3 = createInvaders3();
         this.bossInvader = createBossInvader();
         this.lives = createLives();
+        this.score = new Score();
+        this.bossRespawnTimer = new Timer();
     }
 
     private Player createPlayer() {
@@ -124,7 +130,7 @@ public class Game {
     }
 
     public String getScoreText() {
-        return "Score: ";
+        return "Score: " + score.getScore();
     }
 
     public List<Live> getLives() {
@@ -165,6 +171,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletsPlayer(null);
                 invaders1ToRemove.add(invader);
+                score.increaseScore(10);
                 break;
             }
         }
@@ -172,6 +179,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletsPlayer(null);
                 invaders2ToRemove.add(invader);
+                score.increaseScore(20);
                 break;
             }
         }
@@ -179,9 +187,18 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletsPlayer(null);
                 invaders3ToRemove.add(invader);
+                score.increaseScore(40);
                 break;
             }
         }
+
+        if (isCollision(bossInvader.getPosition(), bullet.getPosition())) {
+            player.setBulletsPlayer(null);
+            bossInvader = new BossInvader(0,30,this);
+            score.increaseScore(bossInvader.getRandomPoints());
+            bossInvader.setHidden(true);
+        }
+
         if (checkTopBoundary(bullet.getPosition().getY())) {
             player.setBulletsPlayer(null);
         }

@@ -15,13 +15,11 @@ public class Score {
         this.score = 0;
     }
 
-    public int getScore() {
-        return score;
+    public String getScore() {
+        return String.format("%05d", this.score); // Format for display
     }
 
-    public void checkScore() {
-        if (score > HighScore.getHighScore()) {
-            HighScore.saveHighScore(score);
-        }
+    public int getRawScore() {
+        return this.score; // Return as integer if needed
     }
 }
