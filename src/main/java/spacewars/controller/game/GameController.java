@@ -2,6 +2,11 @@ package spacewars.controller.game;
 
 import spacewars.Application;
 import spacewars.controller.Controller;
+import spacewars.controller.game.elements.*;
+import spacewars.controller.game.elements.invaders.BossInvaderController;
+import spacewars.controller.game.elements.invaders.Invader1Controller;
+import spacewars.controller.game.elements.invaders.Invader2Controller;
+import spacewars.controller.game.elements.invaders.Invader3Controller;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
 import spacewars.model.menu.MainMenu;
@@ -60,7 +65,10 @@ public class GameController extends Controller<Game> {
 
         //invader1Controller.shoot();
         getModel().invader1Shoot();
-        getModel().updateInvaderBullet();
+        getModel().updateInvader1Bullet();
+
+        getModel().invader2Shoot();
+        getModel().updateInvader2Bullet();
     }
 
     private void onQuit(Application application) throws IOException, URISyntaxException, FontFormatException {

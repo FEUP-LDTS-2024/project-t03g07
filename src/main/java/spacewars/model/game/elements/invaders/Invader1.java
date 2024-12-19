@@ -45,17 +45,17 @@ public class Invader1 extends Invader {
         return game;
     }
 
-    public void shoot() {
-        BulletInvader1 bullet = new BulletInvader1(this.getPosition().getX(), this.getPosition().getY() + 1);
-        invader1Bullet = entry(bullet, true);
-        lastShootTime = System.currentTimeMillis();
-    }
-
-    public long getLastShootTime() {
-        return lastShootTime;
-    }
-
-    public Entry<BulletInvader1, Boolean> getInvader1Bullet() {
-        return invader1Bullet;
-    }
+//    public void shoot() {
+//        BulletInvader1 bullet = new BulletInvader1(this.getPosition().getX(), this.getPosition().getY() + 1);
+//        invader1Bullet = entry(bullet, true);
+//        lastShootTime = System.currentTimeMillis();
+//    }
+//
+//    public long getLastShootTime() {
+//        return lastShootTime;
+//    }
+//
+//    public Entry<BulletInvader1, Boolean> getInvader1Bullet() {
+//        return invader1Bullet;
+//    }
 }
