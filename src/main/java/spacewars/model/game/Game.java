@@ -3,10 +3,7 @@ package spacewars.model.game;
 import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
-import spacewars.model.game.elements.bullets.BulletBossInvader;
-import spacewars.model.game.elements.bullets.BulletInvader1;
-import spacewars.model.game.elements.bullets.BulletInvader2;
-import spacewars.model.game.elements.bullets.BulletPlayer;
+import spacewars.model.game.elements.bullets.*;
 import spacewars.model.game.elements.invaders.Invader1;
 import spacewars.model.game.elements.invaders.Invader2;
 import spacewars.model.game.elements.invaders.Invader3;
@@ -24,8 +21,10 @@ public class Game {
     private final BossInvader bossInvader;
     private BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
-    private long lastInvader1ShootTime = 0; // Track when the last bullet was sho
-    private long lastInvader2ShootTime = 0; // Track when the last bullet was sho
+    private BulletInvader3 bulletInvader3;
+    private long lastInvader1ShootTime = 0;
+    private long lastInvader2ShootTime = 0;
+    private long lastInvader3ShootTime = 0;
     private BulletBossInvader bulletBossInvader;
 
     private final List<Live> lives;
@@ -126,6 +125,10 @@ public class Game {
 
     public BulletInvader2 getBulletInvader2() {
         return bulletInvader2;
+    }
+
+    public BulletInvader3 getBulletInvader3() {
+        return bulletInvader3;
     }
 
     public BulletBossInvader getBulletBossInvader() {
@@ -272,6 +275,37 @@ public class Game {
             // Remove the bullet if it moves off the screen
             if (bulletInvader2.getPosition().getY() > 192) {
                 bulletInvader2 = null;
+            }
+        }
+    }
+
+    public void invader3Shoot() {
+        if (bulletInvader3 == null && System.currentTimeMillis() - lastInvader3ShootTime > 2000) { // Shoot every 2 seconds
+            List<Invader3> activeInvaders = new ArrayList<>();
+
+            // Collect all active invaders
+            for (Invader3 invader : invaders3) {
+                if (invader != null) {
+                    activeInvaders.add(invader);
+                }
+            }
+
+            // Choose a random invader to shoot
+            if (!activeInvaders.isEmpty()) {
+                Invader3 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
+                bulletInvader3 = new BulletInvader3(randomInvader.getPosition().getX(), randomInvader.getPosition().getY() + 1);
+                lastInvader3ShootTime = System.currentTimeMillis();
+            }
+        }
+    }
+
+    public void updateInvader3Bullet() {
+        if (bulletInvader3 != null) {
+            bulletInvader3.update();
+
+            // Remove the bullet if it moves off the screen
+            if (bulletInvader3.getPosition().getY() > 192) {
+                bulletInvader3 = null;
             }
         }
     }
