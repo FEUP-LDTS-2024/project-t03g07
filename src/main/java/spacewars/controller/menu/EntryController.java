@@ -59,7 +59,7 @@ public class EntryController extends Controller<Menu> {
                 break;
             case PLAY_AGAIN:
                 if (action == GUI.ACTION.SELECT) {
-                    //app.setState(new GameState(new GameBuilder().build(), app.getImageLoader()));
+                    app.setState(new GameState(new Game(), app.getImageLoader()));
                 }
                 break;
         }
