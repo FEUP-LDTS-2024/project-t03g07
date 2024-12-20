@@ -74,6 +74,7 @@ public class Application {
         }
 
         gui.close();
+        System.exit(0);
     }
 
 }
