@@ -374,7 +374,6 @@ public class Game {
         if (bossInvader.isAlive() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
             bossBullet = new BulletBossInvader(bossInvader.getPosition().getX(), bossInvader.getPosition().getY() + 1); // Bullet starts below the boss
             lastBossShootTime = System.currentTimeMillis();
-            System.out.println("Boss shot a bullet at position: " + bossBullet.getPosition().getX() + ", " + bossBullet.getPosition().getY());
         }
     }
 
