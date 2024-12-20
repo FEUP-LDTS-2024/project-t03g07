@@ -14,7 +14,7 @@ public class BulletInvader3Viewer implements ElementViewer<BulletInvader3> {
     private final Image image;
 
     public BulletInvader3Viewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("elements/bullets/bullet_4.png");
+        this.image = imageLoader.get("elements/bullets/bullet_5.png");
     }
 
     @Override
