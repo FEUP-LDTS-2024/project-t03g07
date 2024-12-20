@@ -17,9 +17,11 @@ public class BossInvaderViewer implements ElementViewer<BossInvader> {
 
     @Override
     public void draw(BossInvader element, GUI gui) throws IOException {
-        if (!element.isHidden()) {
-            // Render the boss using its current position
-            image.draw(gui,element.getPosition().getX(), element.getPosition().getY());
+        if (element!=null) {
+            if (!element.isHidden()) {
+                // Render the boss using its current position
+                image.draw(gui,element.getPosition().getX(), element.getPosition().getY());
+            }
         }
     }
 }

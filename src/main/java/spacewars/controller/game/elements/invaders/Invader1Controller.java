@@ -7,10 +7,11 @@ import java.util.List;
 
 public class Invader1Controller {
     private final List<Invader1> invaders1;
-    private double direction = -0.5; // Start moving left (-0.5)
+    private double direction;
 
     public Invader1Controller(List<Invader1> invaders1) {
         this.invaders1 = invaders1;
+        this.direction = -0.5; // Start moving left (-0.5)
     }
 
     public void moveInvaders1() {
