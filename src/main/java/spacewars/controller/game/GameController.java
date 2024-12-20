@@ -88,10 +88,10 @@ public class GameController extends Controller<Game> {
         getModel().invader3Shoot();
         getModel().updateInvader3Bullet();
 
-//        if (!bossInvaderController.getBossInvader().isHidden()) {
-//            getModel().bossInvaderShoot(bossInvaderController.getBossInvader());
-//            getModel().updateBossInvaderBullet();
-//        }
+        if (bossInvaderController.getBossInvader().isAlive()) {
+            getModel().bossInvaderShoot(bossInvaderController.getBossInvader());
+            getModel().updateBossInvaderBullet();
+        }
 
         //getModel().respawnInvaders();
         respawnInvaders();

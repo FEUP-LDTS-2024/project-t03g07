@@ -7,40 +7,66 @@ public class BossInvaderController {
     private final BossInvader bossInvader;
     private final int screenWidth;
     private final int speed = 2;
-    private long lastAppearanceTime;
-    private static final long REAPPEAR_INTERVAL = 5000; // Time in milliseconds (30 seconds)
+    private boolean movingRight = true;
+    private long waitStartTime = 0;
+    private final long WAIT_DURATION = 5000; // 1 second wait
+    private long respawnTime = 0;
+    private final long RESPAWN_DURATION = 3000;  // 3 seconds respawn time
+
 
     public BossInvaderController(BossInvader bossInvader, int screenWidth) {
         this.bossInvader = bossInvader;
         this.screenWidth = screenWidth;
-        this.lastAppearanceTime = System.currentTimeMillis() - REAPPEAR_INTERVAL;
         resetBossPosition();
     }
 
+
     public void moveBoss(long currentTime) {
-        if (bossInvader.getPosition().getX() > screenWidth || bossInvader.isHidden()) {
-            if (currentTime - lastAppearanceTime >= REAPPEAR_INTERVAL) {
+
+        if (!bossInvader.isAlive()) {
+            if (currentTime - respawnTime >= RESPAWN_DURATION) {
+                bossInvader.setAlive(true);
                 resetBossPosition();
-                lastAppearanceTime = currentTime;
             }
-            return;
+            return; // Don't move if dead and respawning
         }
 
-        // Move the boss to the right if not hidden
-        Position newPosition = new Position(
-                bossInvader.getPosition().getX() + speed,
-                bossInvader.getPosition().getY()
-        );
-        bossInvader.setPosition(newPosition);
+
+        double x = bossInvader.getPosition().getX();
+
+        if (movingRight) {
+            if (x >= screenWidth) {  // Goes completely off-screen
+                movingRight = false;
+                waitStartTime = currentTime;
+            }
+        } else {  // Moving left
+            if (x + bossInvader.getSize() <= 0) { // Goes completely off-screen
+                movingRight = true;
+                waitStartTime = currentTime;
+                respawnTime = currentTime; // Start respawn timer when off-screen left
+                bossInvader.setAlive(false); // Set to dead to trigger respawn logic
+            }
+        }
+
+
+        if (currentTime - waitStartTime >= WAIT_DURATION) {
+            int dx = movingRight ? speed : -speed;
+            Position newPosition = new Position(x + dx, bossInvader.getPosition().getY());
+            bossInvader.setPosition(newPosition);
+        }
+
+
     }
 
     private void resetBossPosition() {
-        // Reset the boss's position to the left side of the screen and make it visible again
+        movingRight = true;
         bossInvader.setPosition(new Position(-bossInvader.getSize(), bossInvader.getPosition().getY()));
-        bossInvader.setHidden(false);
     }
+
+
 
     public BossInvader getBossInvader() {
         return bossInvader;
     }
+
 }
