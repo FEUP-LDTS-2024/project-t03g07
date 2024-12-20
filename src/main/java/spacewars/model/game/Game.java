@@ -31,6 +31,7 @@ public class Game {
     private long lastInvader3ShootTime = 0;
     private long lastBossShootTime = 0;
     private BulletBossInvader bulletBossInvader;
+    private final int highScore;
 
     private BossInvaderController bossController;
 
@@ -50,7 +51,7 @@ public class Game {
         this.lives = createLives();
         this.score = new Score();
         this.bossRespawnTimer = new Timer();
-        HighScore.loadHighScore();
+        this.highScore = HighScore.loadHighScore();
     }
 
     private Player createPlayer() {
@@ -152,6 +153,10 @@ public class Game {
 
     public String getScoreText() {
         return "Score: " + score.getScore();
+    }
+
+    public String getHighScoreText() {
+        return "High Score: " + highScore;
     }
 
     public List<Live> getLives() {

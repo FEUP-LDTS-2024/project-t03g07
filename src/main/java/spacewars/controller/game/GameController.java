@@ -104,8 +104,9 @@ public class GameController extends Controller<Game> {
     }
 
     private void transitionToGameOver(Application application) throws IOException, URISyntaxException, FontFormatException {
-        GameOver gameOver = new GameOver(getModel().getScore());
-        if (HighScore.loadHighScore() < getModel().getRawScore()) {
+        boolean isHighScore = HighScore.loadHighScore() < getModel().getRawScore();
+        GameOver gameOver = new GameOver(getModel().getScore(), isHighScore);
+        if (isHighScore) {
             HighScore.saveHighScore(getModel().getRawScore());
         }
         GameOverState gameOverState = new GameOverState(gameOver, application.getImageLoader());
