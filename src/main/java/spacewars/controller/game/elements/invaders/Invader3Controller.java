@@ -43,7 +43,7 @@ public class Invader3Controller implements RespawnObserver {
     private Position calculateNewPosition(Invader3 invader3) {
         double x = invader3.getPosition().getX();
         double y = invader3.getPosition().getY();
-        return new Position(x + direction, y);
+        return new Position(x + direction * invader3.getSpeed(), y);
     }
 
     private boolean collides(Invader3 invader3, Position newPosition) {
@@ -53,6 +53,9 @@ public class Invader3Controller implements RespawnObserver {
 
     @Override
     public void onRespawn() {
-        direction = -0.5; // Reset direction
+        for (Invader3 invader3 : invaders3) {  // Iterate and update individual speeds
+            invader3.setSpeed(invader3.getSpeed() + 1.0); // Increase individual speed
+        }
+        direction = -0.5;
     }
 }

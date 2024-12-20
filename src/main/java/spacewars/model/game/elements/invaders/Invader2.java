@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import static java.util.Map.entry;
 
 public class Invader2 extends Invader {
-    private int speed;
+    private double speed;
     private Entry<BulletInvader1, Boolean> invader2Bullet;
     private int invader2Size;
     private Game game;
@@ -21,6 +21,7 @@ public class Invader2 extends Invader {
         this.game = game;
         this.invader2Bullet = null;
         this.lastShootTime = 0;
+        this.speed = 1.0;
     }
 
     @Override
@@ -29,11 +30,11 @@ public class Invader2 extends Invader {
         return 10;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 

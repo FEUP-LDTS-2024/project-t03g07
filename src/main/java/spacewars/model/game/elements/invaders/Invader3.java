@@ -3,7 +3,7 @@ package spacewars.model.game.elements.invaders;
 import spacewars.model.game.Game;
 
 public class Invader3 extends Invader {
-    private int speed;
+    private double speed;
     private int invader3Size;
     private Game game;
 
@@ -12,6 +12,7 @@ public class Invader3 extends Invader {
         super(x, y);
         this.invader3Size = 16;
         this.game = game;
+        this.speed = 1.0;
     }
 
     @Override
@@ -20,11 +21,11 @@ public class Invader3 extends Invader {
         return 10;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 

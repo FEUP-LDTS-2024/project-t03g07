@@ -2,6 +2,7 @@ package spacewars.controller.game.elements.invaders;
 
 import spacewars.model.Position;
 import spacewars.model.game.elements.invaders.Invader1;
+import spacewars.model.game.elements.invaders.Invader3;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class Invader1Controller implements RespawnObserver {
     private Position calculateNewPosition(Invader1 invader1) {
         double x = invader1.getPosition().getX();
         double y = invader1.getPosition().getY();
-        return new Position(x + direction, y);
+        return new Position(x + direction * invader1.getSpeed(), y);
     }
 
     private boolean collides(Invader1 invader1, Position newPosition) {
@@ -52,7 +53,10 @@ public class Invader1Controller implements RespawnObserver {
 
     @Override
     public void onRespawn() {
-        direction = -0.5; // Reset direction
+        for (Invader1 invader1 : invaders1) {  // Iterate and update individual speeds
+            invader1.setSpeed(invader1.getSpeed() + 1.0); // Increase individual speed
+        }
+        direction = -0.5;
     }
 
 }
