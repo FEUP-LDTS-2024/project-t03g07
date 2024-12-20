@@ -1,6 +1,8 @@
 package spacewars.model.game;
 
+import spacewars.controller.game.GameController;
 import spacewars.controller.game.elements.invaders.BossInvaderController;
+import spacewars.controller.game.elements.invaders.RespawnObserver;
 import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
@@ -423,13 +425,13 @@ public class Game {
         return score.getRawScore();
     }
   
-    public void respawnInvaders() {
-        if (invaders1.isEmpty() && invaders2.isEmpty() && invaders3.isEmpty()) {
-            invaders1.addAll(createInvaders1());
-            invaders2.addAll(createInvaders2());
-            invaders3.addAll(createInvaders3());
-        }
-    }
+//    public void respawnInvaders() {
+//        if (invaders1.isEmpty() && invaders2.isEmpty() && invaders3.isEmpty()) {
+//            invaders1.addAll(createInvaders1());
+//            invaders2.addAll(createInvaders2());
+//            invaders3.addAll(createInvaders3());
+//        }
+//    }
 
     public void respawnBoss() {
         if (bossInvader == null) {

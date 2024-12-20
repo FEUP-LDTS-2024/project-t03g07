@@ -5,7 +5,7 @@ import spacewars.model.game.elements.invaders.Invader1;
 
 import java.util.List;
 
-public class Invader1Controller {
+public class Invader1Controller implements RespawnObserver {
     private final List<Invader1> invaders1;
     private double direction;
 
@@ -50,12 +50,9 @@ public class Invader1Controller {
                 (direction > 0 && invader1.getGame().collidesRight(newPosition, invader1.getInvader1Size()));
     }
 
-//    public void shoot() {
-//        for (Invader1 invader1 : invaders1) {
-//            long currentTime = System.currentTimeMillis();
-//            if (invader1.getInvader1Bullet() == null && (currentTime - invader1.getLastShootTime() >= 1000)) {
-//                invader1.shoot();
-//            }
-//        }
-//    }
+    @Override
+    public void onRespawn() {
+        direction = -0.5; // Reset direction
+    }
+
 }
