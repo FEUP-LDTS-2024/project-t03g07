@@ -9,6 +9,7 @@ import spacewars.view.game.elements.invaders.Invader2Viewer;
 import spacewars.view.game.elements.invaders.Invader3Viewer;
 import spacewars.view.images.ImageLoader;
 import spacewars.view.menus.EntryViewer;
+import spacewars.view.menus.GameOverImageViewer;
 import spacewars.view.menus.how_to_play.*;
 import spacewars.view.menus.main_menu.LogoViewer;
 import spacewars.view.texts.AppTextViewer;
@@ -35,6 +36,7 @@ public class ViewerProvider {
     private final TextViewer textViewer;
     private final EntryViewer entryViewer;
     private final LogoViewer logoViewer;
+    private final GameOverImageViewer gameOverImageViewer;
 
     private final ArrowsViewer arrowsViewer;
     private final SpacebarViewer spacebarViewer;
@@ -63,6 +65,7 @@ public class ViewerProvider {
         this.textViewer = new AppTextViewer();
         this.entryViewer = new EntryViewer(textViewer);
         this.logoViewer = new LogoViewer(imageLoader);
+        this.gameOverImageViewer = new GameOverImageViewer(imageLoader);
 
         this.arrowsViewer = new ArrowsViewer(imageLoader);
         this.spacebarViewer = new SpacebarViewer(imageLoader);
@@ -154,5 +157,9 @@ public class ViewerProvider {
 
     public BulletInvader3Viewer getBulletInvader3Viewer() {
         return bulletInvader3Viewer;
+    }
+
+    public GameOverImageViewer getGameOverImageViewer() {
+        return gameOverImageViewer;
     }
 }
