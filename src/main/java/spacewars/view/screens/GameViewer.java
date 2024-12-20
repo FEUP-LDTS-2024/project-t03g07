@@ -67,6 +67,7 @@ public class GameViewer extends ScreenViewer<Game> {
         drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
 
         drawText(gui, getModel().getScoreText(), 5, 5, TextColor.ANSI.WHITE);
+        drawText(gui, getModel().getHighScoreText(), 5, 15, TextColor.ANSI.WHITE);
 
         drawElements(gui, getModel().getLives(), liveViewer);
 

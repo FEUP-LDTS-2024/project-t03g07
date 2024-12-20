@@ -9,10 +9,12 @@ import java.util.List;
 public class GameOver extends Menu {
     private String GameOverMessage;
     private final String finalScore;
+    private boolean isNewHighScore;
 
-    public GameOver(String finalScore) {
+    public GameOver(String finalScore, boolean newHighScore) {
         GameOverMessage = "GameOver";
         this.finalScore = finalScore;
+        this.isNewHighScore = newHighScore;
     }
 
     public String getGameOverMessage() {
@@ -25,6 +27,14 @@ public class GameOver extends Menu {
 
     public String getFinalScoreMessage() {
         return "Your final score is: " + finalScore;
+    }
+
+    public boolean isNewHighScore() {
+        return isNewHighScore;
+    }
+
+    public String getNewHighScoreMessage() {
+        return "NEW HIGH SCORE!";
     }
 
     @Override
