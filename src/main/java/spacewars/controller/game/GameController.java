@@ -9,6 +9,7 @@ import spacewars.controller.game.elements.invaders.Invader2Controller;
 import spacewars.controller.game.elements.invaders.Invader3Controller;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
+import spacewars.model.game.HighScore;
 import spacewars.model.game.elements.invaders.BossInvader;
 import spacewars.model.menu.GameOver;
 import spacewars.model.menu.MainMenu;
@@ -103,7 +104,10 @@ public class GameController extends Controller<Game> {
     }
 
     private void transitionToGameOver(Application application) throws IOException, URISyntaxException, FontFormatException {
-        GameOver gameOver = new GameOver();
+        GameOver gameOver = new GameOver(getModel().getScore());
+        if (HighScore.loadHighScore() < getModel().getRawScore()) {
+            HighScore.saveHighScore(getModel().getRawScore());
+        }
         GameOverState gameOverState = new GameOverState(gameOver, application.getImageLoader());
         application.setState(gameOverState);
     }

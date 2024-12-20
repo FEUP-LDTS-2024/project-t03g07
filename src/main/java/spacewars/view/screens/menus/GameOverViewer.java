@@ -41,7 +41,7 @@ public class GameOverViewer extends ScreenViewer<GameOver> {
 
     private void drawFinalScore(GUI gui) {
         Position pos = new Position(95,70);
-        textViewer.draw(getModel().getFinalScore(), pos.getX(),pos.getY(),finalScoreColor,gui);
+        textViewer.draw(getModel().getFinalScoreMessage(), pos.getX(),pos.getY(),finalScoreColor,gui);
     }
 
     private void drawGameOver(GUI gui) {

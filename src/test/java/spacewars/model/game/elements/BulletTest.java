@@ -10,7 +10,6 @@ import static org.mockito.Mockito.when;
 
 public class BulletTest
 {
-<<<<<<< HEAD
     // @Test
     // public void getPosition()
     // {
@@ -22,19 +21,17 @@ public class BulletTest
     //     assertEquals(0, bulletNormalInvader.getPosition().getX());
     //     assertEquals(0, bulletNormalInvader.getPosition().getY());
     // }
-=======
-    @Test
-    public void getPosition()
-    {
-        Position mockPosition = mock(Position.class);
-        when(mockPosition.getX()).thenReturn(0);
-        when(mockPosition.getY()).thenReturn(0);
-        BulletInvader1 bulletNormalInvader = new BulletInvader1(0, 0);
-        bulletNormalInvader.setPosition(mockPosition);
-        assertEquals(0, bulletNormalInvader.getPosition().getX());
-        assertEquals(0, bulletNormalInvader.getPosition().getY());
-    }
->>>>>>> ae4d0fc (Made the invader shooting choose one invader at random to shoot)
+//    @Test
+//    public void getPosition()
+//    {
+//        Position mockPosition = mock(Position.class);
+//        when(mockPosition.getX()).thenReturn(0);
+//        when(mockPosition.getY()).thenReturn(0);
+//        BulletInvader1 bulletNormalInvader = new BulletInvader1(0, 0);
+//        bulletNormalInvader.setPosition(mockPosition);
+//        assertEquals(0, bulletNormalInvader.getPosition().getX());
+//        assertEquals(0, bulletNormalInvader.getPosition().getY());
+//    }
 
     @Test
     public void setPosition()

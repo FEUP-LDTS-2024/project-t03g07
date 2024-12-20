@@ -8,12 +8,11 @@ import java.util.List;
 
 public class GameOver extends Menu {
     private String GameOverMessage;
-    private String finalScore;
+    private final String finalScore;
 
-    public GameOver() {
+    public GameOver(String finalScore) {
         GameOverMessage = "GameOver";
-        finalScore = "Your final score is: " + finalScore;
-
+        this.finalScore = finalScore;
     }
 
     public String getGameOverMessage() {
@@ -24,12 +23,8 @@ public class GameOver extends Menu {
         this.GameOverMessage = GameOver;
     }
 
-    public String getFinalScore() {
-        return finalScore;
-    }
-
-    public void setFinalScore(String details) {
-        this.finalScore = finalScore;
+    public String getFinalScoreMessage() {
+        return "Your final score is: " + finalScore;
     }
 
     @Override
