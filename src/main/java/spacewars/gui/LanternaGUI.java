@@ -16,31 +16,17 @@ import spacewars.model.Position;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
 
 import static java.awt.event.KeyEvent.*;
-import static java.awt.event.KeyEvent.VK_X;
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
-
-    private static final java.util.List<Integer> SPAM_KEYS = List.of(VK_LEFT, VK_RIGHT);
-    private boolean keySpam;
-    private KeyEvent priorityKeyPressed;
-    private final KeyAdapter keyAdapter;
     private KeyEvent keyPressed;
-
-    /*public LanternaGUI(Screen screen) {
-        this.screen = screen; this.keySpam = false;
-        this.priorityKeyPressed = null;
-        this.keyAdapter = createKeyAdapter();
-        this.keyPressed = null;
-    }*/
+    private int lastMovementAction = -1;  // Store the last movement key
 
     public LanternaGUI(int width, int height) throws URISyntaxException, IOException, FontFormatException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
@@ -60,12 +46,10 @@ public class LanternaGUI implements GUI {
             }
         });
         this.screen = createScreen(terminal);
-        this.keySpam = false;
-        this.priorityKeyPressed = null;
-        this.keyAdapter = createKeyAdapter();
+        KeyAdapter keyAdapter = createKeyAdapter();
         this.keyPressed = null;
 
-        terminal.getComponent(0).addKeyListener(this.keyAdapter);
+        terminal.getComponent(0).addKeyListener(keyAdapter);
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, IOException, FontFormatException {
@@ -103,18 +87,14 @@ public class LanternaGUI implements GUI {
         return new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (keySpam && SPAM_KEYS.contains(e.getKeyCode()))
-                    keyPressed = priorityKeyPressed = e;
-                else
-                    keyPressed = e;
+                keyPressed = e;
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if (keySpam && SPAM_KEYS.contains(e.getKeyCode()))
-                    keyPressed = priorityKeyPressed = null;
-                else
-                    keyPressed = priorityKeyPressed;
+                if (e.getKeyCode() == lastMovementAction) {
+                    lastMovementAction = -1; //Clear last movement if the current released key was the one in effect.
+                }
             }
         };
     }
@@ -128,15 +108,11 @@ public class LanternaGUI implements GUI {
         screen.startScreen();
     }
 
-    public void stopScreen() throws IOException {
-        screen.stopScreen();
-    }
-
     @Override
     public void drawPixel(double x, double y, TextColor.RGB color) {
         var graphics = this.screen.newTextGraphics();
         graphics.setBackgroundColor(color);
-        graphics.putString((int)x, (int)y, " "); // Use a space character to create a "pixel"
+        graphics.putString((int) x, (int) y, " "); // Use a space character to create a "pixel"
     }
 
     @Override
@@ -152,37 +128,55 @@ public class LanternaGUI implements GUI {
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString((int)position.getX(), (int)position.getY(), text);
+        tg.putString((int) position.getX(), (int) position.getY(), text);
     }
 
     @Override
-    public ACTION getNextAction() throws IOException {
-        if (keyPressed == null)
-            return ACTION.NONE;
+    public ACTION getNextAction() {
+        ACTION action = ACTION.NONE;       // Default action
 
-        int keyCode = keyPressed.getKeyCode();
-        keyPressed = priorityKeyPressed;
+        if (keyPressed != null) {
+            int keyCode = keyPressed.getKeyCode();
 
-        return switch (keyCode) {
-            case VK_UP -> ACTION.UP;
-            case VK_DOWN -> ACTION.DOWN;
-            case VK_LEFT -> ACTION.LEFT;
-            case VK_RIGHT -> ACTION.RIGHT;
-            case VK_SPACE -> ACTION.SHOOT;
-            case VK_ESCAPE -> ACTION.QUIT;
-            case VK_ENTER -> ACTION.SELECT;
-            default -> ACTION.NONE;
-        };
-    }
+            switch (keyCode) {
+                case VK_UP:
+                    action = ACTION.UP;
+                    break;
+                case VK_DOWN:
+                    action = ACTION.DOWN;
+                    break;
+                case VK_LEFT:
+                    action = ACTION.LEFT;
+                    lastMovementAction = keyCode; // Record movement
+                    break;
+                case VK_RIGHT:
+                    action = ACTION.RIGHT;
+                    lastMovementAction = keyCode; // Record movement
+                    break;
+                case VK_SPACE:
+                    action = ACTION.SHOOT; // Shoot regardless of movement
+                    break;
+                case VK_ESCAPE:
+                    action = ACTION.QUIT;
+                    break;
+                case VK_ENTER:
+                    action = ACTION.SELECT;
+                    break;
+            }
 
-    public void setKeySpam(boolean keySpam) {
-        if (!keySpam)
-            priorityKeyPressed = null;
-        this.keySpam = keySpam;
-    }
+            keyPressed = null;  // Consume the key press
+        } else if (lastMovementAction != -1) { // Check for held movement
+            action = switch (lastMovementAction) {
+                case VK_UP -> ACTION.UP;
+                case VK_DOWN -> ACTION.DOWN;
+                case VK_LEFT -> ACTION.LEFT;
+                case VK_RIGHT -> ACTION.RIGHT;
+                default -> action;
+            };
+        }
 
-    public KeyAdapter getKeyAdapter() {
-        return keyAdapter;
+
+        return action;
     }
 
     @Override
