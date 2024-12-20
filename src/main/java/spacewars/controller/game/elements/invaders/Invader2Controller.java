@@ -5,7 +5,7 @@ import spacewars.model.game.elements.invaders.Invader2;
 
 import java.util.List;
 
-public class Invader2Controller {
+public class Invader2Controller implements RespawnObserver{
     private final List<Invader2> invaders2;
     private double direction;
 
@@ -48,5 +48,10 @@ public class Invader2Controller {
     private boolean collides(Invader2 invader2, Position newPosition) {
         return (direction < 0 && invader2.getGame().collidesLeft(newPosition, invader2.getInvader2Size())) ||
                 (direction > 0 && invader2.getGame().collidesRight(newPosition, invader2.getInvader2Size()));
+    }
+
+    @Override
+    public void onRespawn() {
+        direction = -0.5; // Reset direction
     }
 }
