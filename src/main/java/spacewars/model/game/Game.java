@@ -32,7 +32,6 @@ public class Game {
     private long lastInvader2ShootTime = 0;
     private long lastInvader3ShootTime = 0;
     private long lastBossShootTime = 0;
-    private BulletBossInvader bulletBossInvader;
     private final int highScore;
 
     private BossInvaderController bossController;
@@ -106,17 +105,6 @@ public class Game {
         }
     }
 
-
-
-    public void setBulletInvader1(BulletInvader1 bulletInvader1) {
-        this.bulletInvader1 = bulletInvader1;
-    }
-
-    public void setBulletBossInvader(BulletBossInvader bulletBossInvader) {
-        this.bulletBossInvader = bulletBossInvader;
-    }
-
-
     public Player getPlayer() {
         return player;
     }
@@ -150,7 +138,7 @@ public class Game {
     }
 
     public BulletBossInvader getBulletBossInvader() {
-        return bulletBossInvader;
+        return bossBullet;
     }
 
     public String getScoreText() {
@@ -225,8 +213,7 @@ public class Game {
             if (isCollision(bossInvader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 score.increaseScore(bossInvader.getRandomPoints());
-                bossInvader = null;
-                respawnBoss();
+                bossInvader.setAlive(false);
             }
         }
 
@@ -278,7 +265,7 @@ public class Game {
 
         if (isCollision(player.getPosition(), bullet.getPosition())) {
             decreaseLives();
-            bulletBossInvader = null;
+            bossBullet = null;
         }
     }
 
@@ -384,7 +371,7 @@ public class Game {
 
     public void bossInvaderShoot(BossInvader bossInvader) {
         // Ensure boss is not hidden and enough time has passed since the last shot
-        if (!bossInvader.isHidden() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
+        if (bossInvader.isAlive() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
             bossBullet = new BulletBossInvader(bossInvader.getPosition().getX(), bossInvader.getPosition().getY() + 1); // Bullet starts below the boss
             lastBossShootTime = System.currentTimeMillis();
             System.out.println("Boss shot a bullet at position: " + bossBullet.getPosition().getX() + ", " + bossBullet.getPosition().getY());

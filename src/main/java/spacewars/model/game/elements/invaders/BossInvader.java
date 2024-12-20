@@ -7,14 +7,13 @@ import java.util.Random;
 public class BossInvader extends Invader{
     private final int points;
     private Game game;
-    private boolean hidden; // Whether the boss is off-screen and waiting to reappear
     private int size = 16;
+    private boolean alive = true;
 
     public BossInvader(int x, int y, Game game) {
         super(x, y);
         this.points = getRandomPoints();
         this.game = game;
-        this.hidden = true; // Initially hidden
     }
 
 
@@ -43,11 +42,11 @@ public class BossInvader extends Invader{
         return size;
     }
 
-    public boolean isHidden() {
-        return hidden;
+    public boolean isAlive() {
+        return alive;
     }
 
-    public void setHidden(boolean hidden) {
-        this.hidden = hidden;
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }
