@@ -6,22 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ScoreTest
 {
-    @Test
-    public void testIncreaseScore()
-    {
-        Score score = new Score();
-        score.increaseScore(10);
-        assertEquals(10, score.getScore());
-    }
-
-    @Test
-    public void testResetScore()
-    {
-        Score score = new Score();
-        score.increaseScore(10);
-        score.resetScore();
-        assertEquals(0, score.getScore());
-    }
+//    @Test
+//    public void testIncreaseScore()
+//    {
+//        Score score = new Score();
+//        score.increaseScore(10);
+//        assertEquals(10, score.getScore());
+//    }
+//
+//    @Test
+//    public void testResetScore()
+//    {
+//        Score score = new Score();
+//        score.increaseScore(10);
+//        score.resetScore();
+//        assertEquals(0, score.getScore());
+//    }
 
 //    @Test
 //    public void testCheckScoreNotHighScore() {

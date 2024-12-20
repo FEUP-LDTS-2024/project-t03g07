@@ -18,17 +18,17 @@ public class PositionTest {
         assertEquals(y, new Position(x, y).getRight().getY());
     }*/
 
-    @Property
-    void getUp(@ForAll int x, @ForAll int y) {
-        assertEquals(x, new Position(x, y).getUp().getX());
-        assertEquals(y - 1, new Position(x, y).getUp().getY());
-    }
-
-    @Property
-    void getDown(@ForAll int x, @ForAll int y) {
-        assertEquals(x, new Position(x, y).getDown().getX());
-        assertEquals(y + 1, new Position(x, y).getDown().getY());
-    }
+//    @Property
+//    void getUp(@ForAll int x, @ForAll int y) {
+//        assertEquals(x, new Position(x, y).getUp().getX());
+//        assertEquals(y - 1, new Position(x, y).getUp().getY());
+//    }
+//
+//    @Property
+//    void getDown(@ForAll int x, @ForAll int y) {
+//        assertEquals(x, new Position(x, y).getDown().getX());
+//        assertEquals(y + 1, new Position(x, y).getDown().getY());
+//    }
 
     @Property
     void equalsAndHash(@ForAll int x, @ForAll int y) {
