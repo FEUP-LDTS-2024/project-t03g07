@@ -146,7 +146,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders1ToRemove.add(invader);
-                score.increaseScore(10);
+                score.increaseScore(invader.getPoints());
                 break;
             }
         }
@@ -154,7 +154,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders2ToRemove.add(invader);
-                score.increaseScore(20);
+                score.increaseScore(invader.getPoints());
                 break;
             }
         }
@@ -162,7 +162,7 @@ public class Game {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders3ToRemove.add(invader);
-                score.increaseScore(40);
+                score.increaseScore(invader.getPoints());
                 break;
             }
         }
