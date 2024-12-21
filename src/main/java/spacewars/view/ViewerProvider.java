@@ -4,9 +4,9 @@ import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.*;
 import spacewars.view.game.elements.invaders.BossInvaderViewer;
-import spacewars.view.game.elements.invaders.Invader1Viewer;
-import spacewars.view.game.elements.invaders.Invader2Viewer;
-import spacewars.view.game.elements.invaders.Invader3Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader1Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader2Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader3Viewer;
 import spacewars.view.images.ImageLoader;
 import spacewars.view.menus.EntryViewer;
 import spacewars.view.menus.GameOverImageViewer;
@@ -26,9 +26,9 @@ import java.net.URISyntaxException;
 public class ViewerProvider {
     private final PlayerViewer playerViewer;
 
-    private final Invader1Viewer invader1Viewer;
-    private final Invader2Viewer invader2Viewer;
-    private final Invader3Viewer invader3Viewer;
+    private final NormalInvader1Viewer normalInvader1Viewer;
+    private final NormalInvader2Viewer normalInvader2Viewer;
+    private final NormalInvader3Viewer normalInvader3Viewer;
     private final BossInvaderViewer bossInvaderViewer;
 
     private final BulletPlayerViewer bulletPlayerViewer;
@@ -57,9 +57,9 @@ public class ViewerProvider {
     public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
         this.playerViewer = new PlayerViewer(imageLoader);
 
-        this.invader1Viewer = new Invader1Viewer(imageLoader);
-        this.invader2Viewer = new Invader2Viewer(imageLoader);
-        this.invader3Viewer = new Invader3Viewer(imageLoader);
+        this.normalInvader1Viewer = new NormalInvader1Viewer(imageLoader);
+        this.normalInvader2Viewer = new NormalInvader2Viewer(imageLoader);
+        this.normalInvader3Viewer = new NormalInvader3Viewer(imageLoader);
         this.bossInvaderViewer = new BossInvaderViewer(imageLoader);
 
         this.bulletPlayerViewer = new BulletPlayerViewer(imageLoader);
@@ -90,16 +90,16 @@ public class ViewerProvider {
     }
 
 
-    public Invader1Viewer getInvader1Viewer() {
-        return invader1Viewer;
+    public NormalInvader1Viewer getInvader1Viewer() {
+        return normalInvader1Viewer;
     }
 
-    public Invader2Viewer getInvader2Viewer() {
-        return invader2Viewer;
+    public NormalInvader2Viewer getInvader2Viewer() {
+        return normalInvader2Viewer;
     }
 
-    public Invader3Viewer getInvader3Viewer() {
-        return invader3Viewer;
+    public NormalInvader3Viewer getInvader3Viewer() {
+        return normalInvader3Viewer;
     }
 
     public BossInvaderViewer getBossInvaderViewer() {

@@ -3,6 +3,9 @@ package spacewars.model.game;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.invaders.*;
+import spacewars.model.game.elements.invaders.normal_invaders.NormalInvader1;
+import spacewars.model.game.elements.invaders.normal_invaders.NormalInvader2;
+import spacewars.model.game.elements.invaders.normal_invaders.NormalInvader3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,26 +15,26 @@ public class GameBuilder {
         return new Player(155, 170, game);
     }
 
-    public List<Invader1> createInvaders1(Game game) {
-        List<Invader1> list = new ArrayList<>();
+    public List<NormalInvader1> createInvaders1(Game game) {
+        List<NormalInvader1> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            list.add(new Invader1(64 + i * 20, 110, game));
+            list.add(new NormalInvader1(64 + i * 20, 110, game));
         }
         return list;
     }
 
-    public List<Invader2> createInvaders2(Game game) {
-        List<Invader2> list = new ArrayList<>();
+    public List<NormalInvader2> createInvaders2(Game game) {
+        List<NormalInvader2> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            list.add(new Invader2(64 + i * 20, 90, game));
+            list.add(new NormalInvader2(64 + i * 20, 90, game));
         }
         return list;
     }
 
-    public List<Invader3> createInvaders3(Game game) {
-        List<Invader3> list = new ArrayList<>();
+    public List<NormalInvader3> createInvaders3(Game game) {
+        List<NormalInvader3> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            list.add(new Invader3(64 + i * 20, 70, game));
+            list.add(new NormalInvader3(64 + i * 20, 70, game));
         }
         return list;
     }

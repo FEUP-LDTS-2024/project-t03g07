@@ -9,9 +9,9 @@ import spacewars.view.game.elements.ElementViewer;
 import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.*;
-import spacewars.view.game.elements.invaders.Invader1Viewer;
-import spacewars.view.game.elements.invaders.Invader2Viewer;
-import spacewars.view.game.elements.invaders.Invader3Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader1Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader2Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader3Viewer;
 import spacewars.view.game.elements.invaders.BossInvaderViewer;
 import spacewars.view.texts.TextViewer;
 
@@ -22,9 +22,9 @@ public class GameViewer extends ScreenViewer<Game> {
 
     private final PlayerViewer playerViewer;
 
-    private final Invader1Viewer invader1Viewer;
-    private final Invader2Viewer invader2Viewer;
-    private final Invader3Viewer invader3Viewer;
+    private final NormalInvader1Viewer normalInvader1Viewer;
+    private final NormalInvader2Viewer normalInvader2Viewer;
+    private final NormalInvader3Viewer normalInvader3Viewer;
     private final BossInvaderViewer bossInvaderViewer;
 
     private final BulletPlayerViewer bulletPlayerViewer;
@@ -44,9 +44,9 @@ public class GameViewer extends ScreenViewer<Game> {
 
         this.playerViewer = viewerProvider.getPlayerViewer();
 
-        this.invader1Viewer = viewerProvider.getInvader1Viewer();
-        this.invader2Viewer = viewerProvider.getInvader2Viewer();
-        this.invader3Viewer = viewerProvider.getInvader3Viewer();
+        this.normalInvader1Viewer = viewerProvider.getInvader1Viewer();
+        this.normalInvader2Viewer = viewerProvider.getInvader2Viewer();
+        this.normalInvader3Viewer = viewerProvider.getInvader3Viewer();
         this.bossInvaderViewer = viewerProvider.getBossInvaderViewer();
 
         this.bulletPlayerViewer = viewerProvider.getBulletPlayerViewer();
@@ -67,9 +67,9 @@ public class GameViewer extends ScreenViewer<Game> {
 
         drawElement(gui, getModel().getPlayer(), playerViewer);
 
-        drawElements(gui, getModel().getInvaders1(), invader1Viewer);
-        drawElements(gui, getModel().getInvaders2(), invader2Viewer);
-        drawElements(gui, getModel().getInvaders3(), invader3Viewer);
+        drawElements(gui, getModel().getInvaders1(), normalInvader1Viewer);
+        drawElements(gui, getModel().getInvaders2(), normalInvader2Viewer);
+        drawElements(gui, getModel().getInvaders3(), normalInvader3Viewer);
         drawElement(gui, getModel().getBossInvader(), bossInvaderViewer);
 
         drawText(gui, getModel().getScoreText(), 5);

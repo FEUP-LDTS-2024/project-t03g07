@@ -1,12 +1,5 @@
 package spacewars.model.game.elements;
 
-import net.jqwik.api.ForAll;
-import net.jqwik.api.Property;
-import spacewars.model.game.elements.invaders.BossInvader;
-import spacewars.model.game.elements.invaders.Invader1;
-import spacewars.model.game.elements.invaders.Invader2;
-import spacewars.model.game.elements.invaders.Invader3;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InvaderTypesTest

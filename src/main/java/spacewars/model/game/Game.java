@@ -1,14 +1,14 @@
 package spacewars.model.game;
 
 import spacewars.controller.game.elements.invaders.BossInvaderController;
-import spacewars.controller.game.elements.invaders.RespawnObserver;
+import spacewars.controller.game.elements.invaders.normal_invaders.RespawnObserver;
 import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.bullets.*;
-import spacewars.model.game.elements.invaders.Invader1;
-import spacewars.model.game.elements.invaders.Invader2;
-import spacewars.model.game.elements.invaders.Invader3;
+import spacewars.model.game.elements.invaders.normal_invaders.NormalInvader1;
+import spacewars.model.game.elements.invaders.normal_invaders.NormalInvader2;
+import spacewars.model.game.elements.invaders.normal_invaders.NormalInvader3;
 import spacewars.model.game.elements.invaders.BossInvader;
 
 import java.util.*;
@@ -17,9 +17,9 @@ public class Game {
     private GameBuilder builder;
 
     private final Player player;
-    private final List<Invader1> invaders1;
-    private final List<Invader2> invaders2;
-    private final List<Invader3> invaders3;
+    private final List<NormalInvader1> invaders1;
+    private final List<NormalInvader2> invaders2;
+    private final List<NormalInvader3> invaders3;
     private BossInvader bossInvader;
     private BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
@@ -60,15 +60,15 @@ public class Game {
         return player;
     }
 
-    public List<Invader1> getInvaders1() {
+    public List<NormalInvader1> getInvaders1() {
         return invaders1;
     }
 
-    public List<Invader2> getInvaders2() {
+    public List<NormalInvader2> getInvaders2() {
         return invaders2;
     }
 
-    public List<Invader3> getInvaders3() {
+    public List<NormalInvader3> getInvaders3() {
         return invaders3;
     }
 
@@ -138,11 +138,11 @@ public class Game {
     }
 
     public void checkBulletCollisions(BulletPlayer bullet) {
-        List<Invader1> invaders1ToRemove = new ArrayList<>();
-        List<Invader2> invaders2ToRemove = new ArrayList<>();
-        List<Invader3> invaders3ToRemove = new ArrayList<>();
+        List<NormalInvader1> invaders1ToRemove = new ArrayList<>();
+        List<NormalInvader2> invaders2ToRemove = new ArrayList<>();
+        List<NormalInvader3> invaders3ToRemove = new ArrayList<>();
 
-        for (Invader1 invader : invaders1) {
+        for (NormalInvader1 invader : invaders1) {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders1ToRemove.add(invader);
@@ -150,7 +150,7 @@ public class Game {
                 break;
             }
         }
-        for (Invader2 invader : invaders2) {
+        for (NormalInvader2 invader : invaders2) {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders2ToRemove.add(invader);
@@ -158,7 +158,7 @@ public class Game {
                 break;
             }
         }
-        for (Invader3 invader : invaders3) {
+        for (NormalInvader3 invader : invaders3) {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 invaders3ToRemove.add(invader);
@@ -229,10 +229,10 @@ public class Game {
 
     public void invader1Shoot() {
         if (bulletInvader1 == null && System.currentTimeMillis() - lastInvader1ShootTime > 2000) { // Shoot every 2 seconds
-            List<Invader1> activeInvaders = new ArrayList<>();
+            List<NormalInvader1> activeInvaders = new ArrayList<>();
 
             // Collect all active invaders
-            for (Invader1 invader : invaders1) {
+            for (NormalInvader1 invader : invaders1) {
                 if (invader != null) {
                     activeInvaders.add(invader);
                 }
@@ -240,7 +240,7 @@ public class Game {
 
             // Choose a random invader to shoot
             if (!activeInvaders.isEmpty()) {
-                Invader1 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
+                NormalInvader1 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
                 bulletInvader1 = new BulletInvader1(randomInvader.getPosition().x(), randomInvader.getPosition().y() + 1);
                 lastInvader1ShootTime = System.currentTimeMillis();
             }
@@ -261,10 +261,10 @@ public class Game {
 
     public void invader2Shoot() {
         if (bulletInvader2 == null && System.currentTimeMillis() - lastInvader2ShootTime > 2000) { // Shoot every 2 seconds
-            List<Invader2> activeInvaders = new ArrayList<>();
+            List<NormalInvader2> activeInvaders = new ArrayList<>();
 
             // Collect all active invaders
-            for (Invader2 invader : invaders2) {
+            for (NormalInvader2 invader : invaders2) {
                 if (invader != null) {
                     activeInvaders.add(invader);
                 }
@@ -272,7 +272,7 @@ public class Game {
 
             // Choose a random invader to shoot
             if (!activeInvaders.isEmpty()) {
-                Invader2 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
+                NormalInvader2 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
                 bulletInvader2 = new BulletInvader2(randomInvader.getPosition().x(), randomInvader.getPosition().y() + 1);
                 lastInvader2ShootTime = System.currentTimeMillis();
             }
@@ -293,10 +293,10 @@ public class Game {
 
     public void invader3Shoot() {
         if (bulletInvader3 == null && System.currentTimeMillis() - lastInvader3ShootTime > 2000) { // Shoot every 2 seconds
-            List<Invader3> activeInvaders = new ArrayList<>();
+            List<NormalInvader3> activeInvaders = new ArrayList<>();
 
             // Collect all active invaders
-            for (Invader3 invader : invaders3) {
+            for (NormalInvader3 invader : invaders3) {
                 if (invader != null) {
                     activeInvaders.add(invader);
                 }
@@ -304,7 +304,7 @@ public class Game {
 
             // Choose a random invader to shoot
             if (!activeInvaders.isEmpty()) {
-                Invader3 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
+                NormalInvader3 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
                 bulletInvader3 = new BulletInvader3(randomInvader.getPosition().x(), randomInvader.getPosition().y() + 1);
                 lastInvader3ShootTime = System.currentTimeMillis();
             }

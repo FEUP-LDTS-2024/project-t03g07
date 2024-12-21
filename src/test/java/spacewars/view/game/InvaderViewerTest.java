@@ -2,15 +2,15 @@ package spacewars.view.game;
 
 import spacewars.gui.LanternaGUI;
 import spacewars.model.Position;
-import spacewars.model.game.elements.invaders.Invader;
-import spacewars.view.game.elements.invaders.Invader1Viewer;
+import spacewars.model.game.elements.invaders.normal_invaders.NormalInvader;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader1Viewer;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class InvaderViewerTest {
-    private Invader1Viewer invader1Viewer;
+    private NormalInvader1Viewer normalInvader1Viewer;
     private LanternaGUI frame;
-    private Invader invaders;
+    private NormalInvader invaders;
     private Position position;
 
     /*@BeforeEach

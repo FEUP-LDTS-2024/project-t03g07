@@ -1,6 +1,7 @@
 package spacewars.model.game.elements.invaders;
 
 import spacewars.model.game.Game;
+import spacewars.model.game.elements.Element;
 
 import java.util.Random;
 
@@ -49,5 +50,9 @@ public class BossInvader extends Invader {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    @Override
+    public void update() {
     }
 }
