@@ -19,9 +19,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class GameViewer extends ScreenViewer<Game> {
-    public static final TextColor backgroundColor = new TextColor.RGB(0, 10, 32);
 
     private final PlayerViewer playerViewer;
+
     private final Invader1Viewer invader1Viewer;
     private final Invader2Viewer invader2Viewer;
     private final Invader3Viewer invader3Viewer;
@@ -36,19 +36,25 @@ public class GameViewer extends ScreenViewer<Game> {
     private final TextViewer textViewer;
     private final LiveViewer liveViewer;
 
+    public static final TextColor backgroundColor = new TextColor.RGB(0, 10, 32);   //dark blue
+
+
     public GameViewer(Game model, ViewerProvider viewerProvider) {
         super(model);
 
         this.playerViewer = viewerProvider.getPlayerViewer();
+
         this.invader1Viewer = viewerProvider.getInvader1Viewer();
         this.invader2Viewer = viewerProvider.getInvader2Viewer();
         this.invader3Viewer = viewerProvider.getInvader3Viewer();
-        this.bulletPlayerViewer = viewerProvider.getBulletPlayerViewer();
         this.bossInvaderViewer = viewerProvider.getBossInvaderViewer();
+
+        this.bulletPlayerViewer = viewerProvider.getBulletPlayerViewer();
         this.bulletInvader1Viewer = viewerProvider.getBulletInvader1Viewer();
         this.bulletInvader2Viewer = viewerProvider.getBulletInvader2Viewer();
         this.bulletInvader3Viewer = viewerProvider.getBulletInvader3Viewer();
         this.bulletBossInvaderViewer = viewerProvider.getBulletBossInvaderViewer();
+
         this.textViewer = viewerProvider.getTextViewer();
         this.liveViewer = viewerProvider.getLiveViewer();
     }
@@ -66,30 +72,25 @@ public class GameViewer extends ScreenViewer<Game> {
         drawElements(gui,getModel().getInvaders3(),invader3Viewer);
         drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
 
-        drawText(gui, getModel().getScoreText(), 5, 5, TextColor.ANSI.WHITE);
-        drawText(gui, getModel().getHighScoreText(), 5, 15, TextColor.ANSI.WHITE);
+        drawText(gui, getModel().getScoreText(), 5);
+        drawText(gui, getModel().getHighScoreText(), 15);
 
         drawElements(gui, getModel().getLives(), liveViewer);
 
-        if (getModel().getPlayer().getBulletPlayer() != null) {
+        if (getModel().getPlayer().getBulletPlayer() != null)
             drawElement(gui, getModel().getPlayer().getBulletPlayer().getKey(), bulletPlayerViewer);
-        }
 
-        if (getModel().getBulletInvader1() != null) {
+        if (getModel().getBulletInvader1() != null)
             drawElement(gui, getModel().getBulletInvader1(), bulletInvader1Viewer);
-        }
 
-        if (getModel().getBulletInvader2() != null) {
+        if (getModel().getBulletInvader2() != null)
             drawElement(gui, getModel().getBulletInvader2(), bulletInvader2Viewer);
-        }
 
-        if (getModel().getBulletInvader3() != null) {
+        if (getModel().getBulletInvader3() != null)
             drawElement(gui, getModel().getBulletInvader3(), bulletInvader3Viewer);
-        }
 
-        if (getModel().getBulletBossInvader() != null) {
+        if (getModel().getBulletBossInvader() != null)
             drawElement(gui, getModel().getBulletBossInvader(), bulletBossInvaderViewer);
-        }
 
         gui.refresh();
     }
@@ -103,7 +104,7 @@ public class GameViewer extends ScreenViewer<Game> {
             drawElement(gui, element, viewer);
     }
 
-    private void drawText(GUI gui, String text, int x, int y, TextColor color) {
-        textViewer.draw(text, x, y, color, gui);
+    private void drawText(GUI gui, String text, int y) {
+        textViewer.draw(text, 5, y, TextColor.ANSI.WHITE, gui);
     }
 }
