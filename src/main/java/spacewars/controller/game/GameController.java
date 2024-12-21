@@ -130,9 +130,9 @@ public class GameController extends Controller<Game> {
 
     public void respawnInvaders() {
         if (getModel().getInvaders1().isEmpty() && getModel().getInvaders2().isEmpty() && getModel().getInvaders3().isEmpty()) {
-            getModel().getInvaders1().addAll(getModel().createInvaders1());
-            getModel().getInvaders2().addAll(getModel().createInvaders2());
-            getModel().getInvaders3().addAll(getModel().createInvaders3());
+            getModel().getInvaders1().addAll(getModel().getBuilder().createInvaders1(getModel()));
+            getModel().getInvaders2().addAll(getModel().getBuilder().createInvaders2(getModel()));
+            getModel().getInvaders3().addAll(getModel().getBuilder().createInvaders3(getModel()));
             notifyObservers(); // Notify all observers of the respawn event
         }
     }

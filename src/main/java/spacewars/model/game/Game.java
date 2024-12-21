@@ -13,6 +13,8 @@ import spacewars.model.game.elements.invaders.BossInvader;
 import java.util.*;
 
 public class Game {
+    private GameBuilder builder;
+
     private final Player player;
     private final List<Invader1> invaders1;
     private final List<Invader2> invaders2;
@@ -37,66 +39,17 @@ public class Game {
 
     private static final double COLLISION_THRESHOLD = 8.0;
 
-    public Game() {
-        this.player = createPlayer();
-        this.invaders1 = createInvaders1();
-        this.invaders2 = createInvaders2();
-        this.invaders3 = createInvaders3();
-        this.bossInvader = createBossInvader();
-        this.lives = createLives();
+    public Game(GameBuilder builder) {
+        this.player = builder.createPlayer(this);
+        this.invaders1 = builder.createInvaders1(this);
+        this.invaders2 = builder.createInvaders2(this);
+        this.invaders3 = builder.createInvaders3(this);
+        this.bossInvader = builder.createBossInvader(this);
+        this.lives = builder.createLives();
+
         this.score = new Score();
         this.bossRespawnTimer = new Timer();
         this.highScore = HighScore.loadHighScore();
-    }
-
-    private Player createPlayer() {
-        return new Player(155, 170, this);
-    }
-
-    public List<Invader1> createInvaders1() {
-        List<Invader1> list = new ArrayList<>(List.of());
-        for (int i = 0; i < 10; i++) {
-            assert invaders1 != null;
-            list.add(new Invader1(64 + i * 20, 110, this));
-        }
-        return list;
-    }
-
-    public List<Invader2> createInvaders2() {
-        List<Invader2> list = new ArrayList<>(List.of());
-        for (int i = 0; i < 10; i++) {
-            assert invaders1 != null;
-            list.add(new Invader2(64 + i * 20, 90,this));
-        }
-        return list;
-    }
-
-    public List<Invader3> createInvaders3() {
-        List<Invader3> list = new ArrayList<>(List.of());
-        for (int i = 0; i < 10; i++) {
-            assert invaders1 != null;
-            list.add(new Invader3(64 + i * 20, 70,this));
-        }
-        return list;
-    }
-
-    public BossInvader createBossInvader() {
-        return new BossInvader(0,30,this);
-    }
-
-    public List<Live> createLives() {
-        List<Live> list = new ArrayList<>(List.of());
-        for (int i = 0; i < 3; i++) {
-            list.add(new Live(273 + i * 15, 5));
-        }
-        return list;
-    }
-
-    public void updatePlayerBullet() {
-        if (player.getBulletPlayer() != null) {
-            player.getBulletPlayer().getKey().update();
-            checkBulletCollisions(player.getBulletPlayer().getKey());
-        }
     }
 
     public Player getPlayer() {
@@ -145,6 +98,14 @@ public class Game {
 
     public List<Live> getLives() {
         return lives;
+    }
+
+
+    public void updatePlayerBullet() {
+        if (player.getBulletPlayer() != null) {
+            player.getBulletPlayer().getKey().update();
+            checkBulletCollisions(player.getBulletPlayer().getKey());
+        }
     }
 
     public boolean checkSideBoundaries(double x1, double x2) {
@@ -404,5 +365,9 @@ public class Game {
             bossInvader = new BossInvader(-50, 30,this); // Create a new boss
             bossController = new BossInvaderController(bossInvader, 320); // Update the controller
         }
+    }
+
+    public GameBuilder getBuilder() {
+        return builder;
     }
 }

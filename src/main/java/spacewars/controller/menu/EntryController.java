@@ -4,6 +4,7 @@ import spacewars.Application;
 import spacewars.controller.Controller;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
+import spacewars.model.game.GameBuilder;
 import spacewars.model.menu.CreditsMenu;
 import spacewars.model.menu.HowToPlayMenu;
 import spacewars.model.menu.MainMenu;
@@ -28,7 +29,7 @@ public class EntryController extends Controller<Menu> {
         switch (getModel().getCurrentEntry().type()) { //"play", "how to play", "credits", "quit", "return to menu"
             case PLAY:
                 if (action == GUI.ACTION.SELECT) {
-                    app.setState(new GameState(new Game(), app.getImageLoader()));
+                    app.setState(new GameState(new Game(new GameBuilder()), app.getImageLoader()));
                 }
                 break;
 
@@ -57,7 +58,7 @@ public class EntryController extends Controller<Menu> {
                 break;
             case PLAY_AGAIN:
                 if (action == GUI.ACTION.SELECT) {
-                    app.setState(new GameState(new Game(), app.getImageLoader()));
+                    app.setState(new GameState(new Game(new GameBuilder()), app.getImageLoader()));
                 }
                 break;
         }
