@@ -13,7 +13,7 @@ public class BulletInvader1 extends Bullet
 
     @Override
     public void update() {
-        this.setPosition(new Position(this.getPosition().getX(), this.getPosition().getY() + SPEED));
+        this.setPosition(new Position(this.getPosition().x(), this.getPosition().y() + SPEED));
     }
 
 }

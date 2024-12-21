@@ -32,7 +32,7 @@ public class Player extends Element {
     }
 
     public void shoot() {
-        BulletPlayer bullet = new BulletPlayer(this.getPosition().getX(), this.getPosition().getY() + 1);
+        BulletPlayer bullet = new BulletPlayer(this.getPosition().x(), this.getPosition().y() + 1);
         playerBullet = entry(bullet, true);
         lastShootTime = System.currentTimeMillis();
     }

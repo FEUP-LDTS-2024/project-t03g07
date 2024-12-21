@@ -156,19 +156,19 @@ public class Game {
     }
 
     private boolean checkCollision(Position topLeft, Position bottomRight) {
-        return checkSideBoundaries(topLeft.getX(), bottomRight.getX());
+        return checkSideBoundaries(topLeft.x(), bottomRight.x());
     }
 
     public boolean collidesLeft(Position position, double size) {
-        return checkCollision(position, new Position(position.getX() + 1, position.getY() + size - 1));
+        return checkCollision(position, new Position(position.x() + 1, position.y() + size - 1));
     }
 
     public boolean collidesRight(Position position, double size) {
-        return checkCollision(new Position(position.getX() + size - 1, position.getY()), new Position(position.getX() + size - 1, position.getY() + size - 1));
+        return checkCollision(new Position(position.x() + size - 1, position.y()), new Position(position.x() + size - 1, position.y() + size - 1));
     }
 
     private boolean isCollision(Position pos1, Position pos2) {
-        double distance = Math.sqrt(Math.pow(pos1.getX() - pos2.getX(), 2) + Math.pow(pos1.getY() - pos2.getY(), 2));
+        double distance = Math.sqrt(Math.pow(pos1.x() - pos2.x(), 2) + Math.pow(pos1.y() - pos2.y(), 2));
         return distance < COLLISION_THRESHOLD;
     }
 
@@ -210,7 +210,7 @@ public class Game {
             }
         }
 
-        if (checkTopBoundary(bullet.getPosition().getY())) {
+        if (checkTopBoundary(bullet.getPosition().y())) {
             player.setBulletPlayer(null);
         }
 
@@ -276,7 +276,7 @@ public class Game {
             // Choose a random invader to shoot
             if (!activeInvaders.isEmpty()) {
                 Invader1 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
-                bulletInvader1 = new BulletInvader1(randomInvader.getPosition().getX(), randomInvader.getPosition().getY() + 1);
+                bulletInvader1 = new BulletInvader1(randomInvader.getPosition().x(), randomInvader.getPosition().y() + 1);
                 lastInvader1ShootTime = System.currentTimeMillis();
             }
         }
@@ -287,7 +287,7 @@ public class Game {
             bulletInvader1.update();
 
             // Remove the bullet if it moves off the screen
-            if (bulletInvader1.getPosition().getY() > 192) {
+            if (bulletInvader1.getPosition().y() > 192) {
                 bulletInvader1 = null;
             }
             checkBulletInvader1Collisions(bulletInvader1);
@@ -308,7 +308,7 @@ public class Game {
             // Choose a random invader to shoot
             if (!activeInvaders.isEmpty()) {
                 Invader2 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
-                bulletInvader2 = new BulletInvader2(randomInvader.getPosition().getX(), randomInvader.getPosition().getY() + 1);
+                bulletInvader2 = new BulletInvader2(randomInvader.getPosition().x(), randomInvader.getPosition().y() + 1);
                 lastInvader2ShootTime = System.currentTimeMillis();
             }
         }
@@ -319,7 +319,7 @@ public class Game {
             bulletInvader2.update();
 
             // Remove the bullet if it moves off the screen
-            if (bulletInvader2.getPosition().getY() > 192) {
+            if (bulletInvader2.getPosition().y() > 192) {
                 bulletInvader2 = null;
             }
             checkBulletInvader2Collisions(bulletInvader2);
@@ -340,7 +340,7 @@ public class Game {
             // Choose a random invader to shoot
             if (!activeInvaders.isEmpty()) {
                 Invader3 randomInvader = activeInvaders.get(new Random().nextInt(activeInvaders.size()));
-                bulletInvader3 = new BulletInvader3(randomInvader.getPosition().getX(), randomInvader.getPosition().getY() + 1);
+                bulletInvader3 = new BulletInvader3(randomInvader.getPosition().x(), randomInvader.getPosition().y() + 1);
                 lastInvader3ShootTime = System.currentTimeMillis();
             }
         }
@@ -351,7 +351,7 @@ public class Game {
             bulletInvader3.update();
 
             // Remove the bullet if it moves off the screen
-            if (bulletInvader3.getPosition().getY() > 192) {
+            if (bulletInvader3.getPosition().y() > 192) {
                 bulletInvader3 = null;
             }
             checkBulletInvader3Collisions(bulletInvader3);
@@ -361,7 +361,7 @@ public class Game {
     public void bossInvaderShoot(BossInvader bossInvader) {
         // Ensure boss is not hidden and enough time has passed since the last shot
         if (bossInvader.isAlive() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
-            bossBullet = new BulletBossInvader(bossInvader.getPosition().getX(), bossInvader.getPosition().getY() + 1); // Bullet starts below the boss
+            bossBullet = new BulletBossInvader(bossInvader.getPosition().x(), bossInvader.getPosition().y() + 1); // Bullet starts below the boss
             lastBossShootTime = System.currentTimeMillis();
         }
     }
@@ -371,7 +371,7 @@ public class Game {
             bossBullet.update(); // Move the bullet
 
             // Remove the bullet if it moves off the screen
-            if (bossBullet.getPosition().getY() > 192) {
+            if (bossBullet.getPosition().y() > 192) {
                 bossBullet = null;
             }
             checkBulletBossInvaderCollisions(bossBullet);
@@ -382,7 +382,7 @@ public class Game {
         if (!lives.isEmpty()) {
             // Find the Live object with the lowest x-coordinate
             Live leftmostLive = lives.stream()
-                    .min(Comparator.comparingDouble(live -> live.getPosition().getX()))
+                    .min(Comparator.comparingDouble(live -> live.getPosition().x()))
                     .orElse(null);
 
             // Remove the leftmost Live

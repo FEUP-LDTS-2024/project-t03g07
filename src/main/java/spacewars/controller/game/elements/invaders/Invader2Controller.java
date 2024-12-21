@@ -40,8 +40,8 @@ public class Invader2Controller implements RespawnObserver{
     }
 
     private Position calculateNewPosition(Invader2 invader2) {
-        double x = invader2.getPosition().getX();
-        double y = invader2.getPosition().getY();
+        double x = invader2.getPosition().x();
+        double y = invader2.getPosition().y();
         return new Position(x + direction * invader2.getSpeed(), y);
     }
 

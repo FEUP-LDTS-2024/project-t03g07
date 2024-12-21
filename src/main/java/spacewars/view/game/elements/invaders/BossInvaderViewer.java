@@ -17,6 +17,6 @@ public class BossInvaderViewer implements ElementViewer<BossInvader> {
 
     @Override
     public void draw(BossInvader element, GUI gui) throws IOException {
-        image.draw(gui, element.getPosition().getX(), element.getPosition().getY());
+        image.draw(gui, element.getPosition().x(), element.getPosition().y());
     }
 }

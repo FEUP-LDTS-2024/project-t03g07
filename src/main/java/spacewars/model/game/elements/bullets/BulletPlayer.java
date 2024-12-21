@@ -13,6 +13,6 @@ public class BulletPlayer extends Bullet
 
     @Override
     public void update() {
-        setPosition(new Position(getPosition().getX(), getPosition().getY() - SPEED));
+        setPosition(new Position(getPosition().x(), getPosition().y() - SPEED));
     }
 }

@@ -16,6 +16,6 @@ public class LiveViewer implements ElementViewer<Live> {
 
     @Override
     public void draw(Live element, GUI gui) throws IOException {
-        image.draw(gui,element.getPosition().getX(), element.getPosition().getY());
+        image.draw(gui,element.getPosition().x(), element.getPosition().y());
     }
 }

@@ -53,12 +53,12 @@ public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
 
     private void drawTitle(GUI gui) {
         Position pos = new Position(147,40);
-        textViewer.draw(getModel().getTitle(), pos.getX(),pos.getY(),titleColor,gui);
+        textViewer.draw(getModel().getTitle(), pos.x(),pos.y(),titleColor,gui);
     }
 
     private void drawDetails(GUI gui) {
         Position pos = new Position(95,70);
-        textViewer.draw(getModel().getDetails(), pos.getX(),pos.getY(),detailsColor,gui);
+        textViewer.draw(getModel().getDetails(), pos.x(),pos.y(),detailsColor,gui);
     }
 
     private void drawNames(GUI gui) {

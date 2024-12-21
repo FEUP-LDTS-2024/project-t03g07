@@ -16,6 +16,6 @@ public class PlayerViewer implements ElementViewer<Player> {
 
     @Override
     public void draw(Player element, GUI gui) throws IOException {
-        image.draw(gui,element.getPosition().getX(), element.getPosition().getY());
+        image.draw(gui,element.getPosition().x(), element.getPosition().y());
     }
 }

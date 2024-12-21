@@ -49,12 +49,12 @@ public class GameOverViewer extends ScreenViewer<GameOver> {
 
     private void drawFinalScore(GUI gui) {
         Position pos = new Position(107,100);
-        textViewer.draw(getModel().getFinalScoreMessage(), pos.getX(),pos.getY(),finalScoreColor,gui);
+        textViewer.draw(getModel().getFinalScoreMessage(), pos.x(),pos.y(),finalScoreColor,gui);
     }
 
     private void drawNewHighScore(GUI gui) {
         Position pos = new Position(95,110);
-        textViewer.draw(getModel().getNewHighScoreMessage(), pos.getX(),pos.getY(),finalScoreColor,gui);
+        textViewer.draw(getModel().getNewHighScoreMessage(), pos.x(),pos.y(),finalScoreColor,gui);
     }
 
 //    private void drawGameOver(GUI gui) {
