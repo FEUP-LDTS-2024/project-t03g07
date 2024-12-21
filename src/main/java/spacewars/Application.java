@@ -40,7 +40,6 @@ public class Application {
         int FPS = 30;
         double frameTime = 1_000_000_000.0 / FPS;
         long lastTime = System.nanoTime();
-        int frames = 0;
 
         gui.startScreen();
 
@@ -48,8 +47,6 @@ public class Application {
             long startTime = System.nanoTime();
 
             state.step(this, gui, startTime);
-
-            frames++;
             long elapsedTime = System.nanoTime() - startTime;
             long sleepTime = (long) frameTime - elapsedTime;
 
@@ -60,7 +57,6 @@ public class Application {
             while (System.nanoTime() - startTime < frameTime) {}
             
             if (System.nanoTime() - lastTime >= 1_000_000_000) {
-                frames = 0;
                 lastTime = System.nanoTime();
             }
         }
