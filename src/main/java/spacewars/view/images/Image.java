@@ -13,7 +13,6 @@ public class Image {
 
     public Image(String filepath) throws IOException {
         this.image = loadImage(filepath);
-
     }
 
     public BufferedImage loadImage(String filepath) throws IOException {

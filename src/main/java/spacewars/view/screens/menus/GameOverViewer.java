@@ -35,6 +35,7 @@ public class GameOverViewer extends ScreenViewer<GameOver> {
     @Override
     public void draw(GUI gui) throws IOException {
         gui.clear();
+
         drawBackground(gui, backgroundColor);
         drawEntries(gui, getModel().getEntries());
         gameOverImageViewer.draw(gui, 125, 50);
@@ -42,6 +43,7 @@ public class GameOverViewer extends ScreenViewer<GameOver> {
         drawFinalScore(gui);
         if (getModel().isNewHighScore())
             drawNewHighScore(gui);
+
         gui.refresh();
     }
 

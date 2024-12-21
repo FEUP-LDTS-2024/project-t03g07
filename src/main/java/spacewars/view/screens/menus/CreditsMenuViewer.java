@@ -28,6 +28,7 @@ public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
 
     public CreditsMenuViewer(CreditsMenu model, ViewerProvider viewerProvider) {
         super(model);
+
         this.entryViewer = viewerProvider.getEntryViewer();
         this.textViewer = viewerProvider.getTextViewer();
     }
@@ -35,17 +36,19 @@ public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
     @Override
     public void draw(GUI gui) throws IOException {
         gui.clear();
+
         drawBackground(gui, backgroundColor);
         drawEntries(gui, getModel().getEntries());
         drawTitle(gui);
         drawDetails(gui);
         drawNames(gui);
+
         gui.refresh();
     }
 
-    private void drawDetails(GUI gui) {
-        Position pos = new Position(95,70);
-        textViewer.draw(getModel().getDetails(), pos.getX(),pos.getY(),detailsColor,gui);
+    private void drawEntries(GUI gui, List<Entry> entries) {
+        for (Entry entry: entries)
+            entryViewer.draw(entry, gui, getModel().getCurrentEntry() == entry ? selectedColor : unselectedColor);
     }
 
     private void drawTitle(GUI gui) {
@@ -53,9 +56,9 @@ public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
         textViewer.draw(getModel().getTitle(), pos.getX(),pos.getY(),titleColor,gui);
     }
 
-    private void drawEntries(GUI gui, List<Entry> entries) {
-        for (Entry entry: entries)
-            entryViewer.draw(entry, gui, getModel().getCurrentEntry() == entry ? selectedColor : unselectedColor);
+    private void drawDetails(GUI gui) {
+        Position pos = new Position(95,70);
+        textViewer.draw(getModel().getDetails(), pos.getX(),pos.getY(),detailsColor,gui);
     }
 
     private void drawNames(GUI gui) {
