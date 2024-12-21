@@ -44,7 +44,7 @@ public class Game {
         this.invaders1 = builder.createInvaders1(this);
         this.invaders2 = builder.createInvaders2(this);
         this.invaders3 = builder.createInvaders3(this);
-        this.bossInvader = builder.createBossInvader(this);
+        this.bossInvader = builder.createBossInvader();
         this.lives = builder.createLives();
 
         this.score = new Score();

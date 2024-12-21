@@ -8,10 +8,12 @@ import java.util.List;
 public class GameOver extends Menu {
     private final String finalScore;
     private final boolean isNewHighScore;
+    private final String newHighScoreMessage;
 
     public GameOver(String finalScore, boolean newHighScore) {
         this.finalScore = finalScore;
         this.isNewHighScore = newHighScore;
+        this.newHighScoreMessage = "NEW HIGH SCORE!";
     }
 
     @Override
@@ -32,7 +34,7 @@ public class GameOver extends Menu {
     }
 
     public String getNewHighScoreMessage() {
-        return "NEW HIGH SCORE!";
+        return newHighScoreMessage;
     }
 
 }

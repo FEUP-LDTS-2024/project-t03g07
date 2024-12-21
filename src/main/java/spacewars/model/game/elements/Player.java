@@ -8,13 +8,13 @@ import java.util.Map.Entry;
 import static java.util.Map.entry;
 
 public class Player extends Element {
-    private int speed;
+    private double speed;
     private final int playerSize;
     private final Game game;
     private Entry<BulletPlayer, Boolean> playerBullet;
     private long lastShootTime;
 
-    public Player(int x, int y, Game game) {
+    public Player(double x, double y, Game game) {
         super(x, y);
         this.speed = 2;
         this.playerSize = 10;
@@ -23,11 +23,11 @@ public class Player extends Element {
         this.lastShootTime = 0;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
@@ -35,10 +35,6 @@ public class Player extends Element {
         BulletPlayer bullet = new BulletPlayer(this.getPosition().x(), this.getPosition().y() + 1);
         playerBullet = entry(bullet, true);
         lastShootTime = System.currentTimeMillis();
-    }
-
-    @Override
-    public void update() {
     }
 
     public int getPlayerSize() {

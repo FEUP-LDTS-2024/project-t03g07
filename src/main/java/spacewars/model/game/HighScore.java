@@ -4,7 +4,7 @@ import java.io.*;
 
 public class HighScore {
     private static final String home = System.getProperty("user.home");
-    static String FILE_PATH = home + "/spacewars/highscores.txt";
+    static final String FILE_PATH = home + "/spacewars/highscores.txt";
 
     public static void saveHighScore(int highScore) {
         File file = new File(FILE_PATH);

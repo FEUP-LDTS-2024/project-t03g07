@@ -39,8 +39,8 @@ public class GameBuilder {
         return list;
     }
 
-    public BossInvader createBossInvader(Game game) {
-        return new BossInvader(0, 30, game);
+    public BossInvader createBossInvader() {
+        return new BossInvader(0, 30);
     }
 
     public List<Live> createLives() {

@@ -46,8 +46,8 @@ public class BossInvaderController {
 
         long WAIT_DURATION = 5000;
         if (currentTime - waitStartTime >= WAIT_DURATION) {
-            int speed = 2;
-            int dx = movingRight ? speed : -speed;
+            double speed = 2;
+            double dx = movingRight ? speed : -speed;
             Position newPosition = new Position(x + dx, bossInvader.getPosition().y());
             bossInvader.setPosition(newPosition);
         }

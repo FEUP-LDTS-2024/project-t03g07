@@ -13,7 +13,7 @@ public class DeathStarViewer {
         this.image = imageLoader.get("elements/invaders/death_star.png");
     }
 
-    public void draw(GUI gui, int x, int y) throws IOException {
+    public void draw(GUI gui, double x, double y) throws IOException {
         image.draw(gui, x, y);
     }
 }

@@ -13,7 +13,7 @@ public class EmpireFighterViewer {
         this.image = imageLoader.get("elements/invaders/empire_fighter.png");
     }
 
-    public void draw(GUI gui, int x, int y) throws IOException {
+    public void draw(GUI gui, double x, double y) throws IOException {
         image.draw(gui, x, y);
     }
 }

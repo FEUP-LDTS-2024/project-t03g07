@@ -15,10 +15,6 @@ public abstract class NormalInvader extends Invader {
         this.game = game;
     }
 
-    @Override
-    public void update() {
-    }
-
     public double getSpeed() {
         return speed;
     }

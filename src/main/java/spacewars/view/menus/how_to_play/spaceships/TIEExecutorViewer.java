@@ -13,7 +13,7 @@ public class TIEExecutorViewer {
         this.image = imageLoader.get("elements/invaders/tie_executor.png");
     }
 
-    public void draw(GUI gui, int x, int y) throws IOException {
+    public void draw(GUI gui, double x, double y) throws IOException {
         image.draw(gui, x, y);
     }
 }

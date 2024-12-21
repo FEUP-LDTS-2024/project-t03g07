@@ -25,7 +25,7 @@ public class PlayerController {
         double x = player.getPosition().x();
         double y = player.getPosition().y();
 
-        int s = player.getSpeed();
+        double s = player.getSpeed();
 
         // Check collisions for horizontal movement
         while (s < 0 && player.getGame().collidesLeft(new Position(x + s, y), player.getPlayerSize())) {

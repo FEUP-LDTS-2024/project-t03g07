@@ -13,7 +13,7 @@ public class LogoViewer {
         this.image = imageLoader.get("images/logo.png");
     }
 
-    public void draw(GUI gui, int x, int y) throws IOException {
+    public void draw(GUI gui, double x, double y) throws IOException {
         image.draw(gui, x, y);
     }
 }

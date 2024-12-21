@@ -9,7 +9,7 @@ import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader2Viewe
 import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader3Viewer;
 import spacewars.view.images.ImageLoader;
 import spacewars.view.menus.EntryViewer;
-import spacewars.view.menus.GameOverImageViewer;
+import spacewars.view.menus.game_over.GameOverImageViewer;
 import spacewars.view.menus.how_to_play.*;
 import spacewars.view.menus.how_to_play.spaceships.DeathStarViewer;
 import spacewars.view.menus.how_to_play.spaceships.EmpireFighterViewer;
@@ -19,7 +19,6 @@ import spacewars.view.menus.main_menu.LogoViewer;
 import spacewars.view.texts.AppTextViewer;
 import spacewars.view.texts.TextViewer;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -54,7 +53,7 @@ public class ViewerProvider {
     private final DeathStarViewer deathStarViewer;
 
 
-    public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
+    public ViewerProvider(ImageLoader imageLoader) throws IOException, URISyntaxException {
         this.playerViewer = new PlayerViewer(imageLoader);
 
         this.normalInvader1Viewer = new NormalInvader1Viewer(imageLoader);

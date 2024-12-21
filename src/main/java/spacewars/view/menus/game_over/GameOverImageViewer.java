@@ -1,4 +1,4 @@
-package spacewars.view.menus;
+package spacewars.view.menus.game_over;
 
 import spacewars.gui.GUI;
 import spacewars.view.images.Image;
@@ -13,7 +13,7 @@ public class GameOverImageViewer {
         this.image = imageLoader.get("images/game_over_image.png");
     }
 
-    public void draw(GUI gui, int x, int y) throws IOException {
+    public void draw(GUI gui, double x, double y) throws IOException {
         image.draw(gui, x, y);
     }
 }

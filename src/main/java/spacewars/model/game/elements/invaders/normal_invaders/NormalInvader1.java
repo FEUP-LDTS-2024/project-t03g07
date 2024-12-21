@@ -5,7 +5,7 @@ import spacewars.model.game.Game;
 public class NormalInvader1 extends NormalInvader {
     private final int points;
 
-    public NormalInvader1(int x, int y, Game game) {
+    public NormalInvader1(double x, double y, Game game) {
         super(x, y, game);
         this.points = 10;
     }
