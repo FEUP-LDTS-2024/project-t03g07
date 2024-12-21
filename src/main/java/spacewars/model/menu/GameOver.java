@@ -16,11 +16,11 @@ public class GameOver extends Menu {
 
     @Override
     protected List<Entry> createEntries() {
-        Position pos = new Position(130,165);
+        Position pos = new Position(130, 165);
         Entry goBack = new Entry(pos, Entry.TYPE.RETURN_TO_MENU);
-        Position pos2 = new Position(138,154);
+        Position pos2 = new Position(138, 154);
         Entry playAgain = new Entry(pos2, Entry.TYPE.PLAY_AGAIN);
-        return Arrays.asList(playAgain,goBack);
+        return Arrays.asList(playAgain, goBack);
     }
 
     public String getFinalScoreMessage() {

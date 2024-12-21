@@ -28,7 +28,7 @@ public class Image {
             for (int x = 0; x < image.getWidth(); x++) {
                 int rgb = image.getRGB(x, y);
                 TextColor.RGB color = getLanternaColor(rgb);
-                if (getTransparency(rgb)==0)
+                if (getTransparency(rgb) == 0)
                     continue;
                 gui.drawPixel(a + x, b + y, color);
             }

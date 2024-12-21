@@ -27,8 +27,7 @@ public class Application {
         app.run();
     }
 
-    public void setState(State<?> state)
-    {
+    public void setState(State<?> state) {
         this.state = state;
     }
 
@@ -53,9 +52,10 @@ public class Application {
             if (sleepTime > 0) {
                 Thread.sleep(sleepTime / 1_000_000, (int) (sleepTime % 1_000_000));
             }
-            
-            while (System.nanoTime() - startTime < frameTime) {}
-            
+
+            while (System.nanoTime() - startTime < frameTime) {
+            }
+
             if (System.nanoTime() - lastTime >= 1_000_000_000) {
                 lastTime = System.nanoTime();
             }

@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 public class HowtoPlayMenuController extends MenuController<HowToPlayMenu> {
 
     public HowtoPlayMenuController(HowToPlayMenu menu, EntryController entryController) {
-        super(menu,entryController);
+        super(menu, entryController);
     }
 
     @Override

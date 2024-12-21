@@ -7,8 +7,7 @@ public class Invader2 extends Invader {
     private final int invader2Size;
     private final Game game;
 
-    public Invader2(int x, int y, Game game)
-    {
+    public Invader2(int x, int y, Game game) {
         super(x, y);
         this.invader2Size = 16;
         this.game = game;
@@ -16,8 +15,7 @@ public class Invader2 extends Invader {
     }
 
     @Override
-    public int getPoints()
-    {
+    public int getPoints() {
         return 10;
     }
 

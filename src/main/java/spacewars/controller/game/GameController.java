@@ -30,14 +30,13 @@ public class GameController extends Controller<Game> {
     private final List<RespawnObserver> observers = new ArrayList<>();
 
 
-
     public GameController(Game game) {
         super(game);
         this.playerController = new PlayerController(getModel().getPlayer());
         this.invader1Controller = new Invader1Controller(getModel().getInvaders1());
         this.invader2Controller = new Invader2Controller(getModel().getInvaders2());
         this.invader3Controller = new Invader3Controller(getModel().getInvaders3());
-        this.bossInvaderController = new BossInvaderController(getModel().getBossInvader(),320);
+        this.bossInvaderController = new BossInvaderController(getModel().getBossInvader(), 320);
         this.lastMoveTime = 0;
 
         // Register the controller as an observer
@@ -96,7 +95,7 @@ public class GameController extends Controller<Game> {
         respawnInvaders();
         getModel().respawnBoss();
 
-        if (isGameOver()){
+        if (isGameOver()) {
             transitionToGameOver(application);
         }
     }

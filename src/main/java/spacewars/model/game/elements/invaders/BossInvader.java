@@ -4,7 +4,7 @@ import spacewars.model.game.Game;
 
 import java.util.Random;
 
-public class BossInvader extends Invader{
+public class BossInvader extends Invader {
     private final int points;
     private final Game game;
     private final int size;

@@ -2,12 +2,10 @@ package spacewars.model.game.elements.bullets;
 
 import spacewars.model.Position;
 
-public class BulletInvader3 extends Bullet
-{
+public class BulletInvader3 extends Bullet {
     private static final int SPEED = 1;
 
-    public BulletInvader3(double x, double y)
-    {
+    public BulletInvader3(double x, double y) {
         super(x, y, 10);
     }
 

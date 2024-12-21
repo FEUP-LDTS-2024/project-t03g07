@@ -9,7 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public abstract class MenuController <T extends Menu> extends Controller<T> {
+public abstract class MenuController<T extends Menu> extends Controller<T> {
     private final EntryController entryController;
 
     public MenuController(T menu, EntryController entryController) {

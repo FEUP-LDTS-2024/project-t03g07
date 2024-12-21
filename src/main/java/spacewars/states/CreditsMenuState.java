@@ -13,7 +13,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class CreditsMenuState extends State<CreditsMenu>{
+public class CreditsMenuState extends State<CreditsMenu> {
     public CreditsMenuState(CreditsMenu model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
         super(model, imageLoader);
     }
@@ -25,6 +25,6 @@ public class CreditsMenuState extends State<CreditsMenu>{
 
     @Override
     protected Controller<CreditsMenu> getController() {
-        return new CreditsMenuController(getModel(),new EntryController(getModel()));
+        return new CreditsMenuController(getModel(), new EntryController(getModel()));
     }
 }

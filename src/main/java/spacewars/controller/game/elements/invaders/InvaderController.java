@@ -12,7 +12,7 @@ public class InvaderController extends GameController {
     }
 
     @Override
-    public void step(Application application, GUI.ACTION action, long time){
+    public void step(Application application, GUI.ACTION action, long time) {
     }
 
 }

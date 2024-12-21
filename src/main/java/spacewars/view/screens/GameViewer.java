@@ -63,14 +63,14 @@ public class GameViewer extends ScreenViewer<Game> {
     public void draw(GUI gui) throws IOException {
         gui.clear();
 
-        drawBackground(gui,backgroundColor);
+        drawBackground(gui, backgroundColor);
 
-        drawElement(gui,getModel().getPlayer(),playerViewer);
+        drawElement(gui, getModel().getPlayer(), playerViewer);
 
-        drawElements(gui,getModel().getInvaders1(),invader1Viewer);
-        drawElements(gui,getModel().getInvaders2(),invader2Viewer);
-        drawElements(gui,getModel().getInvaders3(),invader3Viewer);
-        drawElement(gui,getModel().getBossInvader(),bossInvaderViewer);
+        drawElements(gui, getModel().getInvaders1(), invader1Viewer);
+        drawElements(gui, getModel().getInvaders2(), invader2Viewer);
+        drawElements(gui, getModel().getInvaders3(), invader3Viewer);
+        drawElement(gui, getModel().getBossInvader(), bossInvaderViewer);
 
         drawText(gui, getModel().getScoreText(), 5);
         drawText(gui, getModel().getHighScoreText(), 15);

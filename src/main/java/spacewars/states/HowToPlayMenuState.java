@@ -25,6 +25,6 @@ public class HowToPlayMenuState extends State<HowToPlayMenu> {
 
     @Override
     protected Controller<HowToPlayMenu> getController() {
-        return new HowtoPlayMenuController(getModel(),new EntryController(getModel()));
+        return new HowtoPlayMenuController(getModel(), new EntryController(getModel()));
     }
 }

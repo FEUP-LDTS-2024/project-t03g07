@@ -10,13 +10,11 @@ public abstract class Bullet extends Element {
         this.speed = speed;
     }
 
-    public int getSpeed()
-    {
+    public int getSpeed() {
         return this.speed;
     }
 
-    public void setSpeed(int speed)
-    {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 }

@@ -11,8 +11,8 @@ import java.net.URISyntaxException;
 
 public class CreditsMenuController extends MenuController<CreditsMenu> {
 
-    public CreditsMenuController(CreditsMenu menu, EntryController en) {
-        super(menu,en);
+    public CreditsMenuController(CreditsMenu menu, EntryController entryController) {
+        super(menu, entryController);
     }
 
     @Override

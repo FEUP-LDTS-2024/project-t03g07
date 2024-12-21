@@ -27,19 +27,19 @@ public class EntryController extends Controller<Menu> {
     public void step(Application app, GUI.ACTION action, long time) throws IOException, FontFormatException, URISyntaxException {
         switch (getModel().getCurrentEntry().type()) { //"play", "how to play", "credits", "quit", "return to menu"
             case PLAY:
-                if (action==GUI.ACTION.SELECT) {
+                if (action == GUI.ACTION.SELECT) {
                     app.setState(new GameState(new Game(), app.getImageLoader()));
                 }
                 break;
 
             case HOW_TO_PLAY:
-                if (action==GUI.ACTION.SELECT) {
+                if (action == GUI.ACTION.SELECT) {
                     app.setState(new HowToPlayMenuState(new HowToPlayMenu(), app.getImageLoader()));
                 }
                 break;
 
             case CREDITS:
-                if (action==GUI.ACTION.SELECT) {
+                if (action == GUI.ACTION.SELECT) {
                     app.setState(new CreditsMenuState(new CreditsMenu(), app.getImageLoader()));
                 }
                 break;

@@ -401,7 +401,7 @@ public class Game {
     public void respawnBoss() {
         if (bossInvader == null) {
             System.out.println("Respawning boss");
-            bossInvader = new BossInvader(-50, 30, this); // Create a new boss
+            bossInvader = new BossInvader(-50, 30,this); // Create a new boss
             bossController = new BossInvaderController(bossInvader, 320); // Update the controller
         }
     }

@@ -4,7 +4,7 @@ import spacewars.model.Position;
 
 import java.util.List;
 
-public class CreditsMenu extends Menu{
+public class CreditsMenu extends Menu {
     private final String[] names;
     private final String title;
     private final String details;
@@ -21,7 +21,7 @@ public class CreditsMenu extends Menu{
 
     @Override
     protected List<Entry> createEntries() {
-        Position pos = new Position(130,154);
+        Position pos = new Position(130, 154);
         Entry goBack = new Entry(pos, Entry.TYPE.RETURN_TO_MENU);
         return List.of(goBack);
     }

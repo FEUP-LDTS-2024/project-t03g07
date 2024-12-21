@@ -15,7 +15,7 @@ public class EntryViewer {
 
     public void draw(Entry model, GUI gui, TextColor color) {
         String entryText = switch (model.type()) {
-            case PLAY-> "Play";
+            case PLAY -> "Play";
             case HOW_TO_PLAY -> "How to Play";
             case CREDITS -> "Credits";
             case QUIT -> "Quit";

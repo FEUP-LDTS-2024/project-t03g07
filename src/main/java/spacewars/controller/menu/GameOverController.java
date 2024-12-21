@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class GameOverController extends MenuController<GameOver> {
-    public GameOverController(GameOver model,EntryController entryController) {
-        super(model,entryController);
+    public GameOverController(GameOver model, EntryController entryController) {
+        super(model, entryController);
     }
 
     @Override

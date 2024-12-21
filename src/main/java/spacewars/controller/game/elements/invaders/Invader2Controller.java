@@ -5,7 +5,7 @@ import spacewars.model.game.elements.invaders.Invader2;
 
 import java.util.List;
 
-public class Invader2Controller implements RespawnObserver{
+public class Invader2Controller implements RespawnObserver {
     private final List<Invader2> invaders2;
     private double direction;
 

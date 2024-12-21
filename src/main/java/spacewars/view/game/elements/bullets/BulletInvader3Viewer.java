@@ -17,6 +17,6 @@ public class BulletInvader3Viewer implements ElementViewer<BulletInvader3> {
 
     @Override
     public void draw(BulletInvader3 element, GUI gui) throws IOException {
-        image.draw(gui,element.getPosition().x(), element.getPosition().y());
+        image.draw(gui, element.getPosition().x(), element.getPosition().y());
     }
 }
