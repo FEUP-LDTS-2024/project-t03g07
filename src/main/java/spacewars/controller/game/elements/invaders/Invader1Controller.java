@@ -1,5 +1,6 @@
 package spacewars.controller.game.elements.invaders;
 
+import spacewars.controller.game.elements.CollisionDetector;
 import spacewars.model.Position;
 import spacewars.model.game.elements.invaders.Invader1;
 
@@ -46,8 +47,8 @@ public class Invader1Controller implements RespawnObserver {
     }
 
     private boolean collides(Invader1 invader1, Position newPosition) {
-        return (direction < 0 && invader1.getGame().collidesLeft(newPosition, invader1.getInvader1Size())) ||
-                (direction > 0 && invader1.getGame().collidesRight(newPosition, invader1.getInvader1Size()));
+        return (direction < 0 && CollisionDetector.collidesLeft(invader1.getGame(), newPosition, invader1.getInvader1Size()) ||
+                (direction > 0 && CollisionDetector.collidesRight(invader1.getGame(), newPosition, invader1.getInvader1Size())));
     }
 
     @Override
