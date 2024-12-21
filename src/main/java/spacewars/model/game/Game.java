@@ -43,6 +43,7 @@ public class Game {
     private static final double COLLISION_THRESHOLD = 8.0;
 
     public Game(GameBuilder builder) {
+        this.builder = builder;
         this.player = builder.createPlayer(this);
         this.invaders1 = builder.createInvaders1(this);
         this.invaders2 = builder.createInvaders2(this);
@@ -401,9 +402,5 @@ public class Game {
         for (RespawnObserver observer : observers) {
             observer.onRespawn();
         }
-    }
-
-    public GameBuilder getBuilder() {
-        return builder;
     }
 }
