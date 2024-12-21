@@ -1,6 +1,5 @@
 package spacewars.model.game;
 
-import spacewars.controller.game.elements.invaders.BossInvaderController;
 import spacewars.controller.game.elements.invaders.normal_invaders.RespawnObserver;
 import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
@@ -14,7 +13,7 @@ import spacewars.model.game.elements.invaders.BossInvader;
 import java.util.*;
 
 public class Game {
-    private GameBuilder builder;
+    private final GameBuilder builder;
 
     private final Player player;
     private final List<NormalInvader1> invaders1;
@@ -33,10 +32,7 @@ public class Game {
 
     private final List<RespawnObserver> observers = new ArrayList<>();
 
-    private BossInvaderController bossController;
-
     private final Score score;
-    private final Timer bossRespawnTimer;
 
     private final List<Live> lives;
 
@@ -52,7 +48,6 @@ public class Game {
         this.lives = builder.createLives();
 
         this.score = new Score();
-        this.bossRespawnTimer = new Timer();
         this.highScore = HighScore.loadHighScore();
     }
 
@@ -361,14 +356,6 @@ public class Game {
 
     public int getRawScore() {
         return score.getRawScore();
-    }
-
-    public void respawnBoss() {
-        if (bossInvader == null) {
-            System.out.println("Respawning boss");
-            bossInvader = new BossInvader(-50, 30, this); // Create a new boss
-            bossController = new BossInvaderController(bossInvader, 320); // Update the controller
-        }
     }
 
     public void updateInvaderBullets() {

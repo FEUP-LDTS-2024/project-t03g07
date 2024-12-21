@@ -1,8 +1,6 @@
 package spacewars.model.game;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HighScore {
     private static final String home = System.getProperty("user.home");

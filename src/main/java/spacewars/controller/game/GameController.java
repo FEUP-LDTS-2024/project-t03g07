@@ -5,8 +5,8 @@ import spacewars.controller.Controller;
 import spacewars.controller.game.elements.*;
 import spacewars.controller.game.elements.invaders.*;
 import spacewars.controller.game.elements.invaders.normal_invaders.NormalInvader3Controller;
-import spacewars.controller.game.elements.invaders.normal_invaders.NormalNormalInvader1Controller;
-import spacewars.controller.game.elements.invaders.normal_invaders.NormalNormalInvader2Controller;
+import spacewars.controller.game.elements.invaders.normal_invaders.NormalInvader1Controller;
+import spacewars.controller.game.elements.invaders.normal_invaders.NormalInvader2Controller;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
 import spacewars.model.game.HighScore;
@@ -21,8 +21,8 @@ import java.net.URISyntaxException;
 
 public class GameController extends Controller<Game> {
     private final PlayerController playerController;
-    private final NormalNormalInvader1Controller normalInvader1Controller;
-    private final NormalNormalInvader2Controller invader2Controller;
+    private final NormalInvader1Controller normalInvader1Controller;
+    private final NormalInvader2Controller invader2Controller;
     private final NormalInvader3Controller invader3Controller;
     private final BossInvaderController bossInvaderController;
     private long lastMoveTime; // Track the last time the invaders moved
@@ -31,8 +31,8 @@ public class GameController extends Controller<Game> {
     public GameController(Game game) {
         super(game);
         this.playerController = new PlayerController(getModel().getPlayer());
-        this.normalInvader1Controller = new NormalNormalInvader1Controller(getModel().getInvaders1());
-        this.invader2Controller = new NormalNormalInvader2Controller(getModel().getInvaders2());
+        this.normalInvader1Controller = new NormalInvader1Controller(getModel().getInvaders1());
+        this.invader2Controller = new NormalInvader2Controller(getModel().getInvaders2());
         this.invader3Controller = new NormalInvader3Controller(getModel().getInvaders3());
         this.bossInvaderController = new BossInvaderController(getModel().getBossInvader(), 320);
         this.lastMoveTime = 0;

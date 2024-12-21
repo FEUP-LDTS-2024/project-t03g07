@@ -53,9 +53,6 @@ public class Application {
                 Thread.sleep(sleepTime / 1_000_000, (int) (sleepTime % 1_000_000));
             }
 
-            while (System.nanoTime() - startTime < frameTime) {
-            }
-
             if (System.nanoTime() - lastTime >= 1_000_000_000) {
                 lastTime = System.nanoTime();
             }
