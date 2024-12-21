@@ -17,7 +17,6 @@ public class HowToPlayMenu extends Menu {
     private final String pointsBoss;
     private final String textPoints;
 
-
     public HowToPlayMenu() {
         title = "HOW TO PLAY";
         subtitle = "Points";
@@ -53,6 +52,7 @@ public class HowToPlayMenu extends Menu {
     public String getSpacebarText() {
         return spacebarText;
     }
+
 
     public String getPointsInvader1() {
         return pointsInvader1;

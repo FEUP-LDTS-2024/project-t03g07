@@ -14,6 +14,15 @@ public class GameOver extends Menu {
         this.isNewHighScore = newHighScore;
     }
 
+    @Override
+    protected List<Entry> createEntries() {
+        Position pos = new Position(130,165);
+        Entry goBack = new Entry(pos, Entry.TYPE.RETURN_TO_MENU);
+        Position pos2 = new Position(138,154);
+        Entry playAgain = new Entry(pos2, Entry.TYPE.PLAY_AGAIN);
+        return Arrays.asList(playAgain,goBack);
+    }
+
     public String getFinalScoreMessage() {
         return "Your final score is: " + finalScore;
     }
@@ -26,12 +35,4 @@ public class GameOver extends Menu {
         return "NEW HIGH SCORE!";
     }
 
-    @Override
-    protected List<Entry> createEntries() {
-        Position pos = new Position(130,165);
-        Entry goBack = new Entry(pos, Entry.TYPE.RETURN_TO_MENU);
-        Position pos2 = new Position(138,154);
-        Entry playAgain = new Entry(pos2, Entry.TYPE.PLAY_AGAIN);
-        return Arrays.asList(playAgain,goBack);
-    }
 }
