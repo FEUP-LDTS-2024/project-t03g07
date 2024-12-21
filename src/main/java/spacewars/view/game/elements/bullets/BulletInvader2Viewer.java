@@ -1,7 +1,6 @@
 package spacewars.view.game.elements.bullets;
 
 import spacewars.gui.GUI;
-import spacewars.model.game.elements.bullets.BulletInvader1;
 import spacewars.model.game.elements.bullets.BulletInvader2;
 import spacewars.view.images.Image;
 import spacewars.view.images.ImageLoader;

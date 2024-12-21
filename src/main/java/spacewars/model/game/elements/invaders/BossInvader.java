@@ -6,14 +6,15 @@ import java.util.Random;
 
 public class BossInvader extends Invader{
     private final int points;
-    private Game game;
-    private int size = 16;
+    private final Game game;
+    private final int size;
     private boolean alive = true;
 
     public BossInvader(int x, int y, Game game) {
         super(x, y);
         this.points = getRandomPoints();
         this.game = game;
+        this.size = 16;
     }
 
 

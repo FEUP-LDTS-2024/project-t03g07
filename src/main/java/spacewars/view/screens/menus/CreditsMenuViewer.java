@@ -18,21 +18,18 @@ import static spacewars.view.texts.AppTextViewer.getCharHeight;
 public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
     private final EntryViewer entryViewer;
     private final TextViewer textViewer;
-    //private final LogoViewer logoViewer;
-
 
     public static final TextColor unselectedColor = new TextColor.RGB(255,255,255); //white
     public static final TextColor selectedColor = new TextColor.RGB(255,195,0);     //yellow
     public static final TextColor backgroundColor = new TextColor.RGB(0, 10, 32);   //dark blue
     private static final TextColor nameColor = new TextColor.RGB(255,255,255);      //white
-    private static final TextColor detailsColor = new TextColor.RGB(255,255,255);      //white
-    private static final TextColor titleColor = new TextColor.RGB(255,195,0);     //yellow
+    private static final TextColor detailsColor = new TextColor.RGB(255,255,255);   //white
+    private static final TextColor titleColor = new TextColor.RGB(255,195,0);       //yellow
 
     public CreditsMenuViewer(CreditsMenu model, ViewerProvider viewerProvider) {
         super(model);
         this.entryViewer = viewerProvider.getEntryViewer();
         this.textViewer = viewerProvider.getTextViewer();
-        //this.logoViewer = viewerProvider.getLogoViewer();
     }
 
     @Override
@@ -43,7 +40,6 @@ public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
         drawTitle(gui);
         drawDetails(gui);
         drawNames(gui);
-        //logoViewer.draw(gui, 147, 70);
         gui.refresh();
     }
 

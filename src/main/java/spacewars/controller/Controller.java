@@ -1,7 +1,6 @@
 package spacewars.controller;
 
 import spacewars.Application;
-import spacewars.model.game.Game;
 import spacewars.gui.GUI;
 
 import java.awt.*;

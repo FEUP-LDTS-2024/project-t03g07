@@ -20,13 +20,6 @@ public class Application {
         this.gui = new LanternaGUI(320, 192);
         this.imageLoader = new AppImageLoader();
         this.state = new MainMenuState(new MainMenu(), imageLoader);
-
-        /*lanternaGUI.clear();
-        Player player = new Player(10, 10);
-        ViewerProvider viewerProvider = new ViewerProvider(new GameImageLoader());
-        PlayerViewer playerViewer = viewerProvider.getPlayerViewer();
-        playerViewer.draw(player, lanternaGUI);
-        lanternaGUI.refresh();*/
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, FontFormatException {

@@ -5,8 +5,6 @@ import spacewars.controller.game.GameController;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
 
-import java.io.IOException;
-
 public class InvaderController extends GameController {
 
     public InvaderController(Game game) {
@@ -14,7 +12,7 @@ public class InvaderController extends GameController {
     }
 
     @Override
-    public void step(Application application, GUI.ACTION action, long time) throws IOException {
+    public void step(Application application, GUI.ACTION action, long time){
     }
 
 }

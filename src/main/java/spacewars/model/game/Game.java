@@ -1,8 +1,6 @@
 package spacewars.model.game;
 
-import spacewars.controller.game.GameController;
 import spacewars.controller.game.elements.invaders.BossInvaderController;
-import spacewars.controller.game.elements.invaders.RespawnObserver;
 import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
@@ -12,11 +10,7 @@ import spacewars.model.game.elements.invaders.Invader2;
 import spacewars.model.game.elements.invaders.Invader3;
 import spacewars.model.game.elements.invaders.BossInvader;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.Random;
+import java.util.*;
 
 public class Game {
     private final Player player;
@@ -36,8 +30,8 @@ public class Game {
 
     private BossInvaderController bossController;
 
-    private Score score;
-    private Timer bossRespawnTimer;
+    private final Score score;
+    private final Timer bossRespawnTimer;
 
     private final List<Live> lives;
 
@@ -93,7 +87,7 @@ public class Game {
     public List<Live> createLives() {
         List<Live> list = new ArrayList<>(List.of());
         for (int i = 0; i < 3; i++) {
-            list.add(new Live(273 + i * 15, 5, i));
+            list.add(new Live(273 + i * 15, 5));
         }
         return list;
     }
@@ -182,7 +176,6 @@ public class Game {
         List<Invader1> invaders1ToRemove = new ArrayList<>();
         List<Invader2> invaders2ToRemove = new ArrayList<>();
         List<Invader3> invaders3ToRemove = new ArrayList<>();
-        List<BossInvader> bossRemove = new ArrayList<>();
 
         for (Invader1 invader : invaders1) {
             if (isCollision(invader.getPosition(), bullet.getPosition())) {
@@ -268,10 +261,6 @@ public class Game {
             bossBullet = null;
         }
     }
-
-//    public boolean isBullet(Position position) {
-//        return bulletInvader1.getPosition().equals(position);
-//    }
 
     public void invader1Shoot() {
         if (bulletInvader1 == null && System.currentTimeMillis() - lastInvader1ShootTime > 2000) { // Shoot every 2 seconds
@@ -393,13 +382,11 @@ public class Game {
         if (!lives.isEmpty()) {
             // Find the Live object with the lowest x-coordinate
             Live leftmostLive = lives.stream()
-                    .min((live1, live2) -> Double.compare(live1.getPosition().getX(), live2.getPosition().getX()))
+                    .min(Comparator.comparingDouble(live -> live.getPosition().getX()))
                     .orElse(null);
 
             // Remove the leftmost Live
-            if (leftmostLive != null) {
-                lives.remove(leftmostLive);
-            }
+            lives.remove(leftmostLive);
         }
     }
 
@@ -410,14 +397,6 @@ public class Game {
     public int getRawScore() {
         return score.getRawScore();
     }
-  
-//    public void respawnInvaders() {
-//        if (invaders1.isEmpty() && invaders2.isEmpty() && invaders3.isEmpty()) {
-//            invaders1.addAll(createInvaders1());
-//            invaders2.addAll(createInvaders2());
-//            invaders3.addAll(createInvaders3());
-//        }
-//    }
 
     public void respawnBoss() {
         if (bossInvader == null) {

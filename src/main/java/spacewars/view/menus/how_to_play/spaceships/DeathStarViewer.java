@@ -1,4 +1,4 @@
-package spacewars.view.menus.how_to_play;
+package spacewars.view.menus.how_to_play.spaceships;
 
 import spacewars.gui.GUI;
 import spacewars.view.images.Image;

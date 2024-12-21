@@ -3,7 +3,6 @@ package spacewars.model.game.elements;
 import spacewars.model.game.Game;
 import spacewars.model.game.elements.bullets.BulletPlayer;
 
-import java.util.List;
 import java.util.Map.Entry;
 
 import static java.util.Map.entry;

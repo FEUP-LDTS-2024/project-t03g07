@@ -19,7 +19,7 @@ public class GameOverState extends State<GameOver> {
     }
 
     @Override
-    protected ScreenViewer<GameOver> getScreenViewer(ViewerProvider viewerProvider) throws IOException {
+    protected ScreenViewer<GameOver> getScreenViewer(ViewerProvider viewerProvider) {
         return new GameOverViewer(getModel(), viewerProvider);
     }
 

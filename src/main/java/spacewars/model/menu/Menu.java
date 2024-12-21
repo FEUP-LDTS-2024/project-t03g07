@@ -1,6 +1,5 @@
 package spacewars.model.menu;
 
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class Menu {

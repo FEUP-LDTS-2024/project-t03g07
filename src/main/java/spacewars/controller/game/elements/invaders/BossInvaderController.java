@@ -20,7 +20,6 @@ public class BossInvaderController {
         resetBossPosition();
     }
 
-
     public void moveBoss(long currentTime) {
 
         if (!bossInvader.isAlive()) {
@@ -30,7 +29,6 @@ public class BossInvaderController {
             }
             return; // Don't move if dead and respawning
         }
-
 
         double x = bossInvader.getPosition().getX();
 
@@ -48,13 +46,11 @@ public class BossInvaderController {
             }
         }
 
-
         if (currentTime - waitStartTime >= WAIT_DURATION) {
             int dx = movingRight ? speed : -speed;
             Position newPosition = new Position(x + dx, bossInvader.getPosition().getY());
             bossInvader.setPosition(newPosition);
         }
-
 
     }
 
@@ -62,8 +58,6 @@ public class BossInvaderController {
         movingRight = true;
         bossInvader.setPosition(new Position(-bossInvader.getSize(), bossInvader.getPosition().getY()));
     }
-
-
 
     public BossInvader getBossInvader() {
         return bossInvader;

@@ -8,6 +8,10 @@ import spacewars.model.menu.HowToPlayMenu;
 import spacewars.view.*;
 import spacewars.view.menus.EntryViewer;
 import spacewars.view.menus.how_to_play.*;
+import spacewars.view.menus.how_to_play.spaceships.DeathStarViewer;
+import spacewars.view.menus.how_to_play.spaceships.EmpireFighterViewer;
+import spacewars.view.menus.how_to_play.spaceships.StarDestroyerViewer;
+import spacewars.view.menus.how_to_play.spaceships.TIEExecutorViewer;
 import spacewars.view.screens.ScreenViewer;
 import spacewars.view.texts.TextViewer;
 
@@ -29,9 +33,9 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
     public static final TextColor unselectedColor = new TextColor.RGB(255,255,255); //white
     public static final TextColor selectedColor = new TextColor.RGB(255,195,0);     //yellow
     public static final TextColor backgroundColor = new TextColor.RGB(0, 10, 32);   //dark blue
-    private static final TextColor titleColor = new TextColor.RGB(255,195,0);     //yellow
-    private static final TextColor textColor = new TextColor.RGB(255,255,255); //white
-    private static final TextColor enigmaColor = new TextColor.RGB(255,195,0);  //yellow
+    private static final TextColor titleColor = new TextColor.RGB(255,195,0);       //yellow
+    private static final TextColor textColor = new TextColor.RGB(255,255,255);      //white
+    private static final TextColor enigmaColor = new TextColor.RGB(255,195,0);      //yellow
 
     public HowToPlayMenuViewer(HowToPlayMenu model, ViewerProvider viewerProvider) {
         super(model);
@@ -45,8 +49,6 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
         this.tieExecutorViewer = viewerProvider.getTIEExecutorViewer();
         this.starDestroyerViewer = viewerProvider.getStarDestroyerViewer();
         this.deathStarViewer = viewerProvider.getDeathStarViewer();
-
-        //this.logoViewer = viewerProvider.getLogoViewer();
     }
 
     @Override

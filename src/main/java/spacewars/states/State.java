@@ -26,7 +26,7 @@ public abstract class State<T> {
         return model;
     }
 
-    protected abstract ScreenViewer<T> getScreenViewer(ViewerProvider viewerProvider) throws IOException;
+    protected abstract ScreenViewer<T> getScreenViewer(ViewerProvider viewerProvider);
 
     protected abstract Controller<T> getController();
 

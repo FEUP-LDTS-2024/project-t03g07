@@ -4,8 +4,6 @@ import spacewars.Application;
 import spacewars.controller.Controller;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
-import spacewars.model.game.GameBuilder;
-import spacewars.model.game.elements.Player;
 import spacewars.model.menu.CreditsMenu;
 import spacewars.model.menu.HowToPlayMenu;
 import spacewars.model.menu.MainMenu;

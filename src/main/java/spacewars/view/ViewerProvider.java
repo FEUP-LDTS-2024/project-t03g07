@@ -11,6 +11,10 @@ import spacewars.view.images.ImageLoader;
 import spacewars.view.menus.EntryViewer;
 import spacewars.view.menus.GameOverImageViewer;
 import spacewars.view.menus.how_to_play.*;
+import spacewars.view.menus.how_to_play.spaceships.DeathStarViewer;
+import spacewars.view.menus.how_to_play.spaceships.EmpireFighterViewer;
+import spacewars.view.menus.how_to_play.spaceships.StarDestroyerViewer;
+import spacewars.view.menus.how_to_play.spaceships.TIEExecutorViewer;
 import spacewars.view.menus.main_menu.LogoViewer;
 import spacewars.view.texts.AppTextViewer;
 import spacewars.view.texts.TextViewer;
@@ -76,8 +80,6 @@ public class ViewerProvider {
         this.deathStarViewer = new DeathStarViewer(imageLoader);
         this.liveViewer = new LiveViewer(imageLoader);
     }
-
-
 
     public PlayerViewer getPlayerViewer() {
         return playerViewer;

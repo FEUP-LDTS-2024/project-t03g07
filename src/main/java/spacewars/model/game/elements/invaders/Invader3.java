@@ -4,8 +4,8 @@ import spacewars.model.game.Game;
 
 public class Invader3 extends Invader {
     private double speed;
-    private int invader3Size;
-    private Game game;
+    private final int invader3Size;
+    private final Game game;
 
     public Invader3(int x, int y, Game game)
     {

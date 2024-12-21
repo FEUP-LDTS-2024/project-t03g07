@@ -7,7 +7,6 @@ import spacewars.controller.game.elements.invaders.*;
 import spacewars.gui.GUI;
 import spacewars.model.game.Game;
 import spacewars.model.game.HighScore;
-import spacewars.model.game.elements.invaders.BossInvader;
 import spacewars.model.menu.GameOver;
 import spacewars.model.menu.MainMenu;
 import spacewars.states.GameOverState;
@@ -28,7 +27,7 @@ public class GameController extends Controller<Game> {
     private final BossInvaderController bossInvaderController;
     private long lastMoveTime; // Track the last time the invaders moved
     private static final long MOVE_INTERVAL = 500; // Time in milliseconds between invader movements
-    private List<RespawnObserver> observers = new ArrayList<>();
+    private final List<RespawnObserver> observers = new ArrayList<>();
 
 
 

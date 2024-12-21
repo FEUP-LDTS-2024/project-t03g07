@@ -1,8 +1,6 @@
 package spacewars.controller.menu;
 
 import spacewars.Application;
-import spacewars.controller.Controller;
-import spacewars.gui.GUI;
 import spacewars.model.menu.GameOver;
 import spacewars.model.menu.MainMenu;
 import spacewars.states.MainMenuState;

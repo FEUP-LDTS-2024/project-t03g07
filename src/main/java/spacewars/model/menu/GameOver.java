@@ -1,28 +1,17 @@
 package spacewars.model.menu;
 
-
 import spacewars.model.Position;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class GameOver extends Menu {
-    private String GameOverMessage;
     private final String finalScore;
-    private boolean isNewHighScore;
+    private final boolean isNewHighScore;
 
     public GameOver(String finalScore, boolean newHighScore) {
-        GameOverMessage = "GameOver";
         this.finalScore = finalScore;
         this.isNewHighScore = newHighScore;
-    }
-
-    public String getGameOverMessage() {
-        return GameOverMessage;
-    }
-
-    public void setGameOver(String GameOver) {
-        this.GameOverMessage = GameOver;
     }
 
     public String getFinalScoreMessage() {

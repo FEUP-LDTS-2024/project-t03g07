@@ -3,7 +3,7 @@ package spacewars.model.menu;
 import spacewars.model.Position;
 
 public class Entry {
-    public enum TYPE { PLAY, HOW_TO_PLAY, CREDITS, QUIT, RETURN_TO_MENU, PLAY_AGAIN };
+    public enum TYPE { PLAY, HOW_TO_PLAY, CREDITS, QUIT, RETURN_TO_MENU, PLAY_AGAIN }
 
     private final Position position;
     private final TYPE type;
