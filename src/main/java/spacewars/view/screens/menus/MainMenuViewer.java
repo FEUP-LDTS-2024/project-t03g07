@@ -22,6 +22,7 @@ public class MainMenuViewer<T extends Menu> extends ScreenViewer<T> {
 
     public MainMenuViewer(T model, ViewerProvider viewerProvider) {
         super(model);
+
         this.entryViewer = viewerProvider.getEntryViewer();
         this.logoViewer = viewerProvider.getLogoViewer();
     }
@@ -29,9 +30,11 @@ public class MainMenuViewer<T extends Menu> extends ScreenViewer<T> {
     @Override
     public void draw(GUI gui) throws IOException {
         gui.clear();
+
         drawBackground(gui, backgroundColor);
         drawEntries(gui, getModel().getEntries());
         logoViewer.draw(gui, 137, 50);
+
         gui.refresh();
     }
 
