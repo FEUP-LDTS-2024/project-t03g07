@@ -1,6 +1,7 @@
 package spacewars.model.game;
 
 import spacewars.controller.game.elements.invaders.BossInvaderController;
+import spacewars.controller.game.elements.invaders.RespawnObserver;
 import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
@@ -29,6 +30,8 @@ public class Game {
     private long lastInvader3ShootTime = 0;
     private long lastBossShootTime = 0;
     private final int highScore;
+
+    private final List<RespawnObserver> observers = new ArrayList<>();
 
     private BossInvaderController bossController;
 
@@ -163,7 +166,7 @@ public class Game {
             }
         }
 
-        if (bossInvader!=null) {
+        if (bossInvader != null) {
             if (isCollision(bossInvader.getPosition(), bullet.getPosition())) {
                 player.setBulletPlayer(null);
                 score.increaseScore(bossInvader.getRandomPoints());
@@ -362,8 +365,41 @@ public class Game {
     public void respawnBoss() {
         if (bossInvader == null) {
             System.out.println("Respawning boss");
-            bossInvader = new BossInvader(-50, 30,this); // Create a new boss
+            bossInvader = new BossInvader(-50, 30, this); // Create a new boss
             bossController = new BossInvaderController(bossInvader, 320); // Update the controller
+        }
+    }
+
+    public void updateInvaderBullets() {
+        invader1Shoot();
+        updateInvader1Bullet();
+        invader2Shoot();
+        updateInvader2Bullet();
+        invader3Shoot();
+        updateInvader3Bullet();
+
+        if (bossInvader.isAlive()) {
+            bossInvaderShoot(bossInvader);
+            updateBossInvaderBullet();
+        }
+    }
+
+    public void respawnInvaders() {
+        if (getInvaders1().isEmpty() && getInvaders2().isEmpty() && getInvaders3().isEmpty()) {
+            getInvaders1().addAll(builder.createInvaders1(this));
+            getInvaders2().addAll(builder.createInvaders2(this));
+            getInvaders3().addAll(builder.createInvaders3(this));
+            notifyObservers();
+        }
+    }
+
+    public void addObserver(RespawnObserver observer) {
+        observers.add(observer);
+    }
+
+    private void notifyObservers() {
+        for (RespawnObserver observer : observers) {
+            observer.onRespawn();
         }
     }
 

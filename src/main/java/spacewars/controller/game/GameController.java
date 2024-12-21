@@ -15,9 +15,6 @@ import spacewars.states.MainMenuState;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class GameController extends Controller<Game> {
     private final PlayerController playerController;
@@ -27,8 +24,6 @@ public class GameController extends Controller<Game> {
     private final BossInvaderController bossInvaderController;
     private long lastMoveTime; // Track the last time the invaders moved
     private static final long MOVE_INTERVAL = 500; // Time in milliseconds between invader movements
-    private final List<RespawnObserver> observers = new ArrayList<>();
-
 
     public GameController(Game game) {
         super(game);
@@ -39,29 +34,14 @@ public class GameController extends Controller<Game> {
         this.bossInvaderController = new BossInvaderController(getModel().getBossInvader(), 320);
         this.lastMoveTime = 0;
 
-        // Register the controller as an observer
-        addObserver(invader1Controller);
-        addObserver(invader2Controller);
-        addObserver(invader3Controller);
+        getModel().addObserver(invader1Controller);
+        getModel().addObserver(invader2Controller);
+        getModel().addObserver(invader3Controller);
     }
 
     @Override
     public void step(Application application, GUI.ACTION action, long time) throws IOException, FontFormatException, URISyntaxException {
-        switch (action) {
-            case LEFT:
-                playerController.moveLeft();
-                break;
-            case RIGHT:
-                playerController.moveRight();
-                break;
-            case SHOOT:
-                playerController.shoot();
-                break;
-            case QUIT:
-                onQuit(application);
-                break;
-        }
-
+        handlePlayerInput(action, application);
         getModel().updatePlayerBullet();
 
         // Move invaders at regular intervals
@@ -69,34 +49,26 @@ public class GameController extends Controller<Game> {
             invader1Controller.moveInvaders1();
             invader2Controller.moveInvaders2();
             invader3Controller.moveInvaders3();
+            if (getModel().getBossInvader() != null) {
+                bossInvaderController.moveBoss(time);
+            }
             lastMoveTime = time;
         }
 
-        if (getModel().getBossInvader() != null) {
-            bossInvaderController.moveBoss(time);
-        }
-
-        //invader1Controller.shoot();
-        getModel().invader1Shoot();
-        getModel().updateInvader1Bullet();
-
-        getModel().invader2Shoot();
-        getModel().updateInvader2Bullet();
-
-        getModel().invader3Shoot();
-        getModel().updateInvader3Bullet();
-
-        if (bossInvaderController.getBossInvader().isAlive()) {
-            getModel().bossInvaderShoot(bossInvaderController.getBossInvader());
-            getModel().updateBossInvaderBullet();
-        }
-
-        //getModel().respawnInvaders();
-        respawnInvaders();
-        getModel().respawnBoss();
+        getModel().updateInvaderBullets();
+        getModel().respawnInvaders();
 
         if (isGameOver()) {
             transitionToGameOver(application);
+        }
+    }
+
+    private void handlePlayerInput(GUI.ACTION action, Application application) throws IOException, URISyntaxException, FontFormatException {
+        switch (action) {
+            case LEFT -> playerController.moveLeft();
+            case RIGHT -> playerController.moveRight();
+            case SHOOT -> playerController.shoot();
+            case QUIT -> onQuit(application);
         }
     }
 
@@ -117,25 +89,4 @@ public class GameController extends Controller<Game> {
         GameOverState gameOverState = new GameOverState(gameOver, application.getImageLoader());
         application.setState(gameOverState);
     }
-
-    public void addObserver(RespawnObserver observer) {
-        observers.add(observer);
-    }
-
-    private void notifyObservers() {
-        for (RespawnObserver observer : observers) {
-            observer.onRespawn();
-        }
-    }
-
-    public void respawnInvaders() {
-        if (getModel().getInvaders1().isEmpty() && getModel().getInvaders2().isEmpty() && getModel().getInvaders3().isEmpty()) {
-            getModel().getInvaders1().addAll(getModel().getBuilder().createInvaders1(getModel()));
-            getModel().getInvaders2().addAll(getModel().getBuilder().createInvaders2(getModel()));
-            getModel().getInvaders3().addAll(getModel().getBuilder().createInvaders3(getModel()));
-            notifyObservers(); // Notify all observers of the respawn event
-        }
-    }
-
-
 }
