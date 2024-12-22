@@ -13,15 +13,14 @@ public class HighScore {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
-                return;
+                throw new RuntimeException("Error creating high score file");
             }
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
             writer.write(String.valueOf(highScore));
             writer.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error saving high score");
         }
     }
 
@@ -33,8 +32,7 @@ public class HighScore {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
-                return 0;
+                throw new RuntimeException("Error creating high score file");
             }
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
@@ -43,7 +41,7 @@ public class HighScore {
                 highScore = Integer.parseInt(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error loading high score");
         }
         return highScore;
     }
