@@ -16,7 +16,7 @@ public abstract class State<T> {
     private final Controller<T> controller;
     private final ScreenViewer<T> screenViewer;
 
-    public State(T model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
+    public State(T model, ImageLoader imageLoader) throws IOException, URISyntaxException {
         this.model = model;
         this.controller = getController();
         this.screenViewer = getScreenViewer(new ViewerProvider(imageLoader));

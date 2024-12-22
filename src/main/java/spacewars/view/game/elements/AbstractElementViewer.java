@@ -15,7 +15,7 @@ public abstract class AbstractElementViewer<T extends Element> implements Elemen
     }
 
     @Override
-    public void draw(T element, GUI gui) throws IOException {
+    public void draw(T element, GUI gui) {
         image.draw(gui, getX(element), getY(element));
     }
 

@@ -13,7 +13,7 @@ public abstract class AbstractImageViewer {
         this.image = imageLoader.get(imagePath);
     }
 
-    public void draw(GUI gui, double x, double y) throws IOException {
+    public void draw(GUI gui, double x, double y) {
         image.draw(gui, x, y);
     }
 }
