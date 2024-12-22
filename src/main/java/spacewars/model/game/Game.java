@@ -87,6 +87,14 @@ public class Game {
         return bossBullet;
     }
 
+    public String getScore() {
+        return score.getScore();
+    }
+
+    public int getRawScore() {
+        return score.getRawScore();
+    }
+
     public String getScoreText() {
         return "Score: " + score.getScore();
     }
@@ -348,14 +356,6 @@ public class Game {
             // Remove the leftmost Live
             lives.remove(leftmostLive);
         }
-    }
-
-    public String getScore() {
-        return score.getScore();
-    }
-
-    public int getRawScore() {
-        return score.getRawScore();
     }
 
     public void updateInvaderBullets() {
