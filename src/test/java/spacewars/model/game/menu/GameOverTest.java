@@ -1,14 +1,22 @@
 package spacewars.model.game.menu;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spacewars.model.menu.GameOver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameOverTest {
+
+    private GameOver gameOver;
+
+    @BeforeEach
+    public void setup() {
+        this.gameOver = new GameOver("100", true);
+    }
+
     @Test
     public void getFinalScoreMessage() {
-        GameOver gameOver = new GameOver("100", false);
         String finalScoreMessage = gameOver.getFinalScoreMessage();
 
         assertNotNull(finalScoreMessage, "Final score message should not be null");
@@ -21,7 +29,7 @@ public class GameOverTest {
         GameOver highScoreGameOver = new GameOver("100", true);
         boolean newHighScore = highScoreGameOver.isNewHighScore();
         assertTrue(newHighScore, "New high score should be true");
-        
+
         GameOver noHighScoreGameOver = new GameOver("100", false);
         boolean notHighScore = noHighScoreGameOver.isNewHighScore();
         assertFalse(notHighScore, "New high score should be false");
@@ -30,7 +38,6 @@ public class GameOverTest {
 
     @Test
     public void getNewHighScoreMessage() {
-        GameOver gameOver = new GameOver("100", true);
         String subtitle = gameOver.getNewHighScoreMessage();
 
         assertNotNull(subtitle, "Subtitle should not be null");

@@ -1,5 +1,6 @@
 package spacewars.model.game.menu;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spacewars.model.menu.CreditsMenu;
 
@@ -7,9 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditsMenuTest {
 
+    private CreditsMenu creditsMenu;
+
+    @BeforeEach
+    public void setup() {
+        this.creditsMenu = new CreditsMenu();
+    }
+
     @Test
     public void getNamesTest() {
-        CreditsMenu creditsMenu = new CreditsMenu();
         String[] names = creditsMenu.getNames();
 
         assertNotNull(names, "Names array should not be null");
@@ -23,7 +30,6 @@ public class CreditsMenuTest {
 
     @Test
     public void getTitleTest() {
-        CreditsMenu creditsMenu = new CreditsMenu();
         String title = creditsMenu.getTitle();
 
         assertNotNull(title, "Title should not be null");
@@ -35,7 +41,6 @@ public class CreditsMenuTest {
 
     @Test
     public void getDetailsTest() {
-        CreditsMenu creditsMenu = new CreditsMenu();
         String details = creditsMenu.getDetails();
 
         assertNotNull(details, "Details should not be null");
