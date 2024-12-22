@@ -19,7 +19,7 @@ public class Game {
     private final List<NormalInvader1> invaders1;
     private final List<NormalInvader2> invaders2;
     private final List<NormalInvader3> invaders3;
-    private BossInvader bossInvader;
+    private final BossInvader bossInvader;
     private BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
     private BulletInvader3 bulletInvader3;
