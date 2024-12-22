@@ -1,30 +1,29 @@
 package spacewars.model.game.elements;
 
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import spacewars.model.Position;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class LiveTest
 {
-    /*@Test
-    public void testDecreaseLives()
+    @Property
+    void LivePositionTest(@ForAll int x, @ForAll int y)
     {
-        Lives lives = new Lives(3);
-        lives.decreaseLives();
-        assertEquals(2, lives.getLives());
+        Live live = new Live(x, y);
+        assertEquals(x, live.getPosition().x());
+        assertEquals(y, live.getPosition().y());
     }
 
-    @Test
-    public void testSetLives()
+    @Property
+    void SetLivePositionTest(@ForAll int x, @ForAll int y)
     {
-        Lives lives = new Lives(3);
-        lives.setLives(5);
-        assertEquals(5, lives.getLives());
+        Live live = new Live(0, 0);
+        Position position = new Position(x, y);
+        live.setPosition(position);
+        assertEquals(x, live.getPosition().x());
+        assertEquals(y, live.getPosition().y());
     }
-
-    @Test
-    public void testGetLives()
-    {
-        Lives lives = new Lives(3);
-        assertEquals(3, lives.getLives());
-    }*/
 }
