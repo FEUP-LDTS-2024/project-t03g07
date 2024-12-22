@@ -19,6 +19,10 @@ public abstract class AbstractElementViewer<T extends Element> implements Elemen
         image.draw(gui, getX(element), getY(element));
     }
 
-    protected abstract int getX(T element);
-    protected abstract int getY(T element);
+    protected int getX(T element) {
+        return (int)element.getPosition().x();
+    }
+    protected int getY(T element) {
+        return (int)element.getPosition().y();
+    }
 }

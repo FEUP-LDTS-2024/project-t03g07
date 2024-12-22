@@ -7,17 +7,9 @@ import spacewars.view.images.ImageLoader;
 import java.io.IOException;
 
 public class NormalInvader3Viewer extends AbstractElementViewer<NormalInvader3> {
+
     public NormalInvader3Viewer(ImageLoader imageLoader) throws IOException {
         super(imageLoader, "elements/invaders/star_destroyer.png");
     }
 
-    @Override
-    protected int getX(NormalInvader3 element) {
-        return (int)element.getPosition().x();
-    }
-
-    @Override
-    protected int getY(NormalInvader3 element) {
-        return (int)element.getPosition().y();
-    }
 }
