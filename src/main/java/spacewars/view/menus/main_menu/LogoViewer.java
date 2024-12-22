@@ -1,19 +1,14 @@
 package spacewars.view.menus.main_menu;
 
-import spacewars.gui.GUI;
-import spacewars.view.images.Image;
 import spacewars.view.images.ImageLoader;
+import spacewars.view.menus.AbstractImageViewer;
 
 import java.io.IOException;
 
-public class LogoViewer {
-    private final Image image;
+public class LogoViewer extends AbstractImageViewer {
 
     public LogoViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("images/logo.png");
+        super(imageLoader, "images/logo.png");
     }
 
-    public void draw(GUI gui, double x, double y) throws IOException {
-        image.draw(gui, x, y);
-    }
 }

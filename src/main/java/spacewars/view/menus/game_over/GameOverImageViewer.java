@@ -1,19 +1,13 @@
 package spacewars.view.menus.game_over;
 
-import spacewars.gui.GUI;
-import spacewars.view.images.Image;
 import spacewars.view.images.ImageLoader;
+import spacewars.view.menus.AbstractImageViewer;
 
 import java.io.IOException;
 
-public class GameOverImageViewer {
-    private final Image image;
+public class GameOverImageViewer extends AbstractImageViewer {
 
     public GameOverImageViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("images/game_over_image.png");
-    }
-
-    public void draw(GUI gui, double x, double y) throws IOException {
-        image.draw(gui, x, y);
+        super(imageLoader, "images/game_over_image.png");
     }
 }

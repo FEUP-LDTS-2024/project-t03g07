@@ -1,4 +1,3 @@
-// src/main/java/spacewars/view/game/elements/AbstractElementViewer.java
 package spacewars.view.game.elements;
 
 import spacewars.gui.GUI;

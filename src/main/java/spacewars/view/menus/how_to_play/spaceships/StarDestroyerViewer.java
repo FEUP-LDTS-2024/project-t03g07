@@ -3,17 +3,13 @@ package spacewars.view.menus.how_to_play.spaceships;
 import spacewars.gui.GUI;
 import spacewars.view.images.Image;
 import spacewars.view.images.ImageLoader;
+import spacewars.view.menus.AbstractImageViewer;
 
 import java.io.IOException;
 
-public class StarDestroyerViewer {
-    private final Image image;
+public class StarDestroyerViewer extends AbstractImageViewer {
 
     public StarDestroyerViewer(ImageLoader imageLoader) throws IOException {
-        this.image = imageLoader.get("elements/invaders/star_destroyer.png");
-    }
-
-    public void draw(GUI gui, double x, double y) throws IOException {
-        image.draw(gui, x, y);
+        super(imageLoader, "elements/invaders/star_destroyer.png");
     }
 }
