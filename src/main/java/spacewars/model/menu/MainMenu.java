@@ -8,7 +8,7 @@ import java.util.List;
 public class MainMenu extends Menu {
 
     @Override
-    protected List<Entry> createEntries() {
+    public List<Entry> createEntries() {
         Position pos_play = new Position(153, 130);
         Position pos_howToPlay = new Position(139, 138);
         Position pos_credits = new Position(147, 146);
