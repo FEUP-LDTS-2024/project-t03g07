@@ -2,6 +2,7 @@ package spacewars.model.game;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
 import spacewars.model.game.elements.bullets.*;
@@ -33,6 +34,8 @@ class GameTest {
     private BulletBossInvader bossBullet;
     private Score score;
     private int highScore;
+
+    private static final double COLLISION_THRESHOLD = 8.0;
 
 
     @BeforeEach
@@ -129,4 +132,118 @@ class GameTest {
         assertNotNull(highScore);
         assertNotEquals("", highScore);
     }
+
+    @Test
+    public void checkSideBoundariesTest() {
+        // Case 1: x1 < 20 and x2 > 300 (both true)
+        assertTrue(game.checkSideBoundaries(10, 310));
+
+        // Case 2: x1 < 20 and x2 <= 300 (x1 true, x2 false)
+        assertTrue(game.checkSideBoundaries(10, 290));
+
+        // Case 3: x1 >= 20 and x2 > 300 (x1 false, x2 true)
+        assertTrue(game.checkSideBoundaries(30, 310));
+
+        // Case 4: x1 >= 20 and x2 <= 300 (both false)
+        assertFalse(game.checkSideBoundaries(30, 290));
+    }
+
+    @Test
+    public void checkSideBoundariesEdgeCasesTest() {
+        // Case where x1 == 20 and x2 == 300 (edge boundary, both conditions false)
+        assertFalse(game.checkSideBoundaries(20, 300));
+    }
+
+    @Test
+    public void checkTopBoundaryTest() {
+        // Case 1: y < 20 (should return true)
+        assertTrue(game.checkTopBoundary(5));
+
+        // Case 2: y == 20 (boundary, should return false)
+        assertFalse(game.checkTopBoundary(20));
+
+        // Case 3: y > 20 (should return false)
+        assertFalse(game.checkTopBoundary(25));
+    }
+
+
+    @Test
+    public void checkCollisionTest() {
+        // Case 1: Collision occurs because topLeft.x() < 20
+        Position topLeft = new Position(10, 100);
+        Position bottomRight = new Position(290, 200);
+        assertTrue(game.checkCollision(topLeft, bottomRight));
+
+        // Case 2: Collision occurs because bottomRight.x() > 300
+        topLeft = new Position(30, 100);
+        bottomRight = new Position(310, 200);
+        assertTrue(game.checkCollision(topLeft, bottomRight));
+
+        // Case 3: No collision (x1 >= 20 and x2 <= 300)
+        topLeft = new Position(30, 100);
+        bottomRight = new Position(290, 200);
+        assertFalse(game.checkCollision(topLeft, bottomRight));
+
+        // Case 4: Edge case (x1 == 20 and x2 == 300)
+        topLeft = new Position(20, 100);
+        bottomRight = new Position(300, 200);
+        assertFalse(game.checkCollision(topLeft, bottomRight));
+    }
+
+    @Test
+    public void collidesLeftTest() {
+        // Case 1: Left collision occurs (topLeft.x < 20)
+        Position position = new Position(10, 100); // x < 20 triggers collision
+        double size = 50;
+        assertTrue(game.collidesLeft(position, size));
+
+        // Case 2: No left collision (topLeft.x >= 20)
+        position = new Position(30, 100); // x >= 20 means no collision
+        assertFalse(game.collidesLeft(position, size));
+
+        // Case 3: Edge case where topLeft.x == 20 (no collision)
+        position = new Position(20, 100); // x == 20 is within bounds
+        assertFalse(game.collidesLeft(position, size));
+    }
+
+    @Test
+    public void collidesRightTest() {
+        // Case 1: Right collision occurs (bottomRight.x > 300)
+        Position position = new Position(260, 100); // x + size - 1 > 300 triggers collision
+        double size = 50;
+        assertTrue(game.collidesRight(position, size));
+
+        // Case 2: No right collision (bottomRight.x <= 300)
+        position = new Position(200, 100); // x + size - 1 <= 300 means no collision
+        assertFalse(game.collidesRight(position, size));
+
+        // Case 3: Edge case where bottomRight.x == 300 (no collision)
+        position = new Position(251, 100); // x + size - 1 == 300 is within bounds
+        assertFalse(game.collidesRight(position, size));
+    }
+
+    @Test
+    public void isCollisionTest() {
+        // Assuming COLLISION_THRESHOLD is accessible (e.g., via a public constant or reflection)
+        double threshold = COLLISION_THRESHOLD;
+
+        // Case 1: Collision detected (distance < threshold)
+        Position pos1 = new Position(10, 10);
+        Position pos2 = new Position(10, 10 + (threshold / 2)); // Distance is less than threshold
+        assertTrue(game.isCollision(pos1, pos2));
+
+        // Case 2: No collision (distance > threshold)
+        pos1 = new Position(10, 10);
+        pos2 = new Position(10, 10 + (threshold * 2)); // Distance is greater than threshold
+        assertFalse(game.isCollision(pos1, pos2));
+
+        // Case 3: Edge case (distance == threshold)
+        pos1 = new Position(10, 10);
+        pos2 = new Position(10, 10 + threshold); // Distance is exactly threshold
+        assertFalse(game.isCollision(pos1, pos2)); // Assuming "distance < threshold" excludes equal values
+    }
+
+
+
+
 }

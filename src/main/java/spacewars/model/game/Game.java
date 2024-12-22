@@ -123,7 +123,7 @@ public class Game {
         return y < 20;
     }
 
-    private boolean checkCollision(Position topLeft, Position bottomRight) {
+    public boolean checkCollision(Position topLeft, Position bottomRight) {
         return checkSideBoundaries(topLeft.x(), bottomRight.x());
     }
 
@@ -135,7 +135,7 @@ public class Game {
         return checkCollision(new Position(position.x() + size - 1, position.y()), new Position(position.x() + size - 1, position.y() + size - 1));
     }
 
-    private boolean isCollision(Position pos1, Position pos2) {
+    public boolean isCollision(Position pos1, Position pos2) {
         double distance = Math.sqrt(Math.pow(pos1.x() - pos2.x(), 2) + Math.pow(pos1.y() - pos2.y(), 2));
         return distance < COLLISION_THRESHOLD;
     }
