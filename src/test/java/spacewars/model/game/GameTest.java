@@ -2,6 +2,7 @@ package spacewars.model.game;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import spacewars.controller.game.elements.invaders.normal_invaders.RespawnObserver;
 import spacewars.model.Position;
 import spacewars.model.game.elements.Live;
 import spacewars.model.game.elements.Player;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 class GameTest {
 
@@ -243,7 +245,67 @@ class GameTest {
         assertFalse(game.isCollision(pos1, pos2)); // Assuming "distance < threshold" excludes equal values
     }
 
+    @Test
+    public void decreaseLivesTest() {
+        // Mock two Live objects with different x-coordinates
+        Live live1 = mock(Live.class);
+        Live live2 = mock(Live.class);
+        when(live1.getPosition()).thenReturn(new Position(10, 0)); // x = 10
+        when(live2.getPosition()).thenReturn(new Position(5, 0));  // x = 5
 
+        // Set up the mocked lives list
+        when(lives.isEmpty()).thenReturn(false); // List is not empty
+        when(lives.stream()).thenReturn(Stream.of(live1, live2));
 
+        // Call the decreaseLives method
+        game.decreaseLives();
+
+        // Verify that the Live object with the smallest x-coordinate was removed
+        verify(lives).remove(live2);
+
+        // Case 2: Lives == 0
+        when(lives.isEmpty()).thenReturn(true); // Simulate an empty list
+        game.decreaseLives();
+
+        // Verify that remove was not called when the list is empty
+        verify(lives, times(1)).remove(any()); // Ensure no additional calls are made
+    }
+
+    @Test
+    public void addObserverTest() {
+        // Create a mock observer
+        RespawnObserver observer = mock(RespawnObserver.class);
+
+        // Call the addObserver method
+        game.addObserver(observer);
+
+        // Verify that the observer was added to the list
+        assertTrue(game.getObservers().contains(observer));
+    }
+
+    @Test
+    public void notifyObserversTest() {
+        // Create mock observers
+        RespawnObserver observer1 = mock(RespawnObserver.class);
+        RespawnObserver observer2 = mock(RespawnObserver.class);
+
+        // Add the observers to the game
+        game.addObserver(observer1);
+        game.addObserver(observer2);
+
+        // Call the notifyObservers method
+        game.notifyObservers();
+
+        // Verify that both observers were notified
+        verify(observer1).onRespawn();
+        verify(observer2).onRespawn();
+    }
+
+    @Test
+    public void getObserversTest() {
+        List<RespawnObserver> observers = game.getObservers();
+        assertNotNull(observers);
+        assertEquals(0, observers.size());
+    }
 
 }

@@ -346,18 +346,6 @@ public class Game {
         }
     }
 
-    public void decreaseLives() {
-        if (!lives.isEmpty()) {
-            // Find the Live object with the lowest x-coordinate
-            Live leftmostLive = lives.stream()
-                    .min(Comparator.comparingDouble(live -> live.getPosition().x()))
-                    .orElse(null);
-
-            // Remove the leftmost Live
-            lives.remove(leftmostLive);
-        }
-    }
-
     public void updateInvaderBullets() {
         invader1Shoot();
         updateInvader1Bullet();
@@ -369,6 +357,18 @@ public class Game {
         if (bossInvader.isAlive()) {
             bossInvaderShoot(bossInvader);
             updateBossInvaderBullet();
+        }
+    }
+
+    public void decreaseLives() {
+        if (!lives.isEmpty()) {
+            // Find the Live object with the lowest x-coordinate
+            Live leftmostLive = lives.stream()
+                    .min(Comparator.comparingDouble(live -> live.getPosition().x()))
+                    .orElse(null);
+
+            // Remove the leftmost Live
+            lives.remove(leftmostLive);
         }
     }
 
@@ -385,9 +385,13 @@ public class Game {
         observers.add(observer);
     }
 
-    private void notifyObservers() {
+    public void notifyObservers() {
         for (RespawnObserver observer : observers) {
             observer.onRespawn();
         }
+    }
+
+    public List<RespawnObserver> getObservers() {
+        return observers;
     }
 }
