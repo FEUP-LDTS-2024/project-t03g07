@@ -41,6 +41,26 @@ For a more detailed version of this description click [here](./docs/README.md).
 
 ------
 
+#### CODE STRUCTURE
+
+**Problem in Context**
+
+The code structure was not well organized, making it hard to understand and maintain. The code was all in the same package, making it hard to find the classes that were related to each other.
+
+**The Pattern**
+
+We have applied the **Model-View-Controller (MVC)** design pattern. This pattern separates the application into three main components: the model, the view, and the controller. The model represents the data, the view represents the user interface, and the controller acts as an intermediary between the model and the view. This pattern was selected because it allows us to separate the application into three main components, making the code structure more organized and easier to understand and maintain.
+
+**Implementation**
+
+The implementation of this design pattern can be found in the model, view, and controller packages in the source code.
+
+**Consequences**
+
+The use of the MVC Pattern in the current design allows the following benefits:
+- We can make changes to the application without affecting other parts of the application.
+- We can make the application more modular and scalable.
+
 #### APPLICATION STATES
 
 **Problem in Context**
@@ -66,7 +86,84 @@ The use of the State Pattern in the current design allows the following benefits
 - If we wanted to add a new state, it is easy as creating a new subclass, allowing for easy expansion.
 - Each state is independent from the others.
 
-####
+#### SINGLETON
+
+**Problem in Context**
+
+The game has a high score system that needs to be accessed by multiple classes. This could be achieved by creating a new instance of the high score class every time it is needed, but this would lead to inconsistencies in the high score value.
+
+**The Pattern**
+
+We have applied the **Singleton** design pattern. This pattern ensures that a class has only one instance and provides a global point of access to it. This pattern was selected because it allows us to have a single instance of the high score class that can be accessed by multiple classes.
+
+**Implementation**
+
+The implementation of this design pattern can be found in the highscore package in the source code.
+
+**Consequences**
+
+The use of the Singleton Pattern in the current design allows the following benefits:
+
+- We can control the instantiation of the high score class.
+- We can access the high score class from any other class in the game.
+
+#### OBSERVER
+
+**Problem in Context**
+
+The game has a respawn system for the invaders. When all invaders are killed by the player, they respawn with a higher speed. This could be achieved by having the player class check if all invaders are dead and then respawn them, but this would lead to a violation of the **Single Responsibility Principle (SRP).** The player class should not be responsible for checking if all invaders are dead and respawning them.
+
+**The Pattern**
+
+We have applied the **Observer** design pattern. This pattern defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically. This pattern was selected because it allows us to notify all the invaders classes when they need to be respawned.
+
+**Implementation**
+
+The implementation of this design pattern can be found in the RespawnObserver interface in the invaders controller package.
+
+**Consequences**
+
+The use of the Observer Pattern in the current design allows the following benefits:
+- We can notify all the invaders classes when they need to be respawned.
+
+#### FACTORY METHOD
+
+**Problem in Context**
+
+The game has different types of invaders that need to be created. This could be achieved by creating a new instance of the invader class every time a new invader is needed, but this would lead to a violation of the **Open/Closed Principle (OCP).** The OCP states that a class should be open for extension but closed for modification. By creating a new instance of the invader class every time a new invader is needed, we would need to modify the code every time a new invader is added.
+
+**The Pattern**
+
+We have applied the **Factory Method** design pattern. This pattern defines an interface or an abstract class for creating an object, but lets subclasses alter the type of objects that will be created. This pattern was selected because it allows us to create different types of invaders without modifying the code.
+
+**Implementation**
+
+The implementation of this design pattern can be found in the Invader abstract class in the invaders model package.
+
+**Consequences**
+
+The use of the Factory Method Pattern in the current design allows the following benefits:
+- We can create different types of invaders without modifying the code.
+
+#### GAME LOOP
+
+**Problem in Context**
+
+The game needs to update the game state and render the game state at a constant rate. This could be achieved by having the game class update the game state and render the game state in the same method, but this would lead to a violation of the **Single Responsibility Principle (SRP).** The SRP states that a class should have only one reason to change, meaning it should only have one job or responsibility. By having the game class update the game state and render the game state in the same method, we are giving it multiple responsibilities, which makes the code harder to maintain, understand, and extend.
+
+**The Pattern**
+
+We have applied the **Game Loop** design pattern. This pattern separates the game state update and game state render into two separate methods. This pattern was selected because it allows us to separate the game state update and game state render into two separate methods, adhering to the SRP and making the design cleaner and more modular.
+
+**Implementation**
+
+The implementation of this design pattern can be found in the while loop in the Application class.
+
+**Consequences**
+
+The use of the Game Loop Pattern in the current design allows the following benefits:
+- We can separate the game state update and game state render into two separate methods.
+- We can update the game state and render the game state at a constant rate.
 
 #### KNOWN CODE SMELLS
 
