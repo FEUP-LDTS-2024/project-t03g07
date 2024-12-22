@@ -35,14 +35,14 @@ public class Image {
         }
     }
 
-    private TextColor.RGB getLanternaColor(int rgb) {
+    TextColor.RGB getLanternaColor(int rgb) {
         int red = (rgb >> 16) & 0x000000FF;
         int green = (rgb >> 8) & 0x000000FF;
         int blue = (rgb) & 0x000000FF;
         return new TextColor.RGB(red, green, blue);
     }
 
-    private int getTransparency(int rgb) {
+    int getTransparency(int rgb) {
         return rgb >> 24;
     }
 
