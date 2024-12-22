@@ -1,7 +1,5 @@
 package spacewars.view.menus.how_to_play.spaceships;
 
-import spacewars.gui.GUI;
-import spacewars.view.images.Image;
 import spacewars.view.images.ImageLoader;
 import spacewars.view.menus.AbstractImageViewer;
 
