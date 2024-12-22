@@ -75,12 +75,12 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
         drawSubtitle(gui);
     }
 
-    private void drawControls(GUI gui) throws IOException {
+    private void drawControls(GUI gui) {
         drawArrowsAndText(gui);
         drawSpacebarAndText(gui);
     }
 
-    private void drawSpaceShipsAndPoints(GUI gui) throws IOException {
+    private void drawSpaceShipsAndPoints(GUI gui) {
         drawEmpireFighterAndPoints(gui);
         drawTIEExecutorAndPoints(gui);
         drawStarDestroyerAndPoints(gui);

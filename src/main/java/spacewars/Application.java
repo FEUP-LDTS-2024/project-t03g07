@@ -35,7 +35,7 @@ public class Application {
         return imageLoader;
     }
 
-    public void run() throws InterruptedException, IOException, FontFormatException, URISyntaxException {
+    public void run() throws InterruptedException, IOException, URISyntaxException {
         int FPS = 30;
         double frameTime = 1_000_000_000.0 / FPS;
         long lastTime = System.nanoTime();

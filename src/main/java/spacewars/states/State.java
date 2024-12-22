@@ -30,7 +30,7 @@ public abstract class State<T> {
 
     protected abstract Controller<T> getController();
 
-    public void step(Application application, GUI gui, long time) throws IOException, FontFormatException, URISyntaxException {
+    public void step(Application application, GUI gui, long time) throws IOException, URISyntaxException {
         GUI.ACTION action = gui.getNextAction();
         controller.step(application, action, time);
         screenViewer.draw(gui);

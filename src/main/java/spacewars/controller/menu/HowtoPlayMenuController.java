@@ -16,7 +16,7 @@ public class HowtoPlayMenuController extends MenuController<HowToPlayMenu> {
     }
 
     @Override
-    protected void onQuit(Application app) throws IOException, FontFormatException, URISyntaxException {
+    protected void onQuit(Application app) throws IOException, URISyntaxException {
         app.setState(new MainMenuState(new MainMenu(), app.getImageLoader()));
     }
 }

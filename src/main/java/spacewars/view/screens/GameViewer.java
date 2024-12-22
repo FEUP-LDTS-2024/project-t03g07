@@ -99,7 +99,7 @@ public class GameViewer extends ScreenViewer<Game> {
         viewer.draw(element, gui);
     }
 
-    private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) throws IOException {
+    private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
         for (T element : elements)
             drawElement(gui, element, viewer);
     }

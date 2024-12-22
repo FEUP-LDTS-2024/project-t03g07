@@ -43,7 +43,7 @@ public class GameController extends Controller<Game> {
     }
 
     @Override
-    public void step(Application application, GUI.ACTION action, long time) throws IOException, FontFormatException, URISyntaxException {
+    public void step(Application application, GUI.ACTION action, long time) throws IOException, URISyntaxException {
         handlePlayerInput(action, application);
         getModel().updatePlayerBullet();
 
@@ -66,7 +66,7 @@ public class GameController extends Controller<Game> {
         }
     }
 
-    private void handlePlayerInput(GUI.ACTION action, Application application) throws IOException, URISyntaxException, FontFormatException {
+    private void handlePlayerInput(GUI.ACTION action, Application application) throws IOException, URISyntaxException {
         switch (action) {
             case LEFT -> playerController.moveLeft();
             case RIGHT -> playerController.moveRight();
@@ -75,7 +75,7 @@ public class GameController extends Controller<Game> {
         }
     }
 
-    private void onQuit(Application application) throws IOException, URISyntaxException, FontFormatException {
+    private void onQuit(Application application) throws IOException, URISyntaxException {
         application.setState(new MainMenuState(new MainMenu(), application.getImageLoader()));
     }
 
@@ -83,7 +83,7 @@ public class GameController extends Controller<Game> {
         return getModel().getLives().isEmpty();
     }
 
-    private void transitionToGameOver(Application application) throws IOException, URISyntaxException, FontFormatException {
+    private void transitionToGameOver(Application application) throws IOException, URISyntaxException {
         boolean isHighScore = HighScore.loadHighScore() < getModel().getRawScore();
         GameOver gameOver = new GameOver(getModel().getScore(), isHighScore);
         if (isHighScore) {

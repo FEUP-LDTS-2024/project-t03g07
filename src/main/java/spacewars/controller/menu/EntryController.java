@@ -25,7 +25,7 @@ public class EntryController extends Controller<Menu> {
     }
 
     @Override
-    public void step(Application app, GUI.ACTION action, long time) throws IOException, FontFormatException, URISyntaxException {
+    public void step(Application app, GUI.ACTION action, long time) throws IOException, URISyntaxException {
         switch (getModel().getCurrentEntry().type()) { //"play", "how to play", "credits", "quit", "return to menu"
             case PLAY:
                 if (action == GUI.ACTION.SELECT) {
