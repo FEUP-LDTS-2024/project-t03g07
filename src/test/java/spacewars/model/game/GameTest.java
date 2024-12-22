@@ -478,6 +478,33 @@ class GameTest {
     }
 
     @Test
+    public void bossInvaderShoot_createsBulletWhenConditionsMet() {
+        Game game = new Game(builder);
+
+        // Create a mock BossInvader
+        BossInvader bossInvader = mock(BossInvader.class);
+        when(bossInvader.isAlive()).thenReturn(true); // Make sure boss is alive
+        when(bossInvader.getPosition()).thenReturn(new Position(100, 100));
+
+        Game spyGame = spy(game);
+
+        // Mock the current time to return a specific time for the test (e.g., 1000)
+        long currentTime = 1000L;
+        doReturn(currentTime).when(spyGame).getCurrentTimeMillis();
+
+        // Call bossInvaderShoot() when no bullet is present and enough time has passed
+        spyGame.bossInvaderShoot(bossInvader);
+
+        // Verify that the bulletBossInvader is not null after the call
+        assertNotNull(spyGame.getBulletBossInvader());
+        assertEquals(100, spyGame.getBulletBossInvader().getPosition().x());
+        assertEquals(101, spyGame.getBulletBossInvader().getPosition().y());
+
+        // Verify that the lastBossShootTime has been updated
+        assertTrue(spyGame.lastBossShootTime >= currentTime);
+    }
+
+    @Test
     public void decreaseLivesTest() {
         // Mock two Live objects with different x-coordinates
         Live live1 = mock(Live.class);
