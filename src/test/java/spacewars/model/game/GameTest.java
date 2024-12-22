@@ -270,7 +270,7 @@ class GameTest {
 
         spyGame.checkBulletInvader1Collisions(bullet);
 
-        verify(spyGame, never()).decreaseLives();  // Ensures decreaseLives wasn't called
+        verify(spyGame, never()).decreaseLives();
     }
 
     @Test
@@ -278,6 +278,114 @@ class GameTest {
         Game game = new Game(builder);
         Game spyGame = spy(game);
         spyGame.checkBulletInvader1Collisions(null);
+        verify(spyGame, never()).decreaseLives();
+    }
+
+    @Test
+    public void checkBulletInvader2CollisionsWithCollision() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        BulletInvader2 bullet = mock(BulletInvader2.class);
+        when(bullet.getPosition()).thenReturn(new Position(100, 100));
+        when(spyGame.getPlayer().getPosition()).thenReturn(new Position(100, 100));
+
+        spyGame.checkBulletInvader2Collisions(bullet);
+
+        verify(spyGame).decreaseLives();
+    }
+
+    @Test
+    public void checkBulletInvader2CollisionsWithNoCollision() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        BulletInvader2 bullet = mock(BulletInvader2.class);
+        when(bullet.getPosition()).thenReturn(new Position(100, 100));
+        when(spyGame.getPlayer().getPosition()).thenReturn(new Position(200, 200));
+
+        spyGame.checkBulletInvader2Collisions(bullet);
+
+        verify(spyGame, never()).decreaseLives();
+    }
+
+    @Test
+    public void checkBulletInvader2CollisionsWithNullBullet() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+        spyGame.checkBulletInvader2Collisions(null);
+        verify(spyGame, never()).decreaseLives();
+    }
+
+    @Test
+    public void checkBulletInvader3CollisionsWithCollision() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        BulletInvader3 bullet = mock(BulletInvader3.class);
+        when(bullet.getPosition()).thenReturn(new Position(100, 100));
+        when(spyGame.getPlayer().getPosition()).thenReturn(new Position(100, 100));
+
+        spyGame.checkBulletInvader3Collisions(bullet);
+
+        verify(spyGame).decreaseLives();
+    }
+
+    @Test
+    public void checkBulletInvader3CollisionsWithNoCollision() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        BulletInvader3 bullet = mock(BulletInvader3.class);
+        when(bullet.getPosition()).thenReturn(new Position(100, 100));
+        when(spyGame.getPlayer().getPosition()).thenReturn(new Position(200, 200));
+
+        spyGame.checkBulletInvader3Collisions(bullet);
+
+        verify(spyGame, never()).decreaseLives();  // Ensures decreaseLives wasn't called
+    }
+
+    @Test
+    public void checkBulletInvader3CollisionsWithNullBullet() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+        spyGame.checkBulletInvader3Collisions(null);
+        verify(spyGame, never()).decreaseLives();
+    }
+
+    @Test
+    public void checkBulletBossInvaderCollisionsWithCollision() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        BulletBossInvader bullet = mock(BulletBossInvader.class);
+        when(bullet.getPosition()).thenReturn(new Position(100, 100));
+        when(spyGame.getPlayer().getPosition()).thenReturn(new Position(100, 100));
+
+        spyGame.checkBulletBossInvaderCollisions(bullet);
+
+        verify(spyGame).decreaseLives();
+    }
+
+    @Test
+    public void checkBulletBossInvaderCollisionsWithNoCollision() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        BulletBossInvader bullet = mock(BulletBossInvader.class);
+        when(bullet.getPosition()).thenReturn(new Position(100, 100));
+        when(spyGame.getPlayer().getPosition()).thenReturn(new Position(200, 200));
+
+        spyGame.checkBulletBossInvaderCollisions(bullet);
+
+        verify(spyGame, never()).decreaseLives();  // Ensures decreaseLives wasn't called
+    }
+
+    @Test
+    public void checkBulletBossInvaderCollisionsWithNullBullet() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+        spyGame.checkBulletBossInvaderCollisions(null);
         verify(spyGame, never()).decreaseLives();
     }
 
