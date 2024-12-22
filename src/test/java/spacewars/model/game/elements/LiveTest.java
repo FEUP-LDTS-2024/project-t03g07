@@ -3,7 +3,7 @@ package spacewars.model.game.elements;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class LivesTest
+public class LiveTest
 {
     /*@Test
     public void testDecreaseLives()

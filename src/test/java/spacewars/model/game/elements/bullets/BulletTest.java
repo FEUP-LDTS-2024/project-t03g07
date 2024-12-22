@@ -1,12 +1,7 @@
-package spacewars.model.game.elements;
-
-import org.junit.jupiter.api.Test;
-import spacewars.model.Position;
-import spacewars.model.game.elements.bullets.BulletInvader1;
+package spacewars.model.game.elements.bullets;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class BulletTest
 {

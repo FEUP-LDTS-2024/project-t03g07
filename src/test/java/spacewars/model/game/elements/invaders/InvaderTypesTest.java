@@ -1,4 +1,4 @@
-package spacewars.model.game.elements;
+package spacewars.model.game.elements.invaders;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
