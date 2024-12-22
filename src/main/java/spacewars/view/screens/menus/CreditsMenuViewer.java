@@ -13,8 +13,6 @@ import spacewars.view.screens.ScreenViewer;
 import java.io.IOException;
 import java.util.List;
 
-import static spacewars.view.texts.AppTextViewer.getCharHeight;
-
 public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
     private final EntryViewer entryViewer;
     private final TextViewer textViewer;
@@ -64,7 +62,7 @@ public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
     private void drawNames(GUI gui) {
         int xAlignment = 95;
         int yAlignment = 90;
-        int spacing = getCharHeight() * 2;
+        int spacing = textViewer.getCharHeight() * 2;
         for (int idx = 0; idx < getModel().getNames().length; idx++) {
             textViewer.draw(getModel().getNames()[idx],
                     xAlignment,
