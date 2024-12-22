@@ -95,7 +95,7 @@ public class GameViewer extends ScreenViewer<Game> {
         gui.refresh();
     }
 
-    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) throws IOException {
+    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
         viewer.draw(element, gui);
     }
 

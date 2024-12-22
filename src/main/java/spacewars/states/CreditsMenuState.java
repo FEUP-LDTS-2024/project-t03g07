@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class CreditsMenuState extends State<CreditsMenu> {
-    public CreditsMenuState(CreditsMenu model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
+    public CreditsMenuState(CreditsMenu model, ImageLoader imageLoader) throws IOException, URISyntaxException {
         super(model, imageLoader);
     }
 

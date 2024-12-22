@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class GameState extends State<Game> {
-    public GameState(Game model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
+    public GameState(Game model, ImageLoader imageLoader) throws IOException, URISyntaxException {
         super(model, imageLoader);
     }
 

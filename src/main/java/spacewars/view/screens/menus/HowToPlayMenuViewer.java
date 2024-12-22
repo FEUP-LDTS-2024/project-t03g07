@@ -99,38 +99,38 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
     }
 
 
-    private void drawSpacebarAndText(GUI gui) throws IOException {
+    private void drawSpacebarAndText(GUI gui) {
         spacebarViewer.draw(gui, 63, 110);
         Position pos = new Position(80, 135);
         textViewer.draw(getModel().getSpacebarText(), pos.x(), pos.y(), textColor, gui);
     }
 
-    private void drawArrowsAndText(GUI gui) throws IOException {
+    private void drawArrowsAndText(GUI gui) {
         arrowsViewer.draw(gui, 63, 60);
         Position pos = new Position(55, 85);
         textViewer.draw(getModel().getArrowText(), pos.x(), pos.y(), textColor, gui);
     }
 
 
-    private void drawEmpireFighterAndPoints(GUI gui) throws IOException {
+    private void drawEmpireFighterAndPoints(GUI gui) {
         empireFighterViewer.draw(gui, 201, 60);
         Position pos = new Position(222, 65);
         textViewer.draw(getModel().getPointsInvader1(), pos.x(), pos.y(), textColor, gui);
     }
 
-    private void drawTIEExecutorAndPoints(GUI gui) throws IOException {
+    private void drawTIEExecutorAndPoints(GUI gui) {
         tieExecutorViewer.draw(gui, 201, 80);
         Position pos = new Position(222, 85);
         textViewer.draw(getModel().getPointsInvader2(), pos.x(), pos.y(), textColor, gui);
     }
 
-    private void drawStarDestroyerAndPoints(GUI gui) throws IOException {
+    private void drawStarDestroyerAndPoints(GUI gui) {
         starDestroyerViewer.draw(gui, 201, 100);
         Position pos = new Position(222, 105);
         textViewer.draw(getModel().getPointsInvader3(), pos.x(), pos.y(), textColor, gui);
     }
 
-    private void drawDeathStarAndPoints(GUI gui) throws IOException {
+    private void drawDeathStarAndPoints(GUI gui) {
         deathStarViewer.draw(gui, 201, 120);
         Position pos_pointsBoss = new Position(222, 125);
         Position pos_pointsText = new Position(236, 125);

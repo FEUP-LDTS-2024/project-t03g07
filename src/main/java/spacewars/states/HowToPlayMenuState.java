@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class HowToPlayMenuState extends State<HowToPlayMenu> {
-    public HowToPlayMenuState(HowToPlayMenu model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
+    public HowToPlayMenuState(HowToPlayMenu model, ImageLoader imageLoader) throws IOException, URISyntaxException {
         super(model, imageLoader);
     }
 

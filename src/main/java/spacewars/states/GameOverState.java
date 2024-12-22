@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class GameOverState extends State<GameOver> {
-    public GameOverState(GameOver model, ImageLoader imageLoader) throws IOException, URISyntaxException, FontFormatException {
+    public GameOverState(GameOver model, ImageLoader imageLoader) throws IOException, URISyntaxException {
         super(model, imageLoader);
     }
 
