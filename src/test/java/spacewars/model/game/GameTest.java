@@ -43,6 +43,7 @@ class GameTest {
     @BeforeEach
     void setUp() {
         this.builder = mock(GameBuilder.class);
+        this.game = mock(Game.class);
         this.player = mock(Player.class);
         this.invaders1 = mock(List.class);
         this.invaders2 = mock(List.class);
@@ -195,54 +196,89 @@ class GameTest {
     @Test
     public void collidesLeftTest() {
         // Case 1: Left collision occurs (topLeft.x < 20)
-        Position position = new Position(10, 100); // x < 20 triggers collision
+        Position position = new Position(10, 100);
         double size = 50;
         assertTrue(game.collidesLeft(position, size));
 
         // Case 2: No left collision (topLeft.x >= 20)
-        position = new Position(30, 100); // x >= 20 means no collision
+        position = new Position(30, 100);
         assertFalse(game.collidesLeft(position, size));
 
         // Case 3: Edge case where topLeft.x == 20 (no collision)
-        position = new Position(20, 100); // x == 20 is within bounds
+        position = new Position(20, 100);
         assertFalse(game.collidesLeft(position, size));
     }
 
     @Test
     public void collidesRightTest() {
         // Case 1: Right collision occurs (bottomRight.x > 300)
-        Position position = new Position(260, 100); // x + size - 1 > 300 triggers collision
+        Position position = new Position(260, 100);
         double size = 50;
         assertTrue(game.collidesRight(position, size));
 
         // Case 2: No right collision (bottomRight.x <= 300)
-        position = new Position(200, 100); // x + size - 1 <= 300 means no collision
+        position = new Position(200, 100);
         assertFalse(game.collidesRight(position, size));
 
         // Case 3: Edge case where bottomRight.x == 300 (no collision)
-        position = new Position(251, 100); // x + size - 1 == 300 is within bounds
+        position = new Position(251, 100);
         assertFalse(game.collidesRight(position, size));
     }
 
     @Test
     public void isCollisionTest() {
-        // Assuming COLLISION_THRESHOLD is accessible (e.g., via a public constant or reflection)
         double threshold = COLLISION_THRESHOLD;
 
         // Case 1: Collision detected (distance < threshold)
         Position pos1 = new Position(10, 10);
-        Position pos2 = new Position(10, 10 + (threshold / 2)); // Distance is less than threshold
+        Position pos2 = new Position(10, 10 + (threshold / 2));
         assertTrue(game.isCollision(pos1, pos2));
 
         // Case 2: No collision (distance > threshold)
         pos1 = new Position(10, 10);
-        pos2 = new Position(10, 10 + (threshold * 2)); // Distance is greater than threshold
+        pos2 = new Position(10, 10 + (threshold * 2));
         assertFalse(game.isCollision(pos1, pos2));
 
         // Case 3: Edge case (distance == threshold)
         pos1 = new Position(10, 10);
-        pos2 = new Position(10, 10 + threshold); // Distance is exactly threshold
-        assertFalse(game.isCollision(pos1, pos2)); // Assuming "distance < threshold" excludes equal values
+        pos2 = new Position(10, 10 + threshold);
+        assertFalse(game.isCollision(pos1, pos2));
+    }
+
+    @Test
+    public void checkBulletInvader1CollisionsWithCollision() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        BulletInvader1 bullet = mock(BulletInvader1.class);
+        when(bullet.getPosition()).thenReturn(new Position(100, 100));
+        when(spyGame.getPlayer().getPosition()).thenReturn(new Position(100, 100));
+
+        spyGame.checkBulletInvader1Collisions(bullet);
+
+        verify(spyGame).decreaseLives();
+    }
+
+    @Test
+    public void checkBulletInvader1CollisionsWithNoCollision() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        BulletInvader1 bullet = mock(BulletInvader1.class);
+        when(bullet.getPosition()).thenReturn(new Position(100, 100));
+        when(spyGame.getPlayer().getPosition()).thenReturn(new Position(200, 200));
+
+        spyGame.checkBulletInvader1Collisions(bullet);
+
+        verify(spyGame, never()).decreaseLives();  // Ensures decreaseLives wasn't called
+    }
+
+    @Test
+    public void checkBulletInvader1CollisionsWithNullBullet() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+        spyGame.checkBulletInvader1Collisions(null);
+        verify(spyGame, never()).decreaseLives();
     }
 
     @Test
@@ -257,46 +293,34 @@ class GameTest {
         when(lives.isEmpty()).thenReturn(false); // List is not empty
         when(lives.stream()).thenReturn(Stream.of(live1, live2));
 
-        // Call the decreaseLives method
         game.decreaseLives();
 
-        // Verify that the Live object with the smallest x-coordinate was removed
         verify(lives).remove(live2);
 
         // Case 2: Lives == 0
-        when(lives.isEmpty()).thenReturn(true); // Simulate an empty list
+        when(lives.isEmpty()).thenReturn(true);
         game.decreaseLives();
 
-        // Verify that remove was not called when the list is empty
-        verify(lives, times(1)).remove(any()); // Ensure no additional calls are made
+        verify(lives, times(1)).remove(any());
     }
 
     @Test
     public void addObserverTest() {
-        // Create a mock observer
         RespawnObserver observer = mock(RespawnObserver.class);
-
-        // Call the addObserver method
         game.addObserver(observer);
-
-        // Verify that the observer was added to the list
         assertTrue(game.getObservers().contains(observer));
     }
 
     @Test
     public void notifyObserversTest() {
-        // Create mock observers
         RespawnObserver observer1 = mock(RespawnObserver.class);
         RespawnObserver observer2 = mock(RespawnObserver.class);
 
-        // Add the observers to the game
         game.addObserver(observer1);
         game.addObserver(observer2);
 
-        // Call the notifyObservers method
         game.notifyObservers();
 
-        // Verify that both observers were notified
         verify(observer1).onRespawn();
         verify(observer2).onRespawn();
     }

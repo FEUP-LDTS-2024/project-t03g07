@@ -15,7 +15,7 @@ import java.util.*;
 public class Game {
     private final GameBuilder builder;
 
-    private final Player player;
+    private Player player;
     private final List<NormalInvader1> invaders1;
     private final List<NormalInvader2> invaders2;
     private final List<NormalInvader3> invaders3;
@@ -250,18 +250,6 @@ public class Game {
         }
     }
 
-    public void updateInvader1Bullet() {
-        if (bulletInvader1 != null) {
-            bulletInvader1.update();
-
-            // Remove the bullet if it moves off the screen
-            if (bulletInvader1.getPosition().y() > 192) {
-                bulletInvader1 = null;
-            }
-            checkBulletInvader1Collisions(bulletInvader1);
-        }
-    }
-
     public void invader2Shoot() {
         if (bulletInvader2 == null && System.currentTimeMillis() - lastInvader2ShootTime > 2000) { // Shoot every 2 seconds
             List<NormalInvader2> activeInvaders = new ArrayList<>();
@@ -279,18 +267,6 @@ public class Game {
                 bulletInvader2 = new BulletInvader2(randomInvader.getPosition().x(), randomInvader.getPosition().y() + 1);
                 lastInvader2ShootTime = System.currentTimeMillis();
             }
-        }
-    }
-
-    public void updateInvader2Bullet() {
-        if (bulletInvader2 != null) {
-            bulletInvader2.update();
-
-            // Remove the bullet if it moves off the screen
-            if (bulletInvader2.getPosition().y() > 192) {
-                bulletInvader2 = null;
-            }
-            checkBulletInvader2Collisions(bulletInvader2);
         }
     }
 
@@ -314,6 +290,38 @@ public class Game {
         }
     }
 
+    public void bossInvaderShoot(BossInvader bossInvader) {
+        // Ensure boss is not hidden and enough time has passed since the last shot
+        if (bossInvader.isAlive() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
+            bossBullet = new BulletBossInvader(bossInvader.getPosition().x(), bossInvader.getPosition().y() + 1); // Bullet starts below the boss
+            lastBossShootTime = System.currentTimeMillis();
+        }
+    }
+
+    public void updateInvader1Bullet() {
+        if (bulletInvader1 != null) {
+            bulletInvader1.update();
+
+            // Remove the bullet if it moves off the screen
+            if (bulletInvader1.getPosition().y() > 192) {
+                bulletInvader1 = null;
+            }
+            checkBulletInvader1Collisions(bulletInvader1);
+        }
+    }
+
+    public void updateInvader2Bullet() {
+        if (bulletInvader2 != null) {
+            bulletInvader2.update();
+
+            // Remove the bullet if it moves off the screen
+            if (bulletInvader2.getPosition().y() > 192) {
+                bulletInvader2 = null;
+            }
+            checkBulletInvader2Collisions(bulletInvader2);
+        }
+    }
+
     public void updateInvader3Bullet() {
         if (bulletInvader3 != null) {
             bulletInvader3.update();
@@ -323,14 +331,6 @@ public class Game {
                 bulletInvader3 = null;
             }
             checkBulletInvader3Collisions(bulletInvader3);
-        }
-    }
-
-    public void bossInvaderShoot(BossInvader bossInvader) {
-        // Ensure boss is not hidden and enough time has passed since the last shot
-        if (bossInvader.isAlive() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
-            bossBullet = new BulletBossInvader(bossInvader.getPosition().x(), bossInvader.getPosition().y() + 1); // Bullet starts below the boss
-            lastBossShootTime = System.currentTimeMillis();
         }
     }
 
@@ -391,7 +391,18 @@ public class Game {
         }
     }
 
+    //for testing purposes
     public List<RespawnObserver> getObservers() {
         return observers;
+    }
+
+    //for testing purposes
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    //for testing purposes
+    public int getPlayerLives() {
+        return lives.size();
     }
 }
