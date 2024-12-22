@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -387,6 +388,93 @@ class GameTest {
         Game spyGame = spy(game);
         spyGame.checkBulletBossInvaderCollisions(null);
         verify(spyGame, never()).decreaseLives();
+    }
+
+    @Test
+    public void invader1Shoot_createsBulletWhenConditionsMet() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        // Ensure invaders1 list is initialized and add at least one invader
+        NormalInvader1 invader1 = mock(NormalInvader1.class);
+        when(invader1.getPosition()).thenReturn(new Position(100, 100));
+        spyGame.invaders1 = new ArrayList<>();
+        spyGame.invaders1.add(invader1);
+
+        // Mock System.currentTimeMillis to return a specific time for the test
+        long currentTime = 1000L;
+        doReturn(currentTime).when(spyGame).getCurrentTimeMillis();
+
+        // Call invader1Shoot() when no bullet is present
+        spyGame.invader1Shoot();
+
+        // Verify that bulletInvader1 is not null after the call
+        assertNotNull(spyGame.getBulletInvader1());
+
+        // Verify that the bullet is created at the right position
+        assertEquals(100, spyGame.getBulletInvader1().getPosition().x());
+        assertEquals(101, spyGame.getBulletInvader1().getPosition().y());
+
+        // Verify the last shooting time has been updated
+        assertTrue(spyGame.lastInvader1ShootTime >= currentTime);
+    }
+
+    @Test
+    public void invader2Shoot_createsBulletWhenConditionsMet() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        // Ensure invaders2 list is initialized and add at least one invader
+        NormalInvader2 invader2 = mock(NormalInvader2.class);
+        when(invader2.getPosition()).thenReturn(new Position(100, 100));
+        spyGame.invaders2 = new ArrayList<>();
+        spyGame.invaders2.add(invader2);
+
+        // Mock System.currentTimeMillis to return a specific time for the test
+        long currentTime = 1000L;
+        doReturn(currentTime).when(spyGame).getCurrentTimeMillis();
+
+        // Call invader2Shoot() when no bullet is present
+        spyGame.invader2Shoot();
+
+        // Verify that bulletInvader1 is not null after the call
+        assertNotNull(spyGame.getBulletInvader2());
+
+        // Verify that the bullet is created at the right position
+        assertEquals(100, spyGame.getBulletInvader2().getPosition().x());
+        assertEquals(101, spyGame.getBulletInvader2().getPosition().y());
+
+        // Verify the last shooting time has been updated
+        assertTrue(spyGame.lastInvader2ShootTime >= currentTime);
+    }
+
+    @Test
+    public void invader3Shoot_createsBulletWhenConditionsMet() {
+        Game game = new Game(builder);
+        Game spyGame = spy(game);
+
+        // Ensure invaders3 list is initialized and add at least one invader
+        NormalInvader3 invader3 = mock(NormalInvader3.class);
+        when(invader3.getPosition()).thenReturn(new Position(100, 100));
+        spyGame.invaders3 = new ArrayList<>();
+        spyGame.invaders3.add(invader3);
+
+        // Mock System.currentTimeMillis to return a specific time for the test
+        long currentTime = 1000L;
+        doReturn(currentTime).when(spyGame).getCurrentTimeMillis();
+
+        // Call invader3Shoot() when no bullet is present
+        spyGame.invader3Shoot();
+
+        // Verify that bulletInvader1 is not null after the call
+        assertNotNull(spyGame.getBulletInvader3());
+
+        // Verify that the bullet is created at the right position
+        assertEquals(100, spyGame.getBulletInvader3().getPosition().x());
+        assertEquals(101, spyGame.getBulletInvader3().getPosition().y());
+
+        // Verify the last shooting time has been updated
+        assertTrue(spyGame.lastInvader3ShootTime >= currentTime);
     }
 
     @Test

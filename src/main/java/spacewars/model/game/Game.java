@@ -16,18 +16,18 @@ public class Game {
     private final GameBuilder builder;
 
     private Player player;
-    private final List<NormalInvader1> invaders1;
-    private final List<NormalInvader2> invaders2;
-    private final List<NormalInvader3> invaders3;
+    public List<NormalInvader1> invaders1;
+    public List<NormalInvader2> invaders2;
+    public List<NormalInvader3> invaders3;
     private final BossInvader bossInvader;
     private BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
     private BulletInvader3 bulletInvader3;
     private BulletBossInvader bossBullet;
-    private long lastInvader1ShootTime = 0;
-    private long lastInvader2ShootTime = 0;
-    private long lastInvader3ShootTime = 0;
-    private long lastBossShootTime = 0;
+    public long lastInvader1ShootTime = 0;
+    public long lastInvader2ShootTime = 0;
+    public long lastInvader3ShootTime = 0;
+    public long lastBossShootTime = 0;
     private final int highScore;
 
     private final List<RespawnObserver> observers = new ArrayList<>();
@@ -404,5 +404,10 @@ public class Game {
     //for testing purposes
     public int getPlayerLives() {
         return lives.size();
+    }
+
+    //for testing purposes
+    public long getCurrentTimeMillis() {
+        return System.currentTimeMillis();
     }
 }
