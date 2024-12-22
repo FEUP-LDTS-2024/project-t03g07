@@ -5,19 +5,19 @@ import net.jqwik.api.Property;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BulletInvader1Test {
+public class BulletBossInvaderTest {
 
     @Property
-    public void testBulletInvader1Initialization(@ForAll double x, @ForAll double y) {
-        BulletInvader1 bullet = new BulletInvader1(x, y);
+    public void testBulletBossInvaderInitialization(@ForAll double x, @ForAll double y) {
+        BulletBossInvader bullet = new BulletBossInvader(x, y);
         assertEquals(x, bullet.getPosition().x());
         assertEquals(y, bullet.getPosition().y());
-        assertEquals(1, bullet.getSpeed());
+        assertEquals(2, bullet.getSpeed());
     }
 
     @Property
-    public void testBulletInvader1Update(@ForAll double x, @ForAll double y) {
-        BulletInvader1 bullet = new BulletInvader1(x, y);
+    public void testBulletBossInvaderUpdate(@ForAll double x, @ForAll double y) {
+        BulletBossInvader bullet = new BulletBossInvader(x, y);
         bullet.update();
         assertEquals(x, bullet.getPosition().x());
         assertEquals(y + bullet.getSpeed(), bullet.getPosition().y());
