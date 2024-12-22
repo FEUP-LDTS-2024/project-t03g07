@@ -4,13 +4,11 @@ import java.util.Random;
 
 public class BossInvader extends Invader {
     private final int points;
-    private final int size;
     private boolean alive = true;
 
     public BossInvader(double x, double y) {
         super(x, y);
         this.points = getRandomPoints();
-        this.size = 16;
     }
 
 
@@ -33,10 +31,6 @@ public class BossInvader extends Invader {
     @Override
     public int getPoints() {
         return points;
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public boolean isAlive() {
