@@ -2,18 +2,15 @@ package spacewars.model.game.elements.bullets;
 
 import spacewars.model.Position;
 
-public class BulletInvader1 extends Bullet
-{
-    private static final int SPEED = 1;
+public class BulletInvader1 extends Bullet {
 
-    public BulletInvader1(double x, double y)
-    {
-        super(x, y, 10);
+    public BulletInvader1(double x, double y) {
+        super(x, y, 1);
     }
 
     @Override
     public void update() {
-        this.setPosition(new Position(this.getPosition().getX(), this.getPosition().getY() + SPEED));
+        this.setPosition(new Position(this.getPosition().x(), this.getPosition().y() + getSpeed()));
     }
 
 }

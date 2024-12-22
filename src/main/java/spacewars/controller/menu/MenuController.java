@@ -5,11 +5,10 @@ import spacewars.controller.Controller;
 import spacewars.gui.GUI;
 import spacewars.model.menu.Menu;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public abstract class MenuController <T extends Menu> extends Controller<T> {
+public abstract class MenuController<T extends Menu> extends Controller<T> {
     private final EntryController entryController;
 
     public MenuController(T menu, EntryController entryController) {
@@ -18,7 +17,7 @@ public abstract class MenuController <T extends Menu> extends Controller<T> {
     }
 
     @Override
-    public void step(Application app, GUI.ACTION action, long time) throws IOException, FontFormatException, URISyntaxException {
+    public void step(Application app, GUI.ACTION action, long time) throws IOException, URISyntaxException {
         switch (action) {
             case UP:
                 this.getModel().previousEntry();
@@ -27,16 +26,12 @@ public abstract class MenuController <T extends Menu> extends Controller<T> {
                 this.getModel().nextEntry();
                 break;
             case QUIT:
-                try {
-                    onQuit(app);
-                } catch (FontFormatException e) {
-                    throw new RuntimeException(e);
-                }
+                onQuit(app);
                 break;
             default:
                 entryController.step(app, action, time);
         }
     }
 
-    protected abstract void onQuit(Application app) throws IOException, FontFormatException, URISyntaxException;
+    protected abstract void onQuit(Application app) throws IOException, URISyntaxException;
 }

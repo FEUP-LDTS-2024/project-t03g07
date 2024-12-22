@@ -4,27 +4,30 @@ import spacewars.view.game.elements.LiveViewer;
 import spacewars.view.game.elements.PlayerViewer;
 import spacewars.view.game.elements.bullets.*;
 import spacewars.view.game.elements.invaders.BossInvaderViewer;
-import spacewars.view.game.elements.invaders.Invader1Viewer;
-import spacewars.view.game.elements.invaders.Invader2Viewer;
-import spacewars.view.game.elements.invaders.Invader3Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader1Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader2Viewer;
+import spacewars.view.game.elements.invaders.normal_invaders.NormalInvader3Viewer;
 import spacewars.view.images.ImageLoader;
 import spacewars.view.menus.EntryViewer;
-import spacewars.view.menus.GameOverImageViewer;
+import spacewars.view.menus.game_over.GameOverImageViewer;
 import spacewars.view.menus.how_to_play.*;
+import spacewars.view.menus.how_to_play.spaceships.DeathStarViewer;
+import spacewars.view.menus.how_to_play.spaceships.EmpireFighterViewer;
+import spacewars.view.menus.how_to_play.spaceships.StarDestroyerViewer;
+import spacewars.view.menus.how_to_play.spaceships.TIEExecutorViewer;
 import spacewars.view.menus.main_menu.LogoViewer;
 import spacewars.view.texts.AppTextViewer;
 import spacewars.view.texts.TextViewer;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class ViewerProvider {
     private final PlayerViewer playerViewer;
 
-    private final Invader1Viewer invader1Viewer;
-    private final Invader2Viewer invader2Viewer;
-    private final Invader3Viewer invader3Viewer;
+    private final NormalInvader1Viewer normalInvader1Viewer;
+    private final NormalInvader2Viewer normalInvader2Viewer;
+    private final NormalInvader3Viewer normalInvader3Viewer;
     private final BossInvaderViewer bossInvaderViewer;
 
     private final BulletPlayerViewer bulletPlayerViewer;
@@ -33,8 +36,11 @@ public class ViewerProvider {
     private final BulletInvader3Viewer bulletInvader3Viewer;
     private final BulletBossInvaderViewer bulletBossInvaderViewer;
 
+    private final LiveViewer liveViewer;
+
     private final TextViewer textViewer;
     private final EntryViewer entryViewer;
+
     private final LogoViewer logoViewer;
     private final GameOverImageViewer gameOverImageViewer;
 
@@ -45,15 +51,14 @@ public class ViewerProvider {
     private final TIEExecutorViewer tieExecutorViewer;
     private final StarDestroyerViewer starDestroyerViewer;
     private final DeathStarViewer deathStarViewer;
-    private final LiveViewer liveViewer;
 
 
-    public ViewerProvider(ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
+    public ViewerProvider(ImageLoader imageLoader) throws IOException, URISyntaxException {
         this.playerViewer = new PlayerViewer(imageLoader);
 
-        this.invader1Viewer = new Invader1Viewer(imageLoader);
-        this.invader2Viewer = new Invader2Viewer(imageLoader);
-        this.invader3Viewer = new Invader3Viewer(imageLoader);
+        this.normalInvader1Viewer = new NormalInvader1Viewer(imageLoader);
+        this.normalInvader2Viewer = new NormalInvader2Viewer(imageLoader);
+        this.normalInvader3Viewer = new NormalInvader3Viewer(imageLoader);
         this.bossInvaderViewer = new BossInvaderViewer(imageLoader);
 
         this.bulletPlayerViewer = new BulletPlayerViewer(imageLoader);
@@ -62,8 +67,11 @@ public class ViewerProvider {
         this.bulletInvader3Viewer = new BulletInvader3Viewer(imageLoader);
         this.bulletBossInvaderViewer = new BulletBossInvaderViewer(imageLoader);
 
+        this.liveViewer = new LiveViewer(imageLoader);
+
         this.textViewer = new AppTextViewer();
         this.entryViewer = new EntryViewer(textViewer);
+
         this.logoViewer = new LogoViewer(imageLoader);
         this.gameOverImageViewer = new GameOverImageViewer(imageLoader);
 
@@ -74,30 +82,29 @@ public class ViewerProvider {
         this.tieExecutorViewer = new TIEExecutorViewer(imageLoader);
         this.starDestroyerViewer = new StarDestroyerViewer(imageLoader);
         this.deathStarViewer = new DeathStarViewer(imageLoader);
-        this.liveViewer = new LiveViewer(imageLoader);
     }
-
-
 
     public PlayerViewer getPlayerViewer() {
         return playerViewer;
     }
 
-    public Invader1Viewer getInvader1Viewer() {
-        return invader1Viewer;
+
+    public NormalInvader1Viewer getInvader1Viewer() {
+        return normalInvader1Viewer;
     }
 
-    public Invader2Viewer getInvader2Viewer() {
-        return invader2Viewer;
+    public NormalInvader2Viewer getInvader2Viewer() {
+        return normalInvader2Viewer;
     }
 
-    public Invader3Viewer getInvader3Viewer() {
-        return invader3Viewer;
+    public NormalInvader3Viewer getInvader3Viewer() {
+        return normalInvader3Viewer;
     }
 
     public BossInvaderViewer getBossInvaderViewer() {
         return bossInvaderViewer;
     }
+
 
     public BulletPlayerViewer getBulletPlayerViewer() {
         return bulletPlayerViewer;
@@ -107,25 +114,41 @@ public class ViewerProvider {
         return bulletInvader1Viewer;
     }
 
+    public BulletInvader2Viewer getBulletInvader2Viewer() {
+        return bulletInvader2Viewer;
+    }
+
+    public BulletInvader3Viewer getBulletInvader3Viewer() {
+        return bulletInvader3Viewer;
+    }
+
     public BulletBossInvaderViewer getBulletBossInvaderViewer() {
         return bulletBossInvaderViewer;
+    }
+
+
+    public LiveViewer getLiveViewer() {
+        return liveViewer;
+    }
+
+
+    public TextViewer getTextViewer() {
+        return textViewer;
     }
 
     public EntryViewer getEntryViewer() {
         return entryViewer;
     }
 
+
     public LogoViewer getLogoViewer() {
         return logoViewer;
     }
 
-    public TextViewer getTextViewer() {
-        return textViewer;
+    public GameOverImageViewer getGameOverImageViewer() {
+        return gameOverImageViewer;
     }
 
-    public EmpireFighterViewer getEmpireFighterViewer() {
-        return empireFighterViewer;
-    }
 
     public ArrowsViewer getArrowsViewer() {
         return arrowsViewer;
@@ -133,6 +156,11 @@ public class ViewerProvider {
 
     public SpacebarViewer getSpacebarViewer() {
         return spacebarViewer;
+    }
+
+
+    public EmpireFighterViewer getEmpireFighterViewer() {
+        return empireFighterViewer;
     }
 
     public TIEExecutorViewer getTIEExecutorViewer() {
@@ -147,19 +175,4 @@ public class ViewerProvider {
         return deathStarViewer;
     }
 
-    public LiveViewer getLiveViewer() {
-        return liveViewer;
-    }
-
-    public BulletInvader2Viewer getBulletInvader2Viewer() {
-        return bulletInvader2Viewer;
-    }
-
-    public BulletInvader3Viewer getBulletInvader3Viewer() {
-        return bulletInvader3Viewer;
-    }
-
-    public GameOverImageViewer getGameOverImageViewer() {
-        return gameOverImageViewer;
-    }
 }

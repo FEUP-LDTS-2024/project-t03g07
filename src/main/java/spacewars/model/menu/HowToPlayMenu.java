@@ -2,22 +2,20 @@ package spacewars.model.menu;
 
 import spacewars.model.Position;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class HowToPlayMenu extends Menu {
     private final String title;
     private final String subtitle;
 
-    private String arrowText;
-    private String spacebarText;
+    private final String arrowText;
+    private final String spacebarText;
 
-    private String pointsInvader1;
-    private String pointsInvader2;
-    private String pointsInvader3;
-    private String pointsBoss;
-    private String textPoints;
-
+    private final String pointsInvader1;
+    private final String pointsInvader2;
+    private final String pointsInvader3;
+    private final String pointsBoss;
+    private final String textPoints;
 
     public HowToPlayMenu() {
         title = "HOW TO PLAY";
@@ -34,9 +32,9 @@ public class HowToPlayMenu extends Menu {
 
     @Override
     protected List<Entry> createEntries() {
-        Position pos = new Position(130,154);
+        Position pos = new Position(130, 154);
         Entry goBack = new Entry(pos, Entry.TYPE.RETURN_TO_MENU);
-        return Arrays.asList(goBack);
+        return List.of(goBack);
     }
 
     public String getTitle() {
@@ -54,6 +52,7 @@ public class HowToPlayMenu extends Menu {
     public String getSpacebarText() {
         return spacebarText;
     }
+
 
     public String getPointsInvader1() {
         return pointsInvader1;

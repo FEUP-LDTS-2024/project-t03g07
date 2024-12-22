@@ -20,13 +20,6 @@ public class Application {
         this.gui = new LanternaGUI(320, 192);
         this.imageLoader = new AppImageLoader();
         this.state = new MainMenuState(new MainMenu(), imageLoader);
-
-        /*lanternaGUI.clear();
-        Player player = new Player(10, 10);
-        ViewerProvider viewerProvider = new ViewerProvider(new GameImageLoader());
-        PlayerViewer playerViewer = viewerProvider.getPlayerViewer();
-        playerViewer.draw(player, lanternaGUI);
-        lanternaGUI.refresh();*/
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
@@ -34,8 +27,7 @@ public class Application {
         app.run();
     }
 
-    public void setState(State<?> state)
-    {
+    public void setState(State<?> state) {
         this.state = state;
     }
 
@@ -43,11 +35,10 @@ public class Application {
         return imageLoader;
     }
 
-    public void run() throws InterruptedException, IOException, FontFormatException, URISyntaxException {
+    public void run() throws InterruptedException, IOException, URISyntaxException {
         int FPS = 30;
         double frameTime = 1_000_000_000.0 / FPS;
         long lastTime = System.nanoTime();
-        int frames = 0;
 
         gui.startScreen();
 
@@ -55,19 +46,14 @@ public class Application {
             long startTime = System.nanoTime();
 
             state.step(this, gui, startTime);
-
-            frames++;
             long elapsedTime = System.nanoTime() - startTime;
             long sleepTime = (long) frameTime - elapsedTime;
 
             if (sleepTime > 0) {
                 Thread.sleep(sleepTime / 1_000_000, (int) (sleepTime % 1_000_000));
             }
-            
-            while (System.nanoTime() - startTime < frameTime) {}
-            
+
             if (System.nanoTime() - lastTime >= 1_000_000_000) {
-                frames = 0;
                 lastTime = System.nanoTime();
             }
         }

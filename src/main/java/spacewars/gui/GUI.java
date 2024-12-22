@@ -4,7 +4,6 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.screen.Screen;
 import spacewars.model.Position;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public interface GUI {
@@ -22,7 +21,7 @@ public interface GUI {
 
     void drawText(Position position, String text, String color);
 
-    ACTION getNextAction() throws IOException;
-  
+    ACTION getNextAction();
+
     enum ACTION {UP, DOWN, RIGHT, LEFT, NONE, QUIT, SELECT, SHOOT}
 }

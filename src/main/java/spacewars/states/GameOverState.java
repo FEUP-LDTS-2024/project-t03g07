@@ -9,17 +9,16 @@ import spacewars.view.images.ImageLoader;
 import spacewars.view.screens.menus.GameOverViewer;
 import spacewars.view.screens.ScreenViewer;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class GameOverState extends State<GameOver> {
-    public GameOverState(GameOver model, ImageLoader imageLoader) throws IOException, URISyntaxException, FontFormatException {
+    public GameOverState(GameOver model, ImageLoader imageLoader) throws IOException, URISyntaxException {
         super(model, imageLoader);
     }
 
     @Override
-    protected ScreenViewer<GameOver> getScreenViewer(ViewerProvider viewerProvider) throws IOException {
+    protected ScreenViewer<GameOver> getScreenViewer(ViewerProvider viewerProvider) {
         return new GameOverViewer(getModel(), viewerProvider);
     }
 

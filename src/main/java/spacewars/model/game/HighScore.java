@@ -1,12 +1,10 @@
 package spacewars.model.game;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HighScore {
     private static final String home = System.getProperty("user.home");
-    static String FILE_PATH = home + "/spacewars/highscores.txt";
+    static final String FILE_PATH = home + "/spacewars/highscores.txt";
 
     public static void saveHighScore(int highScore) {
         File file = new File(FILE_PATH);
@@ -15,15 +13,14 @@ public class HighScore {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
-                return;
+                throw new RuntimeException("Error creating high score file");
             }
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
             writer.write(String.valueOf(highScore));
             writer.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error saving high score");
         }
     }
 
@@ -35,8 +32,7 @@ public class HighScore {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
-                return 0;
+                throw new RuntimeException("Error creating high score file");
             }
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
@@ -45,7 +41,7 @@ public class HighScore {
                 highScore = Integer.parseInt(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error loading high score");
         }
         return highScore;
     }

@@ -1,9 +1,5 @@
 package spacewars.model.game.elements;
 
-import org.junit.jupiter.api.Test;
-import spacewars.model.Position;
-import spacewars.model.game.elements.invaders.Invader1;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InvaderTest

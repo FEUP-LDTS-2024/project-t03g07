@@ -13,7 +13,6 @@ public class Image {
 
     public Image(String filepath) throws IOException {
         this.image = loadImage(filepath);
-
     }
 
     public BufferedImage loadImage(String filepath) throws IOException {
@@ -24,12 +23,12 @@ public class Image {
         return ImageIO.read(resourceStream);
     }
 
-    public final void draw(GUI gui, double a, double b) throws IOException {
+    public final void draw(GUI gui, double a, double b) {
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int rgb = image.getRGB(x, y);
                 TextColor.RGB color = getLanternaColor(rgb);
-                if (getTransparency(rgb)==0)
+                if (getTransparency(rgb) == 0)
                     continue;
                 gui.drawPixel(a + x, b + y, color);
             }

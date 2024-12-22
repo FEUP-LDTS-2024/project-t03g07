@@ -3,21 +3,16 @@ package spacewars.model.game.elements.bullets;
 import spacewars.model.game.elements.Element;
 
 public abstract class Bullet extends Element {
-    private int speed;
+    private final double speed;
 
-    public Bullet(double x, double y, int speed)
-    {
+    public Bullet(double x, double y, double speed) {
         super(x, y);
         this.speed = speed;
     }
 
-    public int getSpeed()
-    {
-        return this.speed;
+    public double getSpeed() {
+        return speed;
     }
 
-    public void setSpeed(int speed)
-    {
-        this.speed = speed;
-    }
+    public abstract void update();
 }

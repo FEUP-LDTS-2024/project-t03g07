@@ -11,10 +11,6 @@ public class Score {
         this.score += points;
     }
 
-    public void resetScore() {
-        this.score = 0;
-    }
-
     public String getScore() {
         return String.format("%05d", this.score); // Format for display
     }

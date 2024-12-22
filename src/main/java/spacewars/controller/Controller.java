@@ -1,10 +1,8 @@
 package spacewars.controller;
 
 import spacewars.Application;
-import spacewars.model.game.Game;
 import spacewars.gui.GUI;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -19,5 +17,5 @@ public abstract class Controller<T> {
         return model;
     }
 
-    public abstract void step(Application application, GUI.ACTION action, long time) throws IOException, FontFormatException, URISyntaxException;
+    public abstract void step(Application application, GUI.ACTION action, long time) throws IOException, URISyntaxException;
 }

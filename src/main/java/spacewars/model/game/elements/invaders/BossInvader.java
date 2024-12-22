@@ -1,19 +1,16 @@
 package spacewars.model.game.elements.invaders;
 
-import spacewars.model.game.Game;
-
 import java.util.Random;
 
-public class BossInvader extends Invader{
+public class BossInvader extends Invader {
     private final int points;
-    private Game game;
-    private int size = 16;
+    private final int size;
     private boolean alive = true;
 
-    public BossInvader(int x, int y, Game game) {
+    public BossInvader(double x, double y) {
         super(x, y);
         this.points = getRandomPoints();
-        this.game = game;
+        this.size = 16;
     }
 
 
@@ -49,4 +46,5 @@ public class BossInvader extends Invader{
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
 }

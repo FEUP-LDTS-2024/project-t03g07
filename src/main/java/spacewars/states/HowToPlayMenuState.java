@@ -9,23 +9,21 @@ import spacewars.view.images.ImageLoader;
 import spacewars.view.screens.menus.HowToPlayMenuViewer;
 import spacewars.view.screens.ScreenViewer;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class HowToPlayMenuState extends State<HowToPlayMenu> {
-
-    public HowToPlayMenuState(HowToPlayMenu model, ImageLoader imageLoader) throws IOException, FontFormatException, URISyntaxException {
+    public HowToPlayMenuState(HowToPlayMenu model, ImageLoader imageLoader) throws IOException, URISyntaxException {
         super(model, imageLoader);
     }
 
     @Override
-    protected ScreenViewer<HowToPlayMenu> getScreenViewer(ViewerProvider viewerProvider) throws IOException {
+    protected ScreenViewer<HowToPlayMenu> getScreenViewer(ViewerProvider viewerProvider) {
         return new HowToPlayMenuViewer(getModel(), viewerProvider);
     }
 
     @Override
     protected Controller<HowToPlayMenu> getController() {
-        return new HowtoPlayMenuController(getModel(),new EntryController(getModel()));
+        return new HowtoPlayMenuController(getModel(), new EntryController(getModel()));
     }
 }

@@ -14,14 +14,14 @@ public class EntryViewer {
     }
 
     public void draw(Entry model, GUI gui, TextColor color) {
-        String entryText = switch (model.getType()) {
-            case PLAY-> "Play";
+        String entryText = switch (model.type()) {
+            case PLAY -> "Play";
             case HOW_TO_PLAY -> "How to Play";
             case CREDITS -> "Credits";
             case QUIT -> "Quit";
             case RETURN_TO_MENU -> "Return to menu";
             case PLAY_AGAIN -> "Play again";
         };
-        textViewer.draw(entryText, (int) model.getPosition().getX(), (int) model.getPosition().getY(), color, gui);
+        textViewer.draw(entryText, (int) model.position().x(), (int) model.position().y(), color, gui);
     }
 }

@@ -17,7 +17,8 @@ import java.util.Objects;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-record CharPosition(int row, int col) {}
+record CharPosition(int row, int col) {
+}
 
 public class AppTextViewer implements TextViewer {
     private static final int charWidth = 3;
@@ -64,7 +65,7 @@ public class AppTextViewer implements TextViewer {
         for (int dy = 0; dy < charHeight; dy++) {
             for (int dx = 0; dx < charWidth; dx++) {
                 if (fontImage.getRGB(imgX + dx, imgY + dy) != COLOR_WHITE)
-                    gui.drawPixel((int)x + dx, (int)y + dy, new TextColor.RGB(foregroundColor.getRed(), foregroundColor.getGreen(), foregroundColor.getBlue()));
+                    gui.drawPixel((int) x + dx, (int) y + dy, new TextColor.RGB(foregroundColor.getRed(), foregroundColor.getGreen(), foregroundColor.getBlue()));
             }
         }
     }
@@ -83,13 +84,5 @@ public class AppTextViewer implements TextViewer {
 
     public static int getCharHeight() {
         return charHeight;
-    }
-
-    public static int getCharWidth() {
-        return charWidth;
-    }
-
-    public static int getSpacing() {
-        return spacing;
     }
 }
