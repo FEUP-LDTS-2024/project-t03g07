@@ -20,7 +20,7 @@ public class Game {
     public List<NormalInvader2> invaders2;
     public List<NormalInvader3> invaders3;
     private final BossInvader bossInvader;
-    private BulletInvader1 bulletInvader1;
+    public BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
     private BulletInvader3 bulletInvader3;
     private BulletBossInvader bossBullet;
@@ -107,13 +107,6 @@ public class Game {
         return lives;
     }
 
-
-    public void updatePlayerBullet() {
-        if (player.getBulletPlayer() != null) {
-            player.getBulletPlayer().getKey().update();
-            checkBulletCollisions(player.getBulletPlayer().getKey());
-        }
-    }
 
     public boolean checkSideBoundaries(double x1, double x2) {
         return x1 < 20 || x2 > 300;
@@ -298,6 +291,13 @@ public class Game {
         }
     }
 
+    public void updatePlayerBullet() {
+        if (player.getBulletPlayer() != null) {
+            player.getBulletPlayer().getKey().update();
+            checkBulletCollisions(player.getBulletPlayer().getKey());
+        }
+    }
+
     public void updateInvader1Bullet() {
         if (bulletInvader1 != null) {
             bulletInvader1.update();
@@ -409,5 +409,9 @@ public class Game {
     //for testing purposes
     public long getCurrentTimeMillis() {
         return System.currentTimeMillis();
+    }
+
+    public void setBulletInvader1(BulletInvader1 bulletInvader1) {
+        this.bulletInvader1 = bulletInvader1;
     }
 }

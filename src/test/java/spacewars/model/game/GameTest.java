@@ -16,9 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 class GameTest {
@@ -502,6 +504,86 @@ class GameTest {
 
         // Verify that the lastBossShootTime has been updated
         assertTrue(spyGame.lastBossShootTime >= currentTime);
+    }
+
+    @Test
+    void testUpdateInvader1Bullet_NullBullet() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader1 = mock(BulletInvader1.class);
+
+        // Given
+        game.setBulletInvader1(null);
+
+        // When
+        game.updateInvader1Bullet();
+
+        // Then
+        // Ensure no changes or interactions happen when bullet is null
+        assertNull(game.getBulletInvader1());
+    }
+
+    @Test
+    void testUpdateInvader1Bullet_BulletOnScreen() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader1 = mock(BulletInvader1.class);
+        Player mockPlayer = mock(Player.class);
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180)); // Mock player's position
+        game.setPlayer(mockPlayer);
+
+
+        // Given
+        when(bulletInvader1.getPosition()).thenReturn(new Position(50, 100));
+        game.setBulletInvader1(bulletInvader1);
+
+        // When
+        game.updateInvader1Bullet();
+
+        // Then
+        // Verify that the bullet was updated
+        verify(bulletInvader1, times(1)).update();
+        // Verify the bullet is still present
+        assertEquals(bulletInvader1, game.getBulletInvader1());
+    }
+
+    @Test
+    void testUpdateInvader1Bullet_BulletOffScreen() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader1 = mock(BulletInvader1.class);
+
+        // Given
+        when(bulletInvader1.getPosition()).thenReturn(new Position(50, 200));
+        game.setBulletInvader1(bulletInvader1);
+
+        // When
+        game.updateInvader1Bullet();
+
+        // Then
+        // Verify the bullet is removed (set to null)
+        assertNull(game.getBulletInvader1());
+    }
+
+    @Test
+    void testUpdateInvader1Bullet_CollisionCheck() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader1 = mock(BulletInvader1.class);
+        Player mockPlayer = mock(Player.class);
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180)); // Mock player's position
+        game.setPlayer(mockPlayer);
+
+
+        // Given
+        when(bulletInvader1.getPosition()).thenReturn(new Position(50, 100));
+        game.setBulletInvader1(bulletInvader1);
+
+        // Spy on the game to verify collision checks
+        Game spyGame = spy(game);
+
+        // When
+        spyGame.updateInvader1Bullet();
+
+        // Then
+        // Verify collision check is performed
+        verify(spyGame, times(1)).checkBulletInvader1Collisions(bulletInvader1);
     }
 
     @Test
