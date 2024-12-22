@@ -1,4 +1,4 @@
-package spacewars.model.game.menu;
+package spacewars.model.menu;
 
 import org.junit.jupiter.api.Test;
 import spacewars.model.menu.*;
