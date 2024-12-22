@@ -5,7 +5,6 @@ import spacewars.controller.Controller;
 import spacewars.gui.GUI;
 import spacewars.model.menu.Menu;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 

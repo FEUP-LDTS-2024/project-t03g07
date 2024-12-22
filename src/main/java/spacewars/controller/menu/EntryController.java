@@ -14,7 +14,6 @@ import spacewars.states.GameState;
 import spacewars.states.HowToPlayMenuState;
 import spacewars.states.MainMenuState;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 

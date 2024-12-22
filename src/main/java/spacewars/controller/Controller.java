@@ -3,7 +3,6 @@ package spacewars.controller;
 import spacewars.Application;
 import spacewars.gui.GUI;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 

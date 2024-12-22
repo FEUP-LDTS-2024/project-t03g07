@@ -7,7 +7,6 @@ import spacewars.view.ViewerProvider;
 import spacewars.view.images.ImageLoader;
 import spacewars.view.screens.ScreenViewer;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
