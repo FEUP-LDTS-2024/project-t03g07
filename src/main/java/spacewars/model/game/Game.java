@@ -402,16 +402,27 @@ public class Game {
     }
 
     //for testing purposes
-    public int getPlayerLives() {
-        return lives.size();
-    }
-
-    //for testing purposes
     public long getCurrentTimeMillis() {
         return System.currentTimeMillis();
     }
 
+    //for testing purposes
     public void setBulletInvader1(BulletInvader1 bulletInvader1) {
         this.bulletInvader1 = bulletInvader1;
+    }
+
+    //for testing purposes
+    public void setBulletInvader2(BulletInvader2 bulletInvader2) {
+        this.bulletInvader2 = bulletInvader2;
+    }
+
+    //for testing purposes
+    public void setBulletInvader3(BulletInvader3 bulletInvader3) {
+        this.bulletInvader3 = bulletInvader3;
+    }
+
+    //for testing purposes
+    public void setBulletBossInvader(BulletBossInvader bulletBossInvader) {
+        this.bossBullet = bulletBossInvader;
     }
 }

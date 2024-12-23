@@ -36,7 +36,7 @@ class GameTest {
     private BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
     private BulletInvader3 bulletInvader3;
-    private BulletBossInvader bossBullet;
+    private BulletBossInvader bulletBossInvader;
     private Score score;
     private int highScore;
 
@@ -511,14 +511,10 @@ class GameTest {
         game = mock(Game.class, CALLS_REAL_METHODS);
         bulletInvader1 = mock(BulletInvader1.class);
 
-        // Given
         game.setBulletInvader1(null);
 
-        // When
         game.updateInvader1Bullet();
 
-        // Then
-        // Ensure no changes or interactions happen when bullet is null
         assertNull(game.getBulletInvader1());
     }
 
@@ -527,21 +523,15 @@ class GameTest {
         game = mock(Game.class, CALLS_REAL_METHODS);
         bulletInvader1 = mock(BulletInvader1.class);
         Player mockPlayer = mock(Player.class);
-        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180)); // Mock player's position
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180));
         game.setPlayer(mockPlayer);
 
-
-        // Given
         when(bulletInvader1.getPosition()).thenReturn(new Position(50, 100));
         game.setBulletInvader1(bulletInvader1);
 
-        // When
         game.updateInvader1Bullet();
 
-        // Then
-        // Verify that the bullet was updated
         verify(bulletInvader1, times(1)).update();
-        // Verify the bullet is still present
         assertEquals(bulletInvader1, game.getBulletInvader1());
     }
 
@@ -550,15 +540,11 @@ class GameTest {
         game = mock(Game.class, CALLS_REAL_METHODS);
         bulletInvader1 = mock(BulletInvader1.class);
 
-        // Given
         when(bulletInvader1.getPosition()).thenReturn(new Position(50, 200));
         game.setBulletInvader1(bulletInvader1);
 
-        // When
         game.updateInvader1Bullet();
 
-        // Then
-        // Verify the bullet is removed (set to null)
         assertNull(game.getBulletInvader1());
     }
 
@@ -567,24 +553,202 @@ class GameTest {
         game = mock(Game.class, CALLS_REAL_METHODS);
         bulletInvader1 = mock(BulletInvader1.class);
         Player mockPlayer = mock(Player.class);
-        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180)); // Mock player's position
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180));
         game.setPlayer(mockPlayer);
 
-
-        // Given
         when(bulletInvader1.getPosition()).thenReturn(new Position(50, 100));
         game.setBulletInvader1(bulletInvader1);
 
-        // Spy on the game to verify collision checks
         Game spyGame = spy(game);
 
-        // When
         spyGame.updateInvader1Bullet();
 
-        // Then
-        // Verify collision check is performed
         verify(spyGame, times(1)).checkBulletInvader1Collisions(bulletInvader1);
     }
+
+    @Test
+    void testUpdateInvader2Bullet_NullBullet() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader2 = mock(BulletInvader2.class);
+
+        game.setBulletInvader2(null);
+
+        game.updateInvader2Bullet();
+
+        assertNull(game.getBulletInvader2());
+    }
+
+    @Test
+    void testUpdateInvader2Bullet_BulletOnScreen() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader2 = mock(BulletInvader2.class);
+        Player mockPlayer = mock(Player.class);
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180));
+        game.setPlayer(mockPlayer);
+
+        when(bulletInvader2.getPosition()).thenReturn(new Position(50, 100));
+        game.setBulletInvader2(bulletInvader2);
+
+        game.updateInvader2Bullet();
+
+        verify(bulletInvader2, times(1)).update();
+        assertEquals(bulletInvader2, game.getBulletInvader2());
+    }
+
+    @Test
+    void testUpdateInvader2Bullet_BulletOffScreen() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader2 = mock(BulletInvader2.class);
+
+        when(bulletInvader2.getPosition()).thenReturn(new Position(50, 200));
+        game.setBulletInvader2(bulletInvader2);
+
+        game.updateInvader2Bullet();
+
+        assertNull(game.getBulletInvader2());
+    }
+
+    @Test
+    void testUpdateInvader2Bullet_CollisionCheck() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader2 = mock(BulletInvader2.class);
+        Player mockPlayer = mock(Player.class);
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180));
+        game.setPlayer(mockPlayer);
+
+        when(bulletInvader2.getPosition()).thenReturn(new Position(50, 100));
+        game.setBulletInvader2(bulletInvader2);
+
+        Game spyGame = spy(game);
+
+        spyGame.updateInvader2Bullet();
+
+        verify(spyGame, times(1)).checkBulletInvader2Collisions(bulletInvader2);
+    }
+
+    @Test
+    void testUpdateInvader3Bullet_NullBullet() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader3 = mock(BulletInvader3.class);
+
+        game.setBulletInvader3(null);
+
+        game.updateInvader3Bullet();
+
+        assertNull(game.getBulletInvader3());
+    }
+
+    @Test
+    void testUpdateInvader3Bullet_BulletOnScreen() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader3 = mock(BulletInvader3.class);
+        Player mockPlayer = mock(Player.class);
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180));
+        game.setPlayer(mockPlayer);
+
+        when(bulletInvader3.getPosition()).thenReturn(new Position(50, 100));
+        game.setBulletInvader3(bulletInvader3);
+
+        game.updateInvader3Bullet();
+
+        verify(bulletInvader3, times(1)).update();
+        assertEquals(bulletInvader3, game.getBulletInvader3());
+    }
+
+    @Test
+    void testUpdateInvader3Bullet_BulletOffScreen() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader3 = mock(BulletInvader3.class);
+
+        when(bulletInvader3.getPosition()).thenReturn(new Position(50, 200));
+        game.setBulletInvader3(bulletInvader3);
+
+        game.updateInvader3Bullet();
+
+        assertNull(game.getBulletInvader3());
+    }
+
+    @Test
+    void testUpdateInvader3Bullet_CollisionCheck() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletInvader3 = mock(BulletInvader3.class);
+        Player mockPlayer = mock(Player.class);
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180));
+        game.setPlayer(mockPlayer);
+
+        when(bulletInvader3.getPosition()).thenReturn(new Position(50, 100));
+        game.setBulletInvader3(bulletInvader3);
+
+        Game spyGame = spy(game);
+
+        spyGame.updateInvader3Bullet();
+
+        verify(spyGame, times(1)).checkBulletInvader3Collisions(bulletInvader3);
+    }
+
+    //-----
+
+    @Test
+    void testUpdateBossInvaderBullet_NullBullet() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletBossInvader = mock(BulletBossInvader.class);
+
+        game.setBulletBossInvader(null);
+
+        game.updateBossInvaderBullet();
+
+        assertNull(game.getBulletBossInvader());
+    }
+
+    @Test
+    void testUpdateBossInvaderBullet_BulletOnScreen() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletBossInvader = mock(BulletBossInvader.class);
+        Player mockPlayer = mock(Player.class);
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180));
+        game.setPlayer(mockPlayer);
+
+        when(bulletBossInvader.getPosition()).thenReturn(new Position(50, 100));
+        game.setBulletBossInvader(bulletBossInvader);
+
+        game.updateBossInvaderBullet();
+
+        verify(bulletBossInvader, times(1)).update();
+        assertEquals(bulletBossInvader, game.getBulletBossInvader());
+    }
+
+    @Test
+    void testUpdateBossInvaderBullet_BulletOffScreen() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletBossInvader= mock(BulletBossInvader.class);
+
+        when(bulletBossInvader.getPosition()).thenReturn(new Position(50, 200));
+        game.setBulletBossInvader(bulletBossInvader);
+
+        game.updateBossInvaderBullet();
+
+        assertNull(game.getBulletBossInvader());
+    }
+
+    @Test
+    void testUpdateBossInvaderBullet_CollisionCheck() {
+        game = mock(Game.class, CALLS_REAL_METHODS);
+        bulletBossInvader = mock(BulletBossInvader.class);
+        Player mockPlayer = mock(Player.class);
+        when(mockPlayer.getPosition()).thenReturn(new Position(50, 180));
+        game.setPlayer(mockPlayer);
+
+        when(bulletBossInvader.getPosition()).thenReturn(new Position(50, 100));
+        game.setBulletBossInvader(bulletBossInvader);
+
+        Game spyGame = spy(game);
+
+        spyGame.updateBossInvaderBullet();
+
+        verify(spyGame, times(1)).checkBulletBossInvaderCollisions(bulletBossInvader);
+    }
+
+
 
     @Test
     public void decreaseLivesTest() {
