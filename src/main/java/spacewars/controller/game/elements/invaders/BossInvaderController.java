@@ -5,7 +5,6 @@ import spacewars.model.game.elements.invaders.BossInvader;
 
 public class BossInvaderController {
     private final BossInvader bossInvader;
-    private final int screenWidth;
     private boolean movingRight = true;
     private long waitStartTime = 0;
     private long respawnTime = 0;
@@ -13,7 +12,6 @@ public class BossInvaderController {
 
     public BossInvaderController(BossInvader bossInvader, int screenWidth) {
         this.bossInvader = bossInvader;
-        this.screenWidth = screenWidth;
         resetBossPosition();
     }
 
@@ -31,7 +29,7 @@ public class BossInvaderController {
         double x = bossInvader.getPosition().x();
 
         if (movingRight) {
-            if (x >= screenWidth) {  //Goes completely off-screen
+            if (x >= 320) {  //Goes completely off-screen
                 movingRight = false;
                 waitStartTime = currentTime;
             }
