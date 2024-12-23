@@ -36,4 +36,5 @@ test {
 pitest {
     junit5PluginVersion = '1.2.0'
     pitestVersion = '1.15.0'
+    excludedClasses = ['spacewars.gui.*', 'spacewars.Application']
 }
