@@ -1,14 +1,12 @@
 <p align="center">
-  <img src="assets/logo/logo.png" alt="Space Wars Logo" width="250" height="250">
+  	<img src="assets/logo/logo.png" alt="Space Wars Logo" width="250">
 </p>
 
 # LDTS_T03G07 - SPACE WARS
 
 Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy fire and strategize to take down waves of relentless spaceships. Try not to die with your 3 lives. Push your limits to achieve a new high score in this highly addictive arcade-style game!
 
-This project was developed by **Francisca Portugal** (up202303640@edu.fe.up.pt), **João Lopes** (up202307809@edu.fe.up.pt) and **Pedro Monteiro** (up202307242@edu.fe.up.pt) for LDTS 2024/25.
-
-For a more detailed version of this description click [here](./docs/README.md).
+> This project was developed by **Francisca Portugal** (up202303640@edu.fe.up.pt), **João Lopes** (up202307809@edu.fe.up.pt) and **Pedro Monteiro** (up202307242@edu.fe.up.pt) for LDTS 2024/25.
 
 ## IMPLEMENTED FEATURES
 
