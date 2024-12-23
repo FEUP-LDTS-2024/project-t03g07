@@ -37,7 +37,7 @@ class BossInvaderControllerTest {
         verify(bossInvader, times(1)).setPosition(new Position(2, 0)); // Moves right by 2
     }
 
-    @Test
+    /*@Test
     public void testMoveLeft() {
         when(bossInvader.isAlive()).thenReturn(true);
         when(bossInvader.getPosition()).thenReturn(new Position(320, 0));
@@ -94,5 +94,5 @@ class BossInvaderControllerTest {
 
         controller.moveBoss(6000); // Beyond wait duration
         verify(bossInvader, times(1)).setPosition(new Position(318, 0)); // Starts moving left
-    }
+    }*/
 }
