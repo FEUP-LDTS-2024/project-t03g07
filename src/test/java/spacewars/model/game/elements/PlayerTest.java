@@ -1,9 +1,7 @@
 package spacewars.model.game.elements;
 
 import org.junit.jupiter.api.Test;
-import spacewars.model.Position;
 import spacewars.model.game.Game;
-import spacewars.model.game.elements.bullets.BulletPlayer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;

@@ -14,7 +14,7 @@ public class NormalInvader1Test {
         Game game = mock(Game.class);
         NormalInvader1 normalInvader1 = new NormalInvader1(x, y, game);
 
-        assertEquals(1,normalInvader1.getSpeed(), "NormalInvader1 speed should always be 1");
+        assertEquals(1, normalInvader1.getSpeed(), "NormalInvader1 speed should always be 1");
 
         assertEquals(game, normalInvader1.getGame(), "getGame should consistently return the same value: game");
 
@@ -25,7 +25,7 @@ public class NormalInvader1Test {
     void NormalInvader1SetSpeedTest(@ForAll double x, @ForAll double y, @ForAll double speed) {
         Game game = mock(Game.class);
         NormalInvader1 normalInvader1 = new NormalInvader1(x, y, game);
-        
+
         normalInvader1.setSpeed(speed);
 
         assertEquals(speed, normalInvader1.getSpeed());

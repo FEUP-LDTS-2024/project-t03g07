@@ -1,7 +1,6 @@
 package spacewars.model.menu;
 
 import org.junit.jupiter.api.Test;
-import spacewars.model.menu.*;
 
 import java.util.Collections;
 import java.util.List;

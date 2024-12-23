@@ -3,8 +3,6 @@ package spacewars.model.menu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spacewars.model.Position;
-import spacewars.model.menu.Entry;
-import spacewars.model.menu.Menu;
 
 import java.util.Arrays;
 import java.util.List;

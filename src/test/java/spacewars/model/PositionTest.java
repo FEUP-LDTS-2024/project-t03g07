@@ -52,7 +52,7 @@ public class PositionTest {
         assertNotEquals(posInfPosition, negInfPosition);
     }
 
-    @Property
+    @Test
     void testSpecialFloatingPointValues() {
         Position nanPosition = new Position(Double.NaN, Double.NaN);
         Position posInfPosition = new Position(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
@@ -63,19 +63,19 @@ public class PositionTest {
         assertNotEquals(posInfPosition, negInfPosition);
     }
 
-    @Property
+    @Test
     void testEqualsSameObject() {
         Position p = new Position(1.0, 2.0);
         assertEquals(p, p);
     }
 
-    @Property
+    @Test
     void testEqualsNull() {
         Position p = new Position(1.0, 2.0);
         assertNotEquals(null, p);
     }
 
-    @Property
+    @Test
     void testEqualsDifferentClass() {
         Position p = new Position(1.0, 2.0);
         String other = "not a Position";

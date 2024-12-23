@@ -2,7 +2,6 @@ package spacewars.model.menu;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import spacewars.model.menu.HowToPlayMenu;
 
 import static org.junit.jupiter.api.Assertions.*;
 

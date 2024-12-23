@@ -6,8 +6,7 @@ import net.jqwik.api.Property;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BossInvaderTest
-{
+public class BossInvaderTest {
     @Property
     void BossInvaderPositionTest(@ForAll int x, @ForAll int y) {
         BossInvader bossInvader = new BossInvader(x, y);
@@ -36,7 +35,7 @@ public class BossInvaderTest
 
     @Property
     void testIsAlive(@ForAll int x, @ForAll int y) {
-        BossInvader bossInvader = new BossInvader(x,y);
+        BossInvader bossInvader = new BossInvader(x, y);
         assertTrue(bossInvader.isAlive());
     }
 
