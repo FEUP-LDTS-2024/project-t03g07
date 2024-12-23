@@ -1,5 +1,6 @@
 package spacewars.controller.game;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spacewars.Application;
@@ -66,6 +67,11 @@ public class GameControllerTest {
         }
     }
 
+    @AfterAll
+    public static void resetHighScore() {
+        HighScore.resetHighScore();
+    }
+
     @Test
     public void testStepLeft() throws IOException, URISyntaxException {
         controller.step(application, GUI.ACTION.LEFT, 0);
@@ -106,6 +112,8 @@ public class GameControllerTest {
 
     @Test
     public void testTransitionToGameOverWithHighScore() throws IOException, URISyntaxException {
+        HighScore.resetHighScore();
+
         when(game.getRawScore()).thenReturn(150);
         when(game.getScore()).thenReturn("150");
 

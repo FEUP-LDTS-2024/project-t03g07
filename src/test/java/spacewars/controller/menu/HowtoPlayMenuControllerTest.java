@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 import static org.mockito.Mockito.*;
 
 public class HowtoPlayMenuControllerTest {
-    private HowtoPlayMenuController controller;
+    private HowToPlayMenuController controller;
     private Application application;
 
     @BeforeEach
@@ -21,7 +21,7 @@ public class HowtoPlayMenuControllerTest {
         HowToPlayMenu howToPlayMenu = mock(HowToPlayMenu.class);
         application = mock(Application.class);
         EntryController entryController = mock(EntryController.class);
-        controller = new HowtoPlayMenuController(howToPlayMenu, entryController);
+        controller = new HowToPlayMenuController(howToPlayMenu, entryController);
         ImageLoader imageLoader = mock(ImageLoader.class);
 
         when(application.getImageLoader()).thenReturn(imageLoader);
