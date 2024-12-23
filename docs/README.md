@@ -162,6 +162,13 @@ The use of the Game Loop Pattern in the current design allows the following bene
 
 - We implemented Unit Testing in conjunction with mockito to try to test the maximum amount of code possible.
 
+**Coverage Report:**
+
+<img src="assets/tests/coverage.png" alt="coverage report">
+
+**Pit Test Report:**
+
+<img src="assets/tests/pittest.png" alt="pitest report">
 
 ### SELF-EVALUATION
 
