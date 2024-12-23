@@ -209,9 +209,6 @@ The use of the Game Loop Pattern in the current design allows the following bene
 
 ## SELF-EVALUATION
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
-
-**Example**:
-
-- John Doe: 40%
-- Jane Doe: 60%
+- Francisca Portugal: 
+- João Lopes:
+- Pedro Monteiro:
