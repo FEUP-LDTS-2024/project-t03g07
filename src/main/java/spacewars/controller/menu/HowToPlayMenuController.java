@@ -8,9 +8,9 @@ import spacewars.states.MainMenuState;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class HowtoPlayMenuController extends MenuController<HowToPlayMenu> {
+public class HowToPlayMenuController extends MenuController<HowToPlayMenu> {
 
-    public HowtoPlayMenuController(HowToPlayMenu menu, EntryController entryController) {
+    public HowToPlayMenuController(HowToPlayMenu menu, EntryController entryController) {
         super(menu, entryController);
     }
 
