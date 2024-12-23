@@ -1,6 +1,6 @@
 package spacewars.controller.game.elements.invaders.normal_invaders;
 
-import spacewars.controller.game.elements.CollisionDetector;
+import spacewars.model.game.elements.CollisionDetector;
 import spacewars.model.Position;
 import spacewars.model.game.elements.invaders.normal_invaders.NormalInvader;
 
