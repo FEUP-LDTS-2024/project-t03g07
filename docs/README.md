@@ -1,4 +1,4 @@
-## LDTS_T03G07 - SPACE WARS
+# LDTS_T03G07 - SPACE WARS
 
 Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy fire and strategize to take down waves of relentless spaceships. Try not to die with your 3 lives. Push your limits to achieve a new high score in this highly addictive arcade-style game!
 
@@ -6,7 +6,7 @@ This project was developed by **Francisca Portugal** (up202303640@edu.fe.up.pt),
 
 For a more detailed version of this description click [here](./docs/README.md).
 
-### IMPLEMENTED FEATURES
+## IMPLEMENTED FEATURES
 
 - **States** - We have implemented states for our game, meaning we have more control when adding a new screen to the game and the transitions between them. For example, we have different Menu States and the Game State itself for playing.
 - **How To Play** - The app has a screen that teaches new players how to play the game, featuring the controls used and the scoring system.
@@ -18,7 +18,7 @@ For a more detailed version of this description click [here](./docs/README.md).
 - **High Score** - This game has an high score system. Everytime the player reaches a new high score, it is written in a file in the user's computer, meaning their high score is preserved through app restarts.
 - **Image Loader** - This app is able to transform PNG images in pixels and then showing them on the screen. This was made to make the game more visually appealing.
 
-### PLANNED FEATURES
+## PLANNED FEATURES
 
 - **Sounds** - Implementing sounds in the game would make a more immersive experience for the player. A background song would fit in the retro style that our game aims for and a sound for each interaction would also be a great improvement over the visual appearance that already exists for that action.
 - **Leaderboard System** - Having a leaderboard system would allow the player to challenge their friends in a competitive way. It would show a list of the 10 best high scores with a name associated, so they know which score belongs to who.
@@ -28,9 +28,9 @@ For a more detailed version of this description click [here](./docs/README.md).
 - **Asteroids** - This would be another way of increasing the game difficulty by adding another obstacle for the player. As the game is taking place in the space, an asteroid that comes out of nowhere could decrease the player's lives if it hits them.
 - **Animations** - To make the game more visually appealing, adding animations for, for example, the invader's and player's death, the decreasing of the lives and bullet's would add the perfect touch for the player's experience.
 
-### DESIGN
+## DESIGN
 
-#### CODE STRUCTURE
+### CODE STRUCTURE
 
 **Problem in Context**
 
@@ -50,7 +50,7 @@ The use of the MVC Pattern in the current design allows the following benefits:
 - We can make changes to the application without affecting other parts of the application.
 - We can make the application more modular and scalable.
 
-#### APPLICATION STATES
+### APPLICATION STATES
 
 **Problem in Context**
 
@@ -75,7 +75,7 @@ The use of the State Pattern in the current design allows the following benefits
 - If we wanted to add a new state, it is easy as creating a new subclass, allowing for easy expansion.
 - Each state is independent from the others.
 
-#### SINGLETON
+### SINGLETON
 
 **Problem in Context**
 
@@ -96,7 +96,7 @@ The use of the Singleton Pattern in the current design allows the following bene
 - We can control the instantiation of the high score class.
 - We can access the high score class from any other class in the game.
 
-#### OBSERVER
+### OBSERVER
 
 **Problem in Context**
 
@@ -115,7 +115,7 @@ The implementation of this design pattern can be found in the RespawnObserver in
 The use of the Observer Pattern in the current design allows the following benefits:
 - We can notify all the invaders classes when they need to be respawned.
 
-#### FACTORY METHOD
+### FACTORY METHOD
 
 **Problem in Context**
 
@@ -134,7 +134,7 @@ The implementation of this design pattern can be found in the Invader abstract c
 The use of the Factory Method Pattern in the current design allows the following benefits:
 - We can create different types of invaders without modifying the code.
 
-#### GAME LOOP
+### GAME LOOP
 
 **Problem in Context**
 
@@ -154,11 +154,11 @@ The use of the Game Loop Pattern in the current design allows the following bene
 - We can separate the game state update and game state render into two separate methods.
 - We can update the game state and render the game state at a constant rate.
 
-#### KNOWN CODE SMELLS
+### KNOWN CODE SMELLS
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation.
 
-### TESTING
+## TESTING
 
 - We implemented Unit Testing in conjunction with mockito to try to test the maximum amount of code possible.
 
@@ -170,7 +170,7 @@ The use of the Game Loop Pattern in the current design allows the following bene
 
 <img src="assets/tests/pittest.png" alt="pitest report">
 
-### SELF-EVALUATION
+## SELF-EVALUATION
 
 > In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
 
