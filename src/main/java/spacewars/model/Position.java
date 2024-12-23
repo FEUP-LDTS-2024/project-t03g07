@@ -9,15 +9,37 @@ public record Position(double x, double y) {
 
         Position position = (Position) o;
 
-        if (Double.compare(position.x, x) != 0) return false;
-        return Double.compare(position.y, y) == 0;
+        return Double.compare(position.x, x) == 0 &&
+                Double.compare(position.y, y) == 0;
     }
 
     @Override
-    public int hashCode() {         //necessary for proper equality semantics
-        int result = Double.hashCode(x);
-        result = 31 * result + Double.hashCode(y);
-        return result;
+    public int hashCode() {
+        int xHash;
+        int yHash;
+
+        if (Double.isNaN(x)) {
+            xHash = 0; // Treat NaN as hash code 0
+        } else if (x == Double.POSITIVE_INFINITY) {
+            xHash = 1; // Positive infinity
+        } else if (x == Double.NEGATIVE_INFINITY) {
+            xHash = -1; // Negative infinity
+        } else {
+            xHash = Double.hashCode(x); // Normal case
+        }
+
+        if (Double.isNaN(y)) {
+            yHash = 0; // Treat NaN as hash code 0
+        } else if (y == Double.POSITIVE_INFINITY) {
+            yHash = 1; // Positive infinity
+        } else if (y == Double.NEGATIVE_INFINITY) {
+            yHash = -1; // Negative infinity
+        } else {
+            yHash = Double.hashCode(y); // Normal case
+        }
+
+        return 31 * xHash + yHash;
     }
+
 
 }

@@ -1,50 +1,53 @@
 package spacewars.model.game.elements;
 
 import org.junit.jupiter.api.Test;
-import spacewars.model.Position;
+import spacewars.model.game.Game;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
-public class PlayerTest
-{
-    /*@Test
-    public void testPlayer()
-    {
-        Player player = new Player(0, 0);
-        assertNotNull(player.getLives());
-        assertEquals(3, player.getLives().getLives());
+public class PlayerTest {
+    @Test
+    void testPlayerInitialization() {
+        Game game = mock(Game.class);
+        Player player = new Player(0, 0, game);
+
+        assertEquals(0, player.getPosition().x());
+        assertEquals(0, player.getPosition().y());
+        assertEquals(2, player.getSpeed());
+        assertEquals(10, player.getPlayerSize());
+        assertEquals(game, player.getGame());
+        assertNull(player.getBulletPlayer());
+        assertEquals(0, player.getLastShootTime());
     }
 
     @Test
-    public void testSetLives()
-    {
-        Player player = new Player(0, 0);
-        player.setLives(new Lives(5));
-        assertEquals(5, player.getLives().getLives());
-    }*/
-//
-//    @Test
-//    public void testUpdate()
-//    {
-//        Player player = new Player(0, 0);
-//        player.update();
-//    }
-//
-//    @Test
-//    public void getPosition()
-//    {
-//        Player player = new Player(0, 0);
-//        assertEquals(new Position(0, 0), player.getPosition());
-//    }
-//
-//    @Test
-//    public void setPosition()
-//    {
-//        Position position = new Position(10, 10);
-//        Player player = new Player(0, 0);
-//        player.setPosition(position);
-//        assertEquals(position, player.getPosition());
-//    }
+    void testPlayerShoot() {
+        Game game = mock(Game.class);
+        Player player = new Player(0, 0, game);
 
+        player.shoot();
+        assertNotNull(player.getBulletPlayer());
+        assertEquals(0, player.getBulletPlayer().getKey().getPosition().x());
+        assertEquals(1, player.getBulletPlayer().getKey().getPosition().y());
+        assertTrue(player.getBulletPlayer().getValue());
+        assertTrue(player.getLastShootTime() > 0);
+    }
+
+    @Test
+    void testSetSpeed() {
+        Game game = mock(Game.class);
+        Player player = new Player(0, 0, game);
+
+        player.setSpeed(5);
+        assertEquals(5, player.getSpeed());
+    }
+
+    @Test
+    void testSetBulletPlayerNull() {
+        Game game = mock(Game.class);
+        Player player = new Player(0, 0, game);
+        player.setBulletPlayer(null);
+        assertNull(player.getBulletPlayer());
+    }
 }

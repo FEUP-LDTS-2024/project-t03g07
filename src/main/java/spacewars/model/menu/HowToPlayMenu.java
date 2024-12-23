@@ -31,7 +31,7 @@ public class HowToPlayMenu extends Menu {
     }
 
     @Override
-    protected List<Entry> createEntries() {
+    public List<Entry> createEntries() {
         Position pos = new Position(130, 154);
         Entry goBack = new Entry(pos, Entry.TYPE.RETURN_TO_MENU);
         return List.of(goBack);

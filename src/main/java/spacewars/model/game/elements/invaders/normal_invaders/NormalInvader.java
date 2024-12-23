@@ -5,13 +5,11 @@ import spacewars.model.game.elements.invaders.Invader;
 
 public abstract class NormalInvader extends Invader {
     private double speed;
-    private final int invaderSize;
     private final Game game;
 
     public NormalInvader(double x, double y, Game game) {
         super(x, y);
         this.speed = 1.0;
-        this.invaderSize = 16;
         this.game = game;
     }
 
@@ -21,10 +19,6 @@ public abstract class NormalInvader extends Invader {
 
     public Game getGame() {
         return game;
-    }
-
-    public int getSize() {
-        return invaderSize;
     }
 
     public void setSpeed(double speed) {

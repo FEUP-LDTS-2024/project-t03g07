@@ -15,19 +15,19 @@ import java.util.*;
 public class Game {
     private final GameBuilder builder;
 
-    private final Player player;
-    private final List<NormalInvader1> invaders1;
-    private final List<NormalInvader2> invaders2;
-    private final List<NormalInvader3> invaders3;
+    private Player player;
+    public List<NormalInvader1> invaders1;
+    public List<NormalInvader2> invaders2;
+    public List<NormalInvader3> invaders3;
     private final BossInvader bossInvader;
-    private BulletInvader1 bulletInvader1;
+    public BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
     private BulletInvader3 bulletInvader3;
     private BulletBossInvader bossBullet;
-    private long lastInvader1ShootTime = 0;
-    private long lastInvader2ShootTime = 0;
-    private long lastInvader3ShootTime = 0;
-    private long lastBossShootTime = 0;
+    public long lastInvader1ShootTime = 0;
+    public long lastInvader2ShootTime = 0;
+    public long lastInvader3ShootTime = 0;
+    public long lastBossShootTime = 0;
     private final int highScore;
 
     private final List<RespawnObserver> observers = new ArrayList<>();
@@ -87,6 +87,14 @@ public class Game {
         return bossBullet;
     }
 
+    public String getScore() {
+        return score.getScore();
+    }
+
+    public int getRawScore() {
+        return score.getRawScore();
+    }
+
     public String getScoreText() {
         return "Score: " + score.getScore();
     }
@@ -100,13 +108,6 @@ public class Game {
     }
 
 
-    public void updatePlayerBullet() {
-        if (player.getBulletPlayer() != null) {
-            player.getBulletPlayer().getKey().update();
-            checkBulletCollisions(player.getBulletPlayer().getKey());
-        }
-    }
-
     public boolean checkSideBoundaries(double x1, double x2) {
         return x1 < 20 || x2 > 300;
     }
@@ -115,7 +116,7 @@ public class Game {
         return y < 20;
     }
 
-    private boolean checkCollision(Position topLeft, Position bottomRight) {
+    public boolean checkCollision(Position topLeft, Position bottomRight) {
         return checkSideBoundaries(topLeft.x(), bottomRight.x());
     }
 
@@ -127,7 +128,7 @@ public class Game {
         return checkCollision(new Position(position.x() + size - 1, position.y()), new Position(position.x() + size - 1, position.y() + size - 1));
     }
 
-    private boolean isCollision(Position pos1, Position pos2) {
+    public boolean isCollision(Position pos1, Position pos2) {
         double distance = Math.sqrt(Math.pow(pos1.x() - pos2.x(), 2) + Math.pow(pos1.y() - pos2.y(), 2));
         return distance < COLLISION_THRESHOLD;
     }
@@ -242,18 +243,6 @@ public class Game {
         }
     }
 
-    public void updateInvader1Bullet() {
-        if (bulletInvader1 != null) {
-            bulletInvader1.update();
-
-            // Remove the bullet if it moves off the screen
-            if (bulletInvader1.getPosition().y() > 192) {
-                bulletInvader1 = null;
-            }
-            checkBulletInvader1Collisions(bulletInvader1);
-        }
-    }
-
     public void invader2Shoot() {
         if (bulletInvader2 == null && System.currentTimeMillis() - lastInvader2ShootTime > 2000) { // Shoot every 2 seconds
             List<NormalInvader2> activeInvaders = new ArrayList<>();
@@ -271,18 +260,6 @@ public class Game {
                 bulletInvader2 = new BulletInvader2(randomInvader.getPosition().x(), randomInvader.getPosition().y() + 1);
                 lastInvader2ShootTime = System.currentTimeMillis();
             }
-        }
-    }
-
-    public void updateInvader2Bullet() {
-        if (bulletInvader2 != null) {
-            bulletInvader2.update();
-
-            // Remove the bullet if it moves off the screen
-            if (bulletInvader2.getPosition().y() > 192) {
-                bulletInvader2 = null;
-            }
-            checkBulletInvader2Collisions(bulletInvader2);
         }
     }
 
@@ -306,6 +283,45 @@ public class Game {
         }
     }
 
+    public void bossInvaderShoot(BossInvader bossInvader) {
+        // Ensure boss is not hidden and enough time has passed since the last shot
+        if (bossInvader.isAlive() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
+            bossBullet = new BulletBossInvader(bossInvader.getPosition().x(), bossInvader.getPosition().y() + 1); // Bullet starts below the boss
+            lastBossShootTime = System.currentTimeMillis();
+        }
+    }
+
+    public void updatePlayerBullet() {
+        if (player.getBulletPlayer() != null) {
+            player.getBulletPlayer().getKey().update();
+            checkBulletCollisions(player.getBulletPlayer().getKey());
+        }
+    }
+
+    public void updateInvader1Bullet() {
+        if (bulletInvader1 != null) {
+            bulletInvader1.update();
+
+            // Remove the bullet if it moves off the screen
+            if (bulletInvader1.getPosition().y() > 192) {
+                bulletInvader1 = null;
+            }
+            checkBulletInvader1Collisions(bulletInvader1);
+        }
+    }
+
+    public void updateInvader2Bullet() {
+        if (bulletInvader2 != null) {
+            bulletInvader2.update();
+
+            // Remove the bullet if it moves off the screen
+            if (bulletInvader2.getPosition().y() > 192) {
+                bulletInvader2 = null;
+            }
+            checkBulletInvader2Collisions(bulletInvader2);
+        }
+    }
+
     public void updateInvader3Bullet() {
         if (bulletInvader3 != null) {
             bulletInvader3.update();
@@ -315,14 +331,6 @@ public class Game {
                 bulletInvader3 = null;
             }
             checkBulletInvader3Collisions(bulletInvader3);
-        }
-    }
-
-    public void bossInvaderShoot(BossInvader bossInvader) {
-        // Ensure boss is not hidden and enough time has passed since the last shot
-        if (bossInvader.isAlive() && bossBullet == null && System.currentTimeMillis() - lastBossShootTime > 5000) { // Boss shoots every 3 seconds
-            bossBullet = new BulletBossInvader(bossInvader.getPosition().x(), bossInvader.getPosition().y() + 1); // Bullet starts below the boss
-            lastBossShootTime = System.currentTimeMillis();
         }
     }
 
@@ -336,26 +344,6 @@ public class Game {
             }
             checkBulletBossInvaderCollisions(bossBullet);
         }
-    }
-
-    public void decreaseLives() {
-        if (!lives.isEmpty()) {
-            // Find the Live object with the lowest x-coordinate
-            Live leftmostLive = lives.stream()
-                    .min(Comparator.comparingDouble(live -> live.getPosition().x()))
-                    .orElse(null);
-
-            // Remove the leftmost Live
-            lives.remove(leftmostLive);
-        }
-    }
-
-    public String getScore() {
-        return score.getScore();
-    }
-
-    public int getRawScore() {
-        return score.getRawScore();
     }
 
     public void updateInvaderBullets() {
@@ -372,6 +360,18 @@ public class Game {
         }
     }
 
+    public void decreaseLives() {
+        if (!lives.isEmpty()) {
+            // Find the Live object with the lowest x-coordinate
+            Live leftmostLive = lives.stream()
+                    .min(Comparator.comparingDouble(live -> live.getPosition().x()))
+                    .orElse(null);
+
+            // Remove the leftmost Live
+            lives.remove(leftmostLive);
+        }
+    }
+
     public void respawnInvaders() {
         if (getInvaders1().isEmpty() && getInvaders2().isEmpty() && getInvaders3().isEmpty()) {
             getInvaders1().addAll(builder.createInvaders1(this));
@@ -385,9 +385,44 @@ public class Game {
         observers.add(observer);
     }
 
-    private void notifyObservers() {
+    public void notifyObservers() {
         for (RespawnObserver observer : observers) {
             observer.onRespawn();
         }
+    }
+
+    //for testing purposes
+    public List<RespawnObserver> getObservers() {
+        return observers;
+    }
+
+    //for testing purposes
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    //for testing purposes
+    public long getCurrentTimeMillis() {
+        return System.currentTimeMillis();
+    }
+
+    //for testing purposes
+    public void setBulletInvader1(BulletInvader1 bulletInvader1) {
+        this.bulletInvader1 = bulletInvader1;
+    }
+
+    //for testing purposes
+    public void setBulletInvader2(BulletInvader2 bulletInvader2) {
+        this.bulletInvader2 = bulletInvader2;
+    }
+
+    //for testing purposes
+    public void setBulletInvader3(BulletInvader3 bulletInvader3) {
+        this.bulletInvader3 = bulletInvader3;
+    }
+
+    //for testing purposes
+    public void setBulletBossInvader(BulletBossInvader bulletBossInvader) {
+        this.bossBullet = bulletBossInvader;
     }
 }
