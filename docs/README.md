@@ -55,6 +55,12 @@ Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy
 - **Asteroids** - This would be another way of increasing the game difficulty by adding another obstacle for the player. As the game is taking place in the space, an asteroid that comes out of nowhere could decrease the player's lives if it hits them.
 - **Animations** - To make the game more visually appealing, adding animations for, for example, the invader's and player's death, the decreasing of the lives and bullet's would add the perfect touch for the player's experience.
 
+## GENERAL ARCHITECTURE UML
+
+<p align="center">
+	<img src="" alt="UML Diagram">
+</p>
+
 ## DESIGN
 
 ### CODE STRUCTURE
