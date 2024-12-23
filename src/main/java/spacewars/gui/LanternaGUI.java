@@ -194,4 +194,14 @@ public class LanternaGUI implements GUI {
         screen.close();
     }
 
+    //for testing purposes
+    public void setKeyPressed(int vkUp) {
+        this.keyPressed = new KeyEvent(new Component() {
+        }, 0, 0, 0, vkUp, ' ');
+    }
+
+    //for testing purposes
+    public void setLastMovementAction(int i) {
+        this.lastMovementAction = i;
+    }
 }
