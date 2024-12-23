@@ -10,7 +10,7 @@ Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy
 
 For a more detailed version of this description click [here](./docs/README.md).
 
-# Screenshots
+## Screenshots
 
 <div align="center">
     <img src="docs/assets/screenshots/mainmenu.png" alt="Main Menu" width="750">

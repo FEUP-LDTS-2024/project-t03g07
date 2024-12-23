@@ -8,6 +8,31 @@ Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy
 
 > This project was developed by **Francisca Portugal** (up202303640@edu.fe.up.pt), **João Lopes** (up202307809@edu.fe.up.pt) and **Pedro Monteiro** (up202307242@edu.fe.up.pt) for LDTS 2024/25.
 
+## Screenshots
+
+<div align="center">
+    <img src="assets/screenshots/mainmenu.png" alt="Main Menu" width="750">
+    <p>
+        <i>Figure 1 - Main Menu</i>
+    </p>
+    <img src="assets/screenshots/howtoplay.png" alt="How To Play" width="750">
+    <p>
+        <i>Figure 2 - How To Play</i>
+    </p>
+    <img src="assets/screenshots/gameplay.png" alt="Gameplay" width="750">
+    <p>
+        <i>Figure 3 - Gameplay</i>
+    </p>
+    <img src="assets/screenshots/gameover.png" alt="Game Over" width="750">
+    <p>
+        <i>Figure 4 - Game Over</i>
+    </p>
+    <img src="assets/screenshots/credits.png" alt="Credits" width="750">
+    <p>
+        <i>Figure 5 - Credits</i>
+    </p>
+</div>
+
 ## IMPLEMENTED FEATURES
 
 - **States** - We have implemented states for our game, meaning we have more control when adding a new screen to the game and the transitions between them. For example, we have different Menu States and the Game State itself for playing.
