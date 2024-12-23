@@ -197,5 +197,5 @@ public class PlayerControllerTest {
         verify(game, times(1)).collidesRight(any(Position.class), anyDouble());
         assertEquals(new Position(10, 5), newPosition); // Position should not change due to collision
     }
-    
+
 }
