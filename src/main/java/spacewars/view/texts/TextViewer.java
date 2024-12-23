@@ -7,4 +7,6 @@ public interface TextViewer {
     void draw(char character, double x, double y, TextColor foregroundColor, GUI gui);
 
     void draw(String string, double x, double y, TextColor foregroundColor, GUI gui);
+
+    int getCharHeight();
 }

@@ -82,7 +82,8 @@ public class AppTextViewer implements TextViewer {
         }
     }
 
-    public static int getCharHeight() {
+    @Override
+    public int getCharHeight() {
         return charHeight;
     }
 }

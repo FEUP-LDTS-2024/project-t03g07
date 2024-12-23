@@ -95,16 +95,16 @@ public class GameViewer extends ScreenViewer<Game> {
         gui.refresh();
     }
 
-    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
+    <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
         viewer.draw(element, gui);
     }
 
-    private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
+    <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
         for (T element : elements)
             drawElement(gui, element, viewer);
     }
 
-    private void drawText(GUI gui, String text, int y) {
+    void drawText(GUI gui, String text, int y) {
         textViewer.draw(text, 5, y, TextColor.ANSI.WHITE, gui);
     }
 }
