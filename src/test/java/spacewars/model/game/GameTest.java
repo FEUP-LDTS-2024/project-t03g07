@@ -16,29 +16,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 class GameTest {
 
     private Game game;
     private GameBuilder builder;
-    private Player player;
-    private List<NormalInvader1> invaders1;
-    private List<NormalInvader2> invaders2;
-    private List<NormalInvader3> invaders3;
-    private BossInvader bossInvader;
     private List<Live> lives;
     private BulletInvader1 bulletInvader1;
     private BulletInvader2 bulletInvader2;
     private BulletInvader3 bulletInvader3;
     private BulletBossInvader bulletBossInvader;
-    private Score score;
-    private int highScore;
 
     private static final double COLLISION_THRESHOLD = 8.0;
 
@@ -47,13 +38,12 @@ class GameTest {
     void setUp() {
         this.builder = mock(GameBuilder.class);
         this.game = mock(Game.class);
-        this.player = mock(Player.class);
-        this.invaders1 = mock(List.class);
-        this.invaders2 = mock(List.class);
-        this.invaders3 = mock(List.class);
-        this.bossInvader = mock(BossInvader.class);
+        Player player = mock(Player.class);
+        List<NormalInvader1> invaders1 = mock(List.class);
+        List<NormalInvader2> invaders2 = mock(List.class);
+        List<NormalInvader3> invaders3 = mock(List.class);
+        BossInvader bossInvader = mock(BossInvader.class);
         this.lives = mock(List.class);
-        this.score = mock(Score.class);
 
         when(builder.createPlayer(any(Game.class))).thenReturn(player);
         when(builder.createInvaders1(any(Game.class))).thenReturn(invaders1);
@@ -63,7 +53,6 @@ class GameTest {
         when(builder.createLives()).thenReturn(lives);
 
         this.game = new Game(builder);
-        this.highScore = 0;
     }
 
     @Test
@@ -720,7 +709,7 @@ class GameTest {
     @Test
     void testUpdateBossInvaderBullet_BulletOffScreen() {
         game = mock(Game.class, CALLS_REAL_METHODS);
-        bulletBossInvader= mock(BulletBossInvader.class);
+        bulletBossInvader = mock(BulletBossInvader.class);
 
         when(bulletBossInvader.getPosition()).thenReturn(new Position(50, 200));
         game.setBulletBossInvader(bulletBossInvader);
@@ -747,8 +736,6 @@ class GameTest {
 
         verify(spyGame, times(1)).checkBulletBossInvaderCollisions(bulletBossInvader);
     }
-
-
 
     @Test
     public void decreaseLivesTest() {
