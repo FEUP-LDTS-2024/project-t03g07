@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 
 public class GameController extends Controller<Game> {
     private final PlayerController playerController;
-    private final NormalInvader1Controller normalInvader1Controller;
+    private final NormalInvader1Controller invader1Controller;
     private final NormalInvader2Controller invader2Controller;
     private final NormalInvader3Controller invader3Controller;
     private final BossInvaderController bossInvaderController;
@@ -30,13 +30,13 @@ public class GameController extends Controller<Game> {
     public GameController(Game game) {
         super(game);
         this.playerController = new PlayerController(getModel().getPlayer());
-        this.normalInvader1Controller = new NormalInvader1Controller(getModel().getInvaders1());
+        this.invader1Controller = new NormalInvader1Controller(getModel().getInvaders1());
         this.invader2Controller = new NormalInvader2Controller(getModel().getInvaders2());
         this.invader3Controller = new NormalInvader3Controller(getModel().getInvaders3());
         this.bossInvaderController = new BossInvaderController(getModel().getBossInvader(), 320);
         this.lastMoveTime = 0;
 
-        getModel().addObserver(normalInvader1Controller);
+        getModel().addObserver(invader1Controller);
         getModel().addObserver(invader2Controller);
         getModel().addObserver(invader3Controller);
     }
@@ -48,7 +48,7 @@ public class GameController extends Controller<Game> {
 
         // Move invaders at regular intervals
         if (time - lastMoveTime > MOVE_INTERVAL) {
-            normalInvader1Controller.moveInvaders();
+            invader1Controller.moveInvaders();
             invader2Controller.moveInvaders();
             invader3Controller.moveInvaders();
             if (getModel().getBossInvader() != null) {
@@ -65,7 +65,7 @@ public class GameController extends Controller<Game> {
         }
     }
 
-    private void handlePlayerInput(GUI.ACTION action, Application application) throws IOException, URISyntaxException {
+    void handlePlayerInput(GUI.ACTION action, Application application) throws IOException, URISyntaxException {
         switch (action) {
             case LEFT -> playerController.moveLeft();
             case RIGHT -> playerController.moveRight();
@@ -74,15 +74,15 @@ public class GameController extends Controller<Game> {
         }
     }
 
-    private void onQuit(Application application) throws IOException, URISyntaxException {
+    void onQuit(Application application) throws IOException, URISyntaxException {
         application.setState(new MainMenuState(new MainMenu(), application.getImageLoader()));
     }
 
-    private boolean isGameOver() {
+    boolean isGameOver() {
         return getModel().getLives().isEmpty();
     }
 
-    private void transitionToGameOver(Application application) throws IOException, URISyntaxException {
+    void transitionToGameOver(Application application) throws IOException, URISyntaxException {
         boolean isHighScore = HighScore.loadHighScore() < getModel().getRawScore();
         GameOver gameOver = new GameOver(getModel().getScore(), isHighScore);
         if (isHighScore) {
