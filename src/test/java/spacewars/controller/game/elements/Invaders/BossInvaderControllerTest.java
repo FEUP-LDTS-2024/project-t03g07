@@ -37,62 +37,27 @@ class BossInvaderControllerTest {
         verify(bossInvader, times(1)).setPosition(new Position(2, 0)); // Moves right by 2
     }
 
-    /*@Test
-    public void testMoveLeft() {
+    @Test
+    public void testSwitchDirectionAtScreenEdge() {
         when(bossInvader.isAlive()).thenReturn(true);
-        when(bossInvader.getPosition()).thenReturn(new Position(320, 0));
+        when(bossInvader.getPosition()).thenReturn(new Position(320, 0)); // At screen edge
 
         controller.moveBoss(6000); // Beyond wait duration
-        when(bossInvader.getPosition()).thenReturn(new Position(320, 0)); // Update position after move
-        controller.moveBoss(8000); // Continue moving left
 
-        verify(bossInvader, times(1)).setPosition(new Position(318, 0)); // Moves left by 2
+        // Check that setPosition was not called to move the boss, only to reset position if applicable
+        verify(bossInvader, times(0)).setPosition(new Position(322, 0)); // No rightward move
     }
 
     @Test
-    public void testRespawnAfterDeath() {
-        when(bossInvader.isAlive()).thenReturn(false);
-
-        controller.moveBoss(4000); // Before respawn time
-        verify(bossInvader, never()).setAlive(true);
-
-        controller.moveBoss(7000); // After respawn time
-        verify(bossInvader, times(1)).setAlive(true);
-        verify(bossInvader, times(1)).setPosition(new Position(-bossInvader.getSize(), 0));
-    }
-
-    @Test
-    public void testWaitBeforeMoving() {
+    public void testSequenceOfMovements() {
         when(bossInvader.isAlive()).thenReturn(true);
-        when(bossInvader.getPosition()).thenReturn(new Position(320, 0));
-
-        controller.moveBoss(0); // Start waiting
-        controller.moveBoss(4000); // Still waiting
-        verify(bossInvader, never()).setPosition(any()); // No movement during wait period
+        when(bossInvader.getPosition()).thenReturn(new Position(0, 0));
 
         controller.moveBoss(6000); // Beyond wait duration
-        verify(bossInvader, times(1)).setPosition(new Position(318, 0)); // Starts moving left
+        verify(bossInvader, times(1)).setPosition(new Position(2, 0));
+
+        when(bossInvader.getPosition()).thenReturn(new Position(2, 0));
+        controller.moveBoss(7000); // Next move
+        verify(bossInvader, times(1)).setPosition(new Position(4, 0));
     }
-
-    @Test
-    public void testOffScreenDeath() {
-        when(bossInvader.isAlive()).thenReturn(true);
-        when(bossInvader.getPosition()).thenReturn(new Position(-60, 0));
-        when(bossInvader.getSize()).thenReturn(50);
-
-        controller.moveBoss(0);
-        verify(bossInvader, times(1)).setAlive(false); // Goes off-screen and dies
-
-        controller.moveBoss(3000); // Trigger respawn logic
-        verify(bossInvader, never()).setAlive(true);
-    }
-
-    @Test
-    public void testChangeDirectionAtRightEdge() {
-        when(bossInvader.isAlive()).thenReturn(true);
-        when(bossInvader.getPosition()).thenReturn(new Position(320, 0));
-
-        controller.moveBoss(6000); // Beyond wait duration
-        verify(bossInvader, times(1)).setPosition(new Position(318, 0)); // Starts moving left
-    }*/
 }
