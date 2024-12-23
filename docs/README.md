@@ -197,11 +197,15 @@ The use of the Game Loop Pattern in the current design allows the following bene
 
 **Coverage Report:**
 
-<img src="assets/tests/coverage.png" alt="coverage report">
+<p align="center">
+	<img src="assets/tests/coverage.png" alt="coverage report">
+</p>
 
 **Pit Test Report:**
 
-<img src="assets/tests/pittest.png" alt="pitest report">
+<p align="center">
+	<img src="assets/tests/pittest.png" alt="pitest report">
+</p>
 
 ## SELF-EVALUATION
 
