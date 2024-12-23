@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class NormalInvaderController<T extends NormalInvader> implements RespawnObserver {
     protected final List<T> invaders;
-    protected double direction;
+    public double direction;
 
     public NormalInvaderController(List<T> invaders) {
         this.invaders = invaders;
@@ -40,13 +40,13 @@ public abstract class NormalInvaderController<T extends NormalInvader> implement
         }
     }
 
-    private Position calculateNewPosition(T invader) {
+    public Position calculateNewPosition(T invader) {
         double x = invader.getPosition().x();
         double y = invader.getPosition().y();
         return new Position(x + direction * invader.getSpeed(), y);
     }
 
-    private boolean collides(T invader, Position newPosition) {
+    public boolean collides(T invader, Position newPosition) {
         return (direction < 0 && CollisionDetector.collidesLeft(invader.getGame(), newPosition, invader.getSize()) ||
                 (direction > 0 && CollisionDetector.collidesRight(invader.getGame(), newPosition, invader.getSize())));
     }

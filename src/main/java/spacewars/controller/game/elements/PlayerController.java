@@ -21,7 +21,7 @@ public class PlayerController {
         player.setPosition(applyCollisions());
     }
 
-    protected Position applyCollisions() {
+    public Position applyCollisions() {
         double x = player.getPosition().x();
         double y = player.getPosition().y();
 

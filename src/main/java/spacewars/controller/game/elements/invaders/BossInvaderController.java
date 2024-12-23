@@ -54,7 +54,7 @@ public class BossInvaderController {
 
     }
 
-    private void resetBossPosition() {
+    void resetBossPosition() {
         movingRight = true;
         bossInvader.setPosition(new Position(-bossInvader.getSize(), bossInvader.getPosition().y()));
     }
