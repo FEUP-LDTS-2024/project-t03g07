@@ -46,7 +46,7 @@ public abstract class NormalInvaderController<T extends NormalInvader> implement
         return new Position(x + direction * invader.getSpeed(), y);
     }
 
-    protected boolean collides(T invader, Position newPosition) {
+    public boolean collides(T invader, Position newPosition) {
         return (direction < 0 && CollisionDetector.collidesLeft(invader.getGame(), newPosition, invader.getSize()) ||
                 (direction > 0 && CollisionDetector.collidesRight(invader.getGame(), newPosition, invader.getSize())));
     }

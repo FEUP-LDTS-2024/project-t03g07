@@ -125,28 +125,81 @@ class NormalInvaderControllerTest {
 
 //    @Test
 //    public void testCollides() {
+//        Game game = mock(Game.class);
 //        NormalInvader invader = mock(NormalInvader.class);
+//
+//        // Mock methods related to the invader
 //        when(invader.getPosition()).thenReturn(new Position(10, 50));
+//        when(invader.getGame()).thenReturn(game); // Ensure the invader returns a non-null game
+//
+//        // Mock the behavior of collision detection
+//        when(game.collidesLeft(any(Position.class), anyDouble())).thenReturn(true);
+//
+//        // Add the invader to the controller's list
 //        invaders.add(invader);
 //
-//        Game testGame = ((TestNormalInvaderController) controller).getTestGame();
+//        boolean collisionDetected = controller.collides(invader, new Position(10, 50));
 //
-//        // Simulate colliding on the left
-//        when(testGame.collidesLeft(any(Position.class), anyDouble())).thenReturn(true);
-//        assertTrue(((TestNormalInvaderController) controller).testCollides(invader, new Position(10, 50)));
+//        assertTrue(collisionDetected, "Collision should be detected.");
 //
-//        // Simulate no collision on the left
-//        when(testGame.collidesLeft(any(Position.class), anyDouble())).thenReturn(false);
-//        assertFalse(((TestNormalInvaderController) controller).testCollides(invader, new Position(10, 50)));
+//        // Change the mock behavior to simulate no collision
+//        when(game.collidesLeft(any(Position.class), anyDouble())).thenReturn(false);
+//        collisionDetected = controller.collides(invader, new Position(10, 50));
 //
-//        // Simulate colliding on the right
-//        when(testGame.collidesRight(any(Position.class), anyDouble())).thenReturn(true);
-//        assertTrue(((TestNormalInvaderController) controller).testCollides(invader, new Position(20, 50)));
-//
-//        // Simulate no collision on the right
-//        when(testGame.collidesRight(any(Position.class), anyDouble())).thenReturn(false);
-//        assertFalse(((TestNormalInvaderController) controller).testCollides(invader, new Position(20, 50)));
+//        assertFalse(collisionDetected, "Collision should not be detected.");
 //    }
+
+    @Test
+    public void testCollidesLeft() {
+        Game game = mock(Game.class);
+        NormalInvader invader = mock(NormalInvader.class);
+
+        when(invader.getPosition()).thenReturn(new Position(10, 50));
+        when(invader.getGame()).thenReturn(game);
+        when(game.collidesLeft(any(Position.class), anyDouble())).thenReturn(true);
+
+        invaders.add(invader);
+
+        boolean collisionDetected = controller.collides(invader, new Position(10, 50));
+        assertTrue(collisionDetected, "Collision on the left should be detected.");
+
+        when(game.collidesLeft(any(Position.class), anyDouble())).thenReturn(false);
+        collisionDetected = controller.collides(invader, new Position(10, 50));
+        assertFalse(collisionDetected, "Collision on the left should not be detected.");
+    }
+
+    @Test
+    public void testNoCollision() {
+        Game game = mock(Game.class);
+        NormalInvader invader = mock(NormalInvader.class);
+
+        when(invader.getPosition()).thenReturn(new Position(10, 50));
+        when(invader.getGame()).thenReturn(game);
+        when(game.collidesLeft(any(Position.class), anyDouble())).thenReturn(false);
+        when(game.collidesRight(any(Position.class), anyDouble())).thenReturn(false);
+
+        invaders.add(invader);
+
+        boolean collisionDetected = controller.collides(invader, new Position(10, 50));
+        assertFalse(collisionDetected, "No collision should be detected.");
+    }
+
+    @Test
+    public void testCollidesEdgeCases() {
+        Game game = mock(Game.class);
+        NormalInvader invader = mock(NormalInvader.class);
+
+        // Test with a position at the boundary
+        when(invader.getPosition()).thenReturn(new Position(0, 0));
+        when(invader.getGame()).thenReturn(game);
+        when(game.collidesLeft(any(Position.class), anyDouble())).thenReturn(true);
+
+        invaders.add(invader);
+
+        boolean collisionDetected = controller.collides(invader, new Position(0, 0));
+        assertTrue(collisionDetected, "Collision at boundary should be detected.");
+    }
+
 
     @Test
     public void testOnRespawn_IncreasesSpeed() {
