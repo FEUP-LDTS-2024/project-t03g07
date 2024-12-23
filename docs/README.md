@@ -94,6 +94,10 @@ We have applied the **State** design pattern. This pattern allows you to represe
 
 The implementation of this design pattern can be found in the states package in the source code.
 
+<p align="center">
+	<img src="assets/diagrams/states-uml.png">
+</p>
+
 **Consequences**
 
 The use of the State Pattern in the current design allows the following benefits:
