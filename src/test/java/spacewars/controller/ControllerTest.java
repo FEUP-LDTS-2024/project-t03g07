@@ -25,7 +25,7 @@ public class ControllerTest {
         gui = mock(GUI.class);
         controller = new Controller<>(game) {
             @Override
-            public void step(Application application, GUI.ACTION action, long time){
+            public void step(Application application, GUI.ACTION action, long time) {
             }
         };
     }
