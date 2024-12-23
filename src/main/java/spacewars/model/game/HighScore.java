@@ -45,4 +45,23 @@ public class HighScore {
         }
         return highScore;
     }
+
+    //for testing purposes
+    public static void resetHighScore() {
+        File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Error creating high score file");
+            }
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
+            writer.write("0");
+            writer.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException("Error saving high score");
+        }
+    }
 }
