@@ -201,6 +201,13 @@ We have applied the **Game Loop** design pattern. This pattern separates the gam
 
 The implementation of this design pattern can be found in the while loop in the Application class.
 
+Here is a scheme of the game loop:
+
+<p align="center">
+	<img src="assets/diagrams/game_loop_diagram.png">
+</p>
+
+
 **Consequences**
 
 The use of the Game Loop Pattern in the current design allows the following benefits:
