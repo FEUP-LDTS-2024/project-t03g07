@@ -100,7 +100,7 @@ We have applied the **State** design pattern. This pattern allows you to represe
 
 The implementation of this design pattern can be found in the states package in the source code.
 
-Here is the UML diagram for the states package:
+Here is the UML state diagram for the application:
 
 <p align="center">
 	<img src="assets/diagrams/states-uml.png">
@@ -148,6 +148,12 @@ We have applied the **Observer** design pattern. This pattern defines a one-to-m
 **Implementation**
 
 The implementation of this design pattern can be found in the RespawnObserver interface in the invaders controller package.
+
+Here is the UML class diagram for the observer pattern:
+
+<p align="center">
+	<img src="assets/diagrams/observer-uml.png">
+</p>
 
 **Consequences**
 
