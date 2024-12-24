@@ -130,6 +130,13 @@ We have applied the **Singleton** design pattern. This pattern ensures that a cl
 
 The implementation of this design pattern can be found in the highscore package in the source code.
 
+Here is the UML class diagram for the singleton pattern:
+
+<p align="center">
+	<img src="assets/diagrams/singleton_uml.png">
+</p>
+
+
 **Consequences**
 
 The use of the Singleton Pattern in the current design allows the following benefits:
@@ -201,7 +208,7 @@ We have applied the **Game Loop** design pattern. This pattern separates the gam
 
 The implementation of this design pattern can be found in the while loop in the Application class.
 
-Here is a scheme of the game loop:
+Here is a scheme that illustrates the game loop:
 
 <p align="center">
 	<img src="assets/diagrams/game_loop_diagram.png">
