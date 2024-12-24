@@ -226,11 +226,9 @@ The use of the Game Loop Pattern in the current design allows the following bene
 
 ## KNOWN CODE SMELLS
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation.
-
-1**Large Class** - The `Game` class has too many responsibilities and is too large. It should be refactored into smaller classes with single responsibilities.
-2**Reference Equality** - In some places in the code, reference equality is used instead of value equality. This can lead to bugs and unexpected behavior.
-3**Direct Invocation on Mock** - In some places in the code, the mock objects are directly invoked. This should be avoided, as it makes the code harder to test and maintain using, for example, verify calls.. 
+1. **Large Class** - The `Game` class has too many responsibilities and is too large. It should be refactored into smaller classes with single responsibilities.
+2. **Reference Equality** - In some places in the code, reference equality is used instead of value equality. This can lead to bugs and unexpected behavior.
+3. **Direct Invocation on Mock** - In some places in the code, the mock objects are directly invoked. This should be avoided, as it makes the code harder to test and maintain using, for example, verify calls.. 
 
 ## TESTING
 
