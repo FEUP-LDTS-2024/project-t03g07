@@ -1,46 +1,67 @@
 package spacewars.model.game;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HighScore {
-    private static final String FILE_PATH = "highscores.txt";
+    private static final String home = System.getProperty("user.home");
+    static final String FILE_PATH = home + "/spacewars/highscores.txt";
 
-    public static void saveHighScore(int highScore){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
+    public static void saveHighScore(int highScore) {
+        File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Error creating high score file");
+            }
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
             writer.write(String.valueOf(highScore));
             writer.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error saving high score");
         }
     }
 
-    public static List<Integer> loadHighScores() {
-        List<Integer> highScores = new ArrayList<>();
+    public static int loadHighScore() {
+        int highScore = 0;
+        File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Error creating high score file");
+            }
+        }
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                highScores.add(Integer.parseInt(line));
+                highScore = Integer.parseInt(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error loading high score");
         }
-        return highScores;
+        return highScore;
     }
 
-    public static int getHighScore() {
-        List<Integer> highScores = loadHighScores();
-        if (highScores.isEmpty()) {
-            return 0;
+    //for testing purposes
+    public static void resetHighScore() {
+        File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Error creating high score file");
+            }
         }
-        return highScores.get(highScores.size() - 1);
-    }
-
-    public static void clearHighScores() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-            writer.write("");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
+            writer.write("0");
+            writer.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error saving high score");
         }
     }
 }

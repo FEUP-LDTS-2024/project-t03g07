@@ -3,95 +3,79 @@ package spacewars.model.game;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doNothing;
-import static spacewars.model.game.HighScore.clearHighScores;
 
 public class HighScoreTest {
-
-    @Mock
-    private BufferedWriter writer;
+    private static final String TEST_FILE_PATH = System.getProperty("user.home") + "/test_highscores.txt";
 
     @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    void setUp() {
+        // Clean up before each test
+        File file = new File(TEST_FILE_PATH);
+        if (file.exists()) {
+            file.delete();
+        }
     }
 
     @AfterEach
-    public void tearDown() {
-        clearHighScores();
+    void tearDown() {
+        // Clean up after each test
+        File file = new File(TEST_FILE_PATH);
+        if (file.exists()) {
+            file.delete();
+        }
     }
 
     @Test
-    public void testSaveHighScore() throws IOException {
-        doNothing().when(writer).write(anyString());
-        doNothing().when(writer).newLine();
+    void testSaveHighScoreCreatesFile() {
+        HighScore.saveHighScore(100);
 
+        File file = new File(HighScore.FILE_PATH);
+        assertTrue(file.exists(), "High score file should be created");
+    }
+
+    @Test
+    void testSaveHighScoreWritesCorrectContent() {
+        HighScore.saveHighScore(100);
+
+        int highScore = HighScore.loadHighScore();
+        assertEquals(100, highScore, "High score should match the saved value");
+    }
+
+
+    @Test
+    void testLoadHighScoreReadsCorrectContent() {
+        HighScore.saveHighScore(200);
+
+        int loadedHighScore = HighScore.loadHighScore();
+        assertEquals(200, loadedHighScore, "Loaded high score should match the saved value");
+    }
+
+    @Test
+    void testSaveHighScoreOverwritesExistingFile() {
         HighScore.saveHighScore(100);
         HighScore.saveHighScore(200);
-        HighScore.saveHighScore(300);
-        HighScore.saveHighScore(400);
-        HighScore.saveHighScore(500);
 
-        List<Integer> highScores = HighScore.loadHighScores();
-        assertTrue(highScores.contains(100));
-        assertTrue(highScores.contains(200));
-        assertTrue(highScores.contains(300));
-        assertTrue(highScores.contains(400));
-        assertTrue(highScores.contains(500));
+        int highScore = HighScore.loadHighScore();
+        assertEquals(200, highScore, "High score should be overwritten with the new value");
     }
 
-
     @Test
-    public void testLoadHighScores() {
+    void testFileContentHasSingleLine() throws IOException {
         HighScore.saveHighScore(100);
-        HighScore.saveHighScore(200);
-        HighScore.saveHighScore(300);
-        HighScore.saveHighScore(400);
-        HighScore.saveHighScore(500);
 
-        List<Integer> highScores = HighScore.loadHighScores();
-        assertTrue(highScores.contains(100));
-        assertTrue(highScores.contains(200));
-        assertTrue(highScores.contains(300));
-        assertTrue(highScores.contains(400));
-        assertTrue(highScores.contains(500));
+        File file = new File(HighScore.FILE_PATH);
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line = reader.readLine();
+        assertEquals("100", line, "File content should only have the saved high score");
+        assertNull(reader.readLine(), "File should contain only one line");
+        reader.close();
     }
 
-    @Test
-    public void testGetHighScore() {
-        HighScore.saveHighScore(100);
-        HighScore.saveHighScore(200);
-        HighScore.saveHighScore(300);
-        HighScore.saveHighScore(400);
-        HighScore.saveHighScore(500);
-
-        assertEquals(500, HighScore.getHighScore());
-    }
-
-    @Test
-    public void testGetHighScoreEmpty() {
-        clearHighScores();
-        assertEquals(0, HighScore.getHighScore());
-    }
-
-    @Test
-    public void testClearHighScores() {
-        HighScore.saveHighScore(100);
-        HighScore.saveHighScore(200);
-        HighScore.saveHighScore(300);
-        HighScore.saveHighScore(400);
-        HighScore.saveHighScore(500);
-
-        clearHighScores();
-        List<Integer> highScores = HighScore.loadHighScores();
-        assertTrue(highScores.isEmpty());
-    }
 }

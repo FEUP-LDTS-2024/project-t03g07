@@ -2,16 +2,17 @@ package spacewars.model.game.elements.invaders;
 
 import java.util.Random;
 
-public class BossInvader extends Invader{
+public class BossInvader extends Invader {
     private final int points;
+    private boolean alive = true;
 
-    public BossInvader(int x, int y) {
+    public BossInvader(double x, double y) {
         super(x, y);
         this.points = getRandomPoints();
     }
 
 
-    private int getRandomPoints() {
+    public int getRandomPoints() {
         int[] possiblePoints = {75, 100, 250, 500, 999};
         double[] probabilities = {0.5, 0.2, 0.15, 0.1, 0.05}; //probabilities must sum to 1
 
@@ -27,9 +28,17 @@ public class BossInvader extends Invader{
         return possiblePoints[possiblePoints.length - 1]; //fallback in case of rounding errors
     }
 
-
     @Override
     public int getPoints() {
         return points;
     }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
 }

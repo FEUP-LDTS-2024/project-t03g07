@@ -1,70 +1,65 @@
 package spacewars;
 
-import spacewars.gui.LanternaFrame;
-import spacewars.model.game.elements.Player;
-import spacewars.view.game.GameViewer;
-import spacewars.view.game.PlayerViewer;
+import spacewars.gui.LanternaGUI;
+import spacewars.model.menu.MainMenu;
+import spacewars.states.MainMenuState;
+import spacewars.states.State;
+import spacewars.view.images.AppImageLoader;
+import spacewars.view.images.ImageLoader;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Application {
-    private final LanternaFrame lanternaFrame;
-    private final GameViewer gameViewer;
-    private final Player player;
-    private final PlayerViewer playerViewer;
-    private boolean running;
+    private final LanternaGUI gui;
+    private final ImageLoader imageLoader;
+    private State<?> state;
 
-    public Application() throws IOException {
-        lanternaFrame = new LanternaFrame("Space Wars");
-        gameViewer = new GameViewer(lanternaFrame);
-        player = new Player(10, 10);
-        playerViewer = new PlayerViewer("millennium_falcon.png");
-        running = true;
+    public Application() throws IOException, URISyntaxException, FontFormatException {
+        this.gui = new LanternaGUI(320, 192);
+        this.imageLoader = new AppImageLoader();
+        this.state = new MainMenuState(new MainMenu(), imageLoader);
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         Application app = new Application();
         app.run();
     }
 
-    public void run() throws InterruptedException, IOException {
+    public void setState(State<?> state) {
+        this.state = state;
+    }
+
+    public ImageLoader getImageLoader() {
+        return imageLoader;
+    }
+
+    public void run() throws InterruptedException, IOException, URISyntaxException {
         int FPS = 30;
-        double frameTime = (double) 1000000000 / FPS;
+        double frameTime = 1_000_000_000.0 / FPS;
         long lastTime = System.nanoTime();
-        int frames = 0;
 
-        lanternaFrame.startScreen();
+        gui.startScreen();
 
-        while (running) {
+        while (this.state != null) {
             long startTime = System.nanoTime();
 
-            // Check if screen is closed
-            if (!lanternaFrame.isRunning()) {
-                running = false;
-                break;
+            state.step(this, gui, startTime);
+            long elapsedTime = System.nanoTime() - startTime;
+            long sleepTime = (long) frameTime - elapsedTime;
+
+            if (sleepTime > 0) {
+                Thread.sleep(sleepTime / 1_000_000, (int) (sleepTime % 1_000_000));
             }
 
-            gameViewer.draw();
-
-            playerViewer.drawEntity(lanternaFrame, player);
-
-            lanternaFrame.refresh();
-
-            //update here
-
-            frames++;
-            long elapsedTime = System.nanoTime() - startTime;
-            long sleepTime = (long)frameTime - elapsedTime;
-
-            if (sleepTime > 0) Thread.sleep(sleepTime);
-
-            if (System.nanoTime() - lastTime >= 1000000000) {    // each second
-                System.out.println("FPS: " + frames);
-                frames = 0;
+            if (System.nanoTime() - lastTime >= 1_000_000_000) {
                 lastTime = System.nanoTime();
             }
         }
 
-        lanternaFrame.close();
+        gui.close();
+        System.exit(0);
     }
+
 }

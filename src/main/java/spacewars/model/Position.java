@@ -1,43 +1,45 @@
 package spacewars.model;
 
-import java.util.Objects;
-
-public class Position
-{
-    private final int x;
-    private final int y;
-
-    public Position(int x, int y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    public Position getLeft() { return new Position(x - 1,y); }
-    public Position getRight() { return new Position(x + 1,y); }
-    public Position getUp() { return new Position(x, y - 1); }
-    public Position getDown() { return new Position( x,y+ 1); }
+public record Position(double x, double y) {
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Position position = (Position) o;
-        return x == position.x && y == position.y;
+
+        return Double.compare(position.x, x) == 0 &&
+                Double.compare(position.y, y) == 0;
     }
 
     @Override
-    public int hashCode() {         //necessary for proper equality semantics
-        return Objects.hash(x, y);
+    public int hashCode() {
+        int xHash;
+        int yHash;
+
+        if (Double.isNaN(x)) {
+            xHash = 0; // Treat NaN as hash code 0
+        } else if (x == Double.POSITIVE_INFINITY) {
+            xHash = 1; // Positive infinity
+        } else if (x == Double.NEGATIVE_INFINITY) {
+            xHash = -1; // Negative infinity
+        } else {
+            xHash = Double.hashCode(x); // Normal case
+        }
+
+        if (Double.isNaN(y)) {
+            yHash = 0; // Treat NaN as hash code 0
+        } else if (y == Double.POSITIVE_INFINITY) {
+            yHash = 1; // Positive infinity
+        } else if (y == Double.NEGATIVE_INFINITY) {
+            yHash = -1; // Negative infinity
+        } else {
+            yHash = Double.hashCode(y); // Normal case
+        }
+
+        return 31 * xHash + yHash;
     }
 
-    public int getX()
-    {
-        return x;
-    }
-    public int getY() {
-        return y;
-    }
+
 }
