@@ -105,7 +105,7 @@ The implementation of this design pattern can be found in the states package in 
 Here is the UML state diagram for the application:
 
 <p align="center">
-	<img src="assets/diagrams/states-uml.png">
+	<img src="assets/diagrams/states_uml.png">
 </p>
 
 **Consequences**
@@ -175,6 +175,12 @@ We have applied the **Factory Method** design pattern. This pattern defines an i
 **Implementation**
 
 The implementation of this design pattern can be found in the Invader abstract class in the invaders model package.
+
+Here is the UML class diagram for the factory method pattern:
+
+<p align="center">
+	<img src="assets/diagrams/factory_method_uml.png">
+</p>
 
 **Consequences**
 
