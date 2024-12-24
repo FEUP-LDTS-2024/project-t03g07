@@ -1,4 +1,4 @@
-package spacewars.model.game.elements;
+package spacewars.controller.game.elements.invaders.normal_invaders;
 
 import spacewars.model.Position;
 import spacewars.model.game.Game;
