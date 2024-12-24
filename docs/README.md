@@ -40,10 +40,11 @@ Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy
 - **Player Movement** - By clicking the left or right arrow keys, the player is able to move freely throughout the screen boundaries.
 - **Player Shooting** - By clicking the space bar, the player is able to shoot a bullet hitting or not the invaders, which is good for increasing their score.
 - **Invaders Behavior** - Invaders move across the screen dodging the player's bullets. When they are hit by a bullet, they are killed and only respawn after all invaders are killed. Invaders also shoot bullets to try to kill the player through a random mechanism. Everytime they respawn, their speed is increased, making it harder for the player.
-- **Boss Invader** - The boss invader is always on the screen and respawns right after it is killed by the player. When it is killed, a random amount of points is given to the player from a pre-defined list.
+- **Boss Invader** - The boss invader is always on the screen and respawns right after it is killed by the player. When it is killed, a random amount of points is given to the player from a pre-defined list, based on probability (highest points are less probable and so on). The boss invader also shoots bullets to try to kill the player.
 - **Lives** - The player has a lives system. They start with 3 lives and they decrease everytime an invader hits them. When it reaches 0 lives, the game finishes and a screen appears showing their final score and if they want to play again or not.
 - **High Score** - This game has an high score system. Everytime the player reaches a new high score, it is written in a file in the user's computer, meaning their high score is preserved through app restarts.
 - **Image Loader** - This app is able to transform PNG images in pixels and then showing them on the screen. This was made to make the game more visually appealing.
+- **Text Loader** - This app is able to transform a text file, with all the text characters, in pixels using a map system with an image of a pixelart font. This was made to match the pixelated aesthetic of the app.
 
 ## PLANNED FEATURES
 
@@ -78,6 +79,8 @@ We have applied the **Model-View-Controller (MVC)** design pattern. This pattern
 **Implementation**
 
 The implementation of this design pattern can be found in the model, view, and controller packages in the source code.
+
+You can also see this architecture implemented in the General Structure UML diagram above.
 
 **Consequences**
 
@@ -247,6 +250,6 @@ The use of the Game Loop Pattern in the current design allows the following bene
 
 ## SELF-EVALUATION
 
-- Francisca Portugal:
-- João Lopes:
-- Pedro Monteiro:
+- Francisca Portugal: 35%
+- João Lopes: 30%
+- Pedro Monteiro: 35%
