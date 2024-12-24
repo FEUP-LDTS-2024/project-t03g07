@@ -60,7 +60,7 @@ Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy
 > Click on the image to see it in full size.
 
 <p align="center">
-	<img src="assets/diagrams/uml_total.png" alt="UML Diagram">
+	<img src="assets/diagrams/uml_final.png" alt="UML Diagram">
 </p>
 
 ## DESIGN
