@@ -18,8 +18,7 @@ import spacewars.view.texts.TextViewer;
 import java.io.IOException;
 import java.util.List;
 
-public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
-    private final EntryViewer entryViewer;
+public class HowToPlayMenuViewer extends MenuViewer<HowToPlayMenu> {
     private final TextViewer textViewer;
 
     private final ArrowsViewer arrowsViewer;
@@ -30,17 +29,13 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
     private final StarDestroyerViewer starDestroyerViewer;
     private final DeathStarViewer deathStarViewer;
 
-    public static final TextColor unselectedColor = new TextColor.RGB(255, 255, 255); //white
-    public static final TextColor selectedColor = new TextColor.RGB(255, 195, 0);     //yellow
-    public static final TextColor backgroundColor = new TextColor.RGB(0, 10, 32);   //dark blue
     private static final TextColor titleColor = new TextColor.RGB(255, 195, 0);       //yellow
     private static final TextColor textColor = new TextColor.RGB(255, 255, 255);      //white
     private static final TextColor enigmaColor = new TextColor.RGB(255, 195, 0);      //yellow
 
     public HowToPlayMenuViewer(HowToPlayMenu model, ViewerProvider viewerProvider) {
-        super(model);
+        super(model,viewerProvider);
 
-        this.entryViewer = viewerProvider.getEntryViewer();
         this.textViewer = viewerProvider.getTextViewer();
 
         this.arrowsViewer = viewerProvider.getArrowsViewer();
@@ -63,11 +58,6 @@ public class HowToPlayMenuViewer extends ScreenViewer<HowToPlayMenu> {
         drawSpaceShipsAndPoints(gui);
 
         gui.refresh();
-    }
-
-    private void drawEntries(GUI gui, List<Entry> entries) {
-        for (Entry entry : entries)
-            entryViewer.draw(entry, gui, getModel().getCurrentEntry() == entry ? selectedColor : unselectedColor);
     }
 
     private void drawTitles(GUI gui) {

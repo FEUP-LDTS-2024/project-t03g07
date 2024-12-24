@@ -13,21 +13,16 @@ import spacewars.view.screens.ScreenViewer;
 import java.io.IOException;
 import java.util.List;
 
-public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
-    private final EntryViewer entryViewer;
+public class CreditsMenuViewer extends MenuViewer<CreditsMenu> {
     private final TextViewer textViewer;
 
-    public static final TextColor unselectedColor = new TextColor.RGB(255, 255, 255); //white
-    public static final TextColor selectedColor = new TextColor.RGB(255, 195, 0);     //yellow
-    public static final TextColor backgroundColor = new TextColor.RGB(0, 10, 32);   //dark blue
     private static final TextColor nameColor = new TextColor.RGB(255, 255, 255);      //white
     private static final TextColor detailsColor = new TextColor.RGB(255, 255, 255);   //white
     private static final TextColor titleColor = new TextColor.RGB(255, 195, 0);       //yellow
 
     public CreditsMenuViewer(CreditsMenu model, ViewerProvider viewerProvider) {
-        super(model);
+        super(model, viewerProvider);
 
-        this.entryViewer = viewerProvider.getEntryViewer();
         this.textViewer = viewerProvider.getTextViewer();
     }
 
@@ -42,11 +37,6 @@ public class CreditsMenuViewer extends ScreenViewer<CreditsMenu> {
         drawNames(gui);
 
         gui.refresh();
-    }
-
-    private void drawEntries(GUI gui, List<Entry> entries) {
-        for (Entry entry : entries)
-            entryViewer.draw(entry, gui, getModel().getCurrentEntry() == entry ? selectedColor : unselectedColor);
     }
 
     private void drawTitle(GUI gui) {
