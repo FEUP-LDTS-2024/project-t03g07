@@ -57,8 +57,10 @@ Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy
 
 ## GENERAL ARCHITECTURE UML
 
+> Click on the image to see it in full size.
+
 <p align="center">
-	<img src="" alt="UML Diagram">
+	<img src="assets/diagrams/project-uml.png" alt="UML Diagram">
 </p>
 
 ## DESIGN
