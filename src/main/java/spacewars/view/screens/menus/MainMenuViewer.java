@@ -1,29 +1,18 @@
 package spacewars.view.screens.menus;
 
-import com.googlecode.lanterna.TextColor;
 import spacewars.gui.GUI;
-import spacewars.model.menu.Entry;
-import spacewars.model.menu.Menu;
+import spacewars.model.menu.MainMenu;
 import spacewars.view.ViewerProvider;
-import spacewars.view.menus.EntryViewer;
 import spacewars.view.menus.main_menu.LogoViewer;
-import spacewars.view.screens.ScreenViewer;
 
 import java.io.IOException;
-import java.util.List;
 
-public class MainMenuViewer<T extends Menu> extends ScreenViewer<T> {
-    private final EntryViewer entryViewer;
+public class MainMenuViewer extends MenuViewer<MainMenu> {
     private final LogoViewer logoViewer;
 
-    public static final TextColor unselectedColor = new TextColor.RGB(255, 255, 255); //white
-    public static final TextColor selectedColor = new TextColor.RGB(255, 195, 0);     //yellow
-    public static final TextColor backgroundColor = new TextColor.RGB(0, 10, 32);   //dark blue
+    public MainMenuViewer(MainMenu model, ViewerProvider viewerProvider) {
+        super(model, viewerProvider);
 
-    public MainMenuViewer(T model, ViewerProvider viewerProvider) {
-        super(model);
-
-        this.entryViewer = viewerProvider.getEntryViewer();
         this.logoViewer = viewerProvider.getLogoViewer();
     }
 
@@ -36,10 +25,5 @@ public class MainMenuViewer<T extends Menu> extends ScreenViewer<T> {
         logoViewer.draw(gui, 137, 50);
 
         gui.refresh();
-    }
-
-    private void drawEntries(GUI gui, List<Entry> entries) {
-        for (Entry entry : entries)
-            entryViewer.draw(entry, gui, getModel().getCurrentEntry() == entry ? selectedColor : unselectedColor);
     }
 }

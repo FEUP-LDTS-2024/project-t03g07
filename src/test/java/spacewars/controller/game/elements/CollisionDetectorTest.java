@@ -2,6 +2,7 @@ package spacewars.controller.game.elements;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import spacewars.controller.game.elements.invaders.normal_invaders.CollisionDetector;
 import spacewars.model.Position;
 import spacewars.model.game.Game;
 
