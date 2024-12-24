@@ -12,7 +12,7 @@ import spacewars.view.screens.ScreenViewer;
 import java.io.IOException;
 import java.util.List;
 
-public class MenuViewer<T extends Menu> extends ScreenViewer<T> {
+public abstract class MenuViewer<T extends Menu> extends ScreenViewer<T> {
     private final EntryViewer entryViewer;
 
     public static final TextColor unselectedColor = new TextColor.RGB(255, 255, 255); //white
